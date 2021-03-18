@@ -98,3 +98,4 @@
 .\objects\command_process.o: ..\APP\app_usb.h
 .\objects\command_process.o: ..\APP\app_timer.h
 .\objects\command_process.o: ..\APP\app_adjvol.h
+.\objects\command_process.o: ..\APP\app_sysstate.h

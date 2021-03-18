@@ -13,10 +13,17 @@ static void Gpio_Init(GPIO_TypeDef* GPIOx, uint16_t Gpio_Pin, GPIOMode_TypeDef G
 }
 
 void Gpio_Config()
-{
-	GPIO_InitTypeDef GPIO_InitStructure;
-	
-	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOA | RCC_AHB1Periph_GPIOB | RCC_AHB1Periph_GPIOC | RCC_AHB1Periph_GPIOD | RCC_AHB1Periph_GPIOE, ENABLE);                                                                                    
+{	
+	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOA | RCC_AHB1Periph_GPIOB | RCC_AHB1Periph_GPIOC | RCC_AHB1Periph_GPIOD | RCC_AHB1Periph_GPIOE, ENABLE);         
+    
+    
+    
+    RCC_APB1PeriphClockCmd(RCC_APB1Periph_PWR, ENABLE);     //使能PWR时钟
+    PWR_BackupAccessCmd(ENABLE);                            //使能后备寄存器访问
+    RCC_LSEConfig(RCC_LSE_OFF);                             //关闭外部低速外部时钟, 关闭后PC14 PC15才可以当普通IO用。
+    PWR_BackupAccessCmd(DISABLE);                           //禁止修改后备寄存器
+
+    
 	
     //USART4_DEBUG_COM
     GPIO_PinAFConfig(DEBUG_COM_TX_PORT, GPIO_PinSource0, GPIO_AF_UART4);
@@ -155,15 +162,19 @@ void Gpio_Config()
 
     //BAT_STAT2
     Gpio_Init(BAT_STAT2_PORT, BAT_STAT2_PIN, GPIO_Mode_IN, GPIO_OType_PP, GPIO_PuPd_NOPULL);
+    
+    //FPGA配置完成状态引脚
+    Gpio_Init(FPGA_CFG_DOWN_PORT, FPGA_CFG_DOWN_PIN, GPIO_Mode_IN, GPIO_OType_PP, GPIO_PuPd_NOPULL);
 
     //SYS_LED
     Gpio_Init(SYS_LED_PORT, SYS_LED_PIN, GPIO_Mode_OUT, GPIO_OType_PP, GPIO_PuPd_NOPULL);
 
     //AC_OK
-    Gpio_Init(AC_OK_PORT, AC_OK_PIN, GPIO_Mode_OUT, GPIO_OType_PP, GPIO_PuPd_NOPULL);
+    Gpio_Init(AC_OK_PORT, AC_OK_PIN, GPIO_Mode_IN, GPIO_OType_PP, GPIO_PuPd_NOPULL);
 
     //PWR_BTN_COM
     Gpio_Init(PWR_BTN_COM_PORT, PWR_BTN_COM_PIN, GPIO_Mode_OUT, GPIO_OType_PP, GPIO_PuPd_NOPULL);
+    PWR_BTN_COM(1);
 
     //US_PWR_ID
     Gpio_Init(US_PWR_ID_PORT, US_PWR_ID_PIN, GPIO_Mode_OUT, GPIO_OType_PP, GPIO_PuPd_NOPULL);
@@ -206,6 +217,21 @@ void Gpio_Config()
 
     //T_D1V45_ADC
     Gpio_Init(T_D1V45_PORT, T_D1V45_PIN, GPIO_Mode_AN, GPIO_OType_PP, GPIO_PuPd_NOPULL);
+    
+    //AFE_EN1
+    Gpio_Init(AFE_EN1_PORT, AFE_EN1_PIN, GPIO_Mode_OUT, GPIO_OType_PP, GPIO_PuPd_NOPULL);
+
+    //AFE_EN2
+    Gpio_Init(AFE_EN2_PORT, AFE_EN2_PIN, GPIO_Mode_OUT, GPIO_OType_PP, GPIO_PuPd_NOPULL);
+
+    //EN_FPGA_01
+    Gpio_Init(EN_FPGA_01_PORT, EN_FPGA_01_PIN, GPIO_Mode_OUT, GPIO_OType_PP, GPIO_PuPd_NOPULL);
+
+    //EN_FPGA_02
+    Gpio_Init(EN_FPGA_02_PORT, EN_FPGA_02_PIN, GPIO_Mode_OUT, GPIO_OType_PP, GPIO_PuPd_NOPULL);
+
+    //EN_FRONT
+    Gpio_Init(EN_FRONT_PORT, EN_FRONT_PIN, GPIO_Mode_OUT, GPIO_OType_PP, GPIO_PuPd_NOPULL);
 
     //BAT1_C_SHIFT
     Gpio_Init(BAT1_C_SHIFT_PORT, BAT1_C_SHIFT_PIN, GPIO_Mode_OUT, GPIO_OType_PP, GPIO_PuPd_NOPULL);

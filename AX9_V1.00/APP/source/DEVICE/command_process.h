@@ -3,7 +3,7 @@
 
 #include "gouble.h"
 
-typedef __packed struct 
+typedef struct 
 {
 	uint8_t		Header;
 	uint8_t		Id;

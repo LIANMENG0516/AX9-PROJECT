@@ -4,47 +4,47 @@
 
 void I2c_Emc_Start()
 {
-	EMC_SDA_OUT();
-	EMC_SCK_1();
-	EMC_SDA_1();
+	SMDAT_2305_OUT();
+	SMCLK_2305_1();
+	SMDAT_2305_1();
 	Delay_ms(5);
-	EMC_SDA_0();
+	SMDAT_2305_0();
 	Delay_ms(5);
-	EMC_SCK_0();
+	SMCLK_2305_0();
 	Delay_ms(5);
 }
 
 void I2c_Emc_Stop()
 {
-	EMC_SDA_OUT();
-	EMC_SCK_0();
-	EMC_SDA_0();
+	SMDAT_2305_OUT();
+	SMCLK_2305_0();
+	SMDAT_2305_0();
 	Delay_ms(5);
-	EMC_SCK_1();
+	SMCLK_2305_1();
 	Delay_ms(5);
-	EMC_SDA_1();
+	SMDAT_2305_1();
 	Delay_ms(5);
 }
 
 void I2c_Emc_SendByte(unsigned char data)
 {	
-	EMC_SDA_OUT();
+	SMDAT_2305_OUT();
 
 	Delay_ms(5);
 	for(uint8_t mask=0x80; mask!=0; mask>>=1)
 	{
 		if((mask&data) == 0)
 		{
-			EMC_SDA_0();
+			SMDAT_2305_0();
 		}
 		else
 		{
-			EMC_SDA_0();
+			SMDAT_2305_0();
 		}
 		Delay_ms(5);
-		EMC_SCK_1();
+		SMCLK_2305_1();
 		Delay_ms(5);
-		EMC_SCK_0();
+		SMCLK_2305_0();
 		Delay_ms(5);
 	}
 }
@@ -53,9 +53,9 @@ uint8_t I2c_Emc_WaitAck()
 {
 	uint16_t startCnt = 5000;
 	
-	EMC_SDA_IN();
+	SMDAT_2305_IN();
 	
-	while(EMC_SDA_READ())
+	while(SMDAT_2305_READ())
 	{
 		if(--startCnt == 0)
 		{
@@ -63,37 +63,37 @@ uint8_t I2c_Emc_WaitAck()
 		}
 	}
 	
-	EMC_SCK_1();
+	SMCLK_2305_1();
 	Delay_ms(5);    
-	EMC_SCK_0();
+	SMCLK_2305_0();
 	Delay_ms(5);
 	return 0;
 }
 
 void I2c_Emc_SendAck()
 {
-	EMC_SDA_OUT();
+	SMDAT_2305_OUT();
     
-	EMC_SCK_0();
+	SMCLK_2305_0();
 	Delay_ms(5);
-	EMC_SDA_0();
+	SMDAT_2305_0();
 	Delay_ms(5);
-	EMC_SCK_1();
+	SMCLK_2305_1();
 	Delay_ms(5);
-	EMC_SCK_0();
+	SMCLK_2305_0();
 	Delay_ms(5);
 }
 
 void I2c_Emc_SendNack()
 {
-	EMC_SDA_OUT();
-	EMC_SCK_0();
+	SMDAT_2305_OUT();
+	SMCLK_2305_0();
 	Delay_ms(5);
-	EMC_SDA_1();
+	SMDAT_2305_1();
 	delay_us(5);
-	EMC_SCK_1();
+	SMCLK_2305_1();
 	Delay_ms(5);
-	EMC_SCK_0();
+	SMCLK_2305_0();
 	Delay_ms(5);
 }
 
@@ -101,12 +101,12 @@ uint8_t I2c_Emc_ReadByte()
 {
 	uint8_t data;
 	
-	EMC_SDA_IN();
-	EMC_SCK_0();
+	SMDAT_2305_IN();
+	SMCLK_2305_0();
 
 	for(uint8_t mask=0x80; mask!=0; mask>>=1)
 	{
-		if(EMC_SDA_READ()==0)
+		if(SMDAT_2305_READ()==0)
 		{
 			data &= ~mask;
 		}
@@ -115,9 +115,9 @@ uint8_t I2c_Emc_ReadByte()
 			data |= mask;
 		}
 		delay_us(5);
-		EMC_SCK_1();
+		SMCLK_2305_1();
 		delay_us(5);
-		EMC_SCK_0();
+		SMCLK_2305_0();
 		delay_us(5);
 	}
 	return data;

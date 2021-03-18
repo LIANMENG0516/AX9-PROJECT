@@ -9,7 +9,7 @@ uint8_t Tempature_Read_Fpga()
     uint16_t TempVal;
     
     
-    CTL_SPI3_PIN_CS3(0);
+    CTL_SPI3_CS3(0);
     
     SPI_ReadWriteByte(SPI3, 0);
     TempMsb = SPI_ReadWriteByte(SPI3, 0);
@@ -17,7 +17,7 @@ uint8_t Tempature_Read_Fpga()
     SPI_ReadWriteByte(SPI3, 0);
     TempLsb = SPI_ReadWriteByte(SPI3, 0);
     
-    CTL_SPI3_PIN_CS3(1);
+    CTL_SPI3_CS3(1);
     
     TempCode = (TempMsb << 8) | TempLsb;
     

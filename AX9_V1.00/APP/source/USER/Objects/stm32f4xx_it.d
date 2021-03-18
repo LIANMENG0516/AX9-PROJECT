@@ -98,3 +98,4 @@
 .\objects\stm32f4xx_it.o: ..\APP\app_usb.h
 .\objects\stm32f4xx_it.o: ..\APP\app_timer.h
 .\objects\stm32f4xx_it.o: ..\APP\app_adjvol.h
+.\objects\stm32f4xx_it.o: ..\APP\app_sysstate.h

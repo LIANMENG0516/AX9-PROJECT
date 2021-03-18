@@ -97,3 +97,4 @@
 .\objects\tlv5626cd.o: ..\APP\app_usb.h
 .\objects\tlv5626cd.o: ..\APP\app_timer.h
 .\objects\tlv5626cd.o: ..\APP\app_adjvol.h
+.\objects\tlv5626cd.o: ..\APP\app_sysstate.h

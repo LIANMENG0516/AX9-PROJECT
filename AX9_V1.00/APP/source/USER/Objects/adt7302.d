@@ -97,3 +97,4 @@
 .\objects\adt7302.o: ..\APP\app_usb.h
 .\objects\adt7302.o: ..\APP\app_timer.h
 .\objects\adt7302.o: ..\APP\app_adjvol.h
+.\objects\adt7302.o: ..\APP\app_sysstate.h

@@ -37,6 +37,7 @@
 #include "app_usb.h"
 #include "app_timer.h"
 #include "app_adjvol.h"
+#include "app_sysstate.h"
 
 #define USE_UCOSIII
 
@@ -49,7 +50,7 @@
 #define APP_USB_TASK_PRIO 					5
 #define APP_USB_STK_SIZE 					256
 
-#define APP_AdjVol_TASK_PRIO                6
+#define APP_ADJVOL_TASK_PRIO                6
 #define APP_ADJVOL_STK_SIZE                 256
 
 #define APP_COM_TASK_PRIO                   7
@@ -58,4 +59,27 @@
 #define APP_FAN_TASK_PRIO                   8
 #define APP_FAN_STK_SIZE                    256
 
+#define APP_SYSSTATE_TASK_PRIO              9
+#define APP_SYSSTATE_STK_SIZE               256
+
+#define APP_SYSONOFF_TASK_PRIO              10
+#define APP_SYSONOFF_STK_SIZE               256
+
 #endif
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

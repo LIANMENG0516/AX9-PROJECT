@@ -4,47 +4,47 @@
 
 void I2c_Tmp_Start()
 {
-	TMP_SDA_OUT();
-	TMP_SCK_1();
-	TMP_SDA_1();
+	IIC1_SDA_OUT();
+	IIC1_SCK_1();
+	IIC1_SDA_1();
 	Delay_ms(5);
-	TMP_SDA_0();
+	IIC1_SDA_0();
 	Delay_ms(5);
-	TMP_SCK_0();
+	IIC1_SCK_0();
 	Delay_ms(5);
 }
 
 void I2c_Tmp_Stop()
 {
-	TMP_SDA_OUT();
-	TMP_SCK_0();
-	TMP_SDA_0();
+	IIC1_SDA_OUT();
+	IIC1_SCK_0();
+	IIC1_SDA_0();
 	Delay_ms(5);
-	TMP_SCK_1();
+	IIC1_SCK_1();
 	Delay_ms(5);
-	TMP_SDA_1();
+	IIC1_SDA_1();
 	Delay_ms(5);
 }
 
 void I2c_Tmp_SendByte(unsigned char data)
 {	
-	TMP_SDA_OUT();
+	IIC1_SDA_OUT();
 
 	Delay_ms(5);
 	for(uint8_t mask=0x80; mask!=0; mask>>=1)
 	{
 		if((mask&data) == 0)
 		{
-			TMP_SDA_0();
+			IIC1_SDA_0();
 		}
 		else
 		{
-			TMP_SDA_0();
+			IIC1_SDA_0();
 		}
 		Delay_ms(5);
-		TMP_SCK_1();
+		IIC1_SCK_1();
 		Delay_ms(5);
-		TMP_SCK_0();
+		IIC1_SCK_0();
 		Delay_ms(5);
 	}
 }
@@ -53,9 +53,9 @@ uint8_t I2c_Tmp_WaitAck()
 {
 	uint16_t startCnt = 5000;
 	
-	TMP_SDA_IN();
+	IIC1_SDA_IN();
 	
-	while(TMP_SDA_READ())
+	while(IIC1_SDA_READ())
 	{
 		if(--startCnt == 0)
 		{
@@ -63,38 +63,38 @@ uint8_t I2c_Tmp_WaitAck()
 		}
 	}
 	
-	TMP_SCK_1();
+	IIC1_SCK_1();
 	Delay_ms(5);    
-	TMP_SCK_0();
+	IIC1_SCK_0();
 	Delay_ms(5);
 	return 0;
 }
 
 void I2c_Tmp_SendAck()
 {
-	TMP_SDA_OUT();
+	IIC1_SDA_OUT();
     
-	TMP_SCK_0();
+	IIC1_SCK_0();
 	Delay_ms(5);
-	TMP_SDA_0();
+	IIC1_SDA_0();
 	Delay_ms(5);
-	TMP_SCK_1();
+	IIC1_SCK_1();
 	Delay_ms(5);
-	TMP_SCK_0();
+	IIC1_SCK_0();
 	Delay_ms(5);
 }
 
 void I2c_Tmp_SendNack()
 {
-	TMP_SDA_OUT();
+	IIC1_SDA_OUT();
     
-	TMP_SCK_0();
+	IIC1_SCK_0();
 	Delay_ms(5);
-	TMP_SDA_1();
+	IIC1_SDA_1();
 	delay_us(5);
-	TMP_SCK_1();
+	IIC1_SCK_1();
 	Delay_ms(5);
-	TMP_SCK_0();
+	IIC1_SCK_0();
 	Delay_ms(5);
 }
 
@@ -102,12 +102,12 @@ uint8_t I2c_Tmp_ReadByte()
 {
 	uint8_t data;
 	
-	TMP_SDA_IN();
-	TMP_SCK_0();
+	IIC1_SDA_IN();
+	IIC1_SCK_0();
 
 	for(uint8_t mask=0x80; mask!=0; mask>>=1)
 	{
-		if(TMP_SDA_READ()==0)
+		if(IIC1_SDA_READ()==0)
 		{
 			data &= ~mask;
 		}
@@ -116,9 +116,9 @@ uint8_t I2c_Tmp_ReadByte()
 			data |= mask;
 		}
 		delay_us(5);
-		TMP_SCK_1();
+		IIC1_SCK_1();
 		delay_us(5);
-		TMP_SCK_0();
+		IIC1_SCK_0();
 		delay_us(5);
 	}
 	return data;

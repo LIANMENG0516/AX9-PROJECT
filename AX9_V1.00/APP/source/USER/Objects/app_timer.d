@@ -98,3 +98,4 @@
 .\objects\app_timer.o: ..\APP\app_usb.h
 .\objects\app_timer.o: ..\APP\app_timer.h
 .\objects\app_timer.o: ..\APP\app_adjvol.h
+.\objects\app_timer.o: ..\APP\app_sysstate.h

@@ -36,7 +36,7 @@ void App_AdjVol_TaskCreate()
 				 (CPU_CHAR *		)"App_AdjVol_Task", 
 				 (OS_TASK_PTR		)App_AdjVol_Task,
 				 (void *			)0,
-				 (OS_PRIO			)APP_AdjVol_TASK_PRIO,
+				 (OS_PRIO			)APP_ADJVOL_TASK_PRIO,
 				 (CPU_STK *			)&App_AdjVol_Task_Stk[0],
 				 (CPU_STK_SIZE		)APP_ADJVOL_STK_SIZE / 10,
 				 (CPU_STK_SIZE		)APP_ADJVOL_STK_SIZE,

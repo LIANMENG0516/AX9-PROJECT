@@ -8,6 +8,8 @@
 ".\objects\app_com.o"
 ".\objects\app_timer.o"
 ".\objects\app_fan.o"
+".\objects\app_sysstate.o"
+".\objects\app_sysonoff.o"
 ".\objects\main.o"
 ".\objects\stm32f4xx_it.o"
 ".\objects\command_process.o"

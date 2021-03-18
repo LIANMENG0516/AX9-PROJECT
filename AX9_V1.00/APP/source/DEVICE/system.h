@@ -5,8 +5,9 @@
 
 #include "gouble.h"
 
-#define SYSTEM_ON  TRUE
-#define SYSTEM_OFF FALSE
+#define SYSTEM_OFF   0
+#define SYSTEM_ON    1
+#define SYSTEM_SLEEP 2
 
 typedef enum {FALSE = 0, TRUE = !FALSE} bool;
 
@@ -42,19 +43,20 @@ typedef struct
 
 }FanStrc;
 
-
-
 typedef struct
 {
     Ad_VolStruct    AdVolStr;
     SysTemper       Temperature;
     FanStrc         Fan;
-    bool		    SystemState;
+    uint8_t		    SystemState;
+    bool            PowerOnReq;
+    bool            ShutDownReq;
+    bool            System_S3_Change;
     
 }System_MsgStruct;
 
 
-bool System_PowerControl(void);
+bool System_PwrKey_Minitor(void);
 
 
 

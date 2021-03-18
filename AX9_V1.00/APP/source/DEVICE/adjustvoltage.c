@@ -6,16 +6,18 @@ extern System_MsgStruct System_MsgStr;
 
 uint16_t Vppx_Calculate_AdjVol(uint16_t T_Data)
 {
-    float Adjvol;
+    double Adjvol;
     uint16_t Dac_Val;
     
     Adjvol = 2.069 - T_Data / 43.2;                                  //(1/43.2+1/3.48+1)*1.6=2.096
     Dac_Val = (int)((Adjvol / 3.3 * 4095) + 0.5);
+    
+    return Dac_Val;
 }
 
 uint16_t Vnnx_Calculate_AdjVol(uint16_t T_Data)
 {
-    float Adjvol, Abs_Adjvol;
+    double Adjvol, Abs_Adjvol;
     uint16_t Dac_Val;
     
     Adjvol = T_Data * 0.02 - 2.1;    
@@ -23,16 +25,18 @@ uint16_t Vnnx_Calculate_AdjVol(uint16_t T_Data)
     Abs_Adjvol = fabs(Adjvol);
     
     Dac_Val = (int)((Abs_Adjvol / 2.048 * 255) + 0.5);               //四舍五入后取整数
+    
+    return Dac_Val;
 }
 
 uint16_t Pcw_Calculate_AdjVol(uint16_t T_Data)
 {
-    
+    return 0;
 }
 
 uint16_t Ncw_Calculate_AdjVol(uint16_t T_Data)
 {
-
+    return 0;
 }
 
 void Adjust_Voltage_Vpp1(uint16_t T_Vpp1)

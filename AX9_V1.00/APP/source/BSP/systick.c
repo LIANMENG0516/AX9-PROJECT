@@ -7,7 +7,7 @@
 void SysTick_Iint()
 {
 #ifdef USE_UCOSIII    
-	SysTick_Config(21000000/OS_CFG_TICK_RATE_HZ);            	//此处设置了 UCOSII 的系统时钟为1ms
+	SysTick_Config(21000000/OS_CFG_TICK_RATE_HZ);            	//此处设置了 UCOSII 的系统时钟为1ms, 滴答定时器的中断时间 = uCOS的1个节拍时间, 即ucos一个节拍时间为1ms
 #else
 	SysTick_Config(21000);
 #endif
