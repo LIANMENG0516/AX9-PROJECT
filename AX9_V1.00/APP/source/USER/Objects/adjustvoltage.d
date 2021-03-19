@@ -97,4 +97,4 @@
 .\objects\adjustvoltage.o: ..\APP\app_usb.h
 .\objects\adjustvoltage.o: ..\APP\app_timer.h
 .\objects\adjustvoltage.o: ..\APP\app_adjvol.h
-.\objects\adjustvoltage.o: ..\APP\app_sysstate.h
+.\objects\adjustvoltage.o: ..\APP\app_sysonoff.h

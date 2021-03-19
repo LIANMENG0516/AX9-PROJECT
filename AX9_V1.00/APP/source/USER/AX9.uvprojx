@@ -438,11 +438,6 @@
               <FilePath>..\APP\app_fan.c</FilePath>
             </File>
             <File>
-              <FileName>app_sysstate.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\APP\app_sysstate.c</FilePath>
-            </File>
-            <File>
               <FileName>app_sysonoff.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\APP\app_sysonoff.c</FilePath>

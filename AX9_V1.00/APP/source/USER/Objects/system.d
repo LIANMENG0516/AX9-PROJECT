@@ -98,4 +98,4 @@
 .\objects\system.o: ..\APP\app_usb.h
 .\objects\system.o: ..\APP\app_timer.h
 .\objects\system.o: ..\APP\app_adjvol.h
-.\objects\system.o: ..\APP\app_sysstate.h
+.\objects\system.o: ..\APP\app_sysonoff.h

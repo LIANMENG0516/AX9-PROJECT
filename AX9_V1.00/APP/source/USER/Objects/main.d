@@ -97,4 +97,4 @@
 .\objects\main.o: ..\APP\app_usb.h
 .\objects\main.o: ..\APP\app_timer.h
 .\objects\main.o: ..\APP\app_adjvol.h
-.\objects\main.o: ..\APP\app_sysstate.h
+.\objects\main.o: ..\APP\app_sysonoff.h

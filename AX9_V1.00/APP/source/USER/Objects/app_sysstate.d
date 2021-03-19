@@ -99,3 +99,4 @@
 .\objects\app_sysstate.o: ..\APP\app_timer.h
 .\objects\app_sysstate.o: ..\APP\app_adjvol.h
 .\objects\app_sysstate.o: ..\APP\app_sysstate.h
+.\objects\app_sysstate.o: ..\APP\app_sysonoff.h

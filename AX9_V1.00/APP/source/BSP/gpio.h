@@ -115,16 +115,20 @@
 //C_P5V5_1
 #define C_P5V5_1_PORT             GPIOC
 #define C_P5V5_1_PIN              GPIO_Pin_13
-#define CTL_P5V5_1(x)             x ? GPIO_SetBits(C_P5V5_1_PORT, C_P5V5_1_PIN) : GPIO_ResetBits(C_P5V5_1_PORT, C_P5V5_1_PIN)
+#define CTL_P5V5_1_EN(x)          x ? GPIO_ResetBits(C_P5V5_1_PORT, C_P5V5_1_PIN) : GPIO_SetBits(C_P5V5_1_PORT, C_P5V5_1_PIN)
 
 //C_P5V5_2
 #define C_P5V5_2_PORT             GPIOC
 #define C_P5V5_2_PIN              GPIO_Pin_14
-#define CTL_P5V5_2(x)             x ? GPIO_SetBits(C_P5V5_2_PORT, C_P5V5_2_PIN) : GPIO_ResetBits(C_P5V5_2_PORT, C_P5V5_2_PIN)
+#define CTL_P5V5_2_EN(x)          x ? GPIO_ResetBits(C_P5V5_2_PORT, C_P5V5_2_PIN) : GPIO_SetBits(C_P5V5_2_PORT, C_P5V5_2_PIN)
 
 //LIDIN
 #define LIDIN_PORT                GPIOC
 #define LIDIN_PIN                 GPIO_Pin_15
+
+//PWR_BTN
+#define PWRBTN_PORT               GPIOD
+#define PWRBTN_PIN                GPIO_Pin_0
 
 //CHARGE_EN
 #define CHARGE_EN_PORT            GPIOD
@@ -133,17 +137,17 @@
 //C_P2V25
 #define C_P2V25_PORT              GPIOD
 #define C_P2V25_PIN               GPIO_Pin_2
-#define CTL_P2V25(x)               x ? GPIO_SetBits(C_P2V25_PORT, C_P2V25_PIN) : GPIO_ResetBits(C_P2V25_PORT, C_P2V25_PIN)
+#define CTL_P2V25_EN(x)           x ? GPIO_ResetBits(C_P2V25_PORT, C_P2V25_PIN) : GPIO_SetBits(C_P2V25_PORT, C_P2V25_PIN)
 
 //C_D0V95
 #define C_D0V95_PORT              GPIOD
 #define C_D0V95_PIN               GPIO_Pin_3
-#define CTL_D0V95(x)               x ? GPIO_SetBits(C_D0V95_PORT, C_D0V95_PIN) : GPIO_ResetBits(C_D0V95_PORT, C_D0V95_PIN)
+#define CTL_D0V95_EN(x)           x ? GPIO_ResetBits(C_D0V95_PORT, C_D0V95_PIN) : GPIO_SetBits(C_D0V95_PORT, C_D0V95_PIN) 
 
 //C_D1V45
 #define C_D1V45_PORT              GPIOD
 #define C_D1V45_PIN               GPIO_Pin_4
-#define CTL_D1V45(x)              x ? GPIO_SetBits(C_D1V45_PORT, C_D1V45_PIN) : GPIO_ResetBits(C_D1V45_PORT, C_D1V45_PIN)
+#define CTL_D1V45_EN(x)           x ? GPIO_ResetBits(C_D1V45_PORT, C_D1V45_PIN) : GPIO_SetBits(C_D1V45_PORT, C_D1V45_PIN)
 
 //USART2_COMM_COM
 #define COMM_COM_TX_PORT          GPIOD
@@ -155,23 +159,23 @@
 //C_P12V
 #define C_P12V_PORT               GPIOD
 #define C_P12V_PIN                GPIO_Pin_7
-#define CTL_P12V(x)               x ? GPIO_SetBits(C_P12V_PORT, C_P12V_PIN) : GPIO_ResetBits(C_P12V_PORT, C_P12V_PIN)
+#define CTL_P12V_EN(x)            x ? GPIO_ResetBits(C_P12V_PORT, C_P12V_PIN) : GPIO_SetBits(C_P12V_PORT, C_P12V_PIN)
 
 //C_P3V75
 #define C_P3V75_PORT              GPIOD
 #define C_P3V75_PIN               GPIO_Pin_8
-#define CTL_P3V75(x)              x ? GPIO_SetBits(C_P3V75_PORT, C_P3V75_PIN) : GPIO_ResetBits(C_P3V75_PORT, C_P3V75_PIN)
+#define CTL_P3V75_EN(x)           x ? GPIO_ResetBits(C_P3V75_PORT, C_P3V75_PIN) : GPIO_SetBits(C_P3V75_PORT, C_P3V75_PIN)
 
 //C_N12V_5V5
 #define C_N12V_5V5_PORT           GPIOD
 #define C_N12V_5V5_PIN            GPIO_Pin_9
-#define CTL_N12V_5V5(x)           x ? GPIO_SetBits(C_N12V_5V5_PORT, C_N12V_5V5_PIN) : GPIO_ResetBits(C_N12V_5V5_PORT, C_N12V_5V5_PIN)
+#define CTL_N12V_5V5_EN(x)        x ? GPIO_ResetBits(C_N12V_5V5_PORT, C_N12V_5V5_PIN) : GPIO_SetBits(C_N12V_5V5_PORT, C_N12V_5V5_PIN)
 
 //PD10
 #define PD10_PORT                 GPIOD
 #define PD10_PIN                  GPIO_Pin_10
 #define CTL_MCU_LED(x)            x ? GPIO_SetBits(PD10_PORT, PD10_PIN) : GPIO_ResetBits(PD10_PORT, PD10_PIN)
-#define MCU_LED_BLINK()           GPIO_ReadOutputDataBit(PD10_PORT, PD10_PIN) ? GPIO_ResetBits(PD10_PORT, PD10_PIN) : GPIO_SetBits(PD10_PORT, PD10_PIN)
+#define MCU_LED_BLINK()           GPIO_ToggleBits(PD10_PORT, PD10_PIN)
 
 //CHARGE_CTL
 #define CHARGE_CTL_PORT           GPIOD
@@ -181,7 +185,7 @@
 //C_VDD_P5V
 #define C_VDD_P5V_PORT            GPIOD
 #define C_VDD_P5V_PIN             GPIO_Pin_12
-#define CTL_VDD_P5V(x)            x ? GPIO_SetBits(C_VDD_P5V_PORT, C_VDD_P5V_PIN) : GPIO_ResetBits(C_VDD_P5V_PORT, C_VDD_P5V_PIN)
+#define CTL_VDD_P5V_EN(x)         x ? GPIO_ResetBits(C_VDD_P5V_PORT, C_VDD_P5V_PIN) : GPIO_SetBits(C_VDD_P5V_PORT, C_VDD_P5V_PIN)
 
 //PBUS_ON
 #define PBUS_ON_PORT              GPIOD
@@ -359,13 +363,13 @@
 //C_VNN2_VPP2
 #define C_VNN2_VPP2_PORT          GPIOG
 #define C_VNN2_VPP2_PIN           GPIO_Pin_14
-#define VNN2_VPP2_EN(x)           x ? GPIO_SetBits(C_VNN2_VPP2_PORT, C_VNN2_VPP2_PIN) : GPIO_ResetBits(C_VNN2_VPP2_PORT, C_VNN2_VPP2_PIN)
+#define CTL_VNN2_VPP2_EN(x)       x ? GPIO_ResetBits(C_VNN2_VPP2_PORT, C_VNN2_VPP2_PIN) : GPIO_SetBits(C_VNN2_VPP2_PORT, C_VNN2_VPP2_PIN)
 
 
 //C_VNN1_VPP1
 #define C_VNN1_VPP1_PORT          GPIOG
 #define C_VNN1_VPP1_PIN           GPIO_Pin_15
-#define VNN1_VPP1_EN(x)           x ? GPIO_SetBits(C_VNN1_VPP1_PORT, C_VNN1_VPP1_PIN) : GPIO_ResetBits(C_VNN1_VPP1_PORT, C_VNN1_VPP1_PIN)
+#define CTL_VNN1_VPP1_EN(x)       x ? GPIO_ResetBits(C_VNN1_VPP1_PORT, C_VNN1_VPP1_PIN) : GPIO_SetBits(C_VNN1_VPP1_PORT, C_VNN1_VPP1_PIN)
 
 void Gpio_Config(void);
 

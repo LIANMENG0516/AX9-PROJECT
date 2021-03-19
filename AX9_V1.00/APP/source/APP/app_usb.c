@@ -12,6 +12,8 @@ CPU_STK App_Usb_Task_Stk[APP_LED_STK_SIZE];
 
 void App_Usb_Task()
 {
+    OS_ERR err;
+    
 	while(1)
 	{					
 		if(VCP_CheckDataReceived() != 0)
@@ -28,6 +30,8 @@ void App_Usb_Task()
             
             receive_count = 0;
 		}
+        
+        OSTimeDlyHMSM(0, 0, 0, 200, OS_OPT_TIME_PERIODIC, &err);
 
 	}
 }

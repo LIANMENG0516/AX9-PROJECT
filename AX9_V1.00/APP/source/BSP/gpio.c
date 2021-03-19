@@ -14,9 +14,7 @@ static void Gpio_Init(GPIO_TypeDef* GPIOx, uint16_t Gpio_Pin, GPIOMode_TypeDef G
 
 void Gpio_Config()
 {	
-	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOA | RCC_AHB1Periph_GPIOB | RCC_AHB1Periph_GPIOC | RCC_AHB1Periph_GPIOD | RCC_AHB1Periph_GPIOE, ENABLE);         
-    
-    
+	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOA | RCC_AHB1Periph_GPIOB | RCC_AHB1Periph_GPIOC | RCC_AHB1Periph_GPIOD | RCC_AHB1Periph_GPIOE | RCC_AHB1Periph_GPIOF | RCC_AHB1Periph_GPIOG, ENABLE);                                   
     
     RCC_APB1PeriphClockCmd(RCC_APB1Periph_PWR, ENABLE);     //使能PWR时钟
     PWR_BackupAccessCmd(ENABLE);                            //使能后备寄存器访问
@@ -96,24 +94,32 @@ void Gpio_Config()
 
     //C_P5V5_1
     Gpio_Init(C_P5V5_1_PORT, C_P5V5_1_PIN, GPIO_Mode_OUT, GPIO_OType_PP, GPIO_PuPd_NOPULL);
+    CTL_P5V5_1_EN(0);
 
     //C_P5V5_2
     Gpio_Init(C_P5V5_2_PORT, C_P5V5_2_PIN, GPIO_Mode_OUT, GPIO_OType_PP, GPIO_PuPd_NOPULL);
-
+    CTL_P5V5_2_EN(0);
+    
     //LIDIN
     Gpio_Init(LIDIN_PORT, LIDIN_PIN, GPIO_Mode_OUT, GPIO_OType_PP, GPIO_PuPd_NOPULL);
+
+//    //PWR_BTN
+//    Gpio_Init(PWRBTN_PORT, PWRBTN_PIN, GPIO_Mode_OUT, GPIO_OType_OD, GPIO_PuPd_UP);
 
     //CHARGE_EN
     Gpio_Init(CHARGE_EN_PORT, CHARGE_EN_PIN, GPIO_Mode_OUT, GPIO_OType_PP, GPIO_PuPd_NOPULL);
 
     //C_P2V25
     Gpio_Init(C_P2V25_PORT, C_P2V25_PIN, GPIO_Mode_OUT, GPIO_OType_PP, GPIO_PuPd_NOPULL);
-
+    CTL_P2V25_EN(0);
+    
     //C_D0V95
     Gpio_Init(C_D0V95_PORT, C_D0V95_PIN, GPIO_Mode_OUT, GPIO_OType_PP, GPIO_PuPd_NOPULL);
-
+    CTL_D0V95_EN(0);
+    
     //C_D1V45
     Gpio_Init(C_D1V45_PORT, C_D1V45_PIN, GPIO_Mode_OUT, GPIO_OType_PP, GPIO_PuPd_NOPULL);
+    CTL_D1V45_EN(0);
 
     //USART2_COMM_COM
     GPIO_PinAFConfig(COMM_COM_TX_PORT, GPIO_PinSource5, GPIO_AF_USART2);
@@ -123,12 +129,15 @@ void Gpio_Config()
 
     //C_P12V
     Gpio_Init(C_P12V_PORT, C_P12V_PIN, GPIO_Mode_OUT, GPIO_OType_PP, GPIO_PuPd_NOPULL);
+     CTL_P12V_EN(0);
 
     //C_P3V75
     Gpio_Init(C_P3V75_PORT, C_P3V75_PIN, GPIO_Mode_OUT, GPIO_OType_PP, GPIO_PuPd_NOPULL);
+    CTL_P3V75_EN(0); 
 
     //C_N12V_5V5
     Gpio_Init(C_N12V_5V5_PORT, C_N12V_5V5_PIN, GPIO_Mode_OUT, GPIO_OType_PP, GPIO_PuPd_NOPULL);
+    CTL_N12V_5V5_EN(0);
 
     //PD10
     Gpio_Init(PD10_PORT, PD10_PIN, GPIO_Mode_OUT, GPIO_OType_PP, GPIO_PuPd_NOPULL);
@@ -138,6 +147,7 @@ void Gpio_Config()
 
     //C_VDD_P5V
     Gpio_Init(C_VDD_P5V_PORT, C_VDD_P5V_PIN, GPIO_Mode_OUT, GPIO_OType_PP, GPIO_PuPd_NOPULL);
+    CTL_VDD_P5V_EN(0);
 
     //PBUS_ON
     Gpio_Init(PBUS_ON_PORT, PBUS_ON_PIN, GPIO_Mode_OUT, GPIO_OType_PP, GPIO_PuPd_NOPULL);
@@ -250,9 +260,12 @@ void Gpio_Config()
 
     //C_VNN2_VPP2
     Gpio_Init(C_VNN2_VPP2_PORT, C_VNN2_VPP2_PIN, GPIO_Mode_OUT, GPIO_OType_PP, GPIO_PuPd_NOPULL);
+    CTL_VNN2_VPP2_EN(0);
 
     //C_VNN1_VPP1
-    Gpio_Init(C_VNN1_VPP1_PORT, C_VNN1_VPP1_PIN, GPIO_Mode_OUT, GPIO_OType_PP, GPIO_PuPd_NOPULL);    
+    Gpio_Init(C_VNN1_VPP1_PORT, C_VNN1_VPP1_PIN, GPIO_Mode_OUT, GPIO_OType_PP, GPIO_PuPd_NOPULL); 
+    CTL_VNN1_VPP1_EN(0);    
+    
 }
 
 

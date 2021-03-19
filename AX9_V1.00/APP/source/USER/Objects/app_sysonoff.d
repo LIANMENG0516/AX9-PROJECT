@@ -1,5 +1,5 @@
 .\objects\app_sysonoff.o: ..\APP\app_sysonoff.c
-.\objects\app_sysonoff.o: ..\APP\app_sysstate.h
+.\objects\app_sysonoff.o: ..\APP\app_sysonoff.h
 .\objects\app_sysonoff.o: ..\BSP\gouble.h
 .\objects\app_sysonoff.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
 .\objects\app_sysonoff.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
@@ -98,4 +98,4 @@
 .\objects\app_sysonoff.o: ..\APP\app_usb.h
 .\objects\app_sysonoff.o: ..\APP\app_timer.h
 .\objects\app_sysonoff.o: ..\APP\app_adjvol.h
-.\objects\app_sysonoff.o: ..\APP\app_sysstate.h
+.\objects\app_sysonoff.o: ..\APP\app_sysonoff.h

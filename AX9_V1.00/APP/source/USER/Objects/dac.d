@@ -97,4 +97,4 @@
 .\objects\dac.o: ..\APP\app_usb.h
 .\objects\dac.o: ..\APP\app_timer.h
 .\objects\dac.o: ..\APP\app_adjvol.h
-.\objects\dac.o: ..\APP\app_sysstate.h
+.\objects\dac.o: ..\APP\app_sysonoff.h

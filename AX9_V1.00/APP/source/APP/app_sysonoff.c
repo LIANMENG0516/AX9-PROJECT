@@ -1,4 +1,4 @@
-#include "app_sysstate.h"
+#include "app_sysonoff.h"
 
 extern System_MsgStruct System_MsgStr;
 
@@ -25,24 +25,25 @@ void System_PowerOn(OS_ERR err)
 
     if(powerOnStep == 1)
     {
-        if(SUS_S3_CHK())
-        {
+//        if(SUS_S3_CHK())
+//        {
             //上电时序
             OSTimeDly(2, OS_OPT_TIME_DLY, &err);
-            CTL_P12V(1);
+            CTL_P12V_EN(1);
             OSTimeDly(20, OS_OPT_TIME_DLY, &err);
-            CTL_N12V_5V5(1);
+            CTL_N12V_5V5_EN(1);
             OSTimeDly(20, OS_OPT_TIME_DLY, &err);
-            CTL_P5V5_1(1);
+            CTL_P5V5_1_EN(1);
             OSTimeDly(20, OS_OPT_TIME_DLY, &err);
-            CTL_P5V5_2(1);
+            CTL_P5V5_2_EN(1);
             OSTimeDly(20, OS_OPT_TIME_DLY, &err);
-            CTL_P3V75(1);
-            CTL_P2V25(1);
+            CTL_P3V75_EN(1);
+            CTL_P2V25_EN(1);
             OSTimeDly(20, OS_OPT_TIME_DLY, &err);
-            CTL_D0V95(1);
+            CTL_D0V95_EN(1);
             OSTimeDly(15, OS_OPT_TIME_DLY, &err);
-            CTL_D1V45(1);
+            CTL_VDD_P5V_EN(1);
+            CTL_D1V45_EN(1);
             EN_FRONT(1);
             EN_FPGA_01(1); 
             AFE_EN1(1);
@@ -52,17 +53,17 @@ void System_PowerOn(OS_ERR err)
 
             startCnt = 0;
             powerOnStep = 2;
-        }
-        else
-        {
-            if(++startCnt >= 200)       //开机失败, 规定时间内未能检测到S3信号拉高
-            {
-                PBUS_ON(0);
-                PWR_CTL(0);
-                startCnt = 0;
-                powerOnStep = 0;
-            }
-        }
+//        }
+//        else
+//        {
+//            if(++startCnt >= 200)       //开机失败, 规定时间内未能检测到S3信号拉高
+//            {
+//                PBUS_ON(0);
+//                PWR_CTL(0);
+//                startCnt = 0;
+//                powerOnStep = 0;
+//            }
+//        }
     }
 
     if(powerOnStep == 2)
@@ -93,25 +94,26 @@ void System_ShutDown(OS_ERR err)
     
     if(shutDownStep == 1)
     {
-        if(!SUS_S3_CHK())
-        {
+//        if(!SUS_S3_CHK())
+//        {
             //下电时序
             AFE_EN2(0);
             EN_FPGA_02(0);
             AFE_EN1(0);
             EN_FPGA_01(0);
             EN_FRONT(0);
-            CTL_D1V45(0);
-            CTL_D0V95(0);
-            CTL_P2V25(0);
-            CTL_P3V75(0);
-            CTL_P5V5_2(0);
-            CTL_P5V5_1(0);
-            CTL_N12V_5V5(0);
-            CTL_P12V(0);
+            CTL_D1V45_EN(0);
+            CTL_VDD_P5V_EN(0);
+            CTL_D0V95_EN(0);
+            CTL_P2V25_EN(0);
+            CTL_P3V75_EN(0);
+            CTL_P5V5_2_EN(0);
+            CTL_P5V5_1_EN(0);
+            CTL_N12V_5V5_EN(0);
+            CTL_P12V_EN(0);
             
             shutDownStep = 2;
-        }
+//        }
     }
     
     if(shutDownStep == 2)
@@ -123,6 +125,8 @@ void System_ShutDown(OS_ERR err)
             shutDownStep = 0;
             
             System_MsgStr.SystemState = SYSTEM_OFF;
+            
+            while(PWR_KEY_CHK());
         }
     }
 }

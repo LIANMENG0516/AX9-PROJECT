@@ -28,14 +28,14 @@ void App_Start_Task()
 	#endif	
 	
 	OS_CRITICAL_ENTER();															//进入临界区
-	
-    OSTmrCreate(&Sys_StateChk_Tmr, "Sys_StateChk_Tmr", 1, 1, OS_OPT_TMR_PERIODIC, cb_Sys_StateChk_Tmr, 0, &err);	//创建定时器10ms	
-	OSTmrStart(&Sys_StateChk_Tmr, &err);
     
 	App_Led_TaskCreate();
 	App_Usb_TaskCreate();
     App_AdjVol_TaskCreate();
-    App_SysState_TaskCreate();
+    App_SysOnOff_TaskCreate();
+    
+    OSTmrCreate(&Sys_StateChk_Tmr, "Sys_StateChk_Tmr", 1, 1, OS_OPT_TMR_PERIODIC, cb_Sys_StateChk_Tmr, 0, &err);	//创建定时器10ms	
+	OSTmrStart(&Sys_StateChk_Tmr, &err);
 
     OSTaskSuspend(&StartTaskTcb, &err);
 

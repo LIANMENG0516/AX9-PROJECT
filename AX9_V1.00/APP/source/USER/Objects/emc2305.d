@@ -97,4 +97,4 @@
 .\objects\emc2305.o: ..\APP\app_usb.h
 .\objects\emc2305.o: ..\APP\app_timer.h
 .\objects\emc2305.o: ..\APP\app_adjvol.h
-.\objects\emc2305.o: ..\APP\app_sysstate.h
+.\objects\emc2305.o: ..\APP\app_sysonoff.h

@@ -1,5 +1,7 @@
 #include "app_led.h"
 
+extern System_MsgStruct System_MsgStr;
+
 OS_TCB LedTaskTcb;
 
 CPU_STK App_Led_Task_Stk[APP_LED_STK_SIZE];
@@ -9,23 +11,24 @@ void App_Led_Task()
 	OS_ERR err;
 
 	while(1)
-	{					
-		GPIO_ResetBits(GPIOE, GPIO_Pin_8); 
-		OSTimeDlyHMSM(0, 0, 0, 50, OS_OPT_TIME_PERIODIC, &err);
-		GPIO_ResetBits(GPIOE, GPIO_Pin_9); 
-		OSTimeDlyHMSM(0, 0, 0, 50, OS_OPT_TIME_PERIODIC, &err);
-		GPIO_ResetBits(GPIOE, GPIO_Pin_10); 
-		OSTimeDlyHMSM(0, 0, 0, 50, OS_OPT_TIME_PERIODIC, &err);
-		GPIO_ResetBits(GPIOE, GPIO_Pin_11); 
-		OSTimeDlyHMSM(0, 0, 0, 50, OS_OPT_TIME_PERIODIC, &err); 
-		GPIO_SetBits(GPIOE, GPIO_Pin_8); 
-		OSTimeDlyHMSM(0, 0, 0, 50, OS_OPT_TIME_PERIODIC, &err); 
-		GPIO_SetBits(GPIOE, GPIO_Pin_9); 
-		OSTimeDlyHMSM(0, 0, 0, 50, OS_OPT_TIME_PERIODIC, &err);
-		GPIO_SetBits(GPIOE, GPIO_Pin_10); 
-		OSTimeDlyHMSM(0, 0, 0, 50, OS_OPT_TIME_PERIODIC, &err);
-		GPIO_SetBits(GPIOE, GPIO_Pin_11); 
-		OSTimeDlyHMSM(0, 0, 0, 50, OS_OPT_TIME_PERIODIC, &err);
+	{			
+
+        MCU_LED_BLINK();
+        
+//        if(System_MsgStr.SystemState == SYSTEM_ON)
+//        {
+//            MCU_LED_BLINK();
+//        }
+//        if(System_MsgStr.SystemState == SYSTEM_OFF)
+//        {
+//            CTL_MCU_LED(0);
+//        }
+//        if(System_MsgStr.SystemState == SYSTEM_SLEEP)
+//        {
+//            CTL_MCU_LED(1);
+//        }
+
+		OSTimeDlyHMSM(0, 0, 0, 500, OS_OPT_TIME_PERIODIC, &err);
 	}
 }
 
