@@ -104,13 +104,13 @@
 #define SPI3_PORT_SCK             GPIOC
 #define SPI3_PIN_SCK              GPIO_Pin_10
 
-//SPI3_MOSI
-#define SPI3_PORT_MOSI            GPIOC
-#define SPI3_PIN_MOSI             GPIO_Pin_11
-
 //SPI3_MISO
 #define SPI3_PORT_MISO            GPIOC  
-#define SPI3_PIN_MISO             GPIO_Pin_12
+#define SPI3_PIN_MISO             GPIO_Pin_11
+
+//SPI3_MOSI
+#define SPI3_PORT_MOSI            GPIOC
+#define SPI3_PIN_MOSI             GPIO_Pin_12
 
 //C_P5V5_1
 #define C_P5V5_1_PORT             GPIOC

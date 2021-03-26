@@ -21,7 +21,42 @@ System_MsgStruct System_MsgStr = {
     .PowerOnReq                 = FALSE,
     .ShutDownReq                = FALSE,
     .System_S3_Change           = FALSE,
+    .System_S4_Change           = FALSE,
+    .S3Minitor                  = FALSE,
 };
+
+void SystemStateInit()
+{
+    System_MsgStr.AdVolStr.CMD_HVFlag        = FALSE;
+    System_MsgStr.AdVolStr.CMD_CWFlag        = FALSE;
+    System_MsgStr.AdVolStr.T_VPP1            = 0;
+    System_MsgStr.AdVolStr.T_VNN1            = 0;
+    System_MsgStr.AdVolStr.T_VPP2            = 0;
+    System_MsgStr.AdVolStr.T_VNN2            = 0;
+    System_MsgStr.AdVolStr.T_PCW             = 0;
+    System_MsgStr.AdVolStr.T_NCW             = 0;
+    System_MsgStr.Temperature.FPGA           = 0;
+    System_MsgStr.Temperature.CPU            = 0;
+    System_MsgStr.Temperature.USPB           = 0;
+    System_MsgStr.Fan.Rpm1                   = 0;
+    System_MsgStr.Fan.Rpm2                   = 0;
+    System_MsgStr.Fan.Rpm3                   = 0;
+    System_MsgStr.Fan.Rpm4                   = 0;
+    System_MsgStr.Fan.Rpm5                   = 0;
+    System_MsgStr.SystemState                = SYSTEM_OFF;
+    System_MsgStr.PowerOnReq                 = FALSE;
+    System_MsgStr.ShutDownReq                = FALSE;
+    System_MsgStr.System_S3_Change           = FALSE;
+    System_MsgStr.System_S4_Change           = FALSE;
+    System_MsgStr.S3Minitor                  = FALSE;
+}
+
+
+void Delay_Nop(uint16_t count)
+{
+    while(--count);
+}
+
 
 bool System_PwrKey_Minitor()	
 {	
@@ -45,7 +80,6 @@ bool System_PwrKey_Minitor()
 			startCnt = 400;
             System_MsgStr.ShutDownReq = TRUE;
 			stateFlag = TRUE;
-
 		}
 	}
 	if(stateNow == FALSE)				//°´¼üËÉ¿ª
@@ -56,11 +90,10 @@ bool System_PwrKey_Minitor()
 	return stateFlag;
 }
 
-
-
-
-bool System_S3_State_Minitor()
+void System_S3_State_Minitor()
 {  
+    OS_ERR err;
+    
     bool s3StateChanged = FALSE;
     
     static uint8_t startCnt = 0;
@@ -80,10 +113,99 @@ bool System_S3_State_Minitor()
     {
         startCnt = 0;
     }
-    return s3StateChanged; 
+    
+    if(s3StateChanged == TRUE)
+    {
+        if(stateNow == TRUE)
+        {
+            OSTimeDly(2, OS_OPT_TIME_DLY, &err);
+            CTL_P12V_EN(1);
+            OSTimeDly(20, OS_OPT_TIME_DLY, &err);
+            CTL_N12V_5V5_EN(1);
+            OSTimeDly(20, OS_OPT_TIME_DLY, &err);
+            CTL_P5V5_1_EN(1);
+            OSTimeDly(20, OS_OPT_TIME_DLY, &err);
+            CTL_P5V5_2_EN(1);
+            OSTimeDly(20, OS_OPT_TIME_DLY, &err);
+            CTL_P3V75_EN(1);
+            CTL_P2V25_EN(1);
+            OSTimeDly(20, OS_OPT_TIME_DLY, &err);
+            CTL_D0V95_EN(1);
+            OSTimeDly(15, OS_OPT_TIME_DLY, &err);
+            CTL_VDD_P5V_EN(1);
+            CTL_D1V45_EN(1);
+            EN_FRONT(1);
+            EN_FPGA_01(1); 
+            AFE_EN1(1);
+            OSTimeDly(15, OS_OPT_TIME_DLY, &err);
+            EN_FPGA_02(1);
+            AFE_EN2(1);
+        }
+        else
+        {
+            OSTimeDly(2, OS_OPT_TIME_DLY, &err);
+            CTL_P12V_EN(1);
+            OSTimeDly(20, OS_OPT_TIME_DLY, &err);
+            CTL_N12V_5V5_EN(1);
+            OSTimeDly(20, OS_OPT_TIME_DLY, &err);
+            CTL_P5V5_1_EN(1);
+            OSTimeDly(20, OS_OPT_TIME_DLY, &err);
+            CTL_P5V5_2_EN(1);
+            OSTimeDly(20, OS_OPT_TIME_DLY, &err);
+            CTL_P3V75_EN(1);
+            CTL_P2V25_EN(1);
+            OSTimeDly(20, OS_OPT_TIME_DLY, &err);
+            CTL_D0V95_EN(1);
+            OSTimeDly(15, OS_OPT_TIME_DLY, &err);
+            CTL_VDD_P5V_EN(1);
+            CTL_D1V45_EN(1);
+            EN_FRONT(1);
+            EN_FPGA_01(1); 
+            AFE_EN1(1);
+            OSTimeDly(15, OS_OPT_TIME_DLY, &err);
+            EN_FPGA_02(1);
+            AFE_EN2(1);
+        }
+    }
 }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+bool System_S4_State_Minitor()
+{  
+    bool s4StateChanged = FALSE;
+    
+    static uint8_t startCnt = 0;
+    
+    static bool stateNow = FALSE, stateOld = FALSE;
+    
+    stateNow = (bool)SUS_S4_CHK();
+    
+    if((stateNow != stateOld) && (++startCnt >= 1)) 
+    {
+        startCnt = 0;
+        stateOld = stateNow;
+        s4StateChanged = TRUE;
+        System_MsgStr.System_S4_Change = TRUE;
+    }
+    if(stateNow == stateOld)
+    {
+        startCnt = 0;
+    }
+    return s4StateChanged; 
+}
 
 
 

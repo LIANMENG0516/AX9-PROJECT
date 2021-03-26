@@ -4,7 +4,9 @@ extern System_MsgStruct System_MsgStr;
 
 void cb_Sys_StateChk_Tmr(void *p_tmr, void *p_arg)
 {
-    System_PwrKey_Minitor();	
+    System_PwrKey_Minitor();
+
+    Adc_GetVoltage();
 }
 
 

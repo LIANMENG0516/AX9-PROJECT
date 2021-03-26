@@ -31,10 +31,26 @@
 #define CHANNEL_AP5V5_2 	ADC_Channel_2
 #define CHANNEL_D5V 	    ADC_Channel_3
 
+#define SAMPLE_VPP1_SEQUENCE        1
+#define SAMPLE_VNN1_SEQUENCE        2
+#define SAMPLE_VPP2_SEQUENCE        3
+#define SAMPLE_VNN2_SEQUENCE        4
+#define SAMPLE_A3V75_SEQUENCE       5
+#define SAMPLE_A2V25_SEQUENCE       6
+#define SAMPLE_AP12V_SEQUENCE       7
+#define SAMPLE_AN12V_SEQUENCE       8
+#define SAMPLE_AP5V5_1_SEQUENCE     9
+#define SAMPLE_AP5V5_2_SEQUENCE     10
+#define SAMPLE_AN5V5_SEQUENCE       11
+#define SAMPLE_D5V_SEQUENCE         12
+#define SAMPLE_D0V95_SEQUENCE       13
+#define SAMPLE_D1V45_SEQUENCE       14
+
 //ADC1
 #define CHANNEL_IADP 	    ADC_Channel_15      //¹ýÁ÷¼ì²â
 
 void Adc_Init(ADC_TypeDef* ADCx, uint8_t NumChannel);
+void Adc_GetVoltage(void);
 
 #endif
 

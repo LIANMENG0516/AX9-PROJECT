@@ -6,7 +6,6 @@ OS_TCB SysOnOffTaskTcb;
 
 CPU_STK App_SysOnOff_Task_Stk[APP_SYSONOFF_STK_SIZE];
 
-
 void System_PowerOn(OS_ERR err)
 {
     static uint16_t startCnt = 0;
@@ -131,12 +130,68 @@ void System_ShutDown(OS_ERR err)
     }
 }
 
+
+
+
+
+
+
+
+
+void System_OnOffCtrl()
+{
+    OS_ERR err;
+
+    if(System_MsgStr.SystemState == SYSTEM_OFF)
+    {
+        PWR_CTL(1);
+        PBUS_ON(1);
+        PWR_BTN_COM(0);
+        OSTimeDly(100, OS_OPT_TIME_DLY, &err);
+        PWR_BTN_COM(1);
+        System_MsgStr.S3Minitor = TRUE;  
+    }
+    else
+    {
+        PWR_BTN_COM(0);
+        OSTimeDly(100, OS_OPT_TIME_DLY, &err);
+        PWR_BTN_COM(1);
+    }
+    if(System_MsgStr.S3Minitor == TRUE)
+    {
+        System_S3_State_Minitor();
+    }
+    if(System_MsgStr.SystemState == SYSTEM_OFF)
+    {
+        if(!FPGA_CFG_DOWN_CHK())
+        {
+            OSTimeDly(3000, OS_OPT_TIME_DLY, &err);
+        }
+        PWR_OK_COM(1);
+
+        System_MsgStr.SystemState = SYSTEM_ON;
+    }
+
+    if(System_MsgStr.SystemState == SYSTEM_ON)
+    {
+        if(FPGA_CFG_DOWN_CHK() == FALSE)
+        {
+            PWR_OK_COM(0);
+            System_MsgStr.S3Minitor = FALSE;
+            System_MsgStr.SystemState = SYSTEM_OFF;
+        }
+    }
+}
+
 void App_SysOnOff_Task()
 {
 	OS_ERR err;
 
 	while(1)
 	{		
+        //System_OnOffCtrl();
+        
+        
         System_PowerOn(err);
         System_ShutDown(err);
         OSTimeDlyHMSM(0, 0, 0, 10, OS_OPT_TIME_PERIODIC, &err);

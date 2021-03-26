@@ -43,7 +43,6 @@ uint8_t SPI_ReadWriteByte(SPI_TypeDef* SPIx, uint8_t data)
 			return 0;
 		}	
 	}		
-	retry = 0;
 	SPI_I2S_SendData(SPIx, data);
 	
 	while(SPI_I2S_GetFlagStatus(SPIx, SPI_I2S_FLAG_RXNE) != SET)
@@ -58,25 +57,32 @@ uint8_t SPI_ReadWriteByte(SPI_TypeDef* SPIx, uint8_t data)
 }
 
 
-uint8_t SPI_WriteByte(SPI_TypeDef* SPIx, uint16_t data)
+uint8_t SPI_WriteHalfWord(SPI_TypeDef* SPIx, uint16_t data)
 {
-    u8 retry = 0;				 	
+    uint16_t retry = 0;				 	
 	while(SPI_I2S_GetFlagStatus(SPIx, SPI_I2S_FLAG_TXE) != SET)
 	{
 		retry++;
-		if(retry > 200)
+		if(retry > 2000)
 		{
 			return 0;
 		}	
 	}		
-	retry = 0;
 	SPI_I2S_SendData(SPIx, data);
     
     return 1;
 }
 
 
-
+uint8_t SPI_ReadWriteHalfWord(SPI_TypeDef* SPIx, uint16_t data)
+{		
+	uint16_t retry = 0;				 	
+	while(SPI_I2S_GetFlagStatus(SPIx, SPI_I2S_FLAG_TXE) == RESET);		
+	SPI_I2S_SendData(SPIx, data);
+	
+	while(SPI_I2S_GetFlagStatus(SPIx, SPI_I2S_FLAG_RXNE) == RESET);	  						    
+	return SPI_I2S_ReceiveData(SPIx);		    
+}
 
 
 

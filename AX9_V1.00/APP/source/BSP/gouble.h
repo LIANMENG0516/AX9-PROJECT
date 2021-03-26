@@ -41,26 +41,28 @@
 
 #define USE_UCOSIII
 
-#define APP_START_TASK_PRIO 				3		//优先级
-#define APP_START_STK_SIZE 					256		//堆栈大小
 
-#define APP_LED_TASK_PRIO 					4
+
+#define APP_LED_TASK_PRIO 					3
 #define APP_LED_STK_SIZE 					256
 
-#define APP_USB_TASK_PRIO 					5
+#define APP_USB_TASK_PRIO 					4
 #define APP_USB_STK_SIZE 					256
 
-#define APP_ADJVOL_TASK_PRIO                6
+#define APP_ADJVOL_TASK_PRIO                5
 #define APP_ADJVOL_STK_SIZE                 256
 
-#define APP_COM_TASK_PRIO                   7
+#define APP_COM_TASK_PRIO                   6
 #define APP_COM_STK_SIZE                    256
 
-#define APP_FAN_TASK_PRIO                   8
+#define APP_FAN_TASK_PRIO                   7
 #define APP_FAN_STK_SIZE                    256
 
-#define APP_SYSONOFF_TASK_PRIO              9
+#define APP_SYSONOFF_TASK_PRIO              8
 #define APP_SYSONOFF_STK_SIZE               256
+
+#define APP_START_TASK_PRIO 				30		//优先级
+#define APP_START_STK_SIZE 					256		//堆栈大小
 
 #endif
 

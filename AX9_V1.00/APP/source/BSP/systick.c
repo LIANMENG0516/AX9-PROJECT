@@ -40,7 +40,7 @@ uint32_t Get_DelayMs()
 
 void delay_us(uint16_t time)
 {	  
-	uint16_t temp;
+	uint32_t temp;
 	SysTick->LOAD = time * 21;
 	SysTick->VAL = 0;
 	SysTick->CTRL = (1 << 0);   
