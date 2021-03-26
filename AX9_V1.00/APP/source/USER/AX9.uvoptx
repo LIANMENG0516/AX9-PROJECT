@@ -158,7 +158,17 @@
         <Ww>
           <count>1</count>
           <WinNumber>1</WinNumber>
-          <ItemText>System_MsgStr</ItemText>
+          <ItemText>Adc_V_ConValue</ItemText>
+        </Ww>
+        <Ww>
+          <count>2</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>Adc_I_ConValue</ItemText>
+        </Ww>
+        <Ww>
+          <count>3</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>Adc_V_ConValue</ItemText>
         </Ww>
       </WatchWindow1>
       <Tracepoint>

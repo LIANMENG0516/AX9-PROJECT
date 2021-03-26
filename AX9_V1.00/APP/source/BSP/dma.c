@@ -6,9 +6,9 @@ void Dma_Config(DMA_Stream_TypeDef* DMAy_Streamx, uint32_t DMA_Channelx, uint32_
 {
 	DMA_InitTypeDef DMA_InitStructure;	
 
-	if((uint32_t)DMAy_Streamx < (uint32_t)DMA2)
-		RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_DMA1, ENABLE);
-	else
+//	if((uint32_t)DMAy_Streamx < (uint32_t)DMA2)
+//		RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_DMA1, ENABLE);
+//	else
 		RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_DMA2, ENABLE);	
 
 	DMA_InitStructure.DMA_Channel = DMA_Channelx;    				

@@ -30,7 +30,7 @@ void App_Com_Task()
             Send_CmdPackage(DEBUG_COM_DMAY_STREAMX_TX);                                    
         }
         
-		OSTimeDlyHMSM(0, 0, 0, 5, OS_OPT_TIME_PERIODIC, &err);
+		OSTimeDlyHMSM(0, 0, 0, 50, OS_OPT_TIME_PERIODIC, &err);
 	}
 }
 

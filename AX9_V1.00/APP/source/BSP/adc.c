@@ -16,10 +16,13 @@ void Adc_Init(ADC_TypeDef* ADCx, uint8_t NumChannel)
     if(ADCx == ADC3) 
         RCC_APB2PeriphClockCmd(RCC_APB2Periph_ADC3, ENABLE);
     
+    RCC_APB2PeriphResetCmd(RCC_APB2Periph_ADC1 | RCC_APB2Periph_ADC3, ENABLE);
+    RCC_APB2PeriphResetCmd(RCC_APB2Periph_ADC1 | RCC_APB2Periph_ADC3, DISABLE);
+    
     ADC_CommonInitStruct.ADC_Mode = ADC_Mode_Independent;
     ADC_CommonInitStruct.ADC_Prescaler = ADC_Prescaler_Div4;                            //预分频4分频                            
     ADC_CommonInitStruct.ADC_DMAAccessMode = ADC_DMAAccessMode_Disabled;
-    ADC_CommonInitStruct.ADC_TwoSamplingDelay = ADC_TwoSamplingDelay_20Cycles;          //两个采样阶段之间的延迟20个时钟
+    ADC_CommonInitStruct.ADC_TwoSamplingDelay = ADC_TwoSamplingDelay_5Cycles;          //两个采样阶段之间的延迟5个时钟
     ADC_CommonInit(&ADC_CommonInitStruct);
     
     ADC_InitStruct.ADC_Resolution = ADC_Resolution_12b;
