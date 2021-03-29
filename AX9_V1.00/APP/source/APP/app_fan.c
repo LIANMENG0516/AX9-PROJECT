@@ -1,6 +1,6 @@
 #include "app_fan.h"
 
-extern System_MsgStruct System_MsgStr;
+extern System_MsgStruct SysMsg;
 
 OS_TCB FanTaskTcb;
 

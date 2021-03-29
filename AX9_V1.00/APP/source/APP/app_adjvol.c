@@ -12,17 +12,18 @@ void App_AdjVol_Task()
 
 	while(1)
 	{					
-        if(System_MsgStr.AdVolStr.CMD_HVFlag == TRUE)
-        {
-            System_MsgStr.AdVolStr.CMD_HVFlag = FALSE;
-            Adjust_Voltage_HV();                            //执行高压调压处理
-        }
-        
-        if(System_MsgStr.AdVolStr.CMD_CWFlag == TRUE)
-        {
-            System_MsgStr.AdVolStr.CMD_CWFlag = FALSE;
-            Adjust_Voltage_CW();                            //执行低压调压处理
-        }
+//        if(System_MsgStr.AdVolStr.CMD_HVFlag == TRUE)
+//        {
+//            System_MsgStr.AdVolStr.CMD_HVFlag = FALSE;
+//            Adjust_Voltage_HV();                            //执行高压调压处理
+//            System_MsgStr.AdVolStr.HV_Minitor = TRUE;       //处理完成打开高压监控
+//        }
+//        
+//        if(System_MsgStr.AdVolStr.CMD_CWFlag == TRUE)
+//        {
+//            System_MsgStr.AdVolStr.CMD_CWFlag = FALSE;
+//            Adjust_Voltage_CW();                            
+//        }
         
 		OSTimeDlyHMSM(0, 0, 0, 50, OS_OPT_TIME_PERIODIC, &err);
 	}

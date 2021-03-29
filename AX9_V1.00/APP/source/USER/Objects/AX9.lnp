@@ -4,7 +4,6 @@
 ".\objects\app.o"
 ".\objects\app_led.o"
 ".\objects\app_usb.o"
-".\objects\app_adjvol.o"
 ".\objects\app_com.o"
 ".\objects\app_timer.o"
 ".\objects\app_fan.o"

@@ -180,7 +180,7 @@ void Tmp468_ReadData(uint8_t id, uint8_t addr, uint8_t *buffer, uint8_t len)
 
 
 
-extern System_MsgStruct System_MsgStr;
+extern System_MsgStruct SysMsg;
 
 
 void Obtain_TemperatureFPGA()
@@ -191,7 +191,7 @@ void Obtain_TemperatureFPGA()
 
     Tmp468_ReadData(TMP468_ADDR, RT1_ADDR, Temp, 2);
     
-    System_MsgStr.Temperature.FPGA1 = (int)(((((Temp[0] << 8) + Temp[1]) >> 3) * 0.0625) + 0.5);    //四舍五入取整数
+    SysMsg.Temperature.FPGA1 = (int)(((((Temp[0] << 8) + Temp[1]) >> 3) * 0.0625) + 0.5);    //四舍五入取整数
 }
 
 

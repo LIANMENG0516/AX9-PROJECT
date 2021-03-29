@@ -11,8 +11,6 @@ void Spi_Dac_Config()
 
 void DacHv_Tlv5626cd_ValueSet(uint8_t channel, uint8_t data)
 {
-    OS_ERR err;
-    
     if(channel == TLV5626CD_A)
     {
         CTL_SPI3_CS2(0);

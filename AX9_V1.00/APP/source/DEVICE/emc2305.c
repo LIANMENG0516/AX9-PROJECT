@@ -124,28 +124,28 @@ uint8_t I2c_Emc_ReadByte()
 }
 
 
-extern System_MsgStruct System_MsgStr;
+extern System_MsgStruct SysMsg;
 
 void Fan_Emc2305_Control()
 {
     uint8_t TempNow = 0, TempOld = 0, Speed;
     
-    if(System_MsgStr.Temperature.CPU >= System_MsgStr.Temperature.FPGA)
+    if(SysMsg.Temperature.CPU >= SysMsg.Temperature.FPGA)
     {
-        TempNow = System_MsgStr.Temperature.CPU;
+        TempNow = SysMsg.Temperature.CPU;
     }
     else
     {
-        TempNow = System_MsgStr.Temperature.FPGA;
+        TempNow = SysMsg.Temperature.FPGA;
     }
     
-    if(TempNow >= System_MsgStr.Temperature.USPB)
+    if(TempNow >= SysMsg.Temperature.USPB)
     {
         TempNow = TempNow;
     }
     else
     {
-        TempNow = System_MsgStr.Temperature.USPB;
+        TempNow = SysMsg.Temperature.USPB;
     }
     
     if(TempNow != TempOld)
@@ -215,19 +215,19 @@ void Fan_Speed_Read()
     uint16_t Tach1_Count, Tach2_Count, Tach3_Count, Tach4_Count, Tach5_Count;
     
     Tach1_Count = ((Read_Emc2305_Reg(FAN1_TACHREAD_HIGH) << 8) + Read_Emc2305_Reg(FAN1_TACHREAD_LOW)) >> 3;                                                          
-    System_MsgStr.Fan.Rpm1 = 3932160 * 2 / Tach1_Count;
+    SysMsg.Fan.Rpm1 = 3932160 * 2 / Tach1_Count;
     
     Tach2_Count = ((Read_Emc2305_Reg(FAN1_TACHREAD_HIGH) << 8) + Read_Emc2305_Reg(FAN1_TACHREAD_LOW)) >> 3;                                                          
-    System_MsgStr.Fan.Rpm2 = 3932160 * 2 / Tach2_Count;
+    SysMsg.Fan.Rpm2 = 3932160 * 2 / Tach2_Count;
     
     Tach3_Count = ((Read_Emc2305_Reg(FAN1_TACHREAD_HIGH) << 8) + Read_Emc2305_Reg(FAN1_TACHREAD_LOW)) >> 3;                                                          
-    System_MsgStr.Fan.Rpm3 = 3932160 * 2 / Tach3_Count;
+    SysMsg.Fan.Rpm3 = 3932160 * 2 / Tach3_Count;
 
     Tach4_Count = ((Read_Emc2305_Reg(FAN1_TACHREAD_HIGH) << 8) + Read_Emc2305_Reg(FAN1_TACHREAD_LOW)) >> 3;                                                          
-    System_MsgStr.Fan.Rpm4 = 3932160 * 2 / Tach4_Count;
+    SysMsg.Fan.Rpm4 = 3932160 * 2 / Tach4_Count;
     
     Tach5_Count = ((Read_Emc2305_Reg(FAN1_TACHREAD_HIGH) << 8) + Read_Emc2305_Reg(FAN1_TACHREAD_LOW)) >> 3;                                                          
-    System_MsgStr.Fan.Rpm5 = 3932160 * 2 / Tach5_Count;
+    SysMsg.Fan.Rpm5 = 3932160 * 2 / Tach5_Count;
 }
 
 void Fan_Emc2305_Init()

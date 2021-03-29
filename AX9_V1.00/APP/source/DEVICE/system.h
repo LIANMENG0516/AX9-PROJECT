@@ -11,35 +11,38 @@
 
 typedef enum {FALSE = 0, TRUE = !FALSE} bool;
 
-#define SAMPLE_A3V75_SEQUENCE       5
-#define SAMPLE_A2V25_SEQUENCE       6
-#define SAMPLE_AP12V_SEQUENCE       7
-#define SAMPLE_AN12V_SEQUENCE       8
-#define SAMPLE_AP5V5_1_SEQUENCE     9
-#define SAMPLE_AP5V5_2_SEQUENCE     10
-#define SAMPLE_AN5V5_SEQUENCE       11
-#define SAMPLE_D5V_SEQUENCE         12
-#define SAMPLE_D0V95_SEQUENCE       13
-#define SAMPLE_D1V45_SEQUENCE       14
-
 typedef struct
-{
-    bool CMD_HVFlag;           //高压调压标志
-    bool CMD_CWFlag;           //低压调压标志
+{    
+    
+    
+    bool     HV_Minitor;
+    bool     CW_Minitor;
     
     uint16_t T_VPP1;
     uint16_t T_VNN1;
     uint16_t T_VPP2;
     uint16_t T_VNN2;
-    uint16_t T_PCW;
-    uint16_t T_NCW;
+
+    
+    uint16_t MAX_VPP1;
+    uint16_t MIN_VPP1;
+    uint16_t MAX_VNN1;
+    uint16_t MIN_VNN1;
+    
+    uint16_t MAX_VPP2;
+    uint16_t MIN_VPP2;
+    uint16_t MAX_VNN2;
+    uint16_t MIN_VNN2;
+    
+    
+    
+    
+    
     
     uint16_t R_VPP1;
     uint16_t R_VNN1;
     uint16_t R_VPP2;
     uint16_t R_VNN2;
-    uint16_t R_PCW;
-    uint16_t R_NCW;
     
     uint16_t R_A3V75;
     uint16_t R_A2V25;
@@ -51,7 +54,7 @@ typedef struct
     uint16_t R_AN5V5;
     uint16_t R_D5V;
     uint16_t R_D0V95;
-    uint16_t R_D1V45;
+    uint16_t R_D1V45;   
 }Ad_VolStruct;
 
 typedef struct
@@ -69,14 +72,27 @@ typedef struct
     uint16_t Rpm3;
     uint16_t Rpm4;
     uint16_t Rpm5;
-
 }FanStrc;
 
 typedef struct
+{    
+    bool Timeout;
+    bool HV_Send;
+    bool CW_Send;
+    bool Firmware_Send;
+    bool CompileInfo_Send;
+}Command_Deal;
+
+
+
+
+
+typedef struct
 {
-    Ad_VolStruct    AdVolStr;
+    Ad_VolStruct    AdjVol;
     SysTemper       Temperature;
     FanStrc         Fan;
+    Command_Deal    Cmd;
     uint8_t		    SystemState;
     bool            PowerOnReq;
     bool            ShutDownReq;

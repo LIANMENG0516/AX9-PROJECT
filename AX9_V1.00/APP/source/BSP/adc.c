@@ -2,7 +2,7 @@
 
 #include "gouble.h"
 
-extern System_MsgStruct System_MsgStr;
+extern System_MsgStruct SysMsg;
 
 void Adc_Init(ADC_TypeDef* ADCx, uint8_t NumChannel)
 {    
@@ -75,20 +75,20 @@ uint16_t Adc_ReadConvertValue(uint8_t sample_sequence)
 
 void Adc_GetVoltage()
 {
-	System_MsgStr.AdVolStr.R_VPP1 = (uint32_t)(((Adc_ReadConvertValue(SAMPLE_VPP1_SEQUENCE) * 3.3 / 4095) / 4.22 * (100 + 4.22)) * 100);
-	System_MsgStr.AdVolStr.R_VNN1 = (uint32_t)(((Adc_ReadConvertValue(SAMPLE_VNN1_SEQUENCE) * 3.3 / 4095) / 2.67 * (100 + 2.67)) * 100);
-	System_MsgStr.AdVolStr.R_VPP2 = (uint32_t)(((Adc_ReadConvertValue(SAMPLE_VPP2_SEQUENCE) * 3.3 / 4095) / 4.22 * (100 + 4.22)) * 100);
-	System_MsgStr.AdVolStr.R_VNN1 = (uint32_t)(((Adc_ReadConvertValue(SAMPLE_VNN2_SEQUENCE) * 3.3 / 4095) / 2.67 * (100 + 2.67)) * 100);
-	System_MsgStr.AdVolStr.R_A3V75 = (uint32_t)(((Adc_ReadConvertValue(SAMPLE_A3V75_SEQUENCE) * 3.3 / 4095) / 15 * (15 + 24.9)) * 100);
-    System_MsgStr.AdVolStr.R_A2V25 = (uint32_t)(((Adc_ReadConvertValue(SAMPLE_A2V25_SEQUENCE) * 3.3 / 4095) / 15 * (15 + 24.9)) * 100);   
-    System_MsgStr.AdVolStr.R_AP12V = (uint32_t)(((Adc_ReadConvertValue(SAMPLE_AP12V_SEQUENCE) * 3.3 / 4095) / 4.99 * (4.99 + 24.9)) * 100);   
-    System_MsgStr.AdVolStr.R_AN12V = (uint32_t)(((Adc_ReadConvertValue(SAMPLE_AN12V_SEQUENCE) * 3.3 / 4095) / 4.99 * (4.99 + 110)) * 100);
-    System_MsgStr.AdVolStr.R_AP5V5_1 = (uint32_t)(((Adc_ReadConvertValue(SAMPLE_AP5V5_1_SEQUENCE) * 3.3 / 4095) / 15 * (15 + 24.9)) * 100);
-    System_MsgStr.AdVolStr.R_AP5V5_2 = (uint32_t)(((Adc_ReadConvertValue(SAMPLE_AP5V5_2_SEQUENCE) * 3.3 / 4095) / 15 * (15 + 24.9)) * 100);
-    System_MsgStr.AdVolStr.R_AN5V5 = (uint32_t)(((Adc_ReadConvertValue(SAMPLE_AN5V5_SEQUENCE) * 3.3 / 4095) / 4.99 * (4.99 + 10)) * 100);
-    System_MsgStr.AdVolStr.R_D5V = (uint32_t)(((Adc_ReadConvertValue(SAMPLE_D5V_SEQUENCE) * 3.3 / 4095) / 15 * (15 + 24.9)) * 100);
-    System_MsgStr.AdVolStr.R_D0V95 = (uint32_t)(((Adc_ReadConvertValue(SAMPLE_D0V95_SEQUENCE) * 3.3 / 4095) / 10 * (10 + 10)) * 100);
-    System_MsgStr.AdVolStr.R_D1V45 = (uint32_t)(((Adc_ReadConvertValue(SAMPLE_D1V45_SEQUENCE) * 3.3 / 4095) / 10 * (10 + 10)) * 100);
+	SysMsg.AdjVol.R_VPP1 = (uint32_t)(((Adc_ReadConvertValue(SAMPLE_VPP1_SEQUENCE) * 3.3 / 4095) / 4.22 * (100 + 4.22)) * 100);
+	SysMsg.AdjVol.R_VNN1 = (uint32_t)(((Adc_ReadConvertValue(SAMPLE_VNN1_SEQUENCE) * 3.3 / 4095) / 2.67 * (100 + 2.67)) * 100);
+	SysMsg.AdjVol.R_VPP2 = (uint32_t)(((Adc_ReadConvertValue(SAMPLE_VPP2_SEQUENCE) * 3.3 / 4095) / 4.22 * (100 + 4.22)) * 100);
+	SysMsg.AdjVol.R_VNN1 = (uint32_t)(((Adc_ReadConvertValue(SAMPLE_VNN2_SEQUENCE) * 3.3 / 4095) / 2.67 * (100 + 2.67)) * 100);
+	SysMsg.AdjVol.R_A3V75 = (uint32_t)(((Adc_ReadConvertValue(SAMPLE_A3V75_SEQUENCE) * 3.3 / 4095) / 15 * (15 + 24.9)) * 100);
+    SysMsg.AdjVol.R_A2V25 = (uint32_t)(((Adc_ReadConvertValue(SAMPLE_A2V25_SEQUENCE) * 3.3 / 4095) / 15 * (15 + 24.9)) * 100);   
+    SysMsg.AdjVol.R_AP12V = (uint32_t)(((Adc_ReadConvertValue(SAMPLE_AP12V_SEQUENCE) * 3.3 / 4095) / 4.99 * (4.99 + 24.9)) * 100);   
+    SysMsg.AdjVol.R_AN12V = (uint32_t)(((Adc_ReadConvertValue(SAMPLE_AN12V_SEQUENCE) * 3.3 / 4095) / 4.99 * (4.99 + 110)) * 100);
+    SysMsg.AdjVol.R_AP5V5_1 = (uint32_t)(((Adc_ReadConvertValue(SAMPLE_AP5V5_1_SEQUENCE) * 3.3 / 4095) / 15 * (15 + 24.9)) * 100);
+    SysMsg.AdjVol.R_AP5V5_2 = (uint32_t)(((Adc_ReadConvertValue(SAMPLE_AP5V5_2_SEQUENCE) * 3.3 / 4095) / 15 * (15 + 24.9)) * 100);
+    SysMsg.AdjVol.R_AN5V5 = (uint32_t)(((Adc_ReadConvertValue(SAMPLE_AN5V5_SEQUENCE) * 3.3 / 4095) / 4.99 * (4.99 + 10)) * 100);
+    SysMsg.AdjVol.R_D5V = (uint32_t)(((Adc_ReadConvertValue(SAMPLE_D5V_SEQUENCE) * 3.3 / 4095) / 15 * (15 + 24.9)) * 100);
+    SysMsg.AdjVol.R_D0V95 = (uint32_t)(((Adc_ReadConvertValue(SAMPLE_D0V95_SEQUENCE) * 3.3 / 4095) / 10 * (10 + 10)) * 100);
+    SysMsg.AdjVol.R_D1V45 = (uint32_t)(((Adc_ReadConvertValue(SAMPLE_D1V45_SEQUENCE) * 3.3 / 4095) / 10 * (10 + 10)) * 100);
 
 }
 

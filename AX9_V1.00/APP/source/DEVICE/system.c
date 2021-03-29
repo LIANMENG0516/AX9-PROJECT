@@ -1,14 +1,10 @@
 #include "system.h"
 
-System_MsgStruct System_MsgStr = {
-    .AdVolStr.CMD_HVFlag        = FALSE,
-    .AdVolStr.CMD_CWFlag        = FALSE,
-    .AdVolStr.T_VPP1            = 0,
-    .AdVolStr.T_VNN1            = 0,
-    .AdVolStr.T_VPP2            = 0,
-    .AdVolStr.T_VNN2            = 0,
-    .AdVolStr.T_PCW             = 0,
-    .AdVolStr.T_NCW             = 0,
+System_MsgStruct SysMsg = {
+    .AdjVol.T_VPP1            = 0,
+    .AdjVol.T_VNN1            = 0,
+    .AdjVol.T_VPP2            = 0,
+    .AdjVol.T_VNN2            = 0,
     .Temperature.FPGA           = 0,
     .Temperature.CPU            = 0,
     .Temperature.USPB           = 0,
@@ -27,28 +23,24 @@ System_MsgStruct System_MsgStr = {
 
 void SystemStateInit()
 {
-    System_MsgStr.AdVolStr.CMD_HVFlag        = FALSE;
-    System_MsgStr.AdVolStr.CMD_CWFlag        = FALSE;
-    System_MsgStr.AdVolStr.T_VPP1            = 0;
-    System_MsgStr.AdVolStr.T_VNN1            = 0;
-    System_MsgStr.AdVolStr.T_VPP2            = 0;
-    System_MsgStr.AdVolStr.T_VNN2            = 0;
-    System_MsgStr.AdVolStr.T_PCW             = 0;
-    System_MsgStr.AdVolStr.T_NCW             = 0;
-    System_MsgStr.Temperature.FPGA           = 0;
-    System_MsgStr.Temperature.CPU            = 0;
-    System_MsgStr.Temperature.USPB           = 0;
-    System_MsgStr.Fan.Rpm1                   = 0;
-    System_MsgStr.Fan.Rpm2                   = 0;
-    System_MsgStr.Fan.Rpm3                   = 0;
-    System_MsgStr.Fan.Rpm4                   = 0;
-    System_MsgStr.Fan.Rpm5                   = 0;
-    System_MsgStr.SystemState                = SYSTEM_OFF;
-    System_MsgStr.PowerOnReq                 = FALSE;
-    System_MsgStr.ShutDownReq                = FALSE;
-    System_MsgStr.System_S3_Change           = FALSE;
-    System_MsgStr.System_S4_Change           = FALSE;
-    System_MsgStr.S3Minitor                  = FALSE;
+    SysMsg.AdjVol.T_VPP1            = 0;
+    SysMsg.AdjVol.T_VNN1            = 0;
+    SysMsg.AdjVol.T_VPP2            = 0;
+    SysMsg.AdjVol.T_VNN2            = 0;
+    SysMsg.Temperature.FPGA           = 0;
+    SysMsg.Temperature.CPU            = 0;
+    SysMsg.Temperature.USPB           = 0;
+    SysMsg.Fan.Rpm1                   = 0;
+    SysMsg.Fan.Rpm2                   = 0;
+    SysMsg.Fan.Rpm3                   = 0;
+    SysMsg.Fan.Rpm4                   = 0;
+    SysMsg.Fan.Rpm5                   = 0;
+    SysMsg.SystemState                = SYSTEM_OFF;
+    SysMsg.PowerOnReq                 = FALSE;
+    SysMsg.ShutDownReq                = FALSE;
+    SysMsg.System_S3_Change           = FALSE;
+    SysMsg.System_S4_Change           = FALSE;
+    SysMsg.S3Minitor                  = FALSE;
 }
 
 
@@ -68,17 +60,17 @@ bool System_PwrKey_Minitor()
 
 	if(stateNow == TRUE  && ++startCnt)						
 	{	
-		if((System_MsgStr.SystemState == SYSTEM_OFF) && startCnt >= 60)   //在关机状态下按下按键执行开机	
+		if((SysMsg.SystemState == SYSTEM_OFF) && startCnt >= 60)   //在关机状态下按下按键执行开机	
 		{
             startCnt = 60;
-            System_MsgStr.PowerOnReq = TRUE;
+            SysMsg.PowerOnReq = TRUE;
 			stateFlag = TRUE;
 
 		}
-		if((System_MsgStr.SystemState == SYSTEM_ON) && startCnt >= 400)                     //在开机状态下按下按键发送关机请求, 使屏幕弹出关机对话框							
+		if((SysMsg.SystemState == SYSTEM_ON) && startCnt >= 400)                     //在开机状态下按下按键发送关机请求, 使屏幕弹出关机对话框							
 		{
 			startCnt = 400;
-            System_MsgStr.ShutDownReq = TRUE;
+            SysMsg.ShutDownReq = TRUE;
 			stateFlag = TRUE;
 		}
 	}
@@ -107,7 +99,7 @@ void System_S3_State_Minitor()
         startCnt = 0;
         stateOld = stateNow;
         s3StateChanged = TRUE;
-        System_MsgStr.System_S3_Change = TRUE;
+        SysMsg.System_S3_Change = TRUE;
     }
     if(stateNow == stateOld)
     {
@@ -198,7 +190,7 @@ bool System_S4_State_Minitor()
         startCnt = 0;
         stateOld = stateNow;
         s4StateChanged = TRUE;
-        System_MsgStr.System_S4_Change = TRUE;
+        SysMsg.System_S4_Change = TRUE;
     }
     if(stateNow == stateOld)
     {

@@ -1,6 +1,6 @@
 #include "command_process.h"
 
-extern System_MsgStruct System_MsgStr;
+extern System_MsgStruct SysMsg;
 
 extern Com_Buffer DebugComRX;
 extern Com_Buffer DebugComTX;
@@ -8,48 +8,59 @@ extern Com_Buffer DebugComTX;
 extern Com_Buffer CommuComRX;
 extern Com_Buffer CommuComTX;
 
-uint8_t DateStr[11] = __DATE__;
-uint8_t TimeStr[8]  = __TIME__;
+uint8_t	RcvDataCmd[100];
+CmdFrameStr RcvFrameCmd = {0x68, 0x04, 0x00, 0x00, (uint8_t *)RcvDataCmd, 0x00, 0x16};
 
-static uint8_t	RcvDataCmd[100];
-static CmdFrameStr RcvFrameCmd = {0x68, 0x04, 0x00, 0x00, (uint8_t *)RcvDataCmd, 0x00, 0x16};
-
-static uint8_t	SenDataCmd[100];
-static CmdFrameStr SenFrameCmd = {0x68, 0x04, 0x00, 0x00, (uint8_t *)SenDataCmd, 0x00, 0x16};
+uint8_t	SenDataCmd[100];
+CmdFrameStr SenFrameCmd = {0x68, 0x04, 0x00, 0x00, (uint8_t *)SenDataCmd, 0x00, 0x16};
 
 void Get_FireWare_Version()
 {
-    SenFrameCmd.Cid = CMD_FW_VERSION;
-    SenFrameCmd.Len = 1;
-	SenFrameCmd.Data[0] = FW_VERSION;
+    SysMsg.Cmd.Firmware_Send = TRUE;
 }
 
 void Get_Compile_Info()
 {
-    SenFrameCmd.Len = sizeof(DateStr) + sizeof(TimeStr);
-	
-	memcpy(&SenFrameCmd.Data[0], DateStr, 11);
-	memcpy(&SenFrameCmd.Data[11], TimeStr, 8);
+     SysMsg.Cmd.CompileInfo_Send = TRUE;
+}
+
+void Calc_TarVol_AlowRange()
+{
+    SysMsg.AdjVol.MAX_VPP1 = SysMsg.AdjVol.T_VPP1 * 0.2;
+    SysMsg.AdjVol.MIN_VPP1 = SysMsg.AdjVol.T_VPP1 * 0.2;
+    SysMsg.AdjVol.MAX_VNN1 = SysMsg.AdjVol.T_VNN1 * 0.2;
+    SysMsg.AdjVol.MIN_VNN1 = SysMsg.AdjVol.T_VNN1 * 0.2;
+    
+    SysMsg.AdjVol.MAX_VPP2 = SysMsg.AdjVol.T_VPP2 * 0.2;
+    SysMsg.AdjVol.MIN_VPP2 = SysMsg.AdjVol.T_VPP2 * 0.2;
+    SysMsg.AdjVol.MAX_VNN2 = SysMsg.AdjVol.T_VNN2 * 0.2;
+    SysMsg.AdjVol.MIN_VNN2 = SysMsg.AdjVol.T_VNN2 * 0.2;
+
+
 }
 
 void Get_AdjHv_Msg()
 {
-    System_MsgStr.AdVolStr.CMD_HVFlag = TRUE;
+    SysMsg.AdjVol.T_VPP1 = (RcvFrameCmd.Data[0] << 8) | RcvFrameCmd.Data[1];
+    SysMsg.AdjVol.T_VNN1 = (RcvFrameCmd.Data[2] << 8) | RcvFrameCmd.Data[3];
+    SysMsg.AdjVol.T_VPP2 = (RcvFrameCmd.Data[4] << 8) | RcvFrameCmd.Data[5];
+    SysMsg.AdjVol.T_VPP2 = (RcvFrameCmd.Data[6] << 8) | RcvFrameCmd.Data[7];
     
-    System_MsgStr.AdVolStr.T_VPP1 = (RcvFrameCmd.Data[0] << 8) | RcvFrameCmd.Data[1];
-    System_MsgStr.AdVolStr.T_VNN1 = (RcvFrameCmd.Data[2] << 8) | RcvFrameCmd.Data[3];
-    System_MsgStr.AdVolStr.T_VPP2 = (RcvFrameCmd.Data[4] << 8) | RcvFrameCmd.Data[5];
-    System_MsgStr.AdVolStr.T_VPP2 = (RcvFrameCmd.Data[6] << 8) | RcvFrameCmd.Data[7];
+    Calc_TarVol_AlowRange();                                    //计算允许误差范围
+    Adjust_Voltage_HV();                                        //执行高压调压处理
+    SysMsg.AdjVol.HV_Minitor = TRUE;                   //处理完成打开高压监控 
 }
 
 void Get_AdjCw_Msg()
 {
-    System_MsgStr.AdVolStr.CMD_CWFlag = TRUE;
+    SysMsg.AdjVol.T_VPP1 = (RcvFrameCmd.Data[0] << 8) | RcvFrameCmd.Data[1];
+    SysMsg.AdjVol.T_VNN1 = (RcvFrameCmd.Data[2] << 8) | RcvFrameCmd.Data[3];
+    SysMsg.AdjVol.T_VPP2 = (RcvFrameCmd.Data[4] << 8) | RcvFrameCmd.Data[5];
+    SysMsg.AdjVol.T_VNN2 = (RcvFrameCmd.Data[6] << 8) | RcvFrameCmd.Data[7];
     
-    System_MsgStr.AdVolStr.T_VPP1 = (RcvFrameCmd.Data[0] << 8) | RcvFrameCmd.Data[1];
-    System_MsgStr.AdVolStr.T_VNN1 = (RcvFrameCmd.Data[2] << 8) | RcvFrameCmd.Data[3];
-    System_MsgStr.AdVolStr.T_PCW  = (RcvFrameCmd.Data[4] << 8) | RcvFrameCmd.Data[5];
-    System_MsgStr.AdVolStr.T_NCW  = (RcvFrameCmd.Data[6] << 8) | RcvFrameCmd.Data[7];
+    Calc_TarVol_AlowRange(); 
+    Adjust_Voltage_CW();                            //执行低压调压处理
+    SysMsg.AdjVol.CW_Minitor= TRUE;       //处理完成打开低压监控
 }
 
 void InValid_CidData()

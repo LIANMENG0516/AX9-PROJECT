@@ -75,8 +75,7 @@ uint8_t SPI_WriteHalfWord(SPI_TypeDef* SPIx, uint16_t data)
 
 
 uint8_t SPI_ReadWriteHalfWord(SPI_TypeDef* SPIx, uint16_t data)
-{		
-	uint16_t retry = 0;				 	
+{					 	
 	while(SPI_I2S_GetFlagStatus(SPIx, SPI_I2S_FLAG_TXE) == RESET);		
 	SPI_I2S_SendData(SPIx, data);
 	

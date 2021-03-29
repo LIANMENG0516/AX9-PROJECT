@@ -1,6 +1,6 @@
 #include "app_led.h"
 
-extern System_MsgStruct System_MsgStr;
+extern System_MsgStruct SysMsg;
 
 OS_TCB LedTaskTcb;
 
@@ -15,15 +15,15 @@ void App_Led_Task()
 
         MCU_LED_BLINK();
         
-//        if(System_MsgStr.SystemState == SYSTEM_ON)
+//        if(SysMsg.SystemState == SYSTEM_ON)
 //        {
 //            MCU_LED_BLINK();
 //        }
-//        if(System_MsgStr.SystemState == SYSTEM_OFF)
+//        if(SysMsg.SystemState == SYSTEM_OFF)
 //        {
 //            CTL_MCU_LED(0);
 //        }
-//        if(System_MsgStr.SystemState == SYSTEM_SLEEP)
+//        if(SysMsg.SystemState == SYSTEM_SLEEP)
 //        {
 //            CTL_MCU_LED(1);
 //        }

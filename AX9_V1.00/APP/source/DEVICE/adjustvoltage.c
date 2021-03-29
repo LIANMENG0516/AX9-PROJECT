@@ -2,14 +2,14 @@
 
 #include "gouble.h"
 
-extern System_MsgStruct System_MsgStr;
+extern System_MsgStruct SysMsg;
 
 uint16_t Vppx_Calculate_AdjVol(uint16_t T_Data)
 {
     double Adjvol;
     uint16_t Dac_Val;
     
-    Adjvol = 2.096 - T_Data / 43.2;                                  //(1/43.2+1/3.48+1)*1.6=2.096
+    Adjvol = 2.096 - T_Data / 100 / 43.2;                                  //(1/43.2+1/3.48+1)*1.6=2.096
     Dac_Val = (int)((Adjvol / 3.3 * 4095)+ 0.5);
     
     return Dac_Val;
@@ -20,7 +20,7 @@ uint16_t Vnnx_Calculate_AdjVol(uint16_t T_Data)
     double Adjvol;
     uint16_t Dac_Val;
     
-    Adjvol = 2.098 - 0.023 * T_Data;    
+    Adjvol = 2.098 - 0.023 * T_Data / 100;    
     
     Dac_Val = ((int)(Adjvol * 4096 / 2.048)) >> 4;               //四舍五入后取整数
     
@@ -29,20 +29,18 @@ uint16_t Vnnx_Calculate_AdjVol(uint16_t T_Data)
 
 uint16_t Pcw_Calculate_AdjVol(uint16_t T_Data)
 {
-    double Adjvol;
     uint16_t Dac_Val;
     
-    Dac_Val = 259 - 26.4 * T_Data;
+    Dac_Val = 259 - 26.4 * T_Data / 100;
     
     return Dac_Val;
 }
 
 uint16_t Ncw_Calculate_AdjVol(uint16_t T_Data)
 {
-    double Adjvol;
     uint16_t Dac_Val;
     
-    Dac_Val = 274 - 26.4 * T_Data;    
+    Dac_Val = 274 - 26.4 * T_Data / 100;    
     
     return Dac_Val;
 }
@@ -97,32 +95,32 @@ void Adjust_Voltage_Ncw(uint16_t T_Ncw)
 
 void Adjust_Voltage_HV()    //高压调压处理流程
 {   
-    if(System_MsgStr.AdVolStr.T_VPP1 > HIGHSET_HV1 && System_MsgStr.AdVolStr.T_VPP1 < LOOWSET_HV1 &&
-       System_MsgStr.AdVolStr.T_VNN1 > HIGHSET_HV1 && System_MsgStr.AdVolStr.T_VNN1 < LOOWSET_HV1 && 
-       System_MsgStr.AdVolStr.T_VPP2 > HIGHSET_HV2 && System_MsgStr.AdVolStr.T_VPP2 < LOOWSET_HV2 && 
-       System_MsgStr.AdVolStr.T_VNN2 > HIGHSET_HV2 && System_MsgStr.AdVolStr.T_VNN2 < LOOWSET_HV2  )
+    if(SysMsg.AdjVol.T_VPP1 > HIGHSET_HV1 && SysMsg.AdjVol.T_VPP1 < LOOWSET_HV1 &&
+       SysMsg.AdjVol.T_VNN1 > HIGHSET_HV1 && SysMsg.AdjVol.T_VNN1 < LOOWSET_HV1 && 
+       SysMsg.AdjVol.T_VPP2 > HIGHSET_HV2 && SysMsg.AdjVol.T_VPP2 < LOOWSET_HV2 && 
+       SysMsg.AdjVol.T_VNN2 > HIGHSET_HV2 && SysMsg.AdjVol.T_VNN2 < LOOWSET_HV2  )
     {
-        Adjust_Voltage_Vpp1(System_MsgStr.AdVolStr.T_VPP1);             //调节VPP1至目标值
-        Adjust_Voltage_Vnn1(System_MsgStr.AdVolStr.T_VNN1);
+        Adjust_Voltage_Vpp1(SysMsg.AdjVol.T_VPP1);             //调节VPP1至目标值
+        Adjust_Voltage_Vnn1(SysMsg.AdjVol.T_VNN1);
         
-        Adjust_Voltage_Vpp2(System_MsgStr.AdVolStr.T_VPP2);             //调节VPP2至目标值
-        Adjust_Voltage_Vnn2(System_MsgStr.AdVolStr.T_VNN2);
+        Adjust_Voltage_Vpp2(SysMsg.AdjVol.T_VPP2);             //调节VPP2至目标值
+        Adjust_Voltage_Vnn2(SysMsg.AdjVol.T_VNN2);
     }
 }
 
 void Adjust_Voltage_CW()    //低压调压处理流程
 {
-    if(System_MsgStr.AdVolStr.T_VPP1 > HIGHSET_HV1 && System_MsgStr.AdVolStr.T_VPP1 < LOOWSET_HV1 &&
-       System_MsgStr.AdVolStr.T_VNN1 > HIGHSET_HV1 && System_MsgStr.AdVolStr.T_VNN1 < LOOWSET_HV1 && 
-       System_MsgStr.AdVolStr.T_PCW  > HIGHSET_CW  && System_MsgStr.AdVolStr.T_PCW  < LOOWSET_CW  && 
-       System_MsgStr.AdVolStr.T_NCW  > HIGHSET_CW  && System_MsgStr.AdVolStr.T_NCW  < LOOWSET_CW   )
+    if(SysMsg.AdjVol.T_VPP1 > HIGHSET_HV1 && SysMsg.AdjVol.T_VPP1 < LOOWSET_HV1 &&
+       SysMsg.AdjVol.T_VNN1 > HIGHSET_HV1 && SysMsg.AdjVol.T_VNN1 < LOOWSET_HV1 && 
+       SysMsg.AdjVol.T_VPP2 > HIGHSET_CW  && SysMsg.AdjVol.T_VPP2 < LOOWSET_CW  && 
+       SysMsg.AdjVol.T_VNN2 > HIGHSET_CW  && SysMsg.AdjVol.T_VNN2 < LOOWSET_CW   )
     {
         
-        Adjust_Voltage_Vpp1(System_MsgStr.AdVolStr.T_VPP1);             //调节VPP1至目标值
-        Adjust_Voltage_Vnn1(System_MsgStr.AdVolStr.T_VNN1);             //调节VNN1至目标值
+        Adjust_Voltage_Vpp1(SysMsg.AdjVol.T_VPP1);             //调节VPP1至目标值
+        Adjust_Voltage_Vnn1(SysMsg.AdjVol.T_VNN1);             //调节VNN1至目标值
         
-        Adjust_Voltage_Pcw(System_MsgStr.AdVolStr.T_PCW);               //调节PCW至目标值
-        Adjust_Voltage_Pcw(System_MsgStr.AdVolStr.T_NCW);               //调节NCW至目标值
+        Adjust_Voltage_Pcw(SysMsg.AdjVol.T_VPP2);              //调节PCW至目标值
+        Adjust_Voltage_Pcw(SysMsg.AdjVol.T_VNN2);              //调节NCW至目标值
     }
 }
 
