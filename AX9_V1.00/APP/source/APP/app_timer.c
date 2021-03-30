@@ -31,7 +31,7 @@ void cb_Sys_StateChk_Tmr(void *p_tmr, void *p_arg)
         } 
     }
     
-    if(SysMsg.AdjVol.HV_Minitor)
+    if(SysMsg.AdjVol.CW_Minitor)
     {
         if(SysMsg.AdjVol.R_VPP1 >= SysMsg.AdjVol.MIN_VPP1 && SysMsg.AdjVol.R_VPP1 <= SysMsg.AdjVol.MIN_VPP1 &&
            SysMsg.AdjVol.R_VNN1 >= SysMsg.AdjVol.MIN_VNN1 && SysMsg.AdjVol.R_VNN1 <= SysMsg.AdjVol.MIN_VNN1 &&
