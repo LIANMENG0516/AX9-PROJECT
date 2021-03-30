@@ -96,6 +96,7 @@
 .\objects\command_process.o: ..\APP\app_led.h
 .\objects\command_process.o: ..\APP\app_fan.h
 .\objects\command_process.o: ..\APP\app_usb.h
+.\objects\command_process.o: ..\APP\app_com.h
 .\objects\command_process.o: ..\APP\app_timer.h
 .\objects\command_process.o: ..\APP\app_adjvol.h
 .\objects\command_process.o: ..\APP\app_sysonoff.h

@@ -95,6 +95,7 @@
 .\objects\usart.o: ..\APP\app_led.h
 .\objects\usart.o: ..\APP\app_fan.h
 .\objects\usart.o: ..\APP\app_usb.h
+.\objects\usart.o: ..\APP\app_com.h
 .\objects\usart.o: ..\APP\app_timer.h
 .\objects\usart.o: ..\APP\app_adjvol.h
 .\objects\usart.o: ..\APP\app_sysonoff.h

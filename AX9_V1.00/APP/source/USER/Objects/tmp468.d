@@ -95,6 +95,7 @@
 .\objects\tmp468.o: ..\APP\app_led.h
 .\objects\tmp468.o: ..\APP\app_fan.h
 .\objects\tmp468.o: ..\APP\app_usb.h
+.\objects\tmp468.o: ..\APP\app_com.h
 .\objects\tmp468.o: ..\APP\app_timer.h
 .\objects\tmp468.o: ..\APP\app_adjvol.h
 .\objects\tmp468.o: ..\APP\app_sysonoff.h

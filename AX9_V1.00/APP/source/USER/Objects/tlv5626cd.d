@@ -95,6 +95,7 @@
 .\objects\tlv5626cd.o: ..\APP\app_led.h
 .\objects\tlv5626cd.o: ..\APP\app_fan.h
 .\objects\tlv5626cd.o: ..\APP\app_usb.h
+.\objects\tlv5626cd.o: ..\APP\app_com.h
 .\objects\tlv5626cd.o: ..\APP\app_timer.h
 .\objects\tlv5626cd.o: ..\APP\app_adjvol.h
 .\objects\tlv5626cd.o: ..\APP\app_sysonoff.h

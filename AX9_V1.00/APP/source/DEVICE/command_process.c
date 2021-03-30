@@ -25,18 +25,31 @@ void Get_Compile_Info()
 }
 
 void Calc_TarVol_AlowRange()
-{
-    SysMsg.AdjVol.MAX_VPP1 = SysMsg.AdjVol.T_VPP1 * 0.2;
-    SysMsg.AdjVol.MIN_VPP1 = SysMsg.AdjVol.T_VPP1 * 0.2;
-    SysMsg.AdjVol.MAX_VNN1 = SysMsg.AdjVol.T_VNN1 * 0.2;
-    SysMsg.AdjVol.MIN_VNN1 = SysMsg.AdjVol.T_VNN1 * 0.2;
+{    
+    SysMsg.AdjVol.MAX_VPP1 = SysMsg.AdjVol.T_VPP1 + 150;
+    SysMsg.AdjVol.MIN_VPP1 = SysMsg.AdjVol.T_VPP1 - 150;
+    SysMsg.AdjVol.MAX_VNN1 = SysMsg.AdjVol.T_VPP1 + 150;
+    SysMsg.AdjVol.MIN_VNN1 = SysMsg.AdjVol.T_VPP1 - 150;
     
-    SysMsg.AdjVol.MAX_VPP2 = SysMsg.AdjVol.T_VPP2 * 0.2;
-    SysMsg.AdjVol.MIN_VPP2 = SysMsg.AdjVol.T_VPP2 * 0.2;
-    SysMsg.AdjVol.MAX_VNN2 = SysMsg.AdjVol.T_VNN2 * 0.2;
-    SysMsg.AdjVol.MIN_VNN2 = SysMsg.AdjVol.T_VNN2 * 0.2;
-
-
+    if(SysMsg.AdjVol.Adj_HV == TRUE)
+    {
+        SysMsg.AdjVol.Adj_HV = FALSE;
+        
+        SysMsg.AdjVol.MAX_VPP2 = SysMsg.AdjVol.T_VPP2 + 150;
+        SysMsg.AdjVol.MIN_VPP2 = SysMsg.AdjVol.T_VPP2 - 150;
+        SysMsg.AdjVol.MAX_VNN2 = SysMsg.AdjVol.T_VPP2 + 150;
+        SysMsg.AdjVol.MIN_VNN2 = SysMsg.AdjVol.T_VPP2 - 150;
+    }
+    
+    if(SysMsg.AdjVol.Adj_CW == TRUE)
+    {
+        SysMsg.AdjVol.Adj_CW = FALSE;
+        
+        SysMsg.AdjVol.MAX_VPP2 = SysMsg.AdjVol.T_VPP2 + 100;
+        SysMsg.AdjVol.MIN_VPP2 = SysMsg.AdjVol.T_VPP2 - 100;
+        SysMsg.AdjVol.MAX_VNN2 = SysMsg.AdjVol.T_VPP2 + 100;
+        SysMsg.AdjVol.MIN_VNN2 = SysMsg.AdjVol.T_VPP2 - 100;
+    }
 }
 
 void Get_AdjHv_Msg()
@@ -44,11 +57,12 @@ void Get_AdjHv_Msg()
     SysMsg.AdjVol.T_VPP1 = (RcvFrameCmd.Data[0] << 8) | RcvFrameCmd.Data[1];
     SysMsg.AdjVol.T_VNN1 = (RcvFrameCmd.Data[2] << 8) | RcvFrameCmd.Data[3];
     SysMsg.AdjVol.T_VPP2 = (RcvFrameCmd.Data[4] << 8) | RcvFrameCmd.Data[5];
-    SysMsg.AdjVol.T_VPP2 = (RcvFrameCmd.Data[6] << 8) | RcvFrameCmd.Data[7];
+    SysMsg.AdjVol.T_VNN2 = (RcvFrameCmd.Data[6] << 8) | RcvFrameCmd.Data[7];
     
+    SysMsg.AdjVol.Adj_HV = TRUE;
     Calc_TarVol_AlowRange();                                    //计算允许误差范围
     Adjust_Voltage_HV();                                        //执行高压调压处理
-    SysMsg.AdjVol.HV_Minitor = TRUE;                   //处理完成打开高压监控 
+    SysMsg.AdjVol.HV_Minitor = TRUE;                            //处理完成打开高压监控 
 }
 
 void Get_AdjCw_Msg()
@@ -58,6 +72,7 @@ void Get_AdjCw_Msg()
     SysMsg.AdjVol.T_VPP2 = (RcvFrameCmd.Data[4] << 8) | RcvFrameCmd.Data[5];
     SysMsg.AdjVol.T_VNN2 = (RcvFrameCmd.Data[6] << 8) | RcvFrameCmd.Data[7];
     
+    SysMsg.AdjVol.Adj_CW = TRUE;
     Calc_TarVol_AlowRange(); 
     Adjust_Voltage_CW();                            //执行低压调压处理
     SysMsg.AdjVol.CW_Minitor= TRUE;       //处理完成打开低压监控

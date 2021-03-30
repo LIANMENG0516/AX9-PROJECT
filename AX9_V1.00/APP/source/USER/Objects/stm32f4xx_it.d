@@ -96,6 +96,7 @@
 .\objects\stm32f4xx_it.o: ..\APP\app_led.h
 .\objects\stm32f4xx_it.o: ..\APP\app_fan.h
 .\objects\stm32f4xx_it.o: ..\APP\app_usb.h
+.\objects\stm32f4xx_it.o: ..\APP\app_com.h
 .\objects\stm32f4xx_it.o: ..\APP\app_timer.h
 .\objects\stm32f4xx_it.o: ..\APP\app_adjvol.h
 .\objects\stm32f4xx_it.o: ..\APP\app_sysonoff.h

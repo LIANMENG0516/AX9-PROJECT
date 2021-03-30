@@ -35,6 +35,7 @@
 #include "app_led.h"
 #include "app_fan.h"
 #include "app_usb.h"
+#include "app_com.h"
 #include "app_timer.h"
 #include "app_adjvol.h"
 #include "app_sysonoff.h"

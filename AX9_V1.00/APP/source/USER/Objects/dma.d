@@ -95,6 +95,7 @@
 .\objects\dma.o: ..\APP\app_led.h
 .\objects\dma.o: ..\APP\app_fan.h
 .\objects\dma.o: ..\APP\app_usb.h
+.\objects\dma.o: ..\APP\app_com.h
 .\objects\dma.o: ..\APP\app_timer.h
 .\objects\dma.o: ..\APP\app_adjvol.h
 .\objects\dma.o: ..\APP\app_sysonoff.h

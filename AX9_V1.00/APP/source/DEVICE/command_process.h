@@ -30,8 +30,8 @@ typedef struct
 
 
 
-
-#define INVALID_CMD         0xFF        //非法命令
+#define TIMEOUT             0xF0        //调压超时
+#define INVALID_CMD         0xF1        //非法命令
 
 void FrameCmdPackage(uint8_t *pBuf);
 void Send_CmdPackage(DMA_Stream_TypeDef* DMAy_Streamx);

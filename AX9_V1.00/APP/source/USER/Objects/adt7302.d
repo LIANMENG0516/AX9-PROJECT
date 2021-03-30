@@ -95,6 +95,7 @@
 .\objects\adt7302.o: ..\APP\app_led.h
 .\objects\adt7302.o: ..\APP\app_fan.h
 .\objects\adt7302.o: ..\APP\app_usb.h
+.\objects\adt7302.o: ..\APP\app_com.h
 .\objects\adt7302.o: ..\APP\app_timer.h
 .\objects\adt7302.o: ..\APP\app_adjvol.h
 .\objects\adt7302.o: ..\APP\app_sysonoff.h

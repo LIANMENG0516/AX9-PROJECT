@@ -94,17 +94,23 @@ void Adjust_Voltage_Ncw(uint16_t T_Ncw)
 
 
 void Adjust_Voltage_HV()    //高压调压处理流程
-{   
-    if(SysMsg.AdjVol.T_VPP1 > HIGHSET_HV1 && SysMsg.AdjVol.T_VPP1 < LOOWSET_HV1 &&
-       SysMsg.AdjVol.T_VNN1 > HIGHSET_HV1 && SysMsg.AdjVol.T_VNN1 < LOOWSET_HV1 && 
-       SysMsg.AdjVol.T_VPP2 > HIGHSET_HV2 && SysMsg.AdjVol.T_VPP2 < LOOWSET_HV2 && 
-       SysMsg.AdjVol.T_VNN2 > HIGHSET_HV2 && SysMsg.AdjVol.T_VNN2 < LOOWSET_HV2  )
+{       
+    if(SysMsg.AdjVol.T_VPP1 <= HIGHSET_HV1 && SysMsg.AdjVol.T_VPP1 >= LOOWSET_HV1 &&
+       SysMsg.AdjVol.T_VNN1 <= HIGHSET_HV1 && SysMsg.AdjVol.T_VNN1 >= LOOWSET_HV1 && 
+       SysMsg.AdjVol.T_VPP2 <= HIGHSET_HV2 && SysMsg.AdjVol.T_VPP2 >= LOOWSET_HV2 && 
+       SysMsg.AdjVol.T_VNN2 <= HIGHSET_HV2 && SysMsg.AdjVol.T_VNN2 >= LOOWSET_HV2  )
     {
-        Adjust_Voltage_Vpp1(SysMsg.AdjVol.T_VPP1);             //调节VPP1至目标值
+        CTL_VPP1_VNN1_EN(0);                                    //关闭高压输出
+        CTL_VPP2_VNN2_EN(0);
+        
+        Adjust_Voltage_Vpp1(SysMsg.AdjVol.T_VPP1);              //调节VPP1至目标值
         Adjust_Voltage_Vnn1(SysMsg.AdjVol.T_VNN1);
         
-        Adjust_Voltage_Vpp2(SysMsg.AdjVol.T_VPP2);             //调节VPP2至目标值
+        Adjust_Voltage_Vpp2(SysMsg.AdjVol.T_VPP2);              //调节VPP2至目标值
         Adjust_Voltage_Vnn2(SysMsg.AdjVol.T_VNN2);
+        
+        CTL_VPP1_VNN1_EN(1);                                    //打开高压输出
+        CTL_VPP2_VNN2_EN(1);
     }
 }
 

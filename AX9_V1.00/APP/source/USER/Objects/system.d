@@ -96,6 +96,7 @@
 .\objects\system.o: ..\APP\app_led.h
 .\objects\system.o: ..\APP\app_fan.h
 .\objects\system.o: ..\APP\app_usb.h
+.\objects\system.o: ..\APP\app_com.h
 .\objects\system.o: ..\APP\app_timer.h
 .\objects\system.o: ..\APP\app_adjvol.h
 .\objects\system.o: ..\APP\app_sysonoff.h

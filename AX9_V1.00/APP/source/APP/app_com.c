@@ -23,15 +23,16 @@ void App_Com_Task()
 	{				
         if(ReceiveFrameAnalysis(&CommuComRX.Data[0], CommuComRX.Len) == SUCCESS)   //格式化并解析串口数据
         {
-            Cmd_Process();                       //命令处理
+            memset(CommuComTX.Data, 0, CommuComTX.Len);
+            Cmd_Process();                                  //命令处理
             FrameCmdPackage(CommuComTX.Data);
             Send_CmdPackage(COMMU_COM_DMAY_STREAMX_TX);                                     
         }
         
         if(ReceiveFrameAnalysis(&DebugComRX.Data[0], DebugComRX.Len) == SUCCESS)   //格式化并解析串口数据
         {
-            Cmd_Process();                       //命令处理
-                                                
+            memset(DebugComRX.Data, 0, DebugComRX.Len);
+            Cmd_Process();                                  //命令处理
         }
         
         if(SysMsg.Cmd.HV_Send == TRUE)
@@ -73,8 +74,28 @@ void App_Com_Task()
             FrameCmdPackage(CommuComTX.Data);
             Send_CmdPackage(DEBUG_COM_DMAY_STREAMX_TX);
         }
+        
+        if(SysMsg.Cmd.Timeout == TRUE)
+        {
+            SysMsg.Cmd.Timeout = FALSE;
+            
+            SenFrameCmd.Cid = TIMEOUT;
+            SenFrameCmd.Len = 8;
+            
+            SenFrameCmd.Data[0] = SysMsg.AdjVol.R_VPP1 >> 8;
+            SenFrameCmd.Data[1] = SysMsg.AdjVol.R_VPP1;
+            SenFrameCmd.Data[2] = SysMsg.AdjVol.R_VNN1 >> 8;
+            SenFrameCmd.Data[3] = SysMsg.AdjVol.R_VNN1;
+            SenFrameCmd.Data[4] = SysMsg.AdjVol.R_VPP2 >> 8;
+            SenFrameCmd.Data[5] = SysMsg.AdjVol.R_VPP2;
+            SenFrameCmd.Data[6] = SysMsg.AdjVol.R_VNN2 >> 8;
+            SenFrameCmd.Data[7] = SysMsg.AdjVol.R_VNN2;
+            
+            FrameCmdPackage(CommuComTX.Data);
+            Send_CmdPackage(DEBUG_COM_DMAY_STREAMX_TX);
+        }
 
-		OSTimeDlyHMSM(0, 0, 0, 50, OS_OPT_TIME_PERIODIC, &err);
+		OSTimeDlyHMSM(0, 0, 0, 10, OS_OPT_TIME_PERIODIC, &err);
 	}
 }
 

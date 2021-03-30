@@ -361,15 +361,15 @@
 #define SLEEP_LED_EN(x)           x ? GPIO_SetBits(SLEEP_LED_C_PORT, SLEEP_LED_C_PIN) : GPIO_ResetBits(SLEEP_LED_C_PORT, SLEEP_LED_C_PIN)
 
 //C_VNN2_VPP2
-#define C_VNN2_VPP2_PORT          GPIOG
-#define C_VNN2_VPP2_PIN           GPIO_Pin_14
-#define CTL_VNN2_VPP2_EN(x)       x ? GPIO_ResetBits(C_VNN2_VPP2_PORT, C_VNN2_VPP2_PIN) : GPIO_SetBits(C_VNN2_VPP2_PORT, C_VNN2_VPP2_PIN)
+#define C_VPP2_VNN2_PORT          GPIOG
+#define C_VPP2_VNN2_PIN           GPIO_Pin_14
+#define CTL_VPP2_VNN2_EN(x)       x ? GPIO_ResetBits(C_VPP2_VNN2_PORT, C_VPP2_VNN2_PIN) : GPIO_SetBits(C_VPP2_VNN2_PORT, C_VPP2_VNN2_PIN)
 
 
 //C_VNN1_VPP1
-#define C_VNN1_VPP1_PORT          GPIOG
-#define C_VNN1_VPP1_PIN           GPIO_Pin_15
-#define CTL_VNN1_VPP1_EN(x)       x ? GPIO_ResetBits(C_VNN1_VPP1_PORT, C_VNN1_VPP1_PIN) : GPIO_SetBits(C_VNN1_VPP1_PORT, C_VNN1_VPP1_PIN)
+#define C_VPP1_VNN1_PORT          GPIOG
+#define C_VPP1_VNN1_PIN           GPIO_Pin_15
+#define CTL_VPP1_VNN1_EN(x)       x ? GPIO_ResetBits(C_VPP1_VNN1_PORT, C_VPP1_VNN1_PIN) : GPIO_SetBits(C_VPP1_VNN1_PORT, C_VPP1_VNN1_PIN)
 
 void Gpio_Config(void);
 

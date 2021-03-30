@@ -17,15 +17,15 @@ typedef struct
 #define DEBUG_COM_DMA_CHANNEL_RX        DMA_Channel_4
 #define DEBUG_COM_DMA_CHANNEL_TX        DMA_Channel_4
 #define DEBUG_COM_DMA_FLAG_TC_RX        DMA_FLAG_TCIF4
-#define DEBUG_COM_DMA_FLAG_TC_TX        DMA_FLAG_TCIF4
+#define DEBUG_COM_DMA_IT_TC_TX        DMA_IT_TCIF4
 
 #define COMMU_COM                       USART2
 #define COMMU_COM_DMAY_STREAMX_RX       DMA1_Stream5
 #define COMMU_COM_DMAY_STREAMX_TX       DMA1_Stream6
 #define COMMU_COM_DMA_CHANNEL_RX        DMA_Channel_4
 #define COMMU_COM_DMA_CHANNEL_TX        DMA_Channel_4
-#define COMMU_COM_DMA_FLAG_TC_RX        DMA_FLAG_TCIF4
-#define COMMU_COM_DMA_FLAG_TC_TX        DMA_FLAG_TCIF4
+#define COMMU_COM_DMA_FLAG_TC_RX          DMA_FLAG_TCIF4
+#define COMMU_COM_DMA_IT_TC_TX          DMA_IT_TCIF4
 
 void Usart_Init(USART_TypeDef* USARTx, uint32_t Baud_Rate);
 void Usart_Transmit_Char(USART_TypeDef* USARTx, uint8_t Data);

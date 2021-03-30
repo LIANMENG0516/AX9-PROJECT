@@ -2,19 +2,19 @@
 
 #include "gouble.h"
 
-void Dma_Config(DMA_Stream_TypeDef* DMAy_Streamx, uint32_t DMA_Channelx, uint32_t peripher_address, uint32_t ram_address, uint16_t rebuf_seize, uint32_t pdatalen, uint32_t mdatalen, uint32_t dma_mode, uint32_t dma_priority)                                                                     
+void Dma_Config(DMA_Stream_TypeDef* DMAy_Streamx, uint32_t DMA_Channelx, uint32_t peripher_address, uint32_t ram_address, uint32_t dma_dir, uint16_t rebuf_seize, uint32_t pdatalen, uint32_t mdatalen, uint32_t dma_mode, uint32_t dma_priority)                                                                     
 {
 	DMA_InitTypeDef DMA_InitStructure;	
 
-//	if((uint32_t)DMAy_Streamx < (uint32_t)DMA2)
-//		RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_DMA1, ENABLE);
-//	else
+	if((uint32_t)DMAy_Streamx < (uint32_t)DMA2)
+		RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_DMA1, ENABLE);
+	else
 		RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_DMA2, ENABLE);	
 
 	DMA_InitStructure.DMA_Channel = DMA_Channelx;    				
 	DMA_InitStructure.DMA_PeripheralBaseAddr = peripher_address;
 	DMA_InitStructure.DMA_Memory0BaseAddr = ram_address;  														
-	DMA_InitStructure.DMA_DIR = DMA_DIR_PeripheralToMemory;									
+	DMA_InitStructure.DMA_DIR = dma_dir;									
 	DMA_InitStructure.DMA_BufferSize = rebuf_seize;			
 	DMA_InitStructure.DMA_PeripheralInc = DMA_PeripheralInc_Disable;
 	DMA_InitStructure.DMA_MemoryInc = DMA_MemoryInc_Enable;								
@@ -35,21 +35,23 @@ void Dma_Config(DMA_Stream_TypeDef* DMAy_Streamx, uint32_t DMA_Channelx, uint32_
 
 extern Com_Buffer DebugComTX;
 extern Com_Buffer CommuComTX;
+extern uint8_t	RcvData[100];
+extern uint8_t	SenData[100];
 
 void Dmay_Streamx_IRQHandler_CallBack()
 {
-    if(DMA_GetITStatus(DEBUG_COM_DMAY_STREAMX_TX, DEBUG_COM_DMA_FLAG_TC_TX) != RESET)
+    if(DMA_GetITStatus(DEBUG_COM_DMAY_STREAMX_TX, DEBUG_COM_DMA_IT_TC_TX) != RESET)
 	{
 		DMA_Cmd(DEBUG_COM_DMAY_STREAMX_TX, DISABLE); 
-		DMA_SetCurrDataCounter(DEBUG_COM_DMAY_STREAMX_TX, sizeof(DebugComTX.Data));
-		DMA_ClearITPendingBit(DEBUG_COM_DMAY_STREAMX_TX, DEBUG_COM_DMA_FLAG_TC_TX);					//清除DMA发送完成中断标志位
+		DMA_SetCurrDataCounter(DEBUG_COM_DMAY_STREAMX_TX, sizeof(SenData));
+		DMA_ClearITPendingBit(DEBUG_COM_DMAY_STREAMX_TX, DEBUG_COM_DMA_IT_TC_TX);					//清除DMA发送完成中断标志位
 	}
     
-    if(DMA_GetITStatus(COMMU_COM_DMAY_STREAMX_TX, COMMU_COM_DMA_FLAG_TC_TX) != RESET)
+    if(DMA_GetITStatus(COMMU_COM_DMAY_STREAMX_TX, COMMU_COM_DMA_IT_TC_TX) != RESET)
 	{
 		DMA_Cmd(COMMU_COM_DMAY_STREAMX_TX, DISABLE); 
-		DMA_SetCurrDataCounter(COMMU_COM_DMAY_STREAMX_TX, sizeof(CommuComTX.Data));
-		DMA_ClearITPendingBit(COMMU_COM_DMAY_STREAMX_TX, COMMU_COM_DMA_FLAG_TC_TX);					//清除DMA发送完成中断标志位
+		DMA_SetCurrDataCounter(COMMU_COM_DMAY_STREAMX_TX, sizeof(SenData));
+		DMA_ClearITPendingBit(COMMU_COM_DMAY_STREAMX_TX, COMMU_COM_DMA_IT_TC_TX);					//清除DMA发送完成中断标志位
 	}
 }
 

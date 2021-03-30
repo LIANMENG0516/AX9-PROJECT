@@ -2,7 +2,6 @@
 
 #include "gouble.h"
 
-
 void Usart_Init(USART_TypeDef* USARTx, uint32_t Baud_Rate)
 {
 	USART_InitTypeDef USART_InitStructure;
@@ -61,8 +60,8 @@ int fputc(int ch, FILE *f)
 	return (ch);
 }
 
-static uint8_t	RcvData[100];
-static uint8_t	SenData[100];
+uint8_t	RcvData[100];
+uint8_t	SenData[100];
 
 Com_Buffer DebugComRX = {RcvData, 0x00};
 Com_Buffer DebugComTX = {SenData, 0x00};
@@ -81,10 +80,10 @@ void Com_IRQHandler_CallBack()
 		DMA_Cmd(DEBUG_COM_DMAY_STREAMX_RX, DISABLE);                                                        //关闭接收通道
 		DMA_ClearFlag(DEBUG_COM_DMAY_STREAMX_RX, DEBUG_COM_DMA_FLAG_TC_RX);   				                //清除DMA标记位
 		
-		DebugComRX.Len = sizeof(DebugComRX.Data) - DMA_GetCurrDataCounter(DEBUG_COM_DMAY_STREAMX_RX); 		//获取接收到的数据长度
+		DebugComRX.Len = sizeof(RcvData) - DMA_GetCurrDataCounter(DEBUG_COM_DMAY_STREAMX_RX); 		        //获取接收到的数据长度
 
 		DEBUG_COM_DMAY_STREAMX_RX->M0AR = (uint32_t)&DebugComRX.Data[0];
-		DEBUG_COM_DMAY_STREAMX_RX->NDTR = sizeof(DebugComRX.Data);
+		DEBUG_COM_DMAY_STREAMX_RX->NDTR = sizeof(RcvData);
 		DMA_Cmd(DEBUG_COM_DMAY_STREAMX_RX, ENABLE);                                                         //重新打开接收通道
 	}
     
@@ -97,10 +96,10 @@ void Com_IRQHandler_CallBack()
 		DMA_Cmd(COMMU_COM_DMAY_STREAMX_RX, DISABLE);                                                        //关闭接收通道
 		DMA_ClearFlag(COMMU_COM_DMAY_STREAMX_RX, COMMU_COM_DMA_FLAG_TC_RX);   				                //清除DMA标记位
 		
-		CommuComRX.Len = sizeof(CommuComRX.Data) - DMA_GetCurrDataCounter(COMMU_COM_DMAY_STREAMX_RX); 		    //获取接收到的数据长度
+		CommuComRX.Len = sizeof(RcvData) - DMA_GetCurrDataCounter(COMMU_COM_DMAY_STREAMX_RX); 		        //获取接收到的数据长度
 
 		COMMU_COM_DMAY_STREAMX_RX->M0AR = (uint32_t)&CommuComRX.Data[0];
-		COMMU_COM_DMAY_STREAMX_RX->NDTR = sizeof(CommuComRX.Data);
+		COMMU_COM_DMAY_STREAMX_RX->NDTR = sizeof(RcvData);
 		DMA_Cmd(COMMU_COM_DMAY_STREAMX_RX, ENABLE);                                                         //重新打开接收通道
 	}
 }

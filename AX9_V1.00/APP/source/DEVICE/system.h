@@ -13,7 +13,8 @@ typedef enum {FALSE = 0, TRUE = !FALSE} bool;
 
 typedef struct
 {    
-    
+    bool     Adj_HV;
+    bool     Adj_CW;
     
     bool     HV_Minitor;
     bool     CW_Minitor;

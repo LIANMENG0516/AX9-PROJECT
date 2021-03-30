@@ -95,6 +95,7 @@
 .\objects\board.o: ..\APP\app_led.h
 .\objects\board.o: ..\APP\app_fan.h
 .\objects\board.o: ..\APP\app_usb.h
+.\objects\board.o: ..\APP\app_com.h
 .\objects\board.o: ..\APP\app_timer.h
 .\objects\board.o: ..\APP\app_adjvol.h
 .\objects\board.o: ..\APP\app_sysonoff.h
