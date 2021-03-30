@@ -9,7 +9,7 @@
 #define TLV5626CD_A       1
 #define TLV5626CD_B       2
 
-#define TLV562CD_MODE     0xD001     //Set DAC output, select fast mode, select internal reference at 1.024 V 
+#define TLV562CD_MODE     0x9001     //Set DAC output, select fast mode, select internal reference at 1.024 V 
 
 #define TLV562CD_SHUTDOWN     0xFFFF 
 

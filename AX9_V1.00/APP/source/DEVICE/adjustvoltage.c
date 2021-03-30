@@ -63,20 +63,14 @@ void Adjust_Voltage_Vpp2(uint16_t T_Vpp2)
     DAC_SoftwareTriggerCmd(DAC_Channel_2, ENABLE);                   //软件触发DAC转换
 }
 
-void Adjust_Voltage_Vnn1(uint16_t T_Vnn1)                                           
+void Adjust_Voltage_Vnn1_Vnn2(uint16_t T_Vnn1, uint16_t T_Vnn2)                                           
 {
-    uint16_t Dac_Val;
-    Dac_Val = Vnnx_Calculate_AdjVol(T_Vnn1);                         //计算要调节到目标值时HVADJ2的值
-    DacHv_Tlv5626cd_ValueSet(TLV5626CD_A, Dac_Val);
+    uint16_t Dac_ValA, Dac_ValB;
+    
+    Dac_ValA = Vnnx_Calculate_AdjVol(T_Vnn1);
+    Dac_ValB = Vnnx_Calculate_AdjVol(T_Vnn2);
+    DacHv_Tlv5626cd_ValueSet(Dac_ValA, Dac_ValB);
 }
-
-void Adjust_Voltage_Vnn2(uint16_t T_Vnn2)
-{
-    uint16_t Dac_Val;
-    Dac_Val = Vnnx_Calculate_AdjVol(T_Vnn2);                         //计算要调节到目标值时HVADJ4的值
-    DacHv_Tlv5626cd_ValueSet(TLV5626CD_B, Dac_Val);
-}
-
 
 void Adjust_Voltage_Pcw(uint16_t T_Pcw)
 {
@@ -103,11 +97,9 @@ void Adjust_Voltage_HV()    //高压调压处理流程
         CTL_VPP1_VNN1_EN(0);                                    //关闭高压输出
         CTL_VPP2_VNN2_EN(0);
         
-        Adjust_Voltage_Vpp1(SysMsg.AdjVol.T_VPP1);              //调节VPP1至目标值
-        Adjust_Voltage_Vnn1(SysMsg.AdjVol.T_VNN1);
-        
-        Adjust_Voltage_Vpp2(SysMsg.AdjVol.T_VPP2);              //调节VPP2至目标值
-        Adjust_Voltage_Vnn2(SysMsg.AdjVol.T_VNN2);
+        Adjust_Voltage_Vpp1(SysMsg.AdjVol.T_VPP1);                                  //调节VPP1至目标值
+        Adjust_Voltage_Vpp2(SysMsg.AdjVol.T_VPP2);                                  //调节VPP2至目标值
+        Adjust_Voltage_Vnn1_Vnn2(SysMsg.AdjVol.T_VNN1, SysMsg.AdjVol.T_VNN2);       //调节VNN1, VNN2至目标值
         
         CTL_VPP1_VNN1_EN(1);                                    //打开高压输出
         CTL_VPP2_VNN2_EN(1);
@@ -122,8 +114,8 @@ void Adjust_Voltage_CW()    //低压调压处理流程
        SysMsg.AdjVol.T_VNN2 > HIGHSET_CW  && SysMsg.AdjVol.T_VNN2 < LOOWSET_CW   )
     {
         
-        Adjust_Voltage_Vpp1(SysMsg.AdjVol.T_VPP1);             //调节VPP1至目标值
-        Adjust_Voltage_Vnn1(SysMsg.AdjVol.T_VNN1);             //调节VNN1至目标值
+        Adjust_Voltage_Vpp1(SysMsg.AdjVol.T_VPP1);                                  //调节VPP1至目标值
+        Adjust_Voltage_Vnn1_Vnn2(SysMsg.AdjVol.T_VNN1, SysMsg.AdjVol.T_VNN2);       //调节VNN1, VNN2至目标值
         
         Adjust_Voltage_Pcw(SysMsg.AdjVol.T_VPP2);              //调节PCW至目标值
         Adjust_Voltage_Pcw(SysMsg.AdjVol.T_VNN2);              //调节NCW至目标值
