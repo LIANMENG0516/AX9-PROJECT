@@ -139,7 +139,7 @@ ErrorStatus ReceiveFrameAnalysis(uint8_t *pData, uint8_t DataLen)
         CmdCrc += RcvFrameCmd.Data[i];
     }
     
-    if(RcvFrameCmd.Header == 0x68 && RcvFrameCmd.Id == 0x04 && RcvFrameCmd.Tail == 0x16 && CmdCrc == RcvFrameCmd.Chk)
+    if(RcvFrameCmd .Header == 0x68 && RcvFrameCmd.Id == 0x04 && RcvFrameCmd.Tail == 0x16 && CmdCrc == RcvFrameCmd.Chk)
     {
         return SUCCESS;
     }  

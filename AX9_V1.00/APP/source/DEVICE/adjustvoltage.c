@@ -116,7 +116,8 @@ void Adjust_Voltage_CW()    //低压调压处理流程
         
         Adjust_Voltage_Pcw_Ncw(SysMsg.AdjVol.T_VPP2, SysMsg.AdjVol.T_VNN2); 
         
-        CTL_VPP1_VNN1_EN(1);                                
+        CTL_VPP1_VNN1_EN(1);          
+        CTL_VPP2_VNN2_EN(1);        
     }
 }
 

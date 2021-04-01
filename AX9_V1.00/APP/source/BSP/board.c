@@ -133,11 +133,16 @@ void Board_Bsp_Init()
     
     Spi_Dac_Config();
     
+    DacHv_Tlv5626cd_ValueSet(0xff, 0x0ff);
+    DacCw_Tlv5626cd_ValueSet(0xff, 0x0ff);
+    
     V_AdcDma_Config();                      //电压采样通道初始化--共14路电压采样, 全部使用ADC3
     //I_AdcDma_Config();                      //电流采样通道初始化--共1路电流采样, 使用采样电阻将电流转化为电压进行采样, 使用ADC1
 
     Dac_config(DAC_Channel_1);
     Dac_config(DAC_Channel_2);
+    
+    
     
     
 //    PWR_CTL(1);
