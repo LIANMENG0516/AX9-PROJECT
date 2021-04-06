@@ -82,6 +82,18 @@ void Adjust_Voltage_Pcw_Ncw(uint16_t Pcw, uint16_t Ncw)
     DacCw_Tlv5626cd_ValueSet(Dac_ValA, Dac_ValB);
 }
 
+void Adjust_Hv_Reset()
+{
+    Adjust_Voltage_Vpp1(VPP1_DAC_CLOSE);
+    Adjust_Voltage_Vpp2(VPP2_DAC_CLOSE);
+    Adjust_Voltage_Vnn1_Vnn2(VNN1_DAC_CLOSE, VNN2_DAC_CLOSE); 
+}
+
+void Adjust_Cw_Reset()
+{
+    Adjust_Voltage_Pcw_Ncw(PCW_DAC_CLOSE, NCW_DAC_CLOSE);
+}
+
 void Adjust_Voltage_HV()    //高压调压处理流程
 {       
     if(SysMsg.AdjVol.T_VPP1 <= HIGHSET_HV1 && SysMsg.AdjVol.T_VPP1 >= LOOWSET_HV1 &&

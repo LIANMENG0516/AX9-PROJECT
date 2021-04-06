@@ -11,6 +11,14 @@
 #define LOOWSET_CW  250
 
 
+#define PCW_DAC_CLOSE  0xFF
+#define NCW_DAC_CLOSE  0xFF
+#define VPP1_DAC_CLOSE 0xFF
+#define VNN1_DAC_CLOSE 0xFF
+#define VPP2_DAC_CLOSE 0xFF
+#define VNN2_DAC_CLOSE 0xFF
+
+
 void Adjust_Voltage_Vpp1(uint16_t T_Vpp1);
 void Adjust_Voltage_Vpp2(uint16_t T_Vpp2);
 void Adjust_Voltage_Vnn1(uint16_t T_Vnn1);
