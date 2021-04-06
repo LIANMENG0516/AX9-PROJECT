@@ -75,7 +75,7 @@ void Get_AdjCw_Msg()
     SysMsg.AdjVol.Adj_CW = TRUE;
     Calc_TarVol_AlowRange(); 
     Adjust_Voltage_CW();                            //执行低压调压处理
-    SysMsg.AdjVol.CW_Minitor= TRUE;       //处理完成打开低压监控
+    SysMsg.AdjVol.CW_Minitor= TRUE;                 //处理完成打开低压监控
 }
 
 void InValid_CidData()
@@ -173,6 +173,62 @@ void Cmd_Process()
                 break;
     } 
 }
+
+/***********************************************************************************************************************************/
+#define StringSize 2
+
+char *String[] = {
+                    "HV SET",
+                    "CW SET",
+                 };
+
+uint8_t DebugReceiveFrameAnalysis(char *pData)
+{
+
+    for(int i=0; i<StringSize; i++)
+    {
+        if(strncasecmp(pData, String[i], 6) == 0)
+        {
+            return i + 1;
+        }
+    }
+    
+    return 0;
+}
+
+uint8_t Deal_Compare(char *pData)
+{
+    uint8_t i = 0;
+    
+    i = DebugReceiveFrameAnalysis(pData);
+    
+    switch(i)
+    {
+        case 1:
+                SysMsg.AdjVol.T_VNN1 = SysMsg.AdjVol.T_VPP1 = (pData[7] - '0') * 1000 + (pData[8] - '0') * 100 + (pData[9] - '0') * 10 + (pData[10] - '0');
+                SysMsg.AdjVol.T_VNN2 = SysMsg.AdjVol.T_VPP2 = (pData[12] - '0') * 1000 + (pData[13] - '0') * 100 + (pData[14] - '0') * 10 + (pData[15] - '0');  
+                SysMsg.AdjVol.Adj_HV = TRUE;
+                Calc_TarVol_AlowRange();                        
+                Adjust_Voltage_HV();                                      
+                SysMsg.AdjVol.HV_Minitor = TRUE;                      
+                break;
+        case 2: 
+                SysMsg.AdjVol.T_VNN1 = SysMsg.AdjVol.T_VPP1 = (pData[7] - '0') * 1000 + (pData[8] - '0') * 100 + (pData[9] - '0') * 10 + (pData[10] - '0');
+                SysMsg.AdjVol.T_VNN2 = SysMsg.AdjVol.T_VPP2 = (pData[12] - '0') * 100 + (pData[13] - '0') * 10 + (pData[14] - '0'); 
+                
+                SysMsg.AdjVol.Adj_CW = TRUE;
+                Calc_TarVol_AlowRange(); 
+                Adjust_Voltage_CW();           
+                SysMsg.AdjVol.CW_Minitor= TRUE;       
+                break;
+    }
+    
+    return i;
+}
+
+
+
+
 
 
 

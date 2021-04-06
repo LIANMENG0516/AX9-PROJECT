@@ -1,6 +1,7 @@
 .\objects\iic.o: ..\BSP\iic.c
 .\objects\iic.o: ..\BSP\iic.h
 .\objects\iic.o: ..\BSP\gouble.h
+.\objects\iic.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
 .\objects\iic.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
 .\objects\iic.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 .\objects\iic.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
@@ -49,7 +50,6 @@
 .\objects\iic.o: ..\BSP\adc.h
 .\objects\iic.o: ..\BSP\board.h
 .\objects\iic.o: ..\UCOSIII\uCOS_CONFIG\includes.h
-.\objects\iic.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
 .\objects\iic.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\ctype.h
 .\objects\iic.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
 .\objects\iic.o: ..\UCOSIII\uCOS-III\Source\os.h

@@ -30,10 +30,10 @@ void Gpio_Config()
     Gpio_Init(DEBUG_COM_RX_PORT, DEBUG_COM_RX_PIN, GPIO_Mode_AF, GPIO_OType_PP, GPIO_PuPd_NOPULL);
 
     //T_AP5V5_2_ADC
-    Gpio_Init(T_AP5V5_2_PORT, T_AP5V5_2_PIN, GPIO_Mode_AF, GPIO_OType_PP, GPIO_PuPd_NOPULL);
+    Gpio_Init(T_AP5V5_2_PORT, T_AP5V5_2_PIN, GPIO_Mode_AN, GPIO_OType_PP, GPIO_PuPd_NOPULL);
     
     //T_D5V_ADC
-    Gpio_Init(T_D5V_PORT, T_D5V_PIN, GPIO_Mode_AF, GPIO_OType_PP, GPIO_PuPd_NOPULL);
+    Gpio_Init(T_D5V_PORT, T_D5V_PIN, GPIO_Mode_AN, GPIO_OType_PP, GPIO_PuPd_NOPULL);
     
     //HVADJ1_DAC
     Gpio_Init(HVADJ1_PORT, HVADJ1_PIN, GPIO_Mode_AN, GPIO_OType_PP, GPIO_PuPd_DOWN);
@@ -105,9 +105,6 @@ void Gpio_Config()
     
     //LIDIN
     Gpio_Init(LIDIN_PORT, LIDIN_PIN, GPIO_Mode_OUT, GPIO_OType_PP, GPIO_PuPd_NOPULL);
-
-//    //PWR_BTN
-//    Gpio_Init(PWRBTN_PORT, PWRBTN_PIN, GPIO_Mode_OUT, GPIO_OType_OD, GPIO_PuPd_UP);
 
     //CHARGE_EN
     Gpio_Init(CHARGE_EN_PORT, CHARGE_EN_PIN, GPIO_Mode_OUT, GPIO_OType_PP, GPIO_PuPd_NOPULL);

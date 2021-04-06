@@ -17,7 +17,6 @@
 //T_D5V_ADC
 #define T_D5V_PORT                GPIOA
 #define T_D5V_PIN                 GPIO_Pin_3
-#define T_D5V_PIN_MODE            GPIO_Mode_AN
 
 //HVADJ1_DAC
 #define HVADJ1_PORT               GPIOA

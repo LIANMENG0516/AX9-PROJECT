@@ -36,6 +36,7 @@
 .\objects\systick.o: ..\FWLIB\inc\stm32f4xx_dcmi.h
 .\objects\systick.o: ..\FWLIB\inc\stm32f4xx_fsmc.h
 .\objects\systick.o: ..\BSP\gouble.h
+.\objects\systick.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
 .\objects\systick.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
 .\objects\systick.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 .\objects\systick.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
@@ -48,7 +49,6 @@
 .\objects\systick.o: ..\BSP\adc.h
 .\objects\systick.o: ..\BSP\board.h
 .\objects\systick.o: ..\UCOSIII\uCOS_CONFIG\includes.h
-.\objects\systick.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
 .\objects\systick.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\ctype.h
 .\objects\systick.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
 .\objects\systick.o: ..\UCOSIII\uCOS-III\Source\os.h

@@ -12,7 +12,6 @@ void App_Led_Task()
 
 	while(1)
 	{			
-
         MCU_LED_BLINK();
         
 //        if(SysMsg.SystemState == SYSTEM_ON)

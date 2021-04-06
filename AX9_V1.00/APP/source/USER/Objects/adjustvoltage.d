@@ -36,6 +36,7 @@
 .\objects\adjustvoltage.o: ..\FWLIB\inc\stm32f4xx_dcmi.h
 .\objects\adjustvoltage.o: ..\FWLIB\inc\stm32f4xx_fsmc.h
 .\objects\adjustvoltage.o: ..\BSP\gouble.h
+.\objects\adjustvoltage.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
 .\objects\adjustvoltage.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
 .\objects\adjustvoltage.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 .\objects\adjustvoltage.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
@@ -49,7 +50,6 @@
 .\objects\adjustvoltage.o: ..\BSP\adc.h
 .\objects\adjustvoltage.o: ..\BSP\board.h
 .\objects\adjustvoltage.o: ..\UCOSIII\uCOS_CONFIG\includes.h
-.\objects\adjustvoltage.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
 .\objects\adjustvoltage.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\ctype.h
 .\objects\adjustvoltage.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
 .\objects\adjustvoltage.o: ..\UCOSIII\uCOS-III\Source\os.h

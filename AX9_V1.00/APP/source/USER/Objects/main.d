@@ -35,6 +35,7 @@
 .\objects\main.o: ..\FWLIB\inc\stm32f4xx_dcmi.h
 .\objects\main.o: ..\FWLIB\inc\stm32f4xx_fsmc.h
 .\objects\main.o: ..\BSP\gouble.h
+.\objects\main.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
 .\objects\main.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
 .\objects\main.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 .\objects\main.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
@@ -48,7 +49,6 @@
 .\objects\main.o: ..\BSP\adc.h
 .\objects\main.o: ..\BSP\board.h
 .\objects\main.o: ..\UCOSIII\uCOS_CONFIG\includes.h
-.\objects\main.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
 .\objects\main.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\ctype.h
 .\objects\main.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
 .\objects\main.o: ..\UCOSIII\uCOS-III\Source\os.h

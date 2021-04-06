@@ -132,52 +132,14 @@ void Board_Bsp_Init()
     Debug_Com_Config();                     //调试串口初始化
     
     Spi_Dac_Config();
-    
-    DacHv_Tlv5626cd_ValueSet(0xff, 0x0ff);
-    DacCw_Tlv5626cd_ValueSet(0xff, 0x0ff);
+    Adjust_Hv_Reset();
+    Adjust_Cw_Reset();
     
     V_AdcDma_Config();                      //电压采样通道初始化--共14路电压采样, 全部使用ADC3
     //I_AdcDma_Config();                      //电流采样通道初始化--共1路电流采样, 使用采样电阻将电流转化为电压进行采样, 使用ADC1
 
     Dac_config(DAC_Channel_1);
     Dac_config(DAC_Channel_2);
-    
-    
-    
-    
-//    PWR_CTL(1);
-//    PBUS_ON(1);
-//    CTL_P12V_EN(1);
-//    CTL_N12V_5V5_EN(1);
-//    CTL_P5V5_1_EN(1);
-//    CTL_P5V5_2_EN(1);
-//    CTL_P3V75_EN(1);
-//    CTL_P2V25_EN(1);
-//    CTL_D0V95_EN(1);
-//    CTL_VDD_P5V_EN(1);
-//    CTL_D1V45_EN(1);
-//    EN_FRONT(1);
-//    EN_FPGA_01(1); 
-//    AFE_EN1(1);
-//    EN_FPGA_02(1);
-//    AFE_EN2(1);
-//    while(1);
-//    
-//    DacCw_Tlv5626cd_Shutdown();
-//    
-//    
-//    Adjust_Voltage_Vpp1(10);
-//    Adjust_Voltage_Vnn1(10);
-//    
-//    Adjust_Voltage_Vpp2(40);
-//    Adjust_Voltage_Vnn2(40);
-//    
-//    CTL_VNN1_VPP1_EN(0);
-//    
-//    CTL_VNN2_VPP2_EN(0);
-
-//    Adjust_Voltage_Pcw(0);
-//    Adjust_Voltage_Ncw(0);
 }
 
 

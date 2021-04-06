@@ -39,6 +39,10 @@ void Cmd_Process(void);
 
 ErrorStatus ReceiveFrameAnalysis(uint8_t *pData, uint8_t DataLen);
 
+uint8_t DebugReceiveFrameAnalysis(char *pData);
+
+uint8_t Deal_Compare(char *pData);
+
 #endif
 
 

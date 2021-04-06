@@ -1,6 +1,7 @@
 .\objects\app_led.o: ..\APP\app_led.c
 .\objects\app_led.o: ..\APP\app_led.h
 .\objects\app_led.o: ..\BSP\gouble.h
+.\objects\app_led.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
 .\objects\app_led.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
 .\objects\app_led.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 .\objects\app_led.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
@@ -49,7 +50,6 @@
 .\objects\app_led.o: ..\BSP\adc.h
 .\objects\app_led.o: ..\BSP\board.h
 .\objects\app_led.o: ..\UCOSIII\uCOS_CONFIG\includes.h
-.\objects\app_led.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
 .\objects\app_led.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\ctype.h
 .\objects\app_led.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
 .\objects\app_led.o: ..\UCOSIII\uCOS-III\Source\os.h

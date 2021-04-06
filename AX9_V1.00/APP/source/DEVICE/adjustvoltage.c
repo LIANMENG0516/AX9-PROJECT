@@ -31,7 +31,7 @@ uint16_t Pcw_Calculate_AdjVol(uint16_t T_Data)
 {
     uint16_t Dac_Val;
     
-    Dac_Val = 259 - 26.4 * T_Data / 100;
+    Dac_Val = 279 - 28.4 * T_Data / 100;
     
     return Dac_Val;
 }
@@ -40,7 +40,7 @@ uint16_t Ncw_Calculate_AdjVol(uint16_t T_Data)
 {
     uint16_t Dac_Val;
     
-    Dac_Val = 274 - 26.4 * T_Data / 100;    
+    Dac_Val = 318 - 29.2 * T_Data / 100;    
     
     return Dac_Val;
 }
@@ -89,6 +89,18 @@ void Adjust_Hv_Reset()
     Adjust_Voltage_Vnn1_Vnn2(VNN1_DAC_CLOSE, VNN2_DAC_CLOSE); 
 }
 
+void Adjust_Hv1_Reset()
+{
+    Adjust_Voltage_Vpp1(VPP1_DAC_CLOSE);
+    Adjust_Voltage_Vnn1_Vnn2(VNN1_DAC_CLOSE, SysMsg.AdjVol.T_VNN2); 
+}
+
+void Adjust_Hv2_Reset()
+{
+    Adjust_Voltage_Vpp1(VPP2_DAC_CLOSE);
+    Adjust_Voltage_Vnn1_Vnn2(SysMsg.AdjVol.T_VNN1, VNN2_DAC_CLOSE); 
+}
+
 void Adjust_Cw_Reset()
 {
     Adjust_Voltage_Pcw_Ncw(PCW_DAC_CLOSE, NCW_DAC_CLOSE);
@@ -103,6 +115,8 @@ void Adjust_Voltage_HV()    //高压调压处理流程
     {   
         CTL_VPP1_VNN1_EN(0);                                                        //关闭高压输出
         CTL_VPP2_VNN2_EN(0);
+        
+        Adjust_Cw_Reset();
         
         Adjust_Voltage_Vpp1(SysMsg.AdjVol.T_VPP1);                                  //调节VPP1至目标值
         Adjust_Voltage_Vpp2(SysMsg.AdjVol.T_VPP2);                                  //调节VPP2至目标值
@@ -122,6 +136,8 @@ void Adjust_Voltage_CW()    //低压调压处理流程
     {
         CTL_VPP1_VNN1_EN(0);                                                        //关闭高压输出
         CTL_VPP2_VNN2_EN(0);
+        
+        Adjust_Hv2_Reset();
 
         Adjust_Voltage_Vpp1(SysMsg.AdjVol.T_VPP1);                                  //调节VPP1至目标值   
         Adjust_Voltage_Vnn1_Vnn2(SysMsg.AdjVol.T_VNN1, SysMsg.AdjVol.T_VNN2);  
@@ -129,7 +145,7 @@ void Adjust_Voltage_CW()    //低压调压处理流程
         Adjust_Voltage_Pcw_Ncw(SysMsg.AdjVol.T_VPP2, SysMsg.AdjVol.T_VNN2); 
         
         CTL_VPP1_VNN1_EN(1);          
-        CTL_VPP2_VNN2_EN(1);        
+        CTL_VPP2_VNN2_EN(0);        
     }
 }
 

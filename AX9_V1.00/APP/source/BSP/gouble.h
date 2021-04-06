@@ -1,6 +1,9 @@
 #ifndef __GOUBLE_H
 #define __GOUBLE_H
 
+
+#include "string.h"
+
 #include "stdlib.h"
 #include "stdio.h"
 #include "math.h"
@@ -42,7 +45,10 @@
 
 #define USE_UCOSIII
 
+#define DEBUG_COMMAND                       0
+#define DEBUG_STRING                        1
 
+#define DEBUG_PRINTF(x, ...)                if(x) {printf(__VA_ARGS__);}
 
 #define APP_LED_TASK_PRIO 					3
 #define APP_LED_STK_SIZE 					256

@@ -36,6 +36,7 @@
 .\objects\emc2305.o: ..\FWLIB\inc\stm32f4xx_dcmi.h
 .\objects\emc2305.o: ..\FWLIB\inc\stm32f4xx_fsmc.h
 .\objects\emc2305.o: ..\BSP\gouble.h
+.\objects\emc2305.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
 .\objects\emc2305.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
 .\objects\emc2305.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 .\objects\emc2305.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
@@ -49,7 +50,6 @@
 .\objects\emc2305.o: ..\BSP\adc.h
 .\objects\emc2305.o: ..\BSP\board.h
 .\objects\emc2305.o: ..\UCOSIII\uCOS_CONFIG\includes.h
-.\objects\emc2305.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
 .\objects\emc2305.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\ctype.h
 .\objects\emc2305.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
 .\objects\emc2305.o: ..\UCOSIII\uCOS-III\Source\os.h

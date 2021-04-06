@@ -36,6 +36,7 @@
 .\objects\tlv5626cd.o: ..\FWLIB\inc\stm32f4xx_dcmi.h
 .\objects\tlv5626cd.o: ..\FWLIB\inc\stm32f4xx_fsmc.h
 .\objects\tlv5626cd.o: ..\BSP\gouble.h
+.\objects\tlv5626cd.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
 .\objects\tlv5626cd.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
 .\objects\tlv5626cd.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 .\objects\tlv5626cd.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
@@ -49,7 +50,6 @@
 .\objects\tlv5626cd.o: ..\BSP\adc.h
 .\objects\tlv5626cd.o: ..\BSP\board.h
 .\objects\tlv5626cd.o: ..\UCOSIII\uCOS_CONFIG\includes.h
-.\objects\tlv5626cd.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
 .\objects\tlv5626cd.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\ctype.h
 .\objects\tlv5626cd.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
 .\objects\tlv5626cd.o: ..\UCOSIII\uCOS-III\Source\os.h

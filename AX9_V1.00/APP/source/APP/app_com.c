@@ -32,12 +32,19 @@ void App_Com_Task()
         if(ReceiveFrameAnalysis(&DebugComRX.Data[0], DebugComRX.Len) == SUCCESS)   //格式化并解析串口数据
         {
             memset(DebugComRX.Data, 0, DebugComRX.Len);
-            Cmd_Process();                                  //命令处理
+            Cmd_Process();                                 
         }
-        
+
+        if(Deal_Compare((char *)DebugComRX.Data) != 0)
+        {
+            memset(DebugComRX.Data, 0, DebugComRX.Len);
+        }
+
         if(SysMsg.Cmd.HV_Send == TRUE)
         {
             SysMsg.Cmd.HV_Send = FALSE;
+            
+            #if DEBUG_COMMAND
             
             SenFrameCmd.Cid = CMD_ADJUST_HV;
             SenFrameCmd.Len = 8;
@@ -52,12 +59,18 @@ void App_Com_Task()
             SenFrameCmd.Data[7] = SysMsg.AdjVol.R_VNN2;
             
             FrameCmdPackage(CommuComTX.Data);
-            Send_CmdPackage(DEBUG_COM_DMAY_STREAMX_TX);
+            Send_CmdPackage(DEBUG_COM_DMAY_STREAMX_TX); 
+
+            #endif
+            
+            DEBUG_PRINTF(DEBUG_STRING, "Voltage : %d %d %d %d \r\n", SysMsg.AdjVol.R_VPP1, SysMsg.AdjVol.R_VNN1, SysMsg.AdjVol.R_VPP2, SysMsg.AdjVol.R_VNN2);            
         }
         
         if(SysMsg.Cmd.CW_Send == TRUE)
         {
             SysMsg.Cmd.CW_Send = FALSE;
+            
+            #if DEBUG_COMMAND
             
             SenFrameCmd.Cid = CMD_ADJUST_CW;
             SenFrameCmd.Len = 8;
@@ -73,12 +86,19 @@ void App_Com_Task()
             
             FrameCmdPackage(CommuComTX.Data);
             Send_CmdPackage(DEBUG_COM_DMAY_STREAMX_TX);
+            
+            #endif
+            
+            DEBUG_PRINTF(DEBUG_STRING, "Voltage : %d %d %d %d \r\n", SysMsg.AdjVol.R_VPP1, SysMsg.AdjVol.R_VNN1, SysMsg.AdjVol.R_VPP2, SysMsg.AdjVol.R_VNN2);
         }
         
         if(SysMsg.Cmd.Timeout == TRUE)
         {
             SysMsg.Cmd.Timeout = FALSE;
             
+            
+            #if DEBUG_COMMAND
+
             SenFrameCmd.Cid = TIMEOUT;
             SenFrameCmd.Len = 8;
             
@@ -93,6 +113,12 @@ void App_Com_Task()
             
             FrameCmdPackage(CommuComTX.Data);
             Send_CmdPackage(DEBUG_COM_DMAY_STREAMX_TX);
+            
+            #endif
+
+           
+           
+           DEBUG_PRINTF(DEBUG_STRING, "Voltage : %d %d %d %d \r\n", SysMsg.AdjVol.R_VPP1, SysMsg.AdjVol.R_VNN1, SysMsg.AdjVol.R_VPP2, SysMsg.AdjVol.R_VNN2);
         }
 
 		OSTimeDlyHMSM(0, 0, 0, 10, OS_OPT_TIME_PERIODIC, &err);

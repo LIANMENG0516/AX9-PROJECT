@@ -1,6 +1,7 @@
 .\objects\command_process.o: ..\DEVICE\command_process.c
 .\objects\command_process.o: ..\DEVICE\command_process.h
 .\objects\command_process.o: ..\BSP\gouble.h
+.\objects\command_process.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
 .\objects\command_process.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
 .\objects\command_process.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 .\objects\command_process.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
@@ -49,7 +50,6 @@
 .\objects\command_process.o: ..\BSP\adc.h
 .\objects\command_process.o: ..\BSP\board.h
 .\objects\command_process.o: ..\UCOSIII\uCOS_CONFIG\includes.h
-.\objects\command_process.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
 .\objects\command_process.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\ctype.h
 .\objects\command_process.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
 .\objects\command_process.o: ..\UCOSIII\uCOS-III\Source\os.h

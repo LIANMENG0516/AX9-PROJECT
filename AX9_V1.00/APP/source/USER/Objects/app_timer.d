@@ -1,6 +1,7 @@
 .\objects\app_timer.o: ..\APP\app_timer.c
 .\objects\app_timer.o: ..\APP\app_timer.h
 .\objects\app_timer.o: ..\BSP\gouble.h
+.\objects\app_timer.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
 .\objects\app_timer.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
 .\objects\app_timer.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 .\objects\app_timer.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
@@ -49,7 +50,6 @@
 .\objects\app_timer.o: ..\BSP\adc.h
 .\objects\app_timer.o: ..\BSP\board.h
 .\objects\app_timer.o: ..\UCOSIII\uCOS_CONFIG\includes.h
-.\objects\app_timer.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
 .\objects\app_timer.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\ctype.h
 .\objects\app_timer.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
 .\objects\app_timer.o: ..\UCOSIII\uCOS-III\Source\os.h

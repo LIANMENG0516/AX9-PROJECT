@@ -5,6 +5,8 @@
 
 #include "stdio.h"
 
+#pragma import(__use_no_semihosting)
+
 typedef struct
 {
 	uint8_t *Data;

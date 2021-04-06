@@ -1,6 +1,7 @@
 .\objects\app_sysonoff.o: ..\APP\app_sysonoff.c
 .\objects\app_sysonoff.o: ..\APP\app_sysonoff.h
 .\objects\app_sysonoff.o: ..\BSP\gouble.h
+.\objects\app_sysonoff.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
 .\objects\app_sysonoff.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
 .\objects\app_sysonoff.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 .\objects\app_sysonoff.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
@@ -49,7 +50,6 @@
 .\objects\app_sysonoff.o: ..\BSP\adc.h
 .\objects\app_sysonoff.o: ..\BSP\board.h
 .\objects\app_sysonoff.o: ..\UCOSIII\uCOS_CONFIG\includes.h
-.\objects\app_sysonoff.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
 .\objects\app_sysonoff.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\ctype.h
 .\objects\app_sysonoff.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
 .\objects\app_sysonoff.o: ..\UCOSIII\uCOS-III\Source\os.h

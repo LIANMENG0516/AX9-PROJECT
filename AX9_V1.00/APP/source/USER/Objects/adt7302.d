@@ -36,6 +36,7 @@
 .\objects\adt7302.o: ..\FWLIB\inc\stm32f4xx_dcmi.h
 .\objects\adt7302.o: ..\FWLIB\inc\stm32f4xx_fsmc.h
 .\objects\adt7302.o: ..\BSP\gouble.h
+.\objects\adt7302.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
 .\objects\adt7302.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
 .\objects\adt7302.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 .\objects\adt7302.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
@@ -49,7 +50,6 @@
 .\objects\adt7302.o: ..\BSP\adc.h
 .\objects\adt7302.o: ..\BSP\board.h
 .\objects\adt7302.o: ..\UCOSIII\uCOS_CONFIG\includes.h
-.\objects\adt7302.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
 .\objects\adt7302.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\ctype.h
 .\objects\adt7302.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
 .\objects\adt7302.o: ..\UCOSIII\uCOS-III\Source\os.h

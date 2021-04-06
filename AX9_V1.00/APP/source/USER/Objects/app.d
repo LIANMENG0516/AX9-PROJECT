@@ -1,6 +1,7 @@
 .\objects\app.o: ..\APP\app.c
 .\objects\app.o: ..\APP\app.h
 .\objects\app.o: ..\BSP\gouble.h
+.\objects\app.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
 .\objects\app.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
 .\objects\app.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 .\objects\app.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
@@ -49,7 +50,6 @@
 .\objects\app.o: ..\BSP\adc.h
 .\objects\app.o: ..\BSP\board.h
 .\objects\app.o: ..\UCOSIII\uCOS_CONFIG\includes.h
-.\objects\app.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
 .\objects\app.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\ctype.h
 .\objects\app.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
 .\objects\app.o: ..\UCOSIII\uCOS-III\Source\os.h

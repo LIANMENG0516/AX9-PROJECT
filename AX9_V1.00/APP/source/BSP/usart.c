@@ -53,6 +53,17 @@ void Usart_Transmit_Nchar(USART_TypeDef* USARTx, uint8_t *Data, uint8_t Len)
 	}
 }
 
+struct __FILE
+{
+    int handle;
+};
+FILE __stdout; 
+
+void _sys_exit(int x)
+{
+    x = x;
+}
+
 int fputc(int ch, FILE *f)
 {
 	while(USART_GetFlagStatus(DEBUG_COM, USART_FLAG_TC) == RESET);
