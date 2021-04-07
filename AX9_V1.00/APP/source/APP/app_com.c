@@ -120,6 +120,26 @@ void App_Com_Task()
            
            DEBUG_PRINTF(DEBUG_STRING, "Voltage : %d %d %d %d \r\n", SysMsg.AdjVol.R_VPP1, SysMsg.AdjVol.R_VNN1, SysMsg.AdjVol.R_VPP2, SysMsg.AdjVol.R_VNN2);
         }
+        
+        if(SysMsg.Cmd.Voltage_Send == TRUE)
+        {
+            SysMsg.Cmd.Voltage_Send = FALSE;
+            
+            SenFrameCmd.Cid = CMD_READ_VOLTAGE;
+            SenFrameCmd.Len = 8;
+            
+            SenFrameCmd.Data[0] = SysMsg.AdjVol.R_VPP1 >> 8;
+            SenFrameCmd.Data[1] = SysMsg.AdjVol.R_VPP1;
+            SenFrameCmd.Data[2] = SysMsg.AdjVol.R_VNN1 >> 8;
+            SenFrameCmd.Data[3] = SysMsg.AdjVol.R_VNN1;
+            SenFrameCmd.Data[4] = SysMsg.AdjVol.R_VPP2 >> 8;
+            SenFrameCmd.Data[5] = SysMsg.AdjVol.R_VPP2;
+            SenFrameCmd.Data[6] = SysMsg.AdjVol.R_VNN2 >> 8;
+            SenFrameCmd.Data[7] = SysMsg.AdjVol.R_VNN2;
+            
+            FrameCmdPackage(CommuComTX.Data);
+            Send_CmdPackage(DEBUG_COM_DMAY_STREAMX_TX);
+        }
 
 		OSTimeDlyHMSM(0, 0, 0, 10, OS_OPT_TIME_PERIODIC, &err);
 	}

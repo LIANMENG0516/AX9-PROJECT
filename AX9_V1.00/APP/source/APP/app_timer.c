@@ -8,7 +8,9 @@ void cb_Sys_StateChk_Tmr(void *p_tmr, void *p_arg)
     static uint8_t startCnt = 0;
     System_PwrKey_Minitor();
 
-    Adc_GetVoltage();
+    Adc3_V_GetVoltage();
+    Adc1_T_GetVoltage();
+    Adc1_V_GetVoltage();
     
     if(SysMsg.AdjVol.HV_Minitor)
     {
@@ -50,52 +52,7 @@ void cb_Sys_StateChk_Tmr(void *p_tmr, void *p_arg)
                 SysMsg.Cmd.Timeout = TRUE;
             }
         } 
-    }
-     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    }    
 }
 
 

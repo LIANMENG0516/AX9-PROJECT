@@ -26,6 +26,8 @@ typedef struct
 #define CMD_ADJUST_HV       0x02
 #define CMD_ADJUST_CW       0x03
 
+#define CMD_READ_VOLTAGE    0x04
+
 
 
 

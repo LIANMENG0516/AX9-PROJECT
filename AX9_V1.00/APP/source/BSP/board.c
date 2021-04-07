@@ -58,9 +58,9 @@ void Commu_Com_Config()
 
 
 
-void V_Adc_Config()
+void Adc3_Config()
 {
-    Adc_Init(ADC3, ADC_VCHANNEL_NUM);
+    Adc_Init(ADC3, ADC3_CHANNEL_NUM);
     
     ADC_RegularChannelConfig(ADC3, CHANNEL_VPP1,    SAMPLE_VPP1_SEQUENCE,    ADC_SampleTime_480Cycles);
 	ADC_RegularChannelConfig(ADC3, CHANNEL_VNN1,    SAMPLE_VNN1_SEQUENCE,    ADC_SampleTime_480Cycles);
@@ -78,25 +78,25 @@ void V_Adc_Config()
 	ADC_RegularChannelConfig(ADC3, CHANNEL_D1V45,   SAMPLE_D1V45_SEQUENCE,   ADC_SampleTime_480Cycles);
 }
 
-void I_Adc_Config()
+void Adc1_Config()
 {
-    Adc_Init(ADC1, ADC_ICHANNEL_NUM);
+    Adc_Init(ADC1, ADC1_CHANNEL_NUM);
     
-    ADC_RegularChannelConfig(ADC1, CHANNEL_VPP1, 1,  ADC_SampleTime_480Cycles);
-
-	ADC_SoftwareStartConv(ADC1);										     //开始转换
+    ADC_TempSensorVrefintCmd(ENABLE);
+    ADC_RegularChannelConfig(ADC1, CHANNEL_IADP, SAMPLE_IADP_SEQUENCE,  ADC_SampleTime_480Cycles);
+    ADC_RegularChannelConfig(ADC1, CHANNEL_TEMP, SAMPLE_TEMP_SEQUENCE,  ADC_SampleTime_480Cycles);
 }
 
 
 
-extern uint16_t  Adc_V_ConValue[ADC_VSAMPLE_NUM][ADC_VCHANNEL_NUM];
+extern uint16_t  Adc_3_ConValue[ADC_SAMPLE_NUM][ADC3_CHANNEL_NUM];
 
-extern uint16_t  Adc_I_ConValue[ADC_ISAMPLE_NUM];
+extern uint16_t  Adc_1_ConValue[ADC_SAMPLE_NUM][ADC1_CHANNEL_NUM];
 
 void V_AdcDma_Config()
 {
-    V_Adc_Config();                                                         
-    Dma_Config(ADC_DMAY_STREAMX_V, ADC_DMA_CHANNEL_V, (uint32_t)&ADC3->DR, (uint32_t)Adc_V_ConValue, DMA_DIR_PeripheralToMemory, ADC_VSAMPLE_NUM * ADC_VCHANNEL_NUM, DMA_PeripheralDataSize_HalfWord, DMA_MemoryDataSize_HalfWord, DMA_Mode_Circular, DMA_Priority_VeryHigh);                                                                                                                                                                                                                  
+    Adc3_Config();                                                         
+    Dma_Config(ADC_DMAY_STREAMX_V, ADC_DMA_CHANNEL_V, (uint32_t)&ADC3->DR, (uint32_t)Adc_3_ConValue, DMA_DIR_PeripheralToMemory, ADC_SAMPLE_NUM * ADC3_CHANNEL_NUM, DMA_PeripheralDataSize_HalfWord, DMA_MemoryDataSize_HalfWord, DMA_Mode_Circular, DMA_Priority_VeryHigh);                                                                                                                                                                                                                  
     DMA_Cmd(ADC_DMAY_STREAMX_V, ENABLE); 
 	ADC_DMARequestAfterLastTransferCmd(ADC3, ENABLE);                         //如果不开启，只进入一次DMA中断
     ADC_DMACmd(ADC3, ENABLE);
@@ -105,8 +105,8 @@ void V_AdcDma_Config()
 
 void I_AdcDma_Config()
 {
-    I_Adc_Config();
-    Dma_Config(ADC_DMAY_STREAMX_I, ADC_DMA_CHANNEL_I, (uint32_t)&ADC1->DR, (uint32_t)Adc_I_ConValue, DMA_DIR_PeripheralToMemory, ADC_ISAMPLE_NUM, DMA_PeripheralDataSize_HalfWord, DMA_MemoryDataSize_HalfWord, DMA_Mode_Circular, DMA_Priority_VeryHigh);                                                                                                                                                                                                                  
+    Adc1_Config();
+    Dma_Config(ADC_DMAY_STREAMX_I, ADC_DMA_CHANNEL_I, (uint32_t)&ADC1->DR, (uint32_t)Adc_1_ConValue, DMA_DIR_PeripheralToMemory, ADC_SAMPLE_NUM * ADC1_CHANNEL_NUM, DMA_PeripheralDataSize_HalfWord, DMA_MemoryDataSize_HalfWord, DMA_Mode_Circular, DMA_Priority_VeryHigh);                                                                                                                                                                                                                  
     DMA_Cmd(ADC_DMAY_STREAMX_I, ENABLE); 
     ADC_DMARequestAfterLastTransferCmd(ADC1, ENABLE);                         //如果不开启，只进入一次DMA中断
     ADC_DMACmd(ADC1, ENABLE);
@@ -136,10 +136,12 @@ void Board_Bsp_Init()
     Adjust_Cw_Reset();
     
     V_AdcDma_Config();                      //电压采样通道初始化--共14路电压采样, 全部使用ADC3
-    //I_AdcDma_Config();                      //电流采样通道初始化--共1路电流采样, 使用采样电阻将电流转化为电压进行采样, 使用ADC1
+    I_AdcDma_Config();                      //电流采样通道初始化--共1路电流采样, 使用采样电阻将电流转化为电压进行采样, 使用ADC1
 
     Dac_config(DAC_Channel_1);
     Dac_config(DAC_Channel_2);
+    
+    Fan_Emc2305_Init();
 }
 
 

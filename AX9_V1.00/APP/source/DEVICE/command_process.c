@@ -78,6 +78,22 @@ void Get_AdjCw_Msg()
     SysMsg.AdjVol.CW_Minitor= TRUE;                 //处理完成打开低压监控
 }
 
+void Get_Voltage_Msg()
+{
+    SysMsg.Cmd.Voltage_Send = TRUE;
+}
+
+
+
+
+
+
+
+
+
+
+
+
 void InValid_CidData()
 {
 	SenFrameCmd.Len = 1;
@@ -167,7 +183,10 @@ void Cmd_Process()
                 Get_AdjCw_Msg();
                 break;
         
-        
+        case    CMD_READ_VOLTAGE:
+                Get_Voltage_Msg();
+                break;
+
         default:
                 InValid_CidData();
                 break;

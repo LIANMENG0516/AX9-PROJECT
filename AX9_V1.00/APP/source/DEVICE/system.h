@@ -35,11 +35,6 @@ typedef struct
     uint16_t MAX_VNN2;
     uint16_t MIN_VNN2;
     
-    
-    
-    
-    
-    
     uint16_t R_VPP1;
     uint16_t R_VNN1;
     uint16_t R_VPP2;
@@ -56,6 +51,8 @@ typedef struct
     uint16_t R_D5V;
     uint16_t R_D0V95;
     uint16_t R_D1V45;   
+    
+    uint16_t R_IADP;
 }Ad_VolStruct;
 
 typedef struct
@@ -82,6 +79,7 @@ typedef struct
     bool CW_Send;
     bool Firmware_Send;
     bool CompileInfo_Send;
+    bool Voltage_Send;
 }Command_Deal;
 
 

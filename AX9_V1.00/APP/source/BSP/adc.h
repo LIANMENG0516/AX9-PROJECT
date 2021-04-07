@@ -3,13 +3,11 @@
 
 #include "stm32f4xx.h"
 
-#define ADC_VCHANNEL_NUM    14
-#define ADC_VSAMPLE_NUM     20
+#define ADC3_CHANNEL_NUM    14
+#define ADC1_CHANNEL_NUM    2
+#define ADC_SAMPLE_NUM      20
 
-#define ADC_ICHANNEL_NUM    1
-#define ADC_ISAMPLE_NUM     20
-
-#define ADC_DMAY_STREAMX_V DMA2_Stream0
+#define ADC_DMAY_STREAMX_V DMA2_Stream1
 #define ADC_DMA_CHANNEL_V  DMA_Channel_2
 
 #define ADC_DMAY_STREAMX_I DMA2_Stream0
@@ -48,9 +46,15 @@
 
 //ADC1
 #define CHANNEL_IADP 	    ADC_Channel_15      //¹ýÁ÷¼ì²â
+#define CHANNEL_TEMP 	    ADC_Channel_16      //ÎÂ¶È¼ì²â 
+
+#define SAMPLE_IADP_SEQUENCE        1
+#define SAMPLE_TEMP_SEQUENCE        2
 
 void Adc_Init(ADC_TypeDef* ADCx, uint8_t NumChannel);
-void Adc_GetVoltage(void);
+void Adc3_V_GetVoltage(void);
+void Adc1_T_GetVoltage(void);
+void Adc1_V_GetVoltage(void);
 
 #endif
 
