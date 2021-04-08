@@ -215,7 +215,7 @@ uint8_t DebugReceiveFrameAnalysis(char *pData)
     return 0;
 }
 
-uint8_t Deal_Compare(char *pData)
+uint8_t Deal_Compare(char *pData, uint8_t DataLen)
 {
     uint8_t i = 0;
     
@@ -225,7 +225,15 @@ uint8_t Deal_Compare(char *pData)
     {
         case 1:
                 SysMsg.AdjVol.T_VNN1 = SysMsg.AdjVol.T_VPP1 = (pData[7] - '0') * 1000 + (pData[8] - '0') * 100 + (pData[9] - '0') * 10 + (pData[10] - '0');
-                SysMsg.AdjVol.T_VNN2 = SysMsg.AdjVol.T_VPP2 = (pData[12] - '0') * 1000 + (pData[13] - '0') * 100 + (pData[14] - '0') * 10 + (pData[15] - '0');  
+                
+                if(DataLen == 16)
+                {
+                    SysMsg.AdjVol.T_VNN2 = SysMsg.AdjVol.T_VPP2 = (pData[12] - '0') * 1000 + (pData[13] - '0') * 100 + (pData[14] - '0') * 10 + (pData[15] - '0');  
+                }
+                if(DataLen == 15)
+                {
+                    SysMsg.AdjVol.T_VNN2 = SysMsg.AdjVol.T_VPP2 = (pData[12] - '0') * 100 + (pData[13] - '0') * 10 + (pData[14] - '0');
+                }
                 SysMsg.AdjVol.Adj_HV = TRUE;
                 Calc_TarVol_AlowRange();                        
                 Adjust_Voltage_HV();                                      

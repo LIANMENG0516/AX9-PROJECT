@@ -31,10 +31,6 @@ void SMDAT_2305_IN()
 	GPIO_Init(GPIOB, &GPIO_InitStruct);	
 }
 
-
-
-
-
 void I2c_Emc_Start()
 {
 	SMDAT_2305_OUT();

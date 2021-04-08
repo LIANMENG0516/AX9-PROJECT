@@ -35,7 +35,7 @@ void App_Com_Task()
             Cmd_Process();                                 
         }
 
-        if(Deal_Compare((char *)DebugComRX.Data) != 0)
+        if(Deal_Compare((char *)DebugComRX.Data, DebugComRX.Len) != 0)
         {
             memset(DebugComRX.Data, 0, DebugComRX.Len);
         }

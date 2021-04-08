@@ -51,8 +51,8 @@ void Gpio_Config()
     Gpio_Init(SMCLK_2305_PORT, SMCLK_2305_PIN, GPIO_Mode_OUT, GPIO_OType_PP, GPIO_PuPd_UP);
 
     //SMDAT_2305
-    Gpio_Init(SMDAT_2305_PORT, SMDAT_2305_PIN, GPIO_Mode_OUT, GPIO_OType_PP, GPIO_PuPd_UP);
-
+    Gpio_Init(SMDAT_2305_PORT, SMDAT_2305_PIN, GPIO_Mode_OUT, GPIO_OType_OD, GPIO_PuPd_UP);
+    
     //IIC1_SCK
     Gpio_Init(IIC1_SCK_PORT, IIC1_SCK_PIN, GPIO_Mode_OUT, GPIO_OType_PP, GPIO_PuPd_UP);
 

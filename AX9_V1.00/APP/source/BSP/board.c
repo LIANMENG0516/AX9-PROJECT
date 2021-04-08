@@ -141,7 +141,7 @@ void Board_Bsp_Init()
     Dac_config(DAC_Channel_1);
     Dac_config(DAC_Channel_2);
     
-    Fan_Emc2305_Init();
+//    Fan_Emc2305_Init();
 }
 
 
