@@ -2,6 +2,8 @@
 
 extern System_MsgStruct SysMsg;
 
+extern CmdFrameStr RcvFrameCmd; 
+
 OS_TCB SysOnOffTaskTcb;
 
 CPU_STK App_SysOnOff_Task_Stk[APP_SYSONOFF_STK_SIZE];
@@ -37,10 +39,11 @@ void System_PowerOn(OS_ERR err)
         CTL_P2V25_EN(1);
         OSTimeDly(20, OS_OPT_TIME_DLY, &err);
         CTL_D0V95_EN(1);
+        EN_FRONT(1);
         OSTimeDly(15, OS_OPT_TIME_DLY, &err);
         CTL_VDD_P5V_EN(1);
         CTL_D1V45_EN(1);
-        EN_FRONT(1);
+        
         EN_FPGA_01(1); 
         AFE_EN1(1);
         OSTimeDly(15, OS_OPT_TIME_DLY, &err);
@@ -61,6 +64,16 @@ void System_PowerOn(OS_ERR err)
         powerOnStep = 0;
         
         SysMsg.SystemState = SYSTEM_ON;
+        
+        //DEBUG
+        SysMsg.AdjVol.T_VPP1 = 0x03e8;
+        SysMsg.AdjVol.T_VNN1 = 0x03e8;
+        SysMsg.AdjVol.T_VPP2 = 0x01f4;
+        SysMsg.AdjVol.T_VNN2 = 0x01f4;
+        SysMsg.AdjVol.Adj_HV = TRUE;
+        Calc_TarVol_AlowRange();                                    //计算允许误差范围
+        Adjust_Voltage_HV();                                        //执行高压调压处理
+        SysMsg.AdjVol.HV_Minitor = TRUE;                            //处理完成打开高压监控  
     }
 }
 
@@ -69,6 +82,9 @@ void System_ShutDown(OS_ERR err)
     static uint8_t shutDownStep = 0;
     if(SysMsg.ShutDownReq == TRUE)
     {
+        CTL_VPP2_VNN2_EN(0);
+        CTL_VPP1_VNN1_EN(0);                                                        //关闭高压输出
+        
         PWR_BTN_COM(0);
         OSTimeDly(100, OS_OPT_TIME_DLY, &err);
         PWR_BTN_COM(1);

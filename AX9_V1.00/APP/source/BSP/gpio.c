@@ -20,8 +20,6 @@ void Gpio_Config()
     PWR_BackupAccessCmd(ENABLE);                            //使能后备寄存器访问
     RCC_LSEConfig(RCC_LSE_OFF);                             //关闭外部低速外部时钟, 关闭后PC14 PC15才可以当普通IO用。
     PWR_BackupAccessCmd(DISABLE);                           //禁止修改后备寄存器
-
-    
 	
     //USART4_DEBUG_COM
     GPIO_PinAFConfig(DEBUG_COM_TX_PORT, GPIO_PinSource0, GPIO_AF_UART4);

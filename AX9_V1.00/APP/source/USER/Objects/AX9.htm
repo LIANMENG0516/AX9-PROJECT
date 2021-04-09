@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\Objects\AX9.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Objects\AX9.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Thu Apr 08 17:00:08 2021
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Fri Apr 09 14:24:08 2021
 <BR><P>
 <H3>Maximum Stack Usage =        228 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -1025,7 +1025,8 @@ Global Symbols
 <LI><a href="#[d5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Adjust_Voltage_Vnn1_Vnn2
 <LI><a href="#[d1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Adjust_Cw_Reset
 </UL>
-<BR>[Called By]<UL><LI><a href="#[ea]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Deal_Compare
+<BR>[Called By]<UL><LI><a href="#[fc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;System_PowerOn
+<LI><a href="#[ea]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Deal_Compare
 <LI><a href="#[115]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Get_AdjHv_Msg
 </UL>
 
@@ -1046,9 +1047,9 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[df]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Vnnx_Calculate_AdjVol
 <LI><a href="#[e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DacHv_Tlv5626cd_ValueSet
 </UL>
-<BR>[Called By]<UL><LI><a href="#[d6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Adjust_Hv_Reset
+<BR>[Called By]<UL><LI><a href="#[db]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Adjust_Voltage_HV
+<LI><a href="#[d6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Adjust_Hv_Reset
 <LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Adjust_Hv2_Reset
-<LI><a href="#[db]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Adjust_Voltage_HV
 <LI><a href="#[d8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Adjust_Voltage_CW
 </UL>
 
@@ -1059,9 +1060,9 @@ Global Symbols
 <LI><a href="#[e2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DAC_SetChannel1Data
 <LI><a href="#[e1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Vppx_Calculate_AdjVol
 </UL>
-<BR>[Called By]<UL><LI><a href="#[d6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Adjust_Hv_Reset
+<BR>[Called By]<UL><LI><a href="#[db]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Adjust_Voltage_HV
+<LI><a href="#[d6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Adjust_Hv_Reset
 <LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Adjust_Hv2_Reset
-<LI><a href="#[db]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Adjust_Voltage_HV
 <LI><a href="#[d8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Adjust_Voltage_CW
 </UL>
 
@@ -1072,8 +1073,8 @@ Global Symbols
 <LI><a href="#[e4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DAC_SetChannel2Data
 <LI><a href="#[e1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Vppx_Calculate_AdjVol
 </UL>
-<BR>[Called By]<UL><LI><a href="#[d6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Adjust_Hv_Reset
-<LI><a href="#[db]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Adjust_Voltage_HV
+<BR>[Called By]<UL><LI><a href="#[db]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Adjust_Voltage_HV
+<LI><a href="#[d6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Adjust_Hv_Reset
 </UL>
 
 <P><STRONG><a name="[8b]"></a>App_Com_Task</STRONG> (Thumb, 362 bytes, Stack size 16 bytes, app_com.o(i.App_Com_Task))
@@ -1148,8 +1149,8 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[8f]"></a>App_SysOnOff_Task</STRONG> (Thumb, 42 bytes, Stack size 16 bytes, app_sysonoff.o(i.App_SysOnOff_Task))
-<BR><BR>[Stack]<UL><LI>Max Depth = 112 + Unknown Stack Size
-<LI>Call Chain = App_SysOnOff_Task &rArr; OSTimeDlyHMSM &rArr; OS_TickListInsertDly &rArr; OS_TickListInsert
+<BR><BR>[Stack]<UL><LI>Max Depth = 144 + Unknown Stack Size
+<LI>Call Chain = App_SysOnOff_Task &rArr; System_PowerOn &rArr; Adjust_Voltage_HV &rArr; Adjust_Cw_Reset &rArr; Adjust_Voltage_Pcw_Ncw &rArr; Pcw_Calculate_AdjVol &rArr; __aeabi_dmul
 </UL>
 <BR>[Calls]<UL><LI><a href="#[fd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;System_ShutDown
 <LI><a href="#[fc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;System_PowerOn
@@ -1270,7 +1271,8 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[150]"></a>Calc_TarVol_AlowRange</STRONG> (Thumb, 126 bytes, Stack size 0 bytes, command_process.o(i.Calc_TarVol_AlowRange))
-<BR><BR>[Called By]<UL><LI><a href="#[ea]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Deal_Compare
+<BR><BR>[Called By]<UL><LI><a href="#[fc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;System_PowerOn
+<LI><a href="#[ea]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Deal_Compare
 <LI><a href="#[115]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Get_AdjHv_Msg
 <LI><a href="#[116]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Get_AdjCw_Msg
 </UL>
@@ -1527,10 +1529,10 @@ Global Symbols
 <P><STRONG><a name="[ea]"></a>Deal_Compare</STRONG> (Thumb, 316 bytes, Stack size 16 bytes, command_process.o(i.Deal_Compare))
 <BR><BR>[Stack]<UL><LI>Max Depth = 136<LI>Call Chain = Deal_Compare &rArr; Adjust_Voltage_HV &rArr; Adjust_Cw_Reset &rArr; Adjust_Voltage_Pcw_Ncw &rArr; Pcw_Calculate_AdjVol &rArr; __aeabi_dmul
 </UL>
-<BR>[Calls]<UL><LI><a href="#[db]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Adjust_Voltage_HV
+<BR>[Calls]<UL><LI><a href="#[150]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Calc_TarVol_AlowRange
+<LI><a href="#[db]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Adjust_Voltage_HV
 <LI><a href="#[d8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Adjust_Voltage_CW
 <LI><a href="#[14f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DebugReceiveFrameAnalysis
-<LI><a href="#[150]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Calc_TarVol_AlowRange
 </UL>
 <BR>[Called By]<UL><LI><a href="#[8b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;App_Com_Task
 </UL>
@@ -1617,21 +1619,21 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[da]"></a>GPIO_ResetBits</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, stm32f4xx_gpio.o(i.GPIO_ResetBits))
-<BR><BR>[Called By]<UL><LI><a href="#[fd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;System_ShutDown
+<BR><BR>[Called By]<UL><LI><a href="#[db]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Adjust_Voltage_HV
+<LI><a href="#[fd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;System_ShutDown
 <LI><a href="#[fc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;System_PowerOn
 <LI><a href="#[e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DacHv_Tlv5626cd_ValueSet
 <LI><a href="#[de]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DacCw_Tlv5626cd_ValueSet
-<LI><a href="#[db]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Adjust_Voltage_HV
 <LI><a href="#[d8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Adjust_Voltage_CW
 </UL>
 
 <P><STRONG><a name="[d9]"></a>GPIO_SetBits</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, stm32f4xx_gpio.o(i.GPIO_SetBits))
-<BR><BR>[Called By]<UL><LI><a href="#[fd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;System_ShutDown
+<BR><BR>[Called By]<UL><LI><a href="#[db]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Adjust_Voltage_HV
+<LI><a href="#[fd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;System_ShutDown
 <LI><a href="#[fc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;System_PowerOn
 <LI><a href="#[104]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Gpio_Config
 <LI><a href="#[e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DacHv_Tlv5626cd_ValueSet
 <LI><a href="#[de]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DacCw_Tlv5626cd_ValueSet
-<LI><a href="#[db]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Adjust_Voltage_HV
 <LI><a href="#[d8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Adjust_Voltage_CW
 </UL>
 
@@ -1642,8 +1644,8 @@ Global Symbols
 <P><STRONG><a name="[116]"></a>Get_AdjCw_Msg</STRONG> (Thumb, 102 bytes, Stack size 8 bytes, command_process.o(i.Get_AdjCw_Msg))
 <BR><BR>[Stack]<UL><LI>Max Depth = 128<LI>Call Chain = Get_AdjCw_Msg &rArr; Adjust_Voltage_CW &rArr; Adjust_Hv2_Reset &rArr; Adjust_Voltage_Vnn1_Vnn2 &rArr; Vnnx_Calculate_AdjVol &rArr; __aeabi_dmul
 </UL>
-<BR>[Calls]<UL><LI><a href="#[d8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Adjust_Voltage_CW
-<LI><a href="#[150]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Calc_TarVol_AlowRange
+<BR>[Calls]<UL><LI><a href="#[150]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Calc_TarVol_AlowRange
+<LI><a href="#[d8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Adjust_Voltage_CW
 </UL>
 <BR>[Called By]<UL><LI><a href="#[e7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Cmd_Process
 </UL>
@@ -1651,8 +1653,8 @@ Global Symbols
 <P><STRONG><a name="[115]"></a>Get_AdjHv_Msg</STRONG> (Thumb, 102 bytes, Stack size 8 bytes, command_process.o(i.Get_AdjHv_Msg))
 <BR><BR>[Stack]<UL><LI>Max Depth = 128<LI>Call Chain = Get_AdjHv_Msg &rArr; Adjust_Voltage_HV &rArr; Adjust_Cw_Reset &rArr; Adjust_Voltage_Pcw_Ncw &rArr; Pcw_Calculate_AdjVol &rArr; __aeabi_dmul
 </UL>
-<BR>[Calls]<UL><LI><a href="#[db]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Adjust_Voltage_HV
-<LI><a href="#[150]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Calc_TarVol_AlowRange
+<BR>[Calls]<UL><LI><a href="#[150]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Calc_TarVol_AlowRange
+<LI><a href="#[db]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Adjust_Voltage_HV
 </UL>
 <BR>[Called By]<UL><LI><a href="#[e7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Cmd_Process
 </UL>
@@ -2929,14 +2931,16 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[a7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[fc]"></a>System_PowerOn</STRONG> (Thumb, 354 bytes, Stack size 8 bytes, app_sysonoff.o(i.System_PowerOn))
-<BR><BR>[Stack]<UL><LI>Max Depth = 72 + Unknown Stack Size
-<LI>Call Chain = System_PowerOn &rArr; OSTimeDly &rArr; OS_TickListInsertDly &rArr; OS_TickListInsert
+<P><STRONG><a name="[fc]"></a>System_PowerOn</STRONG> (Thumb, 386 bytes, Stack size 8 bytes, app_sysonoff.o(i.System_PowerOn))
+<BR><BR>[Stack]<UL><LI>Max Depth = 128 + Unknown Stack Size
+<LI>Call Chain = System_PowerOn &rArr; Adjust_Voltage_HV &rArr; Adjust_Cw_Reset &rArr; Adjust_Voltage_Pcw_Ncw &rArr; Pcw_Calculate_AdjVol &rArr; __aeabi_dmul
 </UL>
 <BR>[Calls]<UL><LI><a href="#[190]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OSTimeDly
 <LI><a href="#[d9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_SetBits
 <LI><a href="#[da]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_ResetBits
 <LI><a href="#[1cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_ReadInputDataBit
+<LI><a href="#[150]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Calc_TarVol_AlowRange
+<LI><a href="#[db]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Adjust_Voltage_HV
 </UL>
 <BR>[Called By]<UL><LI><a href="#[8f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;App_SysOnOff_Task
 </UL>
@@ -2949,7 +2953,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[8d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cb_Sys_StateChk_Tmr
 </UL>
 
-<P><STRONG><a name="[fd]"></a>System_ShutDown</STRONG> (Thumb, 252 bytes, Stack size 8 bytes, app_sysonoff.o(i.System_ShutDown))
+<P><STRONG><a name="[fd]"></a>System_ShutDown</STRONG> (Thumb, 272 bytes, Stack size 8 bytes, app_sysonoff.o(i.System_ShutDown))
 <BR><BR>[Stack]<UL><LI>Max Depth = 72 + Unknown Stack Size
 <LI>Call Chain = System_ShutDown &rArr; OSTimeDly &rArr; OS_TickListInsertDly &rArr; OS_TickListInsert
 </UL>

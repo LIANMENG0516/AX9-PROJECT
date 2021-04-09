@@ -136,7 +136,7 @@ void Board_Bsp_Init()
     Adjust_Cw_Reset();
     
     V_AdcDma_Config();                      //电压采样通道初始化--共14路电压采样, 全部使用ADC3
-    I_AdcDma_Config();                      //电流采样通道初始化--共1路电流采样, 使用采样电阻将电流转化为电压进行采样, 使用ADC1
+    I_AdcDma_Config();                      //电流采样、片内温度采样通道初始化--共2路电流采样, 使用采样电阻将电流转化为电压进行采样, 使用ADC1
 
     Dac_config(DAC_Channel_1);
     Dac_config(DAC_Channel_2);

@@ -45,6 +45,8 @@ uint8_t DebugReceiveFrameAnalysis(char *pData);
 
 uint8_t Deal_Compare(char *pData, uint8_t DataLen);
 
+void Calc_TarVol_AlowRange(void);
+
 #endif
 
 
