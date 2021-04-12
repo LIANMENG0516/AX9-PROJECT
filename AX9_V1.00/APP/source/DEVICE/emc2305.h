@@ -3,7 +3,7 @@
 
 #include "stm32f4xx.h"
 
-#define EMC2305_ADDR_10K    0x58
+#define EMC2305_10K_ADDR    0x2c
 
 #define BASIC_CTL           0x20
 #define PWM_POLARITY        0x2a
@@ -37,8 +37,8 @@
 void Fan_Emc2305_Init(void);
 void Fan_Emc2305_Control(void);
 void Fan_Speed_Read(void);
-void Write_Emc2305_Reg(uint16_t addr, uint16_t val);
-uint8_t Read_Emc2305_Reg(uint8_t addr);
+void Write_Emc2305_Reg(uint8_t id, uint16_t addr, uint16_t val);
+void Read_Emc2305_Reg(uint8_t id, uint8_t addr, uint8_t *buffer, uint8_t len);
 
 
 #endif

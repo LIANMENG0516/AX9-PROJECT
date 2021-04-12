@@ -45,8 +45,8 @@
 
 #define USE_UCOSIII
 
-#define DEBUG_COMMAND                       0
-#define DEBUG_STRING                        1
+#define DEBUG_COMMAND                       1
+#define DEBUG_STRING                        0
 
 #define DEBUG_PRINTF(x, ...)                if(x) {printf(__VA_ARGS__);}
 

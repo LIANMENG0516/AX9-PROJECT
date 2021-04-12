@@ -10,6 +10,8 @@ extern Com_Buffer DebugComTX;
 extern Com_Buffer CommuComRX;
 extern Com_Buffer CommuComTX;
 
+extern uint8_t Ec_Info[];
+
 
 OS_TCB ComTaskTcb;
 
@@ -24,9 +26,7 @@ void App_Com_Task()
         if(ReceiveFrameAnalysis(&CommuComRX.Data[0], CommuComRX.Len) == SUCCESS)   //格式化并解析串口数据
         {
             memset(CommuComTX.Data, 0, CommuComTX.Len);
-            Cmd_Process();                                  //命令处理
-            FrameCmdPackage(CommuComTX.Data);
-            Send_CmdPackage(COMMU_COM_DMAY_STREAMX_TX);                                     
+            Cmd_Process();                                                          //命令处理                                    
         }
         
         if(ReceiveFrameAnalysis(&DebugComRX.Data[0], DebugComRX.Len) == SUCCESS)   //格式化并解析串口数据
@@ -58,7 +58,7 @@ void App_Com_Task()
             SenFrameCmd.Data[6] = SysMsg.AdjVol.R_VNN2 >> 8;
             SenFrameCmd.Data[7] = SysMsg.AdjVol.R_VNN2;
             
-            FrameCmdPackage(CommuComTX.Data);
+            FrameCmdPackage(DebugComTX.Data);
             Send_CmdPackage(DEBUG_COM_DMAY_STREAMX_TX); 
 
             #endif
@@ -84,7 +84,7 @@ void App_Com_Task()
             SenFrameCmd.Data[6] = SysMsg.AdjVol.R_VNN2 >> 8;
             SenFrameCmd.Data[7] = SysMsg.AdjVol.R_VNN2;
             
-            FrameCmdPackage(CommuComTX.Data);
+            FrameCmdPackage(DebugComTX.Data);
             Send_CmdPackage(DEBUG_COM_DMAY_STREAMX_TX);
             
             #endif
@@ -111,7 +111,7 @@ void App_Com_Task()
             SenFrameCmd.Data[6] = SysMsg.AdjVol.R_VNN2 >> 8;
             SenFrameCmd.Data[7] = SysMsg.AdjVol.R_VNN2;
             
-            FrameCmdPackage(CommuComTX.Data);
+            FrameCmdPackage(DebugComTX.Data);
             Send_CmdPackage(DEBUG_COM_DMAY_STREAMX_TX);
             
             #endif
@@ -137,9 +137,26 @@ void App_Com_Task()
             SenFrameCmd.Data[6] = SysMsg.AdjVol.R_VNN2 >> 8;
             SenFrameCmd.Data[7] = SysMsg.AdjVol.R_VNN2;
             
-            FrameCmdPackage(CommuComTX.Data);
+            FrameCmdPackage(DebugComTX.Data);
             Send_CmdPackage(DEBUG_COM_DMAY_STREAMX_TX);
         }
+        
+        if(SysMsg.Cmd.EcInfo_Send == TRUE)
+        {
+            SysMsg.Cmd.EcInfo_Send = FALSE;
+        
+            SenFrameCmd.Cid = CMD_EC_COMMUNICATE;
+            
+            SenFrameCmd.Len = 32;
+            SenFrameCmd.Data = Ec_Info;
+            
+            FrameCmdPackage(CommuComTX.Data);
+            Send_CmdPackage(COMMU_COM_DMAY_STREAMX_TX);
+        }
+        
+        
+        
+        
 
 		OSTimeDlyHMSM(0, 0, 0, 10, OS_OPT_TIME_PERIODIC, &err);
 	}

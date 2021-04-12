@@ -14,6 +14,78 @@ CmdFrameStr RcvFrameCmd = {0x68, 0x04, 0x00, 0x00, (uint8_t *)RcvDataCmd, 0x00, 
 uint8_t	SenDataCmd[100];
 CmdFrameStr SenFrameCmd = {0x68, 0x04, 0x00, 0x00, (uint8_t *)SenDataCmd, 0x00, 0x16};
 
+
+
+uint8_t Ec_Info[] = {
+                        0x90,                                                               //BoardVersion_H
+                        0x00,                                                               //BoardVersion_L
+                        0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0A, 0x0B,   //BoardSN
+                        0x90,                                                               //FirmwareVersion_H
+                        0x00,                                                               //FirmwareVersion_L
+                        0x14,                                                               //Temperature_USPSU
+                        0x14,                                                               //Temperature_FPGA
+                        0x00,                                                               //Fan1Speed_H
+                        0x00,                                                               //Fan1Speed_L
+                        0x00,                                                               //Fan2Speed_H
+                        0x00,                                                               //Fan2Speed_L
+                        0x00,                                                               //Fan3Speed_H
+                        0x00,                                                               //Fan3Speed_L
+                        0x00,                                                               //Fan4Speed_H
+                        0x00,                                                               //Fan4Speed_L
+                        0x00,                                                               //Fan5Speed_H
+                        0x00,                                                               //Fan5Speed_L
+                        0xFF,                                                               //VolChk_H
+                        0xFF,                                                               //VolChk_L
+                        0x04,                                                               //AP12V
+                        0xB0,
+                        0x04,                                                               //AN12V
+                        0xB0,
+                        0x02,                                                               //AP5V5_1
+                        0x26,
+                        0x02,                                                               //AP5V5_2
+                        0x26,
+                        0x02,                                                               //AN5V5
+                        0x26,
+                        0x01,                                                               //A3V75
+                        0x77,
+                        0x00,                                                               //A2v25
+                        0xE1,
+                        0x01,                                                               //D5V
+                        0xF4,
+                        0x00,                                                               //D1V45
+                        0x91,
+                        0x00,                                                               //D0V95
+                        0x5F,
+                    };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+void Get_EC_Info()
+{
+    SysMsg.Cmd.EcInfo_Send = TRUE;
+}
+
+
+
+
+
+
+
 void Get_FireWare_Version()
 {
     SysMsg.Cmd.Firmware_Send = TRUE;
@@ -106,7 +178,7 @@ void FrameCmdPackage(uint8_t *pBuf)	//数据打包
 
 	SenFrameCmd.Chk = SenFrameCmd.Id + SenFrameCmd.Cid + SenFrameCmd.Len;
 	
-	for(i=0; i<SenFrameCmd.Len; i++)
+	for(i=0; i<SenFrameCmd.Len-1; i++)
 	{
 		SenFrameCmd.Chk += SenFrameCmd.Data[i];
 	}
@@ -115,13 +187,13 @@ void FrameCmdPackage(uint8_t *pBuf)	//数据打包
 	pBuf[1] = SenFrameCmd.Id;
 	pBuf[2] = SenFrameCmd.Cid;
 	pBuf[3] = SenFrameCmd.Len;
-    for(int i=0; i<SenFrameCmd.Len; i++)
+    for(int i=0; i<SenFrameCmd.Len-1; i++)
 	{
 		pBuf[4 + i] = SenFrameCmd.Data[i];
 	}
     
-	pBuf[SenFrameCmd.Len + 6 - 2] = SenFrameCmd.Chk;
-	pBuf[SenFrameCmd.Len + 6 - 1] = SenFrameCmd.Tail;
+	pBuf[SenFrameCmd.Len - 1 + 6 - 2] = SenFrameCmd.Chk;
+	pBuf[SenFrameCmd.Len - 1 + 6 - 1] = SenFrameCmd.Tail;
 }
 
 void Send_CmdPackage(DMA_Stream_TypeDef* DMAy_Streamx)	//发送已经打包好的命令
@@ -150,7 +222,7 @@ ErrorStatus ReceiveFrameAnalysis(uint8_t *pData, uint8_t DataLen)
     CmdCrc += RcvFrameCmd.Cid;
     CmdCrc += RcvFrameCmd.Len;
     
-    for(int i=0; i<RcvFrameCmd.Len; i++)
+    for(int i=0; i<RcvFrameCmd.Len-1; i++)
     {
         CmdCrc += RcvFrameCmd.Data[i];
     }
@@ -167,6 +239,11 @@ void Cmd_Process()
 {
     switch(RcvFrameCmd.Cid)
     {
+        case    CMD_EC_COMMUNICATE:
+                Get_EC_Info();
+                break;
+        
+        
         case    CMD_FW_VERSION:
                 Get_FireWare_Version();
                 break;

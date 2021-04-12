@@ -28,6 +28,8 @@ typedef struct
 
 #define CMD_READ_VOLTAGE    0x04
 
+#define CMD_EC_COMMUNICATE  0xA0
+
 
 
 

@@ -80,6 +80,7 @@ typedef struct
     bool Firmware_Send;
     bool CompileInfo_Send;
     bool Voltage_Send;
+    bool EcInfo_Send;
 }Command_Deal;
 
 

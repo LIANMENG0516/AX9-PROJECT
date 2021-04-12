@@ -158,7 +158,7 @@ uint8_t I2c_Tmp_ReadByte()
 void Tmp468_WriteByte(uint8_t id, uint16_t addr, uint16_t val)
 {
     I2c_Tmp_Start();
-    I2c_Tmp_SendByte((id << 1) & 0xfe);           //发送器件地址, 写地址
+    I2c_Tmp_SendByte((id << 1) & 0xFE);           //发送器件地址, 写地址
     if(I2c_Tmp_WaitAck())
     {
         DEBUG_PRINTF(DEBUG_STRING, "TMP468 IIC ERROR \r\n");
@@ -179,7 +179,7 @@ void Tmp468_WriteByte(uint8_t id, uint16_t addr, uint16_t val)
 void Tmp468_ReadByte(uint8_t id, uint8_t addr, uint8_t *buffer)
 {
     I2c_Tmp_Start();
-    I2c_Tmp_SendByte((id << 1) & 0xfe);     //发送器件地址, 写地址
+    I2c_Tmp_SendByte((id << 1) & 0xFE);     //发送器件地址, 写地址
     if(I2c_Tmp_WaitAck())
     {
         DEBUG_PRINTF(DEBUG_STRING, "TMP468 IIC ERROR \r\n");
@@ -204,7 +204,7 @@ void Tmp468_ReadData(uint8_t id, uint8_t addr, uint8_t *buffer, uint8_t len)
     uint8_t i = 0;
     
     I2c_Tmp_Start();
-    I2c_Tmp_SendByte((id << 1) & 0xfe); 
+    I2c_Tmp_SendByte((id << 1) & 0xFE); 
     if(I2c_Tmp_WaitAck())
     {
         DEBUG_PRINTF(DEBUG_STRING, "TMP468 IIC ERROR \r\n");

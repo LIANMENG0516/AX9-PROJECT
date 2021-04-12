@@ -37,7 +37,7 @@ I (..\FWLIB\inc\stm32f4xx_dcmi.h)(0x606138A4)
 I (..\FWLIB\inc\stm32f4xx_fsmc.h)(0x606138A4)
 F (..\APP\app.c)(0x6073B871)(--c99 --gnu -c --cpu Cortex-M4.fp -g -O0 --apcs=interwork --split_sections -I ..\DEVICE -I ..\BSP -I ..\CMSIS -I ..\FWLIB\inc -I ..\APP -I ..\USER -I ..\USB\USB_APP -I ..\USB\STM32_USB_OTG_Driver\inc -I ..\USB\STM32_USB_Device_Library\Core\inc -I ..\USB\STM32_USB_Device_Library\Class\cdc\inc -I ..\UCOSIII\uC-CPU -I ..\UCOSIII\uC-LIB -I ..\UCOSIII\uCOS_BSP -I ..\UCOSIII\uCOS_CONFIG -I ..\UCOSIII\uCOS-III -I ..\UCOSIII\uCOS-III\Source -I ..\UCOSIII\uCOS-III\Ports\ARM-Cortex-M4\Generic\RealView -I ..\UCOSIII\uC-CPU\ARM-Cortex-M4\RealView -I ..\UCOSIII\uC-LIB\Ports\ARM-Cortex-M4\RealView-I.\RTE\_AX9-ID:\Keil_v5\Keil\STM32F4xx_DFP\2.13.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-ID:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="527" -DSTM32F405xx -DSTM32F40_41xxx -DUSE_STDPERIPH_DRIVER -DUSE_USB_OTG_FS-o .\objects\app.o --omf_browse .\objects\app.crf --depend .\objects\app.d)
 I (..\APP\app.h)(0x606138A4)
-I (..\BSP\gouble.h)(0x606C2A19)
+I (..\BSP\gouble.h)(0x607401EE)
 I (D:\Keil_v5\ARM\ARMCC\include\string.h)(0x599ECD2C)
 I (D:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x599ECD2C)
 I (D:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x599ECD2C)
@@ -105,13 +105,13 @@ I (..\UCOSIII\uC-LIB\lib_math.h)(0x606138A4)
 I (..\UCOSIII\uCOS_CONFIG\app_cfg.h)(0x606138A4)
 I (..\UCOSIII\uCOS_BSP\bsp.h)(0x606138A4)
 I (..\UCOSIII\uCOS_CONFIG\os_cfg_app.h)(0x606138A4)
-I (..\DEVICE\system.h)(0x606D6220)
+I (..\DEVICE\system.h)(0x6073FAD2)
 I (..\DEVICE\tmp468.h)(0x6073AE13)
 I (..\DEVICE\adt7302.h)(0x606138A4)
-I (..\DEVICE\emc2305.h)(0x606138A4)
+I (..\DEVICE\emc2305.h)(0x60740AC5)
 I (..\DEVICE\tlv5626cd.h)(0x6062F140)
 I (..\DEVICE\adjustvoltage.h)(0x606C1879)
-I (..\DEVICE\command_process.h)(0x606FEC4C)
+I (..\DEVICE\command_process.h)(0x6073F441)
 I (..\USB\STM32_USB_Device_Library\Core\inc\usbd_usr.h)(0x606138A4)
 I (..\USB\STM32_USB_Device_Library\Core\inc\usbd_ioreq.h)(0x606138A4)
 I (..\USB\STM32_USB_Device_Library\Core\inc\usbd_def.h)(0x606138A4)
@@ -135,7 +135,7 @@ I (..\APP\app_adjvol.h)(0x606138A4)
 I (..\APP\app_sysonoff.h)(0x606138A4)
 F (..\APP\app_led.c)(0x606BD44D)(--c99 --gnu -c --cpu Cortex-M4.fp -g -O0 --apcs=interwork --split_sections -I ..\DEVICE -I ..\BSP -I ..\CMSIS -I ..\FWLIB\inc -I ..\APP -I ..\USER -I ..\USB\USB_APP -I ..\USB\STM32_USB_OTG_Driver\inc -I ..\USB\STM32_USB_Device_Library\Core\inc -I ..\USB\STM32_USB_Device_Library\Class\cdc\inc -I ..\UCOSIII\uC-CPU -I ..\UCOSIII\uC-LIB -I ..\UCOSIII\uCOS_BSP -I ..\UCOSIII\uCOS_CONFIG -I ..\UCOSIII\uCOS-III -I ..\UCOSIII\uCOS-III\Source -I ..\UCOSIII\uCOS-III\Ports\ARM-Cortex-M4\Generic\RealView -I ..\UCOSIII\uC-CPU\ARM-Cortex-M4\RealView -I ..\UCOSIII\uC-LIB\Ports\ARM-Cortex-M4\RealView-I.\RTE\_AX9-ID:\Keil_v5\Keil\STM32F4xx_DFP\2.13.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-ID:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="527" -DSTM32F405xx -DSTM32F40_41xxx -DUSE_STDPERIPH_DRIVER -DUSE_USB_OTG_FS-o .\objects\app_led.o --omf_browse .\objects\app_led.crf --depend .\objects\app_led.d)
 I (..\APP\app_led.h)(0x606138A4)
-I (..\BSP\gouble.h)(0x606C2A19)
+I (..\BSP\gouble.h)(0x607401EE)
 I (D:\Keil_v5\ARM\ARMCC\include\string.h)(0x599ECD2C)
 I (D:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x599ECD2C)
 I (D:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x599ECD2C)
@@ -203,13 +203,13 @@ I (..\UCOSIII\uC-LIB\lib_math.h)(0x606138A4)
 I (..\UCOSIII\uCOS_CONFIG\app_cfg.h)(0x606138A4)
 I (..\UCOSIII\uCOS_BSP\bsp.h)(0x606138A4)
 I (..\UCOSIII\uCOS_CONFIG\os_cfg_app.h)(0x606138A4)
-I (..\DEVICE\system.h)(0x606D6220)
+I (..\DEVICE\system.h)(0x6073FAD2)
 I (..\DEVICE\tmp468.h)(0x6073AE13)
 I (..\DEVICE\adt7302.h)(0x606138A4)
-I (..\DEVICE\emc2305.h)(0x606138A4)
+I (..\DEVICE\emc2305.h)(0x60740AC5)
 I (..\DEVICE\tlv5626cd.h)(0x6062F140)
 I (..\DEVICE\adjustvoltage.h)(0x606C1879)
-I (..\DEVICE\command_process.h)(0x606FEC4C)
+I (..\DEVICE\command_process.h)(0x6073F441)
 I (..\USB\STM32_USB_Device_Library\Core\inc\usbd_usr.h)(0x606138A4)
 I (..\USB\STM32_USB_Device_Library\Core\inc\usbd_ioreq.h)(0x606138A4)
 I (..\USB\STM32_USB_Device_Library\Core\inc\usbd_def.h)(0x606138A4)
@@ -233,7 +233,7 @@ I (..\APP\app_adjvol.h)(0x606138A4)
 I (..\APP\app_sysonoff.h)(0x606138A4)
 F (..\APP\app_usb.c)(0x606138A4)(--c99 --gnu -c --cpu Cortex-M4.fp -g -O0 --apcs=interwork --split_sections -I ..\DEVICE -I ..\BSP -I ..\CMSIS -I ..\FWLIB\inc -I ..\APP -I ..\USER -I ..\USB\USB_APP -I ..\USB\STM32_USB_OTG_Driver\inc -I ..\USB\STM32_USB_Device_Library\Core\inc -I ..\USB\STM32_USB_Device_Library\Class\cdc\inc -I ..\UCOSIII\uC-CPU -I ..\UCOSIII\uC-LIB -I ..\UCOSIII\uCOS_BSP -I ..\UCOSIII\uCOS_CONFIG -I ..\UCOSIII\uCOS-III -I ..\UCOSIII\uCOS-III\Source -I ..\UCOSIII\uCOS-III\Ports\ARM-Cortex-M4\Generic\RealView -I ..\UCOSIII\uC-CPU\ARM-Cortex-M4\RealView -I ..\UCOSIII\uC-LIB\Ports\ARM-Cortex-M4\RealView-I.\RTE\_AX9-ID:\Keil_v5\Keil\STM32F4xx_DFP\2.13.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-ID:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="527" -DSTM32F405xx -DSTM32F40_41xxx -DUSE_STDPERIPH_DRIVER -DUSE_USB_OTG_FS-o .\objects\app_usb.o --omf_browse .\objects\app_usb.crf --depend .\objects\app_usb.d)
 I (..\APP\app_usb.h)(0x606138A4)
-I (..\BSP\gouble.h)(0x606C2A19)
+I (..\BSP\gouble.h)(0x607401EE)
 I (D:\Keil_v5\ARM\ARMCC\include\string.h)(0x599ECD2C)
 I (D:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x599ECD2C)
 I (D:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x599ECD2C)
@@ -301,13 +301,13 @@ I (..\UCOSIII\uC-LIB\lib_math.h)(0x606138A4)
 I (..\UCOSIII\uCOS_CONFIG\app_cfg.h)(0x606138A4)
 I (..\UCOSIII\uCOS_BSP\bsp.h)(0x606138A4)
 I (..\UCOSIII\uCOS_CONFIG\os_cfg_app.h)(0x606138A4)
-I (..\DEVICE\system.h)(0x606D6220)
+I (..\DEVICE\system.h)(0x6073FAD2)
 I (..\DEVICE\tmp468.h)(0x6073AE13)
 I (..\DEVICE\adt7302.h)(0x606138A4)
-I (..\DEVICE\emc2305.h)(0x606138A4)
+I (..\DEVICE\emc2305.h)(0x60740AC5)
 I (..\DEVICE\tlv5626cd.h)(0x6062F140)
 I (..\DEVICE\adjustvoltage.h)(0x606C1879)
-I (..\DEVICE\command_process.h)(0x606FEC4C)
+I (..\DEVICE\command_process.h)(0x6073F441)
 I (..\USB\STM32_USB_Device_Library\Core\inc\usbd_usr.h)(0x606138A4)
 I (..\USB\STM32_USB_Device_Library\Core\inc\usbd_ioreq.h)(0x606138A4)
 I (..\USB\STM32_USB_Device_Library\Core\inc\usbd_def.h)(0x606138A4)
@@ -329,9 +329,9 @@ I (..\APP\app_com.h)(0x606138A4)
 I (..\APP\app_timer.h)(0x606138A4)
 I (..\APP\app_adjvol.h)(0x606138A4)
 I (..\APP\app_sysonoff.h)(0x606138A4)
-F (..\APP\app_com.c)(0x606EA7A4)(--c99 --gnu -c --cpu Cortex-M4.fp -g -O0 --apcs=interwork --split_sections -I ..\DEVICE -I ..\BSP -I ..\CMSIS -I ..\FWLIB\inc -I ..\APP -I ..\USER -I ..\USB\USB_APP -I ..\USB\STM32_USB_OTG_Driver\inc -I ..\USB\STM32_USB_Device_Library\Core\inc -I ..\USB\STM32_USB_Device_Library\Class\cdc\inc -I ..\UCOSIII\uC-CPU -I ..\UCOSIII\uC-LIB -I ..\UCOSIII\uCOS_BSP -I ..\UCOSIII\uCOS_CONFIG -I ..\UCOSIII\uCOS-III -I ..\UCOSIII\uCOS-III\Source -I ..\UCOSIII\uCOS-III\Ports\ARM-Cortex-M4\Generic\RealView -I ..\UCOSIII\uC-CPU\ARM-Cortex-M4\RealView -I ..\UCOSIII\uC-LIB\Ports\ARM-Cortex-M4\RealView-I.\RTE\_AX9-ID:\Keil_v5\Keil\STM32F4xx_DFP\2.13.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-ID:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="527" -DSTM32F405xx -DSTM32F40_41xxx -DUSE_STDPERIPH_DRIVER -DUSE_USB_OTG_FS-o .\objects\app_com.o --omf_browse .\objects\app_com.crf --depend .\objects\app_com.d)
+F (..\APP\app_com.c)(0x60740245)(--c99 --gnu -c --cpu Cortex-M4.fp -g -O0 --apcs=interwork --split_sections -I ..\DEVICE -I ..\BSP -I ..\CMSIS -I ..\FWLIB\inc -I ..\APP -I ..\USER -I ..\USB\USB_APP -I ..\USB\STM32_USB_OTG_Driver\inc -I ..\USB\STM32_USB_Device_Library\Core\inc -I ..\USB\STM32_USB_Device_Library\Class\cdc\inc -I ..\UCOSIII\uC-CPU -I ..\UCOSIII\uC-LIB -I ..\UCOSIII\uCOS_BSP -I ..\UCOSIII\uCOS_CONFIG -I ..\UCOSIII\uCOS-III -I ..\UCOSIII\uCOS-III\Source -I ..\UCOSIII\uCOS-III\Ports\ARM-Cortex-M4\Generic\RealView -I ..\UCOSIII\uC-CPU\ARM-Cortex-M4\RealView -I ..\UCOSIII\uC-LIB\Ports\ARM-Cortex-M4\RealView-I.\RTE\_AX9-ID:\Keil_v5\Keil\STM32F4xx_DFP\2.13.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-ID:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="527" -DSTM32F405xx -DSTM32F40_41xxx -DUSE_STDPERIPH_DRIVER -DUSE_USB_OTG_FS-o .\objects\app_com.o --omf_browse .\objects\app_com.crf --depend .\objects\app_com.d)
 I (..\APP\app_com.h)(0x606138A4)
-I (..\BSP\gouble.h)(0x606C2A19)
+I (..\BSP\gouble.h)(0x607401EE)
 I (D:\Keil_v5\ARM\ARMCC\include\string.h)(0x599ECD2C)
 I (D:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x599ECD2C)
 I (D:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x599ECD2C)
@@ -399,13 +399,13 @@ I (..\UCOSIII\uC-LIB\lib_math.h)(0x606138A4)
 I (..\UCOSIII\uCOS_CONFIG\app_cfg.h)(0x606138A4)
 I (..\UCOSIII\uCOS_BSP\bsp.h)(0x606138A4)
 I (..\UCOSIII\uCOS_CONFIG\os_cfg_app.h)(0x606138A4)
-I (..\DEVICE\system.h)(0x606D6220)
+I (..\DEVICE\system.h)(0x6073FAD2)
 I (..\DEVICE\tmp468.h)(0x6073AE13)
 I (..\DEVICE\adt7302.h)(0x606138A4)
-I (..\DEVICE\emc2305.h)(0x606138A4)
+I (..\DEVICE\emc2305.h)(0x60740AC5)
 I (..\DEVICE\tlv5626cd.h)(0x6062F140)
 I (..\DEVICE\adjustvoltage.h)(0x606C1879)
-I (..\DEVICE\command_process.h)(0x606FEC4C)
+I (..\DEVICE\command_process.h)(0x6073F441)
 I (..\USB\STM32_USB_Device_Library\Core\inc\usbd_usr.h)(0x606138A4)
 I (..\USB\STM32_USB_Device_Library\Core\inc\usbd_ioreq.h)(0x606138A4)
 I (..\USB\STM32_USB_Device_Library\Core\inc\usbd_def.h)(0x606138A4)
@@ -429,7 +429,7 @@ I (..\APP\app_adjvol.h)(0x606138A4)
 I (..\APP\app_sysonoff.h)(0x606138A4)
 F (..\APP\app_timer.c)(0x6073B87A)(--c99 --gnu -c --cpu Cortex-M4.fp -g -O0 --apcs=interwork --split_sections -I ..\DEVICE -I ..\BSP -I ..\CMSIS -I ..\FWLIB\inc -I ..\APP -I ..\USER -I ..\USB\USB_APP -I ..\USB\STM32_USB_OTG_Driver\inc -I ..\USB\STM32_USB_Device_Library\Core\inc -I ..\USB\STM32_USB_Device_Library\Class\cdc\inc -I ..\UCOSIII\uC-CPU -I ..\UCOSIII\uC-LIB -I ..\UCOSIII\uCOS_BSP -I ..\UCOSIII\uCOS_CONFIG -I ..\UCOSIII\uCOS-III -I ..\UCOSIII\uCOS-III\Source -I ..\UCOSIII\uCOS-III\Ports\ARM-Cortex-M4\Generic\RealView -I ..\UCOSIII\uC-CPU\ARM-Cortex-M4\RealView -I ..\UCOSIII\uC-LIB\Ports\ARM-Cortex-M4\RealView-I.\RTE\_AX9-ID:\Keil_v5\Keil\STM32F4xx_DFP\2.13.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-ID:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="527" -DSTM32F405xx -DSTM32F40_41xxx -DUSE_STDPERIPH_DRIVER -DUSE_USB_OTG_FS-o .\objects\app_timer.o --omf_browse .\objects\app_timer.crf --depend .\objects\app_timer.d)
 I (..\APP\app_timer.h)(0x606138A4)
-I (..\BSP\gouble.h)(0x606C2A19)
+I (..\BSP\gouble.h)(0x607401EE)
 I (D:\Keil_v5\ARM\ARMCC\include\string.h)(0x599ECD2C)
 I (D:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x599ECD2C)
 I (D:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x599ECD2C)
@@ -497,13 +497,13 @@ I (..\UCOSIII\uC-LIB\lib_math.h)(0x606138A4)
 I (..\UCOSIII\uCOS_CONFIG\app_cfg.h)(0x606138A4)
 I (..\UCOSIII\uCOS_BSP\bsp.h)(0x606138A4)
 I (..\UCOSIII\uCOS_CONFIG\os_cfg_app.h)(0x606138A4)
-I (..\DEVICE\system.h)(0x606D6220)
+I (..\DEVICE\system.h)(0x6073FAD2)
 I (..\DEVICE\tmp468.h)(0x6073AE13)
 I (..\DEVICE\adt7302.h)(0x606138A4)
-I (..\DEVICE\emc2305.h)(0x606138A4)
+I (..\DEVICE\emc2305.h)(0x60740AC5)
 I (..\DEVICE\tlv5626cd.h)(0x6062F140)
 I (..\DEVICE\adjustvoltage.h)(0x606C1879)
-I (..\DEVICE\command_process.h)(0x606FEC4C)
+I (..\DEVICE\command_process.h)(0x6073F441)
 I (..\USB\STM32_USB_Device_Library\Core\inc\usbd_usr.h)(0x606138A4)
 I (..\USB\STM32_USB_Device_Library\Core\inc\usbd_ioreq.h)(0x606138A4)
 I (..\USB\STM32_USB_Device_Library\Core\inc\usbd_def.h)(0x606138A4)
@@ -527,7 +527,7 @@ I (..\APP\app_adjvol.h)(0x606138A4)
 I (..\APP\app_sysonoff.h)(0x606138A4)
 F (..\APP\app_fan.c)(0x6073B87B)(--c99 --gnu -c --cpu Cortex-M4.fp -g -O0 --apcs=interwork --split_sections -I ..\DEVICE -I ..\BSP -I ..\CMSIS -I ..\FWLIB\inc -I ..\APP -I ..\USER -I ..\USB\USB_APP -I ..\USB\STM32_USB_OTG_Driver\inc -I ..\USB\STM32_USB_Device_Library\Core\inc -I ..\USB\STM32_USB_Device_Library\Class\cdc\inc -I ..\UCOSIII\uC-CPU -I ..\UCOSIII\uC-LIB -I ..\UCOSIII\uCOS_BSP -I ..\UCOSIII\uCOS_CONFIG -I ..\UCOSIII\uCOS-III -I ..\UCOSIII\uCOS-III\Source -I ..\UCOSIII\uCOS-III\Ports\ARM-Cortex-M4\Generic\RealView -I ..\UCOSIII\uC-CPU\ARM-Cortex-M4\RealView -I ..\UCOSIII\uC-LIB\Ports\ARM-Cortex-M4\RealView-I.\RTE\_AX9-ID:\Keil_v5\Keil\STM32F4xx_DFP\2.13.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-ID:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="527" -DSTM32F405xx -DSTM32F40_41xxx -DUSE_STDPERIPH_DRIVER -DUSE_USB_OTG_FS-o .\objects\app_fan.o --omf_browse .\objects\app_fan.crf --depend .\objects\app_fan.d)
 I (..\APP\app_fan.h)(0x606138A4)
-I (..\BSP\gouble.h)(0x606C2A19)
+I (..\BSP\gouble.h)(0x607401EE)
 I (D:\Keil_v5\ARM\ARMCC\include\string.h)(0x599ECD2C)
 I (D:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x599ECD2C)
 I (D:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x599ECD2C)
@@ -595,13 +595,13 @@ I (..\UCOSIII\uC-LIB\lib_math.h)(0x606138A4)
 I (..\UCOSIII\uCOS_CONFIG\app_cfg.h)(0x606138A4)
 I (..\UCOSIII\uCOS_BSP\bsp.h)(0x606138A4)
 I (..\UCOSIII\uCOS_CONFIG\os_cfg_app.h)(0x606138A4)
-I (..\DEVICE\system.h)(0x606D6220)
+I (..\DEVICE\system.h)(0x6073FAD2)
 I (..\DEVICE\tmp468.h)(0x6073AE13)
 I (..\DEVICE\adt7302.h)(0x606138A4)
-I (..\DEVICE\emc2305.h)(0x606138A4)
+I (..\DEVICE\emc2305.h)(0x60740AC5)
 I (..\DEVICE\tlv5626cd.h)(0x6062F140)
 I (..\DEVICE\adjustvoltage.h)(0x606C1879)
-I (..\DEVICE\command_process.h)(0x606FEC4C)
+I (..\DEVICE\command_process.h)(0x6073F441)
 I (..\USB\STM32_USB_Device_Library\Core\inc\usbd_usr.h)(0x606138A4)
 I (..\USB\STM32_USB_Device_Library\Core\inc\usbd_ioreq.h)(0x606138A4)
 I (..\USB\STM32_USB_Device_Library\Core\inc\usbd_def.h)(0x606138A4)
@@ -625,7 +625,7 @@ I (..\APP\app_adjvol.h)(0x606138A4)
 I (..\APP\app_sysonoff.h)(0x606138A4)
 F (..\APP\app_sysonoff.c)(0x606FF2FC)(--c99 --gnu -c --cpu Cortex-M4.fp -g -O0 --apcs=interwork --split_sections -I ..\DEVICE -I ..\BSP -I ..\CMSIS -I ..\FWLIB\inc -I ..\APP -I ..\USER -I ..\USB\USB_APP -I ..\USB\STM32_USB_OTG_Driver\inc -I ..\USB\STM32_USB_Device_Library\Core\inc -I ..\USB\STM32_USB_Device_Library\Class\cdc\inc -I ..\UCOSIII\uC-CPU -I ..\UCOSIII\uC-LIB -I ..\UCOSIII\uCOS_BSP -I ..\UCOSIII\uCOS_CONFIG -I ..\UCOSIII\uCOS-III -I ..\UCOSIII\uCOS-III\Source -I ..\UCOSIII\uCOS-III\Ports\ARM-Cortex-M4\Generic\RealView -I ..\UCOSIII\uC-CPU\ARM-Cortex-M4\RealView -I ..\UCOSIII\uC-LIB\Ports\ARM-Cortex-M4\RealView-I.\RTE\_AX9-ID:\Keil_v5\Keil\STM32F4xx_DFP\2.13.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-ID:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="527" -DSTM32F405xx -DSTM32F40_41xxx -DUSE_STDPERIPH_DRIVER -DUSE_USB_OTG_FS-o .\objects\app_sysonoff.o --omf_browse .\objects\app_sysonoff.crf --depend .\objects\app_sysonoff.d)
 I (..\APP\app_sysonoff.h)(0x606138A4)
-I (..\BSP\gouble.h)(0x606C2A19)
+I (..\BSP\gouble.h)(0x607401EE)
 I (D:\Keil_v5\ARM\ARMCC\include\string.h)(0x599ECD2C)
 I (D:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x599ECD2C)
 I (D:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x599ECD2C)
@@ -693,13 +693,13 @@ I (..\UCOSIII\uC-LIB\lib_math.h)(0x606138A4)
 I (..\UCOSIII\uCOS_CONFIG\app_cfg.h)(0x606138A4)
 I (..\UCOSIII\uCOS_BSP\bsp.h)(0x606138A4)
 I (..\UCOSIII\uCOS_CONFIG\os_cfg_app.h)(0x606138A4)
-I (..\DEVICE\system.h)(0x606D6220)
+I (..\DEVICE\system.h)(0x6073FAD2)
 I (..\DEVICE\tmp468.h)(0x6073AE13)
 I (..\DEVICE\adt7302.h)(0x606138A4)
-I (..\DEVICE\emc2305.h)(0x606138A4)
+I (..\DEVICE\emc2305.h)(0x60740AC5)
 I (..\DEVICE\tlv5626cd.h)(0x6062F140)
 I (..\DEVICE\adjustvoltage.h)(0x606C1879)
-I (..\DEVICE\command_process.h)(0x606FEC4C)
+I (..\DEVICE\command_process.h)(0x6073F441)
 I (..\USB\STM32_USB_Device_Library\Core\inc\usbd_usr.h)(0x606138A4)
 I (..\USB\STM32_USB_Device_Library\Core\inc\usbd_ioreq.h)(0x606138A4)
 I (..\USB\STM32_USB_Device_Library\Core\inc\usbd_def.h)(0x606138A4)
@@ -756,7 +756,7 @@ I (..\FWLIB\inc\stm32f4xx_can.h)(0x606138A4)
 I (..\FWLIB\inc\stm32f4xx_dac.h)(0x606138A4)
 I (..\FWLIB\inc\stm32f4xx_dcmi.h)(0x606138A4)
 I (..\FWLIB\inc\stm32f4xx_fsmc.h)(0x606138A4)
-I (..\BSP\gouble.h)(0x606C2A19)
+I (..\BSP\gouble.h)(0x607401EE)
 I (D:\Keil_v5\ARM\ARMCC\include\string.h)(0x599ECD2C)
 I (D:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x599ECD2C)
 I (D:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x599ECD2C)
@@ -790,13 +790,13 @@ I (..\UCOSIII\uC-LIB\lib_math.h)(0x606138A4)
 I (..\UCOSIII\uCOS_CONFIG\app_cfg.h)(0x606138A4)
 I (..\UCOSIII\uCOS_BSP\bsp.h)(0x606138A4)
 I (..\UCOSIII\uCOS_CONFIG\os_cfg_app.h)(0x606138A4)
-I (..\DEVICE\system.h)(0x606D6220)
+I (..\DEVICE\system.h)(0x6073FAD2)
 I (..\DEVICE\tmp468.h)(0x6073AE13)
 I (..\DEVICE\adt7302.h)(0x606138A4)
-I (..\DEVICE\emc2305.h)(0x606138A4)
+I (..\DEVICE\emc2305.h)(0x60740AC5)
 I (..\DEVICE\tlv5626cd.h)(0x6062F140)
 I (..\DEVICE\adjustvoltage.h)(0x606C1879)
-I (..\DEVICE\command_process.h)(0x606FEC4C)
+I (..\DEVICE\command_process.h)(0x6073F441)
 I (..\USB\STM32_USB_Device_Library\Core\inc\usbd_usr.h)(0x606138A4)
 I (..\USB\STM32_USB_Device_Library\Core\inc\usbd_ioreq.h)(0x606138A4)
 I (..\USB\STM32_USB_Device_Library\Core\inc\usbd_def.h)(0x606138A4)
@@ -855,7 +855,7 @@ I (..\FWLIB\inc\stm32f4xx_can.h)(0x606138A4)
 I (..\FWLIB\inc\stm32f4xx_dac.h)(0x606138A4)
 I (..\FWLIB\inc\stm32f4xx_dcmi.h)(0x606138A4)
 I (..\FWLIB\inc\stm32f4xx_fsmc.h)(0x606138A4)
-I (..\BSP\gouble.h)(0x606C2A19)
+I (..\BSP\gouble.h)(0x607401EE)
 I (D:\Keil_v5\ARM\ARMCC\include\string.h)(0x599ECD2C)
 I (D:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x599ECD2C)
 I (D:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x599ECD2C)
@@ -889,13 +889,13 @@ I (..\UCOSIII\uC-LIB\lib_math.h)(0x606138A4)
 I (..\UCOSIII\uCOS_CONFIG\app_cfg.h)(0x606138A4)
 I (..\UCOSIII\uCOS_BSP\bsp.h)(0x606138A4)
 I (..\UCOSIII\uCOS_CONFIG\os_cfg_app.h)(0x606138A4)
-I (..\DEVICE\system.h)(0x606D6220)
+I (..\DEVICE\system.h)(0x6073FAD2)
 I (..\DEVICE\tmp468.h)(0x6073AE13)
 I (..\DEVICE\adt7302.h)(0x606138A4)
-I (..\DEVICE\emc2305.h)(0x606138A4)
+I (..\DEVICE\emc2305.h)(0x60740AC5)
 I (..\DEVICE\tlv5626cd.h)(0x6062F140)
 I (..\DEVICE\adjustvoltage.h)(0x606C1879)
-I (..\DEVICE\command_process.h)(0x606FEC4C)
+I (..\DEVICE\command_process.h)(0x6073F441)
 I (..\USB\STM32_USB_Device_Library\Core\inc\usbd_usr.h)(0x606138A4)
 I (..\USB\STM32_USB_Device_Library\Core\inc\usbd_ioreq.h)(0x606138A4)
 I (..\USB\STM32_USB_Device_Library\Core\inc\usbd_def.h)(0x606138A4)
@@ -918,9 +918,9 @@ I (..\APP\app_com.h)(0x606138A4)
 I (..\APP\app_timer.h)(0x606138A4)
 I (..\APP\app_adjvol.h)(0x606138A4)
 I (..\APP\app_sysonoff.h)(0x606138A4)
-F (..\DEVICE\command_process.c)(0x606EA8D5)(--c99 --gnu -c --cpu Cortex-M4.fp -g -O0 --apcs=interwork --split_sections -I ..\DEVICE -I ..\BSP -I ..\CMSIS -I ..\FWLIB\inc -I ..\APP -I ..\USER -I ..\USB\USB_APP -I ..\USB\STM32_USB_OTG_Driver\inc -I ..\USB\STM32_USB_Device_Library\Core\inc -I ..\USB\STM32_USB_Device_Library\Class\cdc\inc -I ..\UCOSIII\uC-CPU -I ..\UCOSIII\uC-LIB -I ..\UCOSIII\uCOS_BSP -I ..\UCOSIII\uCOS_CONFIG -I ..\UCOSIII\uCOS-III -I ..\UCOSIII\uCOS-III\Source -I ..\UCOSIII\uCOS-III\Ports\ARM-Cortex-M4\Generic\RealView -I ..\UCOSIII\uC-CPU\ARM-Cortex-M4\RealView -I ..\UCOSIII\uC-LIB\Ports\ARM-Cortex-M4\RealView-I.\RTE\_AX9-ID:\Keil_v5\Keil\STM32F4xx_DFP\2.13.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-ID:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="527" -DSTM32F405xx -DSTM32F40_41xxx -DUSE_STDPERIPH_DRIVER -DUSE_USB_OTG_FS-o .\objects\command_process.o --omf_browse .\objects\command_process.crf --depend .\objects\command_process.d)
-I (..\DEVICE\command_process.h)(0x606FEC4C)
-I (..\BSP\gouble.h)(0x606C2A19)
+F (..\DEVICE\command_process.c)(0x6073FF92)(--c99 --gnu -c --cpu Cortex-M4.fp -g -O0 --apcs=interwork --split_sections -I ..\DEVICE -I ..\BSP -I ..\CMSIS -I ..\FWLIB\inc -I ..\APP -I ..\USER -I ..\USB\USB_APP -I ..\USB\STM32_USB_OTG_Driver\inc -I ..\USB\STM32_USB_Device_Library\Core\inc -I ..\USB\STM32_USB_Device_Library\Class\cdc\inc -I ..\UCOSIII\uC-CPU -I ..\UCOSIII\uC-LIB -I ..\UCOSIII\uCOS_BSP -I ..\UCOSIII\uCOS_CONFIG -I ..\UCOSIII\uCOS-III -I ..\UCOSIII\uCOS-III\Source -I ..\UCOSIII\uCOS-III\Ports\ARM-Cortex-M4\Generic\RealView -I ..\UCOSIII\uC-CPU\ARM-Cortex-M4\RealView -I ..\UCOSIII\uC-LIB\Ports\ARM-Cortex-M4\RealView-I.\RTE\_AX9-ID:\Keil_v5\Keil\STM32F4xx_DFP\2.13.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-ID:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="527" -DSTM32F405xx -DSTM32F40_41xxx -DUSE_STDPERIPH_DRIVER -DUSE_USB_OTG_FS-o .\objects\command_process.o --omf_browse .\objects\command_process.crf --depend .\objects\command_process.d)
+I (..\DEVICE\command_process.h)(0x6073F441)
+I (..\BSP\gouble.h)(0x607401EE)
 I (D:\Keil_v5\ARM\ARMCC\include\string.h)(0x599ECD2C)
 I (D:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x599ECD2C)
 I (D:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x599ECD2C)
@@ -988,10 +988,10 @@ I (..\UCOSIII\uC-LIB\lib_math.h)(0x606138A4)
 I (..\UCOSIII\uCOS_CONFIG\app_cfg.h)(0x606138A4)
 I (..\UCOSIII\uCOS_BSP\bsp.h)(0x606138A4)
 I (..\UCOSIII\uCOS_CONFIG\os_cfg_app.h)(0x606138A4)
-I (..\DEVICE\system.h)(0x606D6220)
+I (..\DEVICE\system.h)(0x6073FAD2)
 I (..\DEVICE\tmp468.h)(0x6073AE13)
 I (..\DEVICE\adt7302.h)(0x606138A4)
-I (..\DEVICE\emc2305.h)(0x606138A4)
+I (..\DEVICE\emc2305.h)(0x60740AC5)
 I (..\DEVICE\tlv5626cd.h)(0x6062F140)
 I (..\DEVICE\adjustvoltage.h)(0x606C1879)
 I (..\USB\STM32_USB_Device_Library\Core\inc\usbd_usr.h)(0x606138A4)
@@ -1052,7 +1052,7 @@ I (..\FWLIB\inc\stm32f4xx_can.h)(0x606138A4)
 I (..\FWLIB\inc\stm32f4xx_dac.h)(0x606138A4)
 I (..\FWLIB\inc\stm32f4xx_dcmi.h)(0x606138A4)
 I (..\FWLIB\inc\stm32f4xx_fsmc.h)(0x606138A4)
-I (..\BSP\gouble.h)(0x606C2A19)
+I (..\BSP\gouble.h)(0x607401EE)
 I (D:\Keil_v5\ARM\ARMCC\include\string.h)(0x599ECD2C)
 I (D:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x599ECD2C)
 I (D:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x599ECD2C)
@@ -1086,12 +1086,12 @@ I (..\UCOSIII\uC-LIB\lib_math.h)(0x606138A4)
 I (..\UCOSIII\uCOS_CONFIG\app_cfg.h)(0x606138A4)
 I (..\UCOSIII\uCOS_BSP\bsp.h)(0x606138A4)
 I (..\UCOSIII\uCOS_CONFIG\os_cfg_app.h)(0x606138A4)
-I (..\DEVICE\system.h)(0x606D6220)
+I (..\DEVICE\system.h)(0x6073FAD2)
 I (..\DEVICE\tmp468.h)(0x6073AE13)
-I (..\DEVICE\emc2305.h)(0x606138A4)
+I (..\DEVICE\emc2305.h)(0x60740AC5)
 I (..\DEVICE\tlv5626cd.h)(0x6062F140)
 I (..\DEVICE\adjustvoltage.h)(0x606C1879)
-I (..\DEVICE\command_process.h)(0x606FEC4C)
+I (..\DEVICE\command_process.h)(0x6073F441)
 I (..\USB\STM32_USB_Device_Library\Core\inc\usbd_usr.h)(0x606138A4)
 I (..\USB\STM32_USB_Device_Library\Core\inc\usbd_ioreq.h)(0x606138A4)
 I (..\USB\STM32_USB_Device_Library\Core\inc\usbd_def.h)(0x606138A4)
@@ -1115,7 +1115,7 @@ I (..\APP\app_timer.h)(0x606138A4)
 I (..\APP\app_adjvol.h)(0x606138A4)
 I (..\APP\app_sysonoff.h)(0x606138A4)
 F (..\DEVICE\system.c)(0x606138A4)(--c99 --gnu -c --cpu Cortex-M4.fp -g -O0 --apcs=interwork --split_sections -I ..\DEVICE -I ..\BSP -I ..\CMSIS -I ..\FWLIB\inc -I ..\APP -I ..\USER -I ..\USB\USB_APP -I ..\USB\STM32_USB_OTG_Driver\inc -I ..\USB\STM32_USB_Device_Library\Core\inc -I ..\USB\STM32_USB_Device_Library\Class\cdc\inc -I ..\UCOSIII\uC-CPU -I ..\UCOSIII\uC-LIB -I ..\UCOSIII\uCOS_BSP -I ..\UCOSIII\uCOS_CONFIG -I ..\UCOSIII\uCOS-III -I ..\UCOSIII\uCOS-III\Source -I ..\UCOSIII\uCOS-III\Ports\ARM-Cortex-M4\Generic\RealView -I ..\UCOSIII\uC-CPU\ARM-Cortex-M4\RealView -I ..\UCOSIII\uC-LIB\Ports\ARM-Cortex-M4\RealView-I.\RTE\_AX9-ID:\Keil_v5\Keil\STM32F4xx_DFP\2.13.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-ID:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="527" -DSTM32F405xx -DSTM32F40_41xxx -DUSE_STDPERIPH_DRIVER -DUSE_USB_OTG_FS-o .\objects\system.o --omf_browse .\objects\system.crf --depend .\objects\system.d)
-I (..\DEVICE\system.h)(0x606D6220)
+I (..\DEVICE\system.h)(0x6073FAD2)
 I (..\CMSIS\stm32f4xx.h)(0x606138A4)
 I (..\CMSIS\core_cm4.h)(0x606138A4)
 I (D:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x599ECD2E)
@@ -1150,7 +1150,7 @@ I (..\FWLIB\inc\stm32f4xx_can.h)(0x606138A4)
 I (..\FWLIB\inc\stm32f4xx_dac.h)(0x606138A4)
 I (..\FWLIB\inc\stm32f4xx_dcmi.h)(0x606138A4)
 I (..\FWLIB\inc\stm32f4xx_fsmc.h)(0x606138A4)
-I (..\BSP\gouble.h)(0x606C2A19)
+I (..\BSP\gouble.h)(0x607401EE)
 I (D:\Keil_v5\ARM\ARMCC\include\string.h)(0x599ECD2C)
 I (D:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x599ECD2C)
 I (D:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x599ECD2C)
@@ -1186,10 +1186,10 @@ I (..\UCOSIII\uCOS_BSP\bsp.h)(0x606138A4)
 I (..\UCOSIII\uCOS_CONFIG\os_cfg_app.h)(0x606138A4)
 I (..\DEVICE\tmp468.h)(0x6073AE13)
 I (..\DEVICE\adt7302.h)(0x606138A4)
-I (..\DEVICE\emc2305.h)(0x606138A4)
+I (..\DEVICE\emc2305.h)(0x60740AC5)
 I (..\DEVICE\tlv5626cd.h)(0x6062F140)
 I (..\DEVICE\adjustvoltage.h)(0x606C1879)
-I (..\DEVICE\command_process.h)(0x606FEC4C)
+I (..\DEVICE\command_process.h)(0x6073F441)
 I (..\USB\STM32_USB_Device_Library\Core\inc\usbd_usr.h)(0x606138A4)
 I (..\USB\STM32_USB_Device_Library\Core\inc\usbd_ioreq.h)(0x606138A4)
 I (..\USB\STM32_USB_Device_Library\Core\inc\usbd_def.h)(0x606138A4)
@@ -1248,7 +1248,7 @@ I (..\FWLIB\inc\stm32f4xx_can.h)(0x606138A4)
 I (..\FWLIB\inc\stm32f4xx_dac.h)(0x606138A4)
 I (..\FWLIB\inc\stm32f4xx_dcmi.h)(0x606138A4)
 I (..\FWLIB\inc\stm32f4xx_fsmc.h)(0x606138A4)
-I (..\BSP\gouble.h)(0x606C2A19)
+I (..\BSP\gouble.h)(0x607401EE)
 I (D:\Keil_v5\ARM\ARMCC\include\string.h)(0x599ECD2C)
 I (D:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x599ECD2C)
 I (D:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x599ECD2C)
@@ -1282,12 +1282,12 @@ I (..\UCOSIII\uC-LIB\lib_math.h)(0x606138A4)
 I (..\UCOSIII\uCOS_CONFIG\app_cfg.h)(0x606138A4)
 I (..\UCOSIII\uCOS_BSP\bsp.h)(0x606138A4)
 I (..\UCOSIII\uCOS_CONFIG\os_cfg_app.h)(0x606138A4)
-I (..\DEVICE\system.h)(0x606D6220)
+I (..\DEVICE\system.h)(0x6073FAD2)
 I (..\DEVICE\tmp468.h)(0x6073AE13)
 I (..\DEVICE\adt7302.h)(0x606138A4)
-I (..\DEVICE\emc2305.h)(0x606138A4)
+I (..\DEVICE\emc2305.h)(0x60740AC5)
 I (..\DEVICE\adjustvoltage.h)(0x606C1879)
-I (..\DEVICE\command_process.h)(0x606FEC4C)
+I (..\DEVICE\command_process.h)(0x6073F441)
 I (..\USB\STM32_USB_Device_Library\Core\inc\usbd_usr.h)(0x606138A4)
 I (..\USB\STM32_USB_Device_Library\Core\inc\usbd_ioreq.h)(0x606138A4)
 I (..\USB\STM32_USB_Device_Library\Core\inc\usbd_def.h)(0x606138A4)
@@ -1346,7 +1346,7 @@ I (..\FWLIB\inc\stm32f4xx_can.h)(0x606138A4)
 I (..\FWLIB\inc\stm32f4xx_dac.h)(0x606138A4)
 I (..\FWLIB\inc\stm32f4xx_dcmi.h)(0x606138A4)
 I (..\FWLIB\inc\stm32f4xx_fsmc.h)(0x606138A4)
-I (..\BSP\gouble.h)(0x606C2A19)
+I (..\BSP\gouble.h)(0x607401EE)
 I (D:\Keil_v5\ARM\ARMCC\include\string.h)(0x599ECD2C)
 I (D:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x599ECD2C)
 I (D:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x599ECD2C)
@@ -1380,12 +1380,12 @@ I (..\UCOSIII\uC-LIB\lib_math.h)(0x606138A4)
 I (..\UCOSIII\uCOS_CONFIG\app_cfg.h)(0x606138A4)
 I (..\UCOSIII\uCOS_BSP\bsp.h)(0x606138A4)
 I (..\UCOSIII\uCOS_CONFIG\os_cfg_app.h)(0x606138A4)
-I (..\DEVICE\system.h)(0x606D6220)
+I (..\DEVICE\system.h)(0x6073FAD2)
 I (..\DEVICE\tmp468.h)(0x6073AE13)
 I (..\DEVICE\adt7302.h)(0x606138A4)
-I (..\DEVICE\emc2305.h)(0x606138A4)
+I (..\DEVICE\emc2305.h)(0x60740AC5)
 I (..\DEVICE\tlv5626cd.h)(0x6062F140)
-I (..\DEVICE\command_process.h)(0x606FEC4C)
+I (..\DEVICE\command_process.h)(0x6073F441)
 I (..\USB\STM32_USB_Device_Library\Core\inc\usbd_usr.h)(0x606138A4)
 I (..\USB\STM32_USB_Device_Library\Core\inc\usbd_ioreq.h)(0x606138A4)
 I (..\USB\STM32_USB_Device_Library\Core\inc\usbd_def.h)(0x606138A4)
@@ -1408,8 +1408,8 @@ I (..\APP\app_com.h)(0x606138A4)
 I (..\APP\app_timer.h)(0x606138A4)
 I (..\APP\app_adjvol.h)(0x606138A4)
 I (..\APP\app_sysonoff.h)(0x606138A4)
-F (..\DEVICE\emc2305.c)(0x6073D317)(--c99 --gnu -c --cpu Cortex-M4.fp -g -O0 --apcs=interwork --split_sections -I ..\DEVICE -I ..\BSP -I ..\CMSIS -I ..\FWLIB\inc -I ..\APP -I ..\USER -I ..\USB\USB_APP -I ..\USB\STM32_USB_OTG_Driver\inc -I ..\USB\STM32_USB_Device_Library\Core\inc -I ..\USB\STM32_USB_Device_Library\Class\cdc\inc -I ..\UCOSIII\uC-CPU -I ..\UCOSIII\uC-LIB -I ..\UCOSIII\uCOS_BSP -I ..\UCOSIII\uCOS_CONFIG -I ..\UCOSIII\uCOS-III -I ..\UCOSIII\uCOS-III\Source -I ..\UCOSIII\uCOS-III\Ports\ARM-Cortex-M4\Generic\RealView -I ..\UCOSIII\uC-CPU\ARM-Cortex-M4\RealView -I ..\UCOSIII\uC-LIB\Ports\ARM-Cortex-M4\RealView-I.\RTE\_AX9-ID:\Keil_v5\Keil\STM32F4xx_DFP\2.13.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-ID:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="527" -DSTM32F405xx -DSTM32F40_41xxx -DUSE_STDPERIPH_DRIVER -DUSE_USB_OTG_FS-o .\objects\emc2305.o --omf_browse .\objects\emc2305.crf --depend .\objects\emc2305.d)
-I (..\DEVICE\emc2305.h)(0x606138A4)
+F (..\DEVICE\emc2305.c)(0x6074136D)(--c99 --gnu -c --cpu Cortex-M4.fp -g -O0 --apcs=interwork --split_sections -I ..\DEVICE -I ..\BSP -I ..\CMSIS -I ..\FWLIB\inc -I ..\APP -I ..\USER -I ..\USB\USB_APP -I ..\USB\STM32_USB_OTG_Driver\inc -I ..\USB\STM32_USB_Device_Library\Core\inc -I ..\USB\STM32_USB_Device_Library\Class\cdc\inc -I ..\UCOSIII\uC-CPU -I ..\UCOSIII\uC-LIB -I ..\UCOSIII\uCOS_BSP -I ..\UCOSIII\uCOS_CONFIG -I ..\UCOSIII\uCOS-III -I ..\UCOSIII\uCOS-III\Source -I ..\UCOSIII\uCOS-III\Ports\ARM-Cortex-M4\Generic\RealView -I ..\UCOSIII\uC-CPU\ARM-Cortex-M4\RealView -I ..\UCOSIII\uC-LIB\Ports\ARM-Cortex-M4\RealView-I.\RTE\_AX9-ID:\Keil_v5\Keil\STM32F4xx_DFP\2.13.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-ID:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="527" -DSTM32F405xx -DSTM32F40_41xxx -DUSE_STDPERIPH_DRIVER -DUSE_USB_OTG_FS-o .\objects\emc2305.o --omf_browse .\objects\emc2305.crf --depend .\objects\emc2305.d)
+I (..\DEVICE\emc2305.h)(0x60740AC5)
 I (..\CMSIS\stm32f4xx.h)(0x606138A4)
 I (..\CMSIS\core_cm4.h)(0x606138A4)
 I (D:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x599ECD2E)
@@ -1444,7 +1444,7 @@ I (..\FWLIB\inc\stm32f4xx_can.h)(0x606138A4)
 I (..\FWLIB\inc\stm32f4xx_dac.h)(0x606138A4)
 I (..\FWLIB\inc\stm32f4xx_dcmi.h)(0x606138A4)
 I (..\FWLIB\inc\stm32f4xx_fsmc.h)(0x606138A4)
-I (..\BSP\gouble.h)(0x606C2A19)
+I (..\BSP\gouble.h)(0x607401EE)
 I (D:\Keil_v5\ARM\ARMCC\include\string.h)(0x599ECD2C)
 I (D:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x599ECD2C)
 I (D:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x599ECD2C)
@@ -1478,12 +1478,12 @@ I (..\UCOSIII\uC-LIB\lib_math.h)(0x606138A4)
 I (..\UCOSIII\uCOS_CONFIG\app_cfg.h)(0x606138A4)
 I (..\UCOSIII\uCOS_BSP\bsp.h)(0x606138A4)
 I (..\UCOSIII\uCOS_CONFIG\os_cfg_app.h)(0x606138A4)
-I (..\DEVICE\system.h)(0x606D6220)
+I (..\DEVICE\system.h)(0x6073FAD2)
 I (..\DEVICE\tmp468.h)(0x6073AE13)
 I (..\DEVICE\adt7302.h)(0x606138A4)
 I (..\DEVICE\tlv5626cd.h)(0x6062F140)
 I (..\DEVICE\adjustvoltage.h)(0x606C1879)
-I (..\DEVICE\command_process.h)(0x606FEC4C)
+I (..\DEVICE\command_process.h)(0x6073F441)
 I (..\USB\STM32_USB_Device_Library\Core\inc\usbd_usr.h)(0x606138A4)
 I (..\USB\STM32_USB_Device_Library\Core\inc\usbd_ioreq.h)(0x606138A4)
 I (..\USB\STM32_USB_Device_Library\Core\inc\usbd_def.h)(0x606138A4)
@@ -1506,7 +1506,7 @@ I (..\APP\app_com.h)(0x606138A4)
 I (..\APP\app_timer.h)(0x606138A4)
 I (..\APP\app_adjvol.h)(0x606138A4)
 I (..\APP\app_sysonoff.h)(0x606138A4)
-F (..\DEVICE\tmp468.c)(0x6073E9EE)(--c99 --gnu -c --cpu Cortex-M4.fp -g -O0 --apcs=interwork --split_sections -I ..\DEVICE -I ..\BSP -I ..\CMSIS -I ..\FWLIB\inc -I ..\APP -I ..\USER -I ..\USB\USB_APP -I ..\USB\STM32_USB_OTG_Driver\inc -I ..\USB\STM32_USB_Device_Library\Core\inc -I ..\USB\STM32_USB_Device_Library\Class\cdc\inc -I ..\UCOSIII\uC-CPU -I ..\UCOSIII\uC-LIB -I ..\UCOSIII\uCOS_BSP -I ..\UCOSIII\uCOS_CONFIG -I ..\UCOSIII\uCOS-III -I ..\UCOSIII\uCOS-III\Source -I ..\UCOSIII\uCOS-III\Ports\ARM-Cortex-M4\Generic\RealView -I ..\UCOSIII\uC-CPU\ARM-Cortex-M4\RealView -I ..\UCOSIII\uC-LIB\Ports\ARM-Cortex-M4\RealView-I.\RTE\_AX9-ID:\Keil_v5\Keil\STM32F4xx_DFP\2.13.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-ID:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="527" -DSTM32F405xx -DSTM32F40_41xxx -DUSE_STDPERIPH_DRIVER -DUSE_USB_OTG_FS-o .\objects\tmp468.o --omf_browse .\objects\tmp468.crf --depend .\objects\tmp468.d)
+F (..\DEVICE\tmp468.c)(0x60741387)(--c99 --gnu -c --cpu Cortex-M4.fp -g -O0 --apcs=interwork --split_sections -I ..\DEVICE -I ..\BSP -I ..\CMSIS -I ..\FWLIB\inc -I ..\APP -I ..\USER -I ..\USB\USB_APP -I ..\USB\STM32_USB_OTG_Driver\inc -I ..\USB\STM32_USB_Device_Library\Core\inc -I ..\USB\STM32_USB_Device_Library\Class\cdc\inc -I ..\UCOSIII\uC-CPU -I ..\UCOSIII\uC-LIB -I ..\UCOSIII\uCOS_BSP -I ..\UCOSIII\uCOS_CONFIG -I ..\UCOSIII\uCOS-III -I ..\UCOSIII\uCOS-III\Source -I ..\UCOSIII\uCOS-III\Ports\ARM-Cortex-M4\Generic\RealView -I ..\UCOSIII\uC-CPU\ARM-Cortex-M4\RealView -I ..\UCOSIII\uC-LIB\Ports\ARM-Cortex-M4\RealView-I.\RTE\_AX9-ID:\Keil_v5\Keil\STM32F4xx_DFP\2.13.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-ID:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="527" -DSTM32F405xx -DSTM32F40_41xxx -DUSE_STDPERIPH_DRIVER -DUSE_USB_OTG_FS-o .\objects\tmp468.o --omf_browse .\objects\tmp468.crf --depend .\objects\tmp468.d)
 I (..\DEVICE\tmp468.h)(0x6073AE13)
 I (..\CMSIS\stm32f4xx.h)(0x606138A4)
 I (..\CMSIS\core_cm4.h)(0x606138A4)
@@ -1542,7 +1542,7 @@ I (..\FWLIB\inc\stm32f4xx_can.h)(0x606138A4)
 I (..\FWLIB\inc\stm32f4xx_dac.h)(0x606138A4)
 I (..\FWLIB\inc\stm32f4xx_dcmi.h)(0x606138A4)
 I (..\FWLIB\inc\stm32f4xx_fsmc.h)(0x606138A4)
-I (..\BSP\gouble.h)(0x606C2A19)
+I (..\BSP\gouble.h)(0x607401EE)
 I (D:\Keil_v5\ARM\ARMCC\include\string.h)(0x599ECD2C)
 I (D:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x599ECD2C)
 I (D:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x599ECD2C)
@@ -1576,12 +1576,12 @@ I (..\UCOSIII\uC-LIB\lib_math.h)(0x606138A4)
 I (..\UCOSIII\uCOS_CONFIG\app_cfg.h)(0x606138A4)
 I (..\UCOSIII\uCOS_BSP\bsp.h)(0x606138A4)
 I (..\UCOSIII\uCOS_CONFIG\os_cfg_app.h)(0x606138A4)
-I (..\DEVICE\system.h)(0x606D6220)
+I (..\DEVICE\system.h)(0x6073FAD2)
 I (..\DEVICE\adt7302.h)(0x606138A4)
-I (..\DEVICE\emc2305.h)(0x606138A4)
+I (..\DEVICE\emc2305.h)(0x60740AC5)
 I (..\DEVICE\tlv5626cd.h)(0x6062F140)
 I (..\DEVICE\adjustvoltage.h)(0x606C1879)
-I (..\DEVICE\command_process.h)(0x606FEC4C)
+I (..\DEVICE\command_process.h)(0x6073F441)
 I (..\USB\STM32_USB_Device_Library\Core\inc\usbd_usr.h)(0x606138A4)
 I (..\USB\STM32_USB_Device_Library\Core\inc\usbd_ioreq.h)(0x606138A4)
 I (..\USB\STM32_USB_Device_Library\Core\inc\usbd_def.h)(0x606138A4)
@@ -1604,8 +1604,8 @@ I (..\APP\app_com.h)(0x606138A4)
 I (..\APP\app_timer.h)(0x606138A4)
 I (..\APP\app_adjvol.h)(0x606138A4)
 I (..\APP\app_sysonoff.h)(0x606138A4)
-F (..\BSP\gouble.h)(0x606C2A19)()
-F (..\BSP\board.c)(0x607015A9)(--c99 --gnu -c --cpu Cortex-M4.fp -g -O0 --apcs=interwork --split_sections -I ..\DEVICE -I ..\BSP -I ..\CMSIS -I ..\FWLIB\inc -I ..\APP -I ..\USER -I ..\USB\USB_APP -I ..\USB\STM32_USB_OTG_Driver\inc -I ..\USB\STM32_USB_Device_Library\Core\inc -I ..\USB\STM32_USB_Device_Library\Class\cdc\inc -I ..\UCOSIII\uC-CPU -I ..\UCOSIII\uC-LIB -I ..\UCOSIII\uCOS_BSP -I ..\UCOSIII\uCOS_CONFIG -I ..\UCOSIII\uCOS-III -I ..\UCOSIII\uCOS-III\Source -I ..\UCOSIII\uCOS-III\Ports\ARM-Cortex-M4\Generic\RealView -I ..\UCOSIII\uC-CPU\ARM-Cortex-M4\RealView -I ..\UCOSIII\uC-LIB\Ports\ARM-Cortex-M4\RealView-I.\RTE\_AX9-ID:\Keil_v5\Keil\STM32F4xx_DFP\2.13.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-ID:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="527" -DSTM32F405xx -DSTM32F40_41xxx -DUSE_STDPERIPH_DRIVER -DUSE_USB_OTG_FS-o .\objects\board.o --omf_browse .\objects\board.crf --depend .\objects\board.d)
+F (..\BSP\gouble.h)(0x607401EE)()
+F (..\BSP\board.c)(0x6073FCDB)(--c99 --gnu -c --cpu Cortex-M4.fp -g -O0 --apcs=interwork --split_sections -I ..\DEVICE -I ..\BSP -I ..\CMSIS -I ..\FWLIB\inc -I ..\APP -I ..\USER -I ..\USB\USB_APP -I ..\USB\STM32_USB_OTG_Driver\inc -I ..\USB\STM32_USB_Device_Library\Core\inc -I ..\USB\STM32_USB_Device_Library\Class\cdc\inc -I ..\UCOSIII\uC-CPU -I ..\UCOSIII\uC-LIB -I ..\UCOSIII\uCOS_BSP -I ..\UCOSIII\uCOS_CONFIG -I ..\UCOSIII\uCOS-III -I ..\UCOSIII\uCOS-III\Source -I ..\UCOSIII\uCOS-III\Ports\ARM-Cortex-M4\Generic\RealView -I ..\UCOSIII\uC-CPU\ARM-Cortex-M4\RealView -I ..\UCOSIII\uC-LIB\Ports\ARM-Cortex-M4\RealView-I.\RTE\_AX9-ID:\Keil_v5\Keil\STM32F4xx_DFP\2.13.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-ID:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="527" -DSTM32F405xx -DSTM32F40_41xxx -DUSE_STDPERIPH_DRIVER -DUSE_USB_OTG_FS-o .\objects\board.o --omf_browse .\objects\board.crf --depend .\objects\board.d)
 I (..\BSP\board.h)(0x606138A4)
 I (..\BSP\systick.h)(0x606138A4)
 I (..\CMSIS\stm32f4xx.h)(0x606138A4)
@@ -1666,7 +1666,7 @@ I (..\UCOSIII\uC-LIB\lib_math.h)(0x606138A4)
 I (..\UCOSIII\uCOS_CONFIG\app_cfg.h)(0x606138A4)
 I (..\UCOSIII\uCOS_BSP\bsp.h)(0x606138A4)
 I (..\UCOSIII\uCOS_CONFIG\os_cfg_app.h)(0x606138A4)
-I (..\BSP\gouble.h)(0x606C2A19)
+I (..\BSP\gouble.h)(0x607401EE)
 I (..\BSP\gpio.h)(0x6073B3DF)
 I (..\BSP\nvic.h)(0x606138A4)
 I (..\BSP\usart.h)(0x606D2300)
@@ -1674,13 +1674,13 @@ I (..\BSP\dma.h)(0x606146E4)
 I (..\BSP\spi.h)(0x606138A4)
 I (..\BSP\dac.h)(0x606138A4)
 I (..\BSP\adc.h)(0x606D63F5)
-I (..\DEVICE\system.h)(0x606D6220)
+I (..\DEVICE\system.h)(0x6073FAD2)
 I (..\DEVICE\tmp468.h)(0x6073AE13)
 I (..\DEVICE\adt7302.h)(0x606138A4)
-I (..\DEVICE\emc2305.h)(0x606138A4)
+I (..\DEVICE\emc2305.h)(0x60740AC5)
 I (..\DEVICE\tlv5626cd.h)(0x6062F140)
 I (..\DEVICE\adjustvoltage.h)(0x606C1879)
-I (..\DEVICE\command_process.h)(0x606FEC4C)
+I (..\DEVICE\command_process.h)(0x6073F441)
 I (..\USB\STM32_USB_Device_Library\Core\inc\usbd_usr.h)(0x606138A4)
 I (..\USB\STM32_USB_Device_Library\Core\inc\usbd_ioreq.h)(0x606138A4)
 I (..\USB\STM32_USB_Device_Library\Core\inc\usbd_def.h)(0x606138A4)
@@ -1811,7 +1811,7 @@ I (..\FWLIB\inc\stm32f4xx_can.h)(0x606138A4)
 I (..\FWLIB\inc\stm32f4xx_dac.h)(0x606138A4)
 I (..\FWLIB\inc\stm32f4xx_dcmi.h)(0x606138A4)
 I (..\FWLIB\inc\stm32f4xx_fsmc.h)(0x606138A4)
-I (..\BSP\gouble.h)(0x606C2A19)
+I (..\BSP\gouble.h)(0x607401EE)
 I (D:\Keil_v5\ARM\ARMCC\include\string.h)(0x599ECD2C)
 I (D:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x599ECD2C)
 I (D:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x599ECD2C)
@@ -1844,13 +1844,13 @@ I (..\UCOSIII\uC-LIB\lib_math.h)(0x606138A4)
 I (..\UCOSIII\uCOS_CONFIG\app_cfg.h)(0x606138A4)
 I (..\UCOSIII\uCOS_BSP\bsp.h)(0x606138A4)
 I (..\UCOSIII\uCOS_CONFIG\os_cfg_app.h)(0x606138A4)
-I (..\DEVICE\system.h)(0x606D6220)
+I (..\DEVICE\system.h)(0x6073FAD2)
 I (..\DEVICE\tmp468.h)(0x6073AE13)
 I (..\DEVICE\adt7302.h)(0x606138A4)
-I (..\DEVICE\emc2305.h)(0x606138A4)
+I (..\DEVICE\emc2305.h)(0x60740AC5)
 I (..\DEVICE\tlv5626cd.h)(0x6062F140)
 I (..\DEVICE\adjustvoltage.h)(0x606C1879)
-I (..\DEVICE\command_process.h)(0x606FEC4C)
+I (..\DEVICE\command_process.h)(0x6073F441)
 I (..\USB\STM32_USB_Device_Library\Core\inc\usbd_usr.h)(0x606138A4)
 I (..\USB\STM32_USB_Device_Library\Core\inc\usbd_ioreq.h)(0x606138A4)
 I (..\USB\STM32_USB_Device_Library\Core\inc\usbd_def.h)(0x606138A4)
@@ -1909,7 +1909,7 @@ I (..\FWLIB\inc\stm32f4xx_can.h)(0x606138A4)
 I (..\FWLIB\inc\stm32f4xx_dac.h)(0x606138A4)
 I (..\FWLIB\inc\stm32f4xx_dcmi.h)(0x606138A4)
 I (..\FWLIB\inc\stm32f4xx_fsmc.h)(0x606138A4)
-I (..\BSP\gouble.h)(0x606C2A19)
+I (..\BSP\gouble.h)(0x607401EE)
 I (D:\Keil_v5\ARM\ARMCC\include\string.h)(0x599ECD2C)
 I (D:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x599ECD2C)
 I (D:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x599ECD2C)
@@ -1942,13 +1942,13 @@ I (..\UCOSIII\uC-LIB\lib_math.h)(0x606138A4)
 I (..\UCOSIII\uCOS_CONFIG\app_cfg.h)(0x606138A4)
 I (..\UCOSIII\uCOS_BSP\bsp.h)(0x606138A4)
 I (..\UCOSIII\uCOS_CONFIG\os_cfg_app.h)(0x606138A4)
-I (..\DEVICE\system.h)(0x606D6220)
+I (..\DEVICE\system.h)(0x6073FAD2)
 I (..\DEVICE\tmp468.h)(0x6073AE13)
 I (..\DEVICE\adt7302.h)(0x606138A4)
-I (..\DEVICE\emc2305.h)(0x606138A4)
+I (..\DEVICE\emc2305.h)(0x60740AC5)
 I (..\DEVICE\tlv5626cd.h)(0x6062F140)
 I (..\DEVICE\adjustvoltage.h)(0x606C1879)
-I (..\DEVICE\command_process.h)(0x606FEC4C)
+I (..\DEVICE\command_process.h)(0x6073F441)
 I (..\USB\STM32_USB_Device_Library\Core\inc\usbd_usr.h)(0x606138A4)
 I (..\USB\STM32_USB_Device_Library\Core\inc\usbd_ioreq.h)(0x606138A4)
 I (..\USB\STM32_USB_Device_Library\Core\inc\usbd_def.h)(0x606138A4)
@@ -2008,7 +2008,7 @@ I (..\FWLIB\inc\stm32f4xx_dac.h)(0x606138A4)
 I (..\FWLIB\inc\stm32f4xx_dcmi.h)(0x606138A4)
 I (..\FWLIB\inc\stm32f4xx_fsmc.h)(0x606138A4)
 I (D:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x599ECD2C)
-I (..\BSP\gouble.h)(0x606C2A19)
+I (..\BSP\gouble.h)(0x607401EE)
 I (D:\Keil_v5\ARM\ARMCC\include\string.h)(0x599ECD2C)
 I (D:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x599ECD2C)
 I (D:\Keil_v5\ARM\ARMCC\include\math.h)(0x599ECD2E)
@@ -2040,13 +2040,13 @@ I (..\UCOSIII\uC-LIB\lib_math.h)(0x606138A4)
 I (..\UCOSIII\uCOS_CONFIG\app_cfg.h)(0x606138A4)
 I (..\UCOSIII\uCOS_BSP\bsp.h)(0x606138A4)
 I (..\UCOSIII\uCOS_CONFIG\os_cfg_app.h)(0x606138A4)
-I (..\DEVICE\system.h)(0x606D6220)
+I (..\DEVICE\system.h)(0x6073FAD2)
 I (..\DEVICE\tmp468.h)(0x6073AE13)
 I (..\DEVICE\adt7302.h)(0x606138A4)
-I (..\DEVICE\emc2305.h)(0x606138A4)
+I (..\DEVICE\emc2305.h)(0x60740AC5)
 I (..\DEVICE\tlv5626cd.h)(0x6062F140)
 I (..\DEVICE\adjustvoltage.h)(0x606C1879)
-I (..\DEVICE\command_process.h)(0x606FEC4C)
+I (..\DEVICE\command_process.h)(0x6073F441)
 I (..\USB\STM32_USB_Device_Library\Core\inc\usbd_usr.h)(0x606138A4)
 I (..\USB\STM32_USB_Device_Library\Core\inc\usbd_ioreq.h)(0x606138A4)
 I (..\USB\STM32_USB_Device_Library\Core\inc\usbd_def.h)(0x606138A4)
@@ -2141,7 +2141,7 @@ I (..\FWLIB\inc\stm32f4xx_can.h)(0x606138A4)
 I (..\FWLIB\inc\stm32f4xx_dac.h)(0x606138A4)
 I (..\FWLIB\inc\stm32f4xx_dcmi.h)(0x606138A4)
 I (..\FWLIB\inc\stm32f4xx_fsmc.h)(0x606138A4)
-I (..\BSP\gouble.h)(0x606C2A19)
+I (..\BSP\gouble.h)(0x607401EE)
 I (D:\Keil_v5\ARM\ARMCC\include\string.h)(0x599ECD2C)
 I (D:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x599ECD2C)
 I (D:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x599ECD2C)
@@ -2174,13 +2174,13 @@ I (..\UCOSIII\uC-LIB\lib_math.h)(0x606138A4)
 I (..\UCOSIII\uCOS_CONFIG\app_cfg.h)(0x606138A4)
 I (..\UCOSIII\uCOS_BSP\bsp.h)(0x606138A4)
 I (..\UCOSIII\uCOS_CONFIG\os_cfg_app.h)(0x606138A4)
-I (..\DEVICE\system.h)(0x606D6220)
+I (..\DEVICE\system.h)(0x6073FAD2)
 I (..\DEVICE\tmp468.h)(0x6073AE13)
 I (..\DEVICE\adt7302.h)(0x606138A4)
-I (..\DEVICE\emc2305.h)(0x606138A4)
+I (..\DEVICE\emc2305.h)(0x60740AC5)
 I (..\DEVICE\tlv5626cd.h)(0x6062F140)
 I (..\DEVICE\adjustvoltage.h)(0x606C1879)
-I (..\DEVICE\command_process.h)(0x606FEC4C)
+I (..\DEVICE\command_process.h)(0x6073F441)
 I (..\USB\STM32_USB_Device_Library\Core\inc\usbd_usr.h)(0x606138A4)
 I (..\USB\STM32_USB_Device_Library\Core\inc\usbd_ioreq.h)(0x606138A4)
 I (..\USB\STM32_USB_Device_Library\Core\inc\usbd_def.h)(0x606138A4)
@@ -2239,7 +2239,7 @@ I (..\FWLIB\inc\stm32f4xx_can.h)(0x606138A4)
 I (..\FWLIB\inc\stm32f4xx_dac.h)(0x606138A4)
 I (..\FWLIB\inc\stm32f4xx_dcmi.h)(0x606138A4)
 I (..\FWLIB\inc\stm32f4xx_fsmc.h)(0x606138A4)
-I (..\BSP\gouble.h)(0x606C2A19)
+I (..\BSP\gouble.h)(0x607401EE)
 I (D:\Keil_v5\ARM\ARMCC\include\string.h)(0x599ECD2C)
 I (D:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x599ECD2C)
 I (D:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x599ECD2C)
@@ -2272,13 +2272,13 @@ I (..\UCOSIII\uC-LIB\lib_math.h)(0x606138A4)
 I (..\UCOSIII\uCOS_CONFIG\app_cfg.h)(0x606138A4)
 I (..\UCOSIII\uCOS_BSP\bsp.h)(0x606138A4)
 I (..\UCOSIII\uCOS_CONFIG\os_cfg_app.h)(0x606138A4)
-I (..\DEVICE\system.h)(0x606D6220)
+I (..\DEVICE\system.h)(0x6073FAD2)
 I (..\DEVICE\tmp468.h)(0x6073AE13)
 I (..\DEVICE\adt7302.h)(0x606138A4)
-I (..\DEVICE\emc2305.h)(0x606138A4)
+I (..\DEVICE\emc2305.h)(0x60740AC5)
 I (..\DEVICE\tlv5626cd.h)(0x6062F140)
 I (..\DEVICE\adjustvoltage.h)(0x606C1879)
-I (..\DEVICE\command_process.h)(0x606FEC4C)
+I (..\DEVICE\command_process.h)(0x6073F441)
 I (..\USB\STM32_USB_Device_Library\Core\inc\usbd_usr.h)(0x606138A4)
 I (..\USB\STM32_USB_Device_Library\Core\inc\usbd_ioreq.h)(0x606138A4)
 I (..\USB\STM32_USB_Device_Library\Core\inc\usbd_def.h)(0x606138A4)
@@ -2303,7 +2303,7 @@ I (..\APP\app_adjvol.h)(0x606138A4)
 I (..\APP\app_sysonoff.h)(0x606138A4)
 F (..\BSP\iic.c)(0x606138A4)(--c99 --gnu -c --cpu Cortex-M4.fp -g -O0 --apcs=interwork --split_sections -I ..\DEVICE -I ..\BSP -I ..\CMSIS -I ..\FWLIB\inc -I ..\APP -I ..\USER -I ..\USB\USB_APP -I ..\USB\STM32_USB_OTG_Driver\inc -I ..\USB\STM32_USB_Device_Library\Core\inc -I ..\USB\STM32_USB_Device_Library\Class\cdc\inc -I ..\UCOSIII\uC-CPU -I ..\UCOSIII\uC-LIB -I ..\UCOSIII\uCOS_BSP -I ..\UCOSIII\uCOS_CONFIG -I ..\UCOSIII\uCOS-III -I ..\UCOSIII\uCOS-III\Source -I ..\UCOSIII\uCOS-III\Ports\ARM-Cortex-M4\Generic\RealView -I ..\UCOSIII\uC-CPU\ARM-Cortex-M4\RealView -I ..\UCOSIII\uC-LIB\Ports\ARM-Cortex-M4\RealView-I.\RTE\_AX9-ID:\Keil_v5\Keil\STM32F4xx_DFP\2.13.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-ID:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="527" -DSTM32F405xx -DSTM32F40_41xxx -DUSE_STDPERIPH_DRIVER -DUSE_USB_OTG_FS-o .\objects\iic.o --omf_browse .\objects\iic.crf --depend .\objects\iic.d)
 I (..\BSP\iic.h)(0x606138A4)
-I (..\BSP\gouble.h)(0x606C2A19)
+I (..\BSP\gouble.h)(0x607401EE)
 I (D:\Keil_v5\ARM\ARMCC\include\string.h)(0x599ECD2C)
 I (D:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x599ECD2C)
 I (D:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x599ECD2C)
@@ -2371,13 +2371,13 @@ I (..\UCOSIII\uC-LIB\lib_math.h)(0x606138A4)
 I (..\UCOSIII\uCOS_CONFIG\app_cfg.h)(0x606138A4)
 I (..\UCOSIII\uCOS_BSP\bsp.h)(0x606138A4)
 I (..\UCOSIII\uCOS_CONFIG\os_cfg_app.h)(0x606138A4)
-I (..\DEVICE\system.h)(0x606D6220)
+I (..\DEVICE\system.h)(0x6073FAD2)
 I (..\DEVICE\tmp468.h)(0x6073AE13)
 I (..\DEVICE\adt7302.h)(0x606138A4)
-I (..\DEVICE\emc2305.h)(0x606138A4)
+I (..\DEVICE\emc2305.h)(0x60740AC5)
 I (..\DEVICE\tlv5626cd.h)(0x6062F140)
 I (..\DEVICE\adjustvoltage.h)(0x606C1879)
-I (..\DEVICE\command_process.h)(0x606FEC4C)
+I (..\DEVICE\command_process.h)(0x6073F441)
 I (..\USB\STM32_USB_Device_Library\Core\inc\usbd_usr.h)(0x606138A4)
 I (..\USB\STM32_USB_Device_Library\Core\inc\usbd_ioreq.h)(0x606138A4)
 I (..\USB\STM32_USB_Device_Library\Core\inc\usbd_def.h)(0x606138A4)

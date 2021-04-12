@@ -78,6 +78,32 @@ void I2c_Emc_SendByte(unsigned char data)
 	}
 }
 
+uint8_t I2c_Emc_ReadByte()
+{
+	uint8_t data;
+	
+	SMDAT_2305_IN();
+	SMCLK_2305_0();
+
+	for(uint8_t mask=0x80; mask!=0; mask>>=1)
+	{
+		if(SMDAT_2305_READ()==0)
+		{
+			data &= ~mask;
+		}
+		else
+		{
+			data |= mask;
+		}
+		Delay_Nop(200);
+		SMCLK_2305_1();
+		Delay_Nop(200);
+		SMCLK_2305_0();
+		Delay_Nop(200);
+	}
+	return data;
+}
+
 uint8_t I2c_Emc_WaitAck()
 {
 	uint16_t startCnt = 5000;
@@ -126,32 +152,109 @@ void I2c_Emc_SendNack()
 	Delay_Nop(200);
 }
 
-uint8_t I2c_Emc_ReadByte()
+void Emc2305_WriteByte(uint8_t id, uint8_t addr, uint8_t val)
 {
-	uint8_t data;
-	
-	SMDAT_2305_IN();
-	SMCLK_2305_0();
-
-	for(uint8_t mask=0x80; mask!=0; mask>>=1)
-	{
-		if(SMDAT_2305_READ()==0)
-		{
-			data &= ~mask;
-		}
-		else
-		{
-			data |= mask;
-		}
-		Delay_Nop(200);
-		SMCLK_2305_1();
-		Delay_Nop(200);
-		SMCLK_2305_0();
-		Delay_Nop(200);
-	}
-	return data;
+    I2c_Emc_Start();
+    I2c_Emc_SendByte((id << 1) & 0xFE);     //发送器件地址, 写地址
+    if(I2c_Emc_WaitAck())
+    {
+        DEBUG_PRINTF(DEBUG_STRING, "IIC ERROR \r\n");
+    }
+    I2c_Emc_SendByte(addr);
+    if(I2c_Emc_WaitAck())
+    {
+        DEBUG_PRINTF(DEBUG_STRING, "IIC ERROR \r\n");
+    }
+    I2c_Emc_SendByte(val);
+    if(I2c_Emc_WaitAck())
+    {
+        DEBUG_PRINTF(DEBUG_STRING, "IIC ERROR \r\n");
+    }
+    I2c_Emc_Stop();
 }
 
+void Emc2305_WriteData(uint8_t id, uint8_t addr, uint8_t *buffer, uint8_t len)
+{
+    I2c_Emc_Start();
+    I2c_Emc_SendByte((id << 1) & 0xFE);     //发送器件地址, 写地址
+    if(I2c_Emc_WaitAck())
+    {
+        DEBUG_PRINTF(DEBUG_STRING, "IIC ERROR \r\n");
+    }
+    I2c_Emc_SendByte(addr);
+    if(I2c_Emc_WaitAck())
+    {
+        DEBUG_PRINTF(DEBUG_STRING, "IIC ERROR \r\n");
+    }
+    for(int i=0; i<len; i++)
+    {
+        I2c_Emc_SendByte(*buffer++);
+        if(I2c_Emc_WaitAck())
+        {
+            DEBUG_PRINTF(DEBUG_STRING, "IIC ERROR \r\n");
+        }
+    }
+    I2c_Emc_Stop();
+}
+
+void Emc2305_ReadByte(uint8_t id, uint8_t addr, uint8_t *buffer)
+{
+    I2c_Emc_Start();
+    I2c_Emc_SendByte((id << 1) & 0xFE);     //发送器件地址, 写地址
+    if(I2c_Emc_WaitAck())
+    {
+        DEBUG_PRINTF(DEBUG_STRING, "IIC ERROR \r\n");
+    }
+    I2c_Emc_SendByte(addr);
+    if(I2c_Emc_WaitAck())
+    {
+        DEBUG_PRINTF(DEBUG_STRING, "IIC ERROR \r\n");
+    }
+    I2c_Emc_SendByte((id << 1) | 0x01);     //发送器件地址, 读地址
+    if(I2c_Emc_WaitAck())
+    {
+        DEBUG_PRINTF(DEBUG_STRING, "IIC ERROR \r\n");
+    }
+    *buffer = I2c_Emc_ReadByte();
+    I2c_Emc_SendNack();
+    I2c_Emc_Stop();
+}
+
+void Emc2305_ReadData(uint8_t id, uint8_t addr, uint8_t *buffer, uint8_t len)
+{
+    uint8_t i = 0;
+    
+    I2c_Emc_Start();
+    I2c_Emc_SendByte((id << 1) & 0xFE);     //发送器件地址, 写地址
+    if(I2c_Emc_WaitAck())
+    {
+        DEBUG_PRINTF(DEBUG_STRING, "IIC ERROR \r\n");
+    }
+    I2c_Emc_SendByte(addr);
+    if(I2c_Emc_WaitAck())
+    {
+        DEBUG_PRINTF(DEBUG_STRING, "IIC ERROR \r\n");
+    }
+    I2c_Emc_SendByte((id << 1) | 0x01);     //发送器件地址, 读地址
+    if(I2c_Emc_WaitAck())
+    {
+        DEBUG_PRINTF(DEBUG_STRING, "IIC ERROR \r\n");
+    }
+    do
+    {
+        Delay_Nop(200);
+        *buffer++ = I2c_Emc_ReadByte();
+        if(++i==len)
+        {
+            I2c_Emc_SendNack();
+        }
+        else
+        {
+            I2c_Emc_SendAck();
+        }
+    }while(i!=len);
+    I2c_Emc_Stop();
+}
 
 extern System_MsgStruct SysMsg;
 
@@ -185,119 +288,66 @@ void Fan_Emc2305_Control()
         
         if(TempNow <= TEMPERATURE_50)
         {
-            Write_Emc2305_Reg(FAN1_SETTING, SPEED_NoMin); 
-            Write_Emc2305_Reg(FAN2_SETTING, SPEED_NoMin);
-            Write_Emc2305_Reg(FAN3_SETTING, SPEED_NoMin);
-            Write_Emc2305_Reg(FAN4_SETTING, SPEED_NoMin);
-            Write_Emc2305_Reg(FAN5_SETTING, SPEED_NoMin);
+            Emc2305_WriteByte(EMC2305_10K_ADDR, FAN1_SETTING, SPEED_NoMin); 
+            Emc2305_WriteByte(EMC2305_10K_ADDR, FAN2_SETTING, SPEED_NoMin);
+            Emc2305_WriteByte(EMC2305_10K_ADDR, FAN3_SETTING, SPEED_NoMin);
+            Emc2305_WriteByte(EMC2305_10K_ADDR, FAN4_SETTING, SPEED_NoMin);
+            Emc2305_WriteByte(EMC2305_10K_ADDR, FAN5_SETTING, SPEED_NoMin);
         }
         else if(TempNow > TEMPERATURE_50 && TempNow < TEMPERATURE_95)
         {
             Speed = SPEED_NoMin + (SPEED_NoMax - SPEED_NoMin) / (TEMPERATURE_95 - TEMPERATURE_50) * TempNow;
-            Write_Emc2305_Reg(FAN1_SETTING, Speed); 
-            Write_Emc2305_Reg(FAN2_SETTING, Speed); 
-            Write_Emc2305_Reg(FAN3_SETTING, Speed); 
-            Write_Emc2305_Reg(FAN4_SETTING, Speed); 
-            Write_Emc2305_Reg(FAN5_SETTING, Speed); 
+            Emc2305_WriteByte(EMC2305_10K_ADDR, FAN1_SETTING, Speed); 
+            Emc2305_WriteByte(EMC2305_10K_ADDR, FAN2_SETTING, Speed); 
+            Emc2305_WriteByte(EMC2305_10K_ADDR, FAN3_SETTING, Speed); 
+            Emc2305_WriteByte(EMC2305_10K_ADDR, FAN4_SETTING, Speed); 
+            Emc2305_WriteByte(EMC2305_10K_ADDR, FAN5_SETTING, Speed); 
         }
         else
         {
-            Write_Emc2305_Reg(FAN1_SETTING, SPEED_NoMax);
-            Write_Emc2305_Reg(FAN2_SETTING, SPEED_NoMax);
-            Write_Emc2305_Reg(FAN3_SETTING, SPEED_NoMax);
-            Write_Emc2305_Reg(FAN4_SETTING, SPEED_NoMax);
-            Write_Emc2305_Reg(FAN5_SETTING, SPEED_NoMax);
+            Emc2305_WriteByte(EMC2305_10K_ADDR, FAN1_SETTING, SPEED_NoMax);
+            Emc2305_WriteByte(EMC2305_10K_ADDR, FAN2_SETTING, SPEED_NoMax);
+            Emc2305_WriteByte(EMC2305_10K_ADDR, FAN3_SETTING, SPEED_NoMax);
+            Emc2305_WriteByte(EMC2305_10K_ADDR, FAN4_SETTING, SPEED_NoMax);
+            Emc2305_WriteByte(EMC2305_10K_ADDR, FAN5_SETTING, SPEED_NoMax);
         }
     }
-}
-
-void Write_Emc2305_Reg(uint16_t addr, uint16_t val)
-{
-    I2c_Emc_Start();
-    I2c_Emc_SendByte(EMC2305_ADDR_10K & 0xfe);     //发送器件地址, 写地址
-    if(I2c_Emc_WaitAck())
-    {
-        DEBUG_PRINTF(DEBUG_STRING, "IIC ERROR \r\n");
-    }
-    I2c_Emc_SendByte(addr);
-    if(I2c_Emc_WaitAck())
-    {
-        DEBUG_PRINTF(DEBUG_STRING, "IIC ERROR \r\n");
-    }
-    I2c_Emc_SendByte(val);
-    if(I2c_Emc_WaitAck())
-    {
-        DEBUG_PRINTF(DEBUG_STRING, "IIC ERROR \r\n");
-    }
-    I2c_Emc_Stop();
-    
-    Delay_Nop(4000);
-}
-
-uint8_t Read_Emc2305_Reg(uint8_t addr)
-{
-    uint8_t data;
-    
-    I2c_Emc_Start();
-    I2c_Emc_SendByte(EMC2305_ADDR_10K & 0xfe);     //发送器件地址, 写地址
-    if(I2c_Emc_WaitAck())
-    {
-        DEBUG_PRINTF(DEBUG_STRING, "IIC ERROR \r\n");
-    }
-    I2c_Emc_SendByte(addr);
-    if(I2c_Emc_WaitAck())
-    {
-        DEBUG_PRINTF(DEBUG_STRING, "IIC ERROR \r\n");
-    }
-    I2c_Emc_SendByte(EMC2305_ADDR_10K | 0x01);     //发送器件地址, 读地址
-    if(I2c_Emc_WaitAck())
-    {
-        DEBUG_PRINTF(DEBUG_STRING, "IIC ERROR \r\n");
-    }
-    data = I2c_Emc_ReadByte();
-    I2c_Emc_SendNack();
-    I2c_Emc_Stop();
-    
-    return data;
 }
 
 void Fan_Speed_Read()
 {
-    uint16_t Tach1_Count, Tach2_Count, Tach3_Count, Tach4_Count, Tach5_Count;
+    uint8_t Tach1_Count[2], Tach2_Count[2], Tach3_Count[2], Tach4_Count[2], Tach5_Count[2];
     
-    Tach1_Count = ((Read_Emc2305_Reg(FAN1_TACHREAD_HIGH) << 8) + Read_Emc2305_Reg(FAN1_TACHREAD_LOW)) >> 3;                                                          
-    SysMsg.Fan.Rpm1 = 3932160 * 2 / Tach1_Count;
-    
-    Tach2_Count = ((Read_Emc2305_Reg(FAN1_TACHREAD_HIGH) << 8) + Read_Emc2305_Reg(FAN1_TACHREAD_LOW)) >> 3;                                                          
-    SysMsg.Fan.Rpm2 = 3932160 * 2 / Tach2_Count;
-    
-    Tach3_Count = ((Read_Emc2305_Reg(FAN1_TACHREAD_HIGH) << 8) + Read_Emc2305_Reg(FAN1_TACHREAD_LOW)) >> 3;                                                          
-    SysMsg.Fan.Rpm3 = 3932160 * 2 / Tach3_Count;
-
-    Tach4_Count = ((Read_Emc2305_Reg(FAN1_TACHREAD_HIGH) << 8) + Read_Emc2305_Reg(FAN1_TACHREAD_LOW)) >> 3;                                                          
-    SysMsg.Fan.Rpm4 = 3932160 * 2 / Tach4_Count;
-    
-    Tach5_Count = ((Read_Emc2305_Reg(FAN1_TACHREAD_HIGH) << 8) + Read_Emc2305_Reg(FAN1_TACHREAD_LOW)) >> 3;                                                          
-    SysMsg.Fan.Rpm5 = 3932160 * 2 / Tach5_Count;
+    Emc2305_ReadData(EMC2305_10K_ADDR, FAN1_TACHREAD_HIGH, Tach1_Count, 2);
+    Emc2305_ReadData(EMC2305_10K_ADDR, FAN2_TACHREAD_HIGH, Tach2_Count, 2);
+    Emc2305_ReadData(EMC2305_10K_ADDR, FAN3_TACHREAD_HIGH, Tach3_Count, 2);
+    Emc2305_ReadData(EMC2305_10K_ADDR, FAN4_TACHREAD_HIGH, Tach4_Count, 2);
+    Emc2305_ReadData(EMC2305_10K_ADDR, FAN5_TACHREAD_HIGH, Tach5_Count, 2);
+                                                          
+    SysMsg.Fan.Rpm1 = 3932160 * 2 / ((Tach1_Count[0] << 8) + (Tach1_Count[1] >> 3));
+    SysMsg.Fan.Rpm2 = 3932160 * 2 / ((Tach2_Count[0] << 8) + (Tach2_Count[1] >> 3));
+    SysMsg.Fan.Rpm3 = 3932160 * 2 / ((Tach3_Count[0] << 8) + (Tach3_Count[1] >> 3));
+    SysMsg.Fan.Rpm4 = 3932160 * 2 / ((Tach4_Count[0] << 8) + (Tach4_Count[1] >> 3));
+    SysMsg.Fan.Rpm5 = 3932160 * 2 / ((Tach5_Count[0] << 8) + (Tach5_Count[1] >> 3));
 }
 
 void Fan_Emc2305_Init()
 {
     uint8_t temp;
     
-    Write_Emc2305_Reg(BASIC_CTL,    0x80);          //屏蔽中断
+    Emc2305_WriteByte(EMC2305_10K_ADDR, BASIC_CTL, 0x80);               //屏蔽中断
     
-    temp = Read_Emc2305_Reg(BASIC_CTL); 
+    Emc2305_ReadByte(EMC2305_10K_ADDR, BASIC_CTL, &temp); 
     
-    Write_Emc2305_Reg(PWM_POLARITY, 0x00);          //设置PWM极性
-    Write_Emc2305_Reg(PWM_OUTPUT,   0x1f);          //设置PWM为推挽输出
-    Write_Emc2305_Reg(PWM45_BASE,   0x00);          //设置PWM4、PWM5基础频率为26KHz
-    Write_Emc2305_Reg(PWM123_BASE,  0x00);          //设置PWM1、PWM2、PWM3基础频率为26KHz
-    Write_Emc2305_Reg(FAN1_SETTING, SPEED_NoMin);   //设置占空比
-    Write_Emc2305_Reg(FAN2_SETTING, SPEED_NoMin);
-    Write_Emc2305_Reg(FAN3_SETTING, SPEED_NoMin);
-    Write_Emc2305_Reg(FAN4_SETTING, SPEED_NoMin);
-    Write_Emc2305_Reg(FAN5_SETTING, SPEED_NoMin);
+    Emc2305_WriteByte(EMC2305_10K_ADDR, PWM_POLARITY, 0x00);            //设置PWM极性
+    Emc2305_WriteByte(EMC2305_10K_ADDR, PWM_OUTPUT,   0x1F);            //设置PWM为推挽输出
+    Emc2305_WriteByte(EMC2305_10K_ADDR, PWM45_BASE,   0x00);            //设置PWM4、PWM5基础频率为26KHz
+    Emc2305_WriteByte(EMC2305_10K_ADDR, PWM123_BASE,  0x00);            //设置PWM1、PWM2、PWM3基础频率为26KHz
+    Emc2305_WriteByte(EMC2305_10K_ADDR, FAN1_SETTING, SPEED_NoMin);     //设置占空比
+    Emc2305_WriteByte(EMC2305_10K_ADDR, FAN2_SETTING, SPEED_NoMin);
+    Emc2305_WriteByte(EMC2305_10K_ADDR, FAN3_SETTING, SPEED_NoMin);
+    Emc2305_WriteByte(EMC2305_10K_ADDR, FAN4_SETTING, SPEED_NoMin);
+    Emc2305_WriteByte(EMC2305_10K_ADDR, FAN5_SETTING, SPEED_NoMin);
 }
 
 
