@@ -20,5 +20,7 @@ void Tmp468_WriteByte(uint8_t id, uint16_t addr, uint16_t val);
 void Tmp468_ReadByte(uint8_t id, uint8_t addr, uint8_t *buffer);
 void Tmp468_ReadData(uint8_t id, uint8_t addr, uint8_t *buffer, uint8_t len);
 
+void Obtain_TemperatureFPGA(void);
+
 
 #endif

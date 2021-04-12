@@ -2,16 +2,47 @@
 
 #include "gouble.h"
 
+void IIC1_SDA_OUT()
+{
+    GPIO_InitTypeDef GPIO_InitStruct;
+    
+    //RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOB, ENABLE);
+    
+    GPIO_InitStruct.GPIO_Pin = GPIO_Pin_9;
+	GPIO_InitStruct.GPIO_Mode = GPIO_Mode_OUT;				
+	GPIO_InitStruct.GPIO_Speed = GPIO_High_Speed;		
+	GPIO_InitStruct.GPIO_OType = GPIO_OType_PP;				
+	GPIO_InitStruct.GPIO_PuPd = GPIO_PuPd_UP;			
+	GPIO_Init(GPIOB, &GPIO_InitStruct);	
+}
+
+void IIC1_SDA_IN()
+{
+    GPIO_InitTypeDef GPIO_InitStruct;
+    
+    //RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOB, ENABLE);
+    
+    GPIO_InitStruct.GPIO_Pin = GPIO_Pin_9;
+	GPIO_InitStruct.GPIO_Mode = GPIO_Mode_IN;				
+	GPIO_InitStruct.GPIO_Speed = GPIO_High_Speed;		
+	GPIO_InitStruct.GPIO_OType = GPIO_OType_PP;				
+	GPIO_InitStruct.GPIO_PuPd = GPIO_PuPd_UP;			
+	GPIO_Init(GPIOB, &GPIO_InitStruct);
+}
+
+
+
+
 void I2c_Tmp_Start()
 {
 	IIC1_SDA_OUT();
 	IIC1_SCK_1();
 	IIC1_SDA_1();
-	Delay_ms(5);
+	Delay_Nop(200);
 	IIC1_SDA_0();
-	Delay_ms(5);
+	Delay_Nop(200);
 	IIC1_SCK_0();
-	Delay_ms(5);
+	Delay_Nop(200);
 }
 
 void I2c_Tmp_Stop()
@@ -19,18 +50,18 @@ void I2c_Tmp_Stop()
 	IIC1_SDA_OUT();
 	IIC1_SCK_0();
 	IIC1_SDA_0();
-	Delay_ms(5);
+	Delay_Nop(200);
 	IIC1_SCK_1();
-	Delay_ms(5);
+	Delay_Nop(200);
 	IIC1_SDA_1();
-	Delay_ms(5);
+	Delay_Nop(200);
 }
 
 void I2c_Tmp_SendByte(unsigned char data)
 {	
 	IIC1_SDA_OUT();
 
-	Delay_ms(5);
+ 	Delay_Nop(200);
 	for(uint8_t mask=0x80; mask!=0; mask>>=1)
 	{
 		if((mask&data) == 0)
@@ -39,13 +70,13 @@ void I2c_Tmp_SendByte(unsigned char data)
 		}
 		else
 		{
-			IIC1_SDA_0();
+			IIC1_SDA_1();
 		}
-		Delay_ms(5);
+		Delay_Nop(200);
 		IIC1_SCK_1();
-		Delay_ms(5);
+		Delay_Nop(200);
 		IIC1_SCK_0();
-		Delay_ms(5);
+		Delay_Nop(200);
 	}
 }
 
@@ -64,9 +95,9 @@ uint8_t I2c_Tmp_WaitAck()
 	}
 	
 	IIC1_SCK_1();
-	Delay_ms(5);    
+	Delay_Nop(200);   
 	IIC1_SCK_0();
-	Delay_ms(5);
+	Delay_Nop(200);
 	return 0;
 }
 
@@ -75,13 +106,13 @@ void I2c_Tmp_SendAck()
 	IIC1_SDA_OUT();
     
 	IIC1_SCK_0();
-	Delay_ms(5);
+	Delay_Nop(200);
 	IIC1_SDA_0();
-	Delay_ms(5);
+	Delay_Nop(200);
 	IIC1_SCK_1();
-	Delay_ms(5);
+	Delay_Nop(200);
 	IIC1_SCK_0();
-	Delay_ms(5);
+	Delay_Nop(200);
 }
 
 void I2c_Tmp_SendNack()
@@ -89,13 +120,13 @@ void I2c_Tmp_SendNack()
 	IIC1_SDA_OUT();
     
 	IIC1_SCK_0();
-	Delay_ms(5);
+	Delay_Nop(200);
 	IIC1_SDA_1();
-	delay_us(5);
+	Delay_Nop(200);
 	IIC1_SCK_1();
-	Delay_ms(5);
+	Delay_Nop(200);
 	IIC1_SCK_0();
-	Delay_ms(5);
+	Delay_Nop(200);
 }
 
 uint8_t I2c_Tmp_ReadByte()
@@ -115,11 +146,11 @@ uint8_t I2c_Tmp_ReadByte()
 		{
 			data |= mask;
 		}
-		delay_us(5);
+		Delay_Nop(200);
 		IIC1_SCK_1();
-		delay_us(5);
+		Delay_Nop(200);
 		IIC1_SCK_0();
-		delay_us(5);
+		Delay_Nop(200);
 	}
 	return data;
 }
@@ -127,24 +158,42 @@ uint8_t I2c_Tmp_ReadByte()
 void Tmp468_WriteByte(uint8_t id, uint16_t addr, uint16_t val)
 {
     I2c_Tmp_Start();
-    I2c_Tmp_SendByte(id & 0xfe);           //发送器件地址, 写地址
-    I2c_Tmp_WaitAck();
+    I2c_Tmp_SendByte((id << 1) & 0xfe);           //发送器件地址, 写地址
+    if(I2c_Tmp_WaitAck())
+    {
+        DEBUG_PRINTF(DEBUG_STRING, "TMP468 IIC ERROR \r\n");
+    }
     I2c_Tmp_SendByte(addr);
-    I2c_Tmp_WaitAck();
+    if(I2c_Tmp_WaitAck())
+    {
+        DEBUG_PRINTF(DEBUG_STRING, "TMP468 IIC ERROR \r\n");
+    }
     I2c_Tmp_SendByte(val);
-    I2c_Tmp_WaitAck();
+    if(I2c_Tmp_WaitAck())
+    {
+        DEBUG_PRINTF(DEBUG_STRING, "TMP468 IIC ERROR \r\n");
+    }
     I2c_Tmp_Stop();
 }
 
 void Tmp468_ReadByte(uint8_t id, uint8_t addr, uint8_t *buffer)
 {
     I2c_Tmp_Start();
-    I2c_Tmp_SendByte(id & 0xfe);     //发送器件地址, 写地址
-    I2c_Tmp_WaitAck();
+    I2c_Tmp_SendByte((id << 1) & 0xfe);     //发送器件地址, 写地址
+    if(I2c_Tmp_WaitAck())
+    {
+        DEBUG_PRINTF(DEBUG_STRING, "TMP468 IIC ERROR \r\n");
+    }
     I2c_Tmp_SendByte(addr);
-    I2c_Tmp_WaitAck();
-    I2c_Tmp_SendByte(id | 0x01);     //发送器件地址, 读地址
-    I2c_Tmp_WaitAck();
+    if(I2c_Tmp_WaitAck())
+    {
+        DEBUG_PRINTF(DEBUG_STRING, "TMP468 IIC ERROR \r\n");
+    }
+    I2c_Tmp_SendByte((id << 1) | 0x01);     //发送器件地址, 读地址
+    if(I2c_Tmp_WaitAck())
+    {
+        DEBUG_PRINTF(DEBUG_STRING, "TMP468 IIC ERROR \r\n");
+    }
     *buffer = I2c_Tmp_ReadByte();
     I2c_Tmp_SendNack();
     I2c_Tmp_Stop();
@@ -155,16 +204,25 @@ void Tmp468_ReadData(uint8_t id, uint8_t addr, uint8_t *buffer, uint8_t len)
     uint8_t i = 0;
     
     I2c_Tmp_Start();
-    I2c_Tmp_SendByte(id & 0xfe); 
-    I2c_Tmp_WaitAck();
+    I2c_Tmp_SendByte((id << 1) & 0xfe); 
+    if(I2c_Tmp_WaitAck())
+    {
+        DEBUG_PRINTF(DEBUG_STRING, "TMP468 IIC ERROR \r\n");
+    }
     I2c_Tmp_SendByte(addr);
-    I2c_Tmp_WaitAck();
+    if(I2c_Tmp_WaitAck())
+    {
+        DEBUG_PRINTF(DEBUG_STRING, "TMP468 IIC ERROR \r\n");
+    }
     I2c_Tmp_Start();
-    I2c_Tmp_SendByte(id | 0x01);
-	I2c_Tmp_WaitAck();
+    I2c_Tmp_SendByte((id << 1) | 0x01);
+	if(I2c_Tmp_WaitAck())
+    {
+        DEBUG_PRINTF(DEBUG_STRING, "TMP468 IIC ERROR \r\n");
+    }
     do
     {
-        delay_us(50);
+        Delay_Nop(200);
         *buffer++ = I2c_Tmp_ReadByte();
         if(++i==len)
         {
@@ -182,12 +240,9 @@ void Tmp468_ReadData(uint8_t id, uint8_t addr, uint8_t *buffer, uint8_t len)
 
 extern System_MsgStruct SysMsg;
 
-
 void Obtain_TemperatureFPGA()
 {
-
     uint8_t Temp[2];
-
 
     Tmp468_ReadData(TMP468_ADDR, RT1_ADDR, Temp, 2);
     

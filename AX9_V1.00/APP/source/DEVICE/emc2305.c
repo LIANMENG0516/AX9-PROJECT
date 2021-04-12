@@ -68,7 +68,7 @@ void I2c_Emc_SendByte(unsigned char data)
 		}
 		else
 		{
-			SMDAT_2305_0();
+			SMDAT_2305_1();
 		}
 		Delay_Nop(200);
 		SMCLK_2305_1();

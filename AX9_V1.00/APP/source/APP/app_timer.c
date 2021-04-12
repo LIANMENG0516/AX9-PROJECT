@@ -12,6 +12,8 @@ void cb_Sys_StateChk_Tmr(void *p_tmr, void *p_arg)
     Adc1_T_GetVoltage();
     Adc1_V_GetVoltage();
     
+    Obtain_TemperatureFPGA();       //»ñÈ¡FPGAÎÂ¶È
+    
     if(SysMsg.AdjVol.HV_Minitor)
     {
         if(SysMsg.AdjVol.R_VPP1 >= SysMsg.AdjVol.MIN_VPP1 && SysMsg.AdjVol.R_VPP1 <= SysMsg.AdjVol.MIN_VPP1 &&

@@ -61,8 +61,8 @@
 #define IIC1_SDA_PIN              GPIO_Pin_9 
 #define IIC1_SDA_1()              GPIO_SetBits(IIC1_SDA_PORT, IIC1_SDA_PIN)
 #define IIC1_SDA_0()              GPIO_ResetBits(IIC1_SDA_PORT, IIC1_SDA_PIN)
-#define IIC1_SDA_IN()             {GPIOB->MODER = GPIOB->MODER & 0xFFF3FFFF;}
-#define IIC1_SDA_OUT()            {GPIOB->MODER = GPIOB->MODER & 0xFFF7FFFF; GPIOB->MODER = GPIOB->MODER | 0x00040000;}
+//#define IIC1_SDA_IN()             {GPIOB->MODER = GPIOB->MODER & 0xFFF3FFFF;}
+//#define IIC1_SDA_OUT()            {GPIOB->MODER = GPIOB->MODER & 0xFFF7FFFF; GPIOB->MODER = GPIOB->MODER | 0x00040000;}
 #define IIC1_SDA_READ()           GPIO_ReadInputDataBit(IIC1_SDA_PORT, IIC1_SDA_PIN)
 
 //SPI3_CS2   
