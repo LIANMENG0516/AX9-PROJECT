@@ -1,7 +1,6 @@
 #ifndef __GOUBLE_H
 #define __GOUBLE_H
 
-
 #include "string.h"
 
 #include "stdlib.h"
@@ -12,6 +11,7 @@
 #include "nvic.h"
 #include "systick.h"
 #include "usart.h"
+#include "timer.h"
 #include "dma.h"
 #include "spi.h"
 #include "dac.h"
@@ -42,11 +42,14 @@
 #include "app_timer.h"
 #include "app_adjvol.h"
 #include "app_sysonoff.h"
+#include "app_temperature.h"
+#include "app_adc.h"
 
 #define USE_UCOSIII
 
-#define DEBUG_COMMAND                       1
-#define DEBUG_STRING                        0
+#define USE_DEBUG                           0       //调试总开关
+#define DEBUG_COMMAND                       1       //命令调试开关
+#define DEBUG_STRING                        0       //字符串调试开关
 
 #define DEBUG_PRINTF(x, ...)                if(x) {printf(__VA_ARGS__);}
 
@@ -67,6 +70,12 @@
 
 #define APP_SYSONOFF_TASK_PRIO              8
 #define APP_SYSONOFF_STK_SIZE               256
+
+#define APP_TEMPERATURE_TASK_PRIO           9
+#define APP_TEMPERATURE_STK_SIZE            256
+
+#define APP_ADC_TASK_PRIO                   10
+#define APP_ADC_STK_SIZE                    256
 
 #define APP_START_TASK_PRIO 				30		//优先级
 #define APP_START_STK_SIZE 					256		//堆栈大小

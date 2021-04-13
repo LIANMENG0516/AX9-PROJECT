@@ -9,6 +9,10 @@
 #define SYSTEM_ON    1
 #define SYSTEM_SLEEP 2
 
+#define USB_CHANNEL 1
+#define ECCOM_CHANNEL 2
+#define DEBUGCOM_CHANNEL 3
+
 typedef enum {FALSE = 0, TRUE = !FALSE} bool;
 
 typedef struct
@@ -24,7 +28,6 @@ typedef struct
     uint16_t T_VPP2;
     uint16_t T_VNN2;
 
-    
     uint16_t MAX_VPP1;
     uint16_t MIN_VPP1;
     uint16_t MAX_VNN1;
@@ -53,6 +56,8 @@ typedef struct
     uint16_t R_D1V45;   
     
     uint16_t R_IADP;
+    
+    uint16_t Time;
 }Ad_VolStruct;
 
 typedef struct
@@ -74,18 +79,15 @@ typedef struct
 
 typedef struct
 {    
-    bool Timeout;
-    bool HV_Send;
-    bool CW_Send;
-    bool Firmware_Send;
-    bool CompileInfo_Send;
-    bool Voltage_Send;
-    bool EcInfo_Send;
+    bool            Timeout;
+    bool            HV_Send;
+    bool            CW_Send;
+    bool            Firmware_Send;
+    bool            CompileInfo_Send;
+    bool            Voltage_Send;
+    bool            EcInfo_Send;
+    uint8_t         Channel;                //命令通道, 是指程序接收到的命令从USB、ECCOM、DEBUGCOM哪个通道进入
 }Command_Deal;
-
-
-
-
 
 typedef struct
 {

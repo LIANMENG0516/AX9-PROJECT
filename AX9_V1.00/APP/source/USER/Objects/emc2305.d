@@ -44,6 +44,8 @@
 .\objects\emc2305.o: ..\BSP\nvic.h
 .\objects\emc2305.o: ..\BSP\systick.h
 .\objects\emc2305.o: ..\BSP\usart.h
+.\objects\emc2305.o: ..\BSP\timer.h
+.\objects\emc2305.o: ..\BSP\gouble.h
 .\objects\emc2305.o: ..\BSP\dma.h
 .\objects\emc2305.o: ..\BSP\spi.h
 .\objects\emc2305.o: ..\BSP\dac.h
@@ -71,7 +73,6 @@
 .\objects\emc2305.o: ..\UCOSIII\uCOS_BSP\bsp.h
 .\objects\emc2305.o: ..\UCOSIII\uCOS_CONFIG\os_cfg_app.h
 .\objects\emc2305.o: ..\DEVICE\system.h
-.\objects\emc2305.o: ..\BSP\gouble.h
 .\objects\emc2305.o: ..\DEVICE\tmp468.h
 .\objects\emc2305.o: ..\DEVICE\adt7302.h
 .\objects\emc2305.o: ..\DEVICE\tlv5626cd.h
@@ -99,3 +100,5 @@
 .\objects\emc2305.o: ..\APP\app_timer.h
 .\objects\emc2305.o: ..\APP\app_adjvol.h
 .\objects\emc2305.o: ..\APP\app_sysonoff.h
+.\objects\emc2305.o: ..\APP\app_temperature.h
+.\objects\emc2305.o: ..\APP\app_adc.h

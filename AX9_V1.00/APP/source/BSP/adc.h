@@ -52,9 +52,10 @@
 #define SAMPLE_TEMP_SEQUENCE        2
 
 void Adc_Init(ADC_TypeDef* ADCx, uint8_t NumChannel);
-void Adc3_V_GetVoltage(void);
-void Adc1_T_GetVoltage(void);
-void Adc1_V_GetVoltage(void);
+void Adc3_GetAdjVoltage(void);
+void Adc3_GetFixVoltage(void);
+void Adc1_GetMcuInternalTemperature(void);
+void Adc1_GetOverCurrentVoltage(void);
 
 #endif
 

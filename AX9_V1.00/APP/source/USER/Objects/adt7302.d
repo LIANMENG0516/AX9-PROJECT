@@ -44,6 +44,8 @@
 .\objects\adt7302.o: ..\BSP\nvic.h
 .\objects\adt7302.o: ..\BSP\systick.h
 .\objects\adt7302.o: ..\BSP\usart.h
+.\objects\adt7302.o: ..\BSP\timer.h
+.\objects\adt7302.o: ..\BSP\gouble.h
 .\objects\adt7302.o: ..\BSP\dma.h
 .\objects\adt7302.o: ..\BSP\spi.h
 .\objects\adt7302.o: ..\BSP\dac.h
@@ -71,7 +73,6 @@
 .\objects\adt7302.o: ..\UCOSIII\uCOS_BSP\bsp.h
 .\objects\adt7302.o: ..\UCOSIII\uCOS_CONFIG\os_cfg_app.h
 .\objects\adt7302.o: ..\DEVICE\system.h
-.\objects\adt7302.o: ..\BSP\gouble.h
 .\objects\adt7302.o: ..\DEVICE\tmp468.h
 .\objects\adt7302.o: ..\DEVICE\emc2305.h
 .\objects\adt7302.o: ..\DEVICE\tlv5626cd.h
@@ -99,3 +100,5 @@
 .\objects\adt7302.o: ..\APP\app_timer.h
 .\objects\adt7302.o: ..\APP\app_adjvol.h
 .\objects\adt7302.o: ..\APP\app_sysonoff.h
+.\objects\adt7302.o: ..\APP\app_temperature.h
+.\objects\adt7302.o: ..\APP\app_adc.h

@@ -1,10 +1,13 @@
 #include "system.h"
 
 System_MsgStruct SysMsg = {
-    .AdjVol.T_VPP1            = 0,
-    .AdjVol.T_VNN1            = 0,
-    .AdjVol.T_VPP2            = 0,
-    .AdjVol.T_VNN2            = 0,
+    .AdjVol.T_VPP1              = 0,
+    .AdjVol.T_VNN1              = 0,
+    .AdjVol.T_VPP2              = 0,
+    .AdjVol.T_VNN2              = 0,
+    .AdjVol.T_VNN1              = 0,
+    .AdjVol.T_VPP2              = 0,
+    .AdjVol.T_VNN2              = 0,
     .Temperature.FPGA           = 0,
     .Temperature.CPU            = 0,
     .Temperature.USPB           = 0,
@@ -23,10 +26,11 @@ System_MsgStruct SysMsg = {
 
 void SystemStateInit()
 {
-    SysMsg.AdjVol.T_VPP1            = 0;
-    SysMsg.AdjVol.T_VNN1            = 0;
-    SysMsg.AdjVol.T_VPP2            = 0;
-    SysMsg.AdjVol.T_VNN2            = 0;
+    SysMsg.AdjVol.T_VPP1                = 0;
+    SysMsg.AdjVol.T_VNN1                = 0;
+    SysMsg.AdjVol.T_VPP2                = 0;
+    SysMsg.AdjVol.T_VNN2                = 0;
+    SysMsg.AdjVol.HV_Minitor            = FALSE;
     SysMsg.Temperature.FPGA           = 0;
     SysMsg.Temperature.CPU            = 0;
     SysMsg.Temperature.USPB           = 0;

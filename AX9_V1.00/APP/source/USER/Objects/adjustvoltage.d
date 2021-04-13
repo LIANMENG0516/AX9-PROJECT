@@ -44,6 +44,8 @@
 .\objects\adjustvoltage.o: ..\BSP\nvic.h
 .\objects\adjustvoltage.o: ..\BSP\systick.h
 .\objects\adjustvoltage.o: ..\BSP\usart.h
+.\objects\adjustvoltage.o: ..\BSP\timer.h
+.\objects\adjustvoltage.o: ..\BSP\gouble.h
 .\objects\adjustvoltage.o: ..\BSP\dma.h
 .\objects\adjustvoltage.o: ..\BSP\spi.h
 .\objects\adjustvoltage.o: ..\BSP\dac.h
@@ -71,7 +73,6 @@
 .\objects\adjustvoltage.o: ..\UCOSIII\uCOS_BSP\bsp.h
 .\objects\adjustvoltage.o: ..\UCOSIII\uCOS_CONFIG\os_cfg_app.h
 .\objects\adjustvoltage.o: ..\DEVICE\system.h
-.\objects\adjustvoltage.o: ..\BSP\gouble.h
 .\objects\adjustvoltage.o: ..\DEVICE\tmp468.h
 .\objects\adjustvoltage.o: ..\DEVICE\adt7302.h
 .\objects\adjustvoltage.o: ..\DEVICE\emc2305.h
@@ -99,3 +100,5 @@
 .\objects\adjustvoltage.o: ..\APP\app_timer.h
 .\objects\adjustvoltage.o: ..\APP\app_adjvol.h
 .\objects\adjustvoltage.o: ..\APP\app_sysonoff.h
+.\objects\adjustvoltage.o: ..\APP\app_temperature.h
+.\objects\adjustvoltage.o: ..\APP\app_adc.h

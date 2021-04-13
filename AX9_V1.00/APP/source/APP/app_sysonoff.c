@@ -64,16 +64,6 @@ void System_PowerOn(OS_ERR err)
         powerOnStep = 0;
         
         SysMsg.SystemState = SYSTEM_ON;
-        
-        //DEBUG
-        SysMsg.AdjVol.T_VPP1 = 0x03e8;
-        SysMsg.AdjVol.T_VNN1 = 0x03e8;
-        SysMsg.AdjVol.T_VPP2 = 0x01f4;
-        SysMsg.AdjVol.T_VNN2 = 0x01f4;
-        SysMsg.AdjVol.Adj_HV = TRUE;
-        Calc_TarVol_AlowRange();                                    //计算允许误差范围
-        Adjust_Voltage_HV();                                        //执行高压调压处理
-        SysMsg.AdjVol.HV_Minitor = TRUE;                            //处理完成打开高压监控  
     }
 }
 

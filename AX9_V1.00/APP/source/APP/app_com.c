@@ -25,138 +25,152 @@ void App_Com_Task()
 	{				
         if(ReceiveFrameAnalysis(&CommuComRX.Data[0], CommuComRX.Len) == SUCCESS)   //格式化并解析串口数据
         {
+            SysMsg.Cmd.Channel = ECCOM_CHANNEL;
             memset(CommuComTX.Data, 0, CommuComTX.Len);
             Cmd_Process();                                                          //命令处理                                    
         }
+
+        if(SysMsg.Cmd.Channel == ECCOM_CHANNEL)
+        {
+            if(SysMsg.Cmd.EcInfo_Send == TRUE)
+            {
+                SysMsg.Cmd.EcInfo_Send = FALSE;
+            
+                SenFrameCmd.Cid = CMD_EC_COMMUNICATE;
+                
+                SenFrameCmd.Len = 31;
+                SenFrameCmd.Data = Ec_Info;
+                
+                FrameCmdPackage(CommuComTX.Data);
+                Send_CmdPackage(COMMU_COM_DMAY_STREAMX_TX);
+            }
+        }
+        
+        
+        #if USE_DEBUG
         
         if(ReceiveFrameAnalysis(&DebugComRX.Data[0], DebugComRX.Len) == SUCCESS)   //格式化并解析串口数据
         {
+            SysMsg.Cmd.Channel = DEBUGCOM_CHANNEL;
             memset(DebugComRX.Data, 0, DebugComRX.Len);
             Cmd_Process();                                 
         }
 
         if(Deal_Compare((char *)DebugComRX.Data, DebugComRX.Len) != 0)
         {
+            SysMsg.Cmd.Channel = DEBUGCOM_CHANNEL;
             memset(DebugComRX.Data, 0, DebugComRX.Len);
         }
+        
+        if(SysMsg.Cmd.Channel == DEBUGCOM_CHANNEL)
+        {
+            if(SysMsg.Cmd.HV_Send == TRUE)
+            {
+                SysMsg.Cmd.HV_Send = FALSE;
+                
+                #if DEBUG_COMMAND
+                
+                SenFrameCmd.Cid = CMD_ADJUST_HV;
+                SenFrameCmd.Len = 8;
+                
+                SenFrameCmd.Data[0] = SysMsg.AdjVol.R_VPP1 >> 8;
+                SenFrameCmd.Data[1] = SysMsg.AdjVol.R_VPP1;
+                SenFrameCmd.Data[2] = SysMsg.AdjVol.R_VNN1 >> 8;
+                SenFrameCmd.Data[3] = SysMsg.AdjVol.R_VNN1;
+                SenFrameCmd.Data[4] = SysMsg.AdjVol.R_VPP2 >> 8;
+                SenFrameCmd.Data[5] = SysMsg.AdjVol.R_VPP2;
+                SenFrameCmd.Data[6] = SysMsg.AdjVol.R_VNN2 >> 8;
+                SenFrameCmd.Data[7] = SysMsg.AdjVol.R_VNN2;
+                
+                FrameCmdPackage(DebugComTX.Data);
+                Send_CmdPackage(DEBUG_COM_DMAY_STREAMX_TX); 
 
-        if(SysMsg.Cmd.HV_Send == TRUE)
-        {
-            SysMsg.Cmd.HV_Send = FALSE;
+                #endif
+                
+                DEBUG_PRINTF(DEBUG_STRING, "Voltage : %d %d %d %d \r\n", SysMsg.AdjVol.R_VPP1, SysMsg.AdjVol.R_VNN1, SysMsg.AdjVol.R_VPP2, SysMsg.AdjVol.R_VNN2);            
+            }
             
-            #if DEBUG_COMMAND
+            if(SysMsg.Cmd.CW_Send == TRUE)
+            {
+                SysMsg.Cmd.CW_Send = FALSE;
+                
+                #if DEBUG_COMMAND
+                
+                SenFrameCmd.Cid = CMD_ADJUST_CW;
+                SenFrameCmd.Len = 8;
+                
+                SenFrameCmd.Data[0] = SysMsg.AdjVol.R_VPP1 >> 8;
+                SenFrameCmd.Data[1] = SysMsg.AdjVol.R_VPP1;
+                SenFrameCmd.Data[2] = SysMsg.AdjVol.R_VNN1 >> 8;
+                SenFrameCmd.Data[3] = SysMsg.AdjVol.R_VNN1;
+                SenFrameCmd.Data[4] = SysMsg.AdjVol.R_VPP2 >> 8;
+                SenFrameCmd.Data[5] = SysMsg.AdjVol.R_VPP2;
+                SenFrameCmd.Data[6] = SysMsg.AdjVol.R_VNN2 >> 8;
+                SenFrameCmd.Data[7] = SysMsg.AdjVol.R_VNN2;
+                
+                FrameCmdPackage(DebugComTX.Data);
+                Send_CmdPackage(DEBUG_COM_DMAY_STREAMX_TX);
+                
+                #endif
+                
+                DEBUG_PRINTF(DEBUG_STRING, "Voltage : %d %d %d %d \r\n", SysMsg.AdjVol.R_VPP1, SysMsg.AdjVol.R_VNN1, SysMsg.AdjVol.R_VPP2, SysMsg.AdjVol.R_VNN2);
+            }
             
-            SenFrameCmd.Cid = CMD_ADJUST_HV;
-            SenFrameCmd.Len = 8;
-            
-            SenFrameCmd.Data[0] = SysMsg.AdjVol.R_VPP1 >> 8;
-            SenFrameCmd.Data[1] = SysMsg.AdjVol.R_VPP1;
-            SenFrameCmd.Data[2] = SysMsg.AdjVol.R_VNN1 >> 8;
-            SenFrameCmd.Data[3] = SysMsg.AdjVol.R_VNN1;
-            SenFrameCmd.Data[4] = SysMsg.AdjVol.R_VPP2 >> 8;
-            SenFrameCmd.Data[5] = SysMsg.AdjVol.R_VPP2;
-            SenFrameCmd.Data[6] = SysMsg.AdjVol.R_VNN2 >> 8;
-            SenFrameCmd.Data[7] = SysMsg.AdjVol.R_VNN2;
-            
-            FrameCmdPackage(DebugComTX.Data);
-            Send_CmdPackage(DEBUG_COM_DMAY_STREAMX_TX); 
+            if(SysMsg.Cmd.Timeout == TRUE)
+            {
+                SysMsg.Cmd.Timeout = FALSE;
+                
+                
+                #if DEBUG_COMMAND
 
-            #endif
-            
-            DEBUG_PRINTF(DEBUG_STRING, "Voltage : %d %d %d %d \r\n", SysMsg.AdjVol.R_VPP1, SysMsg.AdjVol.R_VNN1, SysMsg.AdjVol.R_VPP2, SysMsg.AdjVol.R_VNN2);            
-        }
-        
-        if(SysMsg.Cmd.CW_Send == TRUE)
-        {
-            SysMsg.Cmd.CW_Send = FALSE;
-            
-            #if DEBUG_COMMAND
-            
-            SenFrameCmd.Cid = CMD_ADJUST_CW;
-            SenFrameCmd.Len = 8;
-            
-            SenFrameCmd.Data[0] = SysMsg.AdjVol.R_VPP1 >> 8;
-            SenFrameCmd.Data[1] = SysMsg.AdjVol.R_VPP1;
-            SenFrameCmd.Data[2] = SysMsg.AdjVol.R_VNN1 >> 8;
-            SenFrameCmd.Data[3] = SysMsg.AdjVol.R_VNN1;
-            SenFrameCmd.Data[4] = SysMsg.AdjVol.R_VPP2 >> 8;
-            SenFrameCmd.Data[5] = SysMsg.AdjVol.R_VPP2;
-            SenFrameCmd.Data[6] = SysMsg.AdjVol.R_VNN2 >> 8;
-            SenFrameCmd.Data[7] = SysMsg.AdjVol.R_VNN2;
-            
-            FrameCmdPackage(DebugComTX.Data);
-            Send_CmdPackage(DEBUG_COM_DMAY_STREAMX_TX);
-            
-            #endif
-            
-            DEBUG_PRINTF(DEBUG_STRING, "Voltage : %d %d %d %d \r\n", SysMsg.AdjVol.R_VPP1, SysMsg.AdjVol.R_VNN1, SysMsg.AdjVol.R_VPP2, SysMsg.AdjVol.R_VNN2);
-        }
-        
-        if(SysMsg.Cmd.Timeout == TRUE)
-        {
-            SysMsg.Cmd.Timeout = FALSE;
-            
-            
-            #if DEBUG_COMMAND
+                SenFrameCmd.Cid = TIMEOUT;
+                SenFrameCmd.Len = 8;
+                
+                SenFrameCmd.Data[0] = SysMsg.AdjVol.R_VPP1 >> 8;
+                SenFrameCmd.Data[1] = SysMsg.AdjVol.R_VPP1;
+                SenFrameCmd.Data[2] = SysMsg.AdjVol.R_VNN1 >> 8;
+                SenFrameCmd.Data[3] = SysMsg.AdjVol.R_VNN1;
+                SenFrameCmd.Data[4] = SysMsg.AdjVol.R_VPP2 >> 8;
+                SenFrameCmd.Data[5] = SysMsg.AdjVol.R_VPP2;
+                SenFrameCmd.Data[6] = SysMsg.AdjVol.R_VNN2 >> 8;
+                SenFrameCmd.Data[7] = SysMsg.AdjVol.R_VNN2;
+                
+                FrameCmdPackage(DebugComTX.Data);
+                Send_CmdPackage(DEBUG_COM_DMAY_STREAMX_TX);
+                
+                #endif
 
-            SenFrameCmd.Cid = TIMEOUT;
-            SenFrameCmd.Len = 8;
+                DEBUG_PRINTF(DEBUG_STRING, "Voltage : %d %d %d %d \r\n", SysMsg.AdjVol.R_VPP1, SysMsg.AdjVol.R_VNN1, SysMsg.AdjVol.R_VPP2, SysMsg.AdjVol.R_VNN2);
+            }
             
-            SenFrameCmd.Data[0] = SysMsg.AdjVol.R_VPP1 >> 8;
-            SenFrameCmd.Data[1] = SysMsg.AdjVol.R_VPP1;
-            SenFrameCmd.Data[2] = SysMsg.AdjVol.R_VNN1 >> 8;
-            SenFrameCmd.Data[3] = SysMsg.AdjVol.R_VNN1;
-            SenFrameCmd.Data[4] = SysMsg.AdjVol.R_VPP2 >> 8;
-            SenFrameCmd.Data[5] = SysMsg.AdjVol.R_VPP2;
-            SenFrameCmd.Data[6] = SysMsg.AdjVol.R_VNN2 >> 8;
-            SenFrameCmd.Data[7] = SysMsg.AdjVol.R_VNN2;
-            
-            FrameCmdPackage(DebugComTX.Data);
-            Send_CmdPackage(DEBUG_COM_DMAY_STREAMX_TX);
-            
-            #endif
-
-           
-           
-           DEBUG_PRINTF(DEBUG_STRING, "Voltage : %d %d %d %d \r\n", SysMsg.AdjVol.R_VPP1, SysMsg.AdjVol.R_VNN1, SysMsg.AdjVol.R_VPP2, SysMsg.AdjVol.R_VNN2);
+            if(SysMsg.Cmd.Voltage_Send == TRUE)
+            {
+                SysMsg.Cmd.Voltage_Send = FALSE;
+                
+                #if DEBUG_COMMAND
+                
+                SenFrameCmd.Cid = CMD_READ_VOLTAGE;
+                SenFrameCmd.Len = 8;
+                
+                SenFrameCmd.Data[0] = SysMsg.AdjVol.R_VPP1 >> 8;
+                SenFrameCmd.Data[1] = SysMsg.AdjVol.R_VPP1;
+                SenFrameCmd.Data[2] = SysMsg.AdjVol.R_VNN1 >> 8;
+                SenFrameCmd.Data[3] = SysMsg.AdjVol.R_VNN1;
+                SenFrameCmd.Data[4] = SysMsg.AdjVol.R_VPP2 >> 8;
+                SenFrameCmd.Data[5] = SysMsg.AdjVol.R_VPP2;
+                SenFrameCmd.Data[6] = SysMsg.AdjVol.R_VNN2 >> 8;
+                SenFrameCmd.Data[7] = SysMsg.AdjVol.R_VNN2;
+                
+                FrameCmdPackage(DebugComTX.Data);
+                Send_CmdPackage(DEBUG_COM_DMAY_STREAMX_TX);
+                
+                #endif
+                
+                DEBUG_PRINTF(DEBUG_STRING, "Voltage : %d %d %d %d \r\n", SysMsg.AdjVol.R_VPP1, SysMsg.AdjVol.R_VNN1, SysMsg.AdjVol.R_VPP2, SysMsg.AdjVol.R_VNN2);
+            }
         }
         
-        if(SysMsg.Cmd.Voltage_Send == TRUE)
-        {
-            SysMsg.Cmd.Voltage_Send = FALSE;
-            
-            SenFrameCmd.Cid = CMD_READ_VOLTAGE;
-            SenFrameCmd.Len = 8;
-            
-            SenFrameCmd.Data[0] = SysMsg.AdjVol.R_VPP1 >> 8;
-            SenFrameCmd.Data[1] = SysMsg.AdjVol.R_VPP1;
-            SenFrameCmd.Data[2] = SysMsg.AdjVol.R_VNN1 >> 8;
-            SenFrameCmd.Data[3] = SysMsg.AdjVol.R_VNN1;
-            SenFrameCmd.Data[4] = SysMsg.AdjVol.R_VPP2 >> 8;
-            SenFrameCmd.Data[5] = SysMsg.AdjVol.R_VPP2;
-            SenFrameCmd.Data[6] = SysMsg.AdjVol.R_VNN2 >> 8;
-            SenFrameCmd.Data[7] = SysMsg.AdjVol.R_VNN2;
-            
-            FrameCmdPackage(DebugComTX.Data);
-            Send_CmdPackage(DEBUG_COM_DMAY_STREAMX_TX);
-        }
-        
-        if(SysMsg.Cmd.EcInfo_Send == TRUE)
-        {
-            SysMsg.Cmd.EcInfo_Send = FALSE;
-        
-            SenFrameCmd.Cid = CMD_EC_COMMUNICATE;
-            
-            SenFrameCmd.Len = 32;
-            SenFrameCmd.Data = Ec_Info;
-            
-            FrameCmdPackage(CommuComTX.Data);
-            Send_CmdPackage(COMMU_COM_DMAY_STREAMX_TX);
-        }
-        
-        
-        
-        
+        #endif
 
 		OSTimeDlyHMSM(0, 0, 0, 10, OS_OPT_TIME_PERIODIC, &err);
 	}

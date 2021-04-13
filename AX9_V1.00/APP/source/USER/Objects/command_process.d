@@ -44,6 +44,8 @@
 .\objects\command_process.o: ..\BSP\nvic.h
 .\objects\command_process.o: ..\BSP\systick.h
 .\objects\command_process.o: ..\BSP\usart.h
+.\objects\command_process.o: ..\BSP\timer.h
+.\objects\command_process.o: ..\BSP\gouble.h
 .\objects\command_process.o: ..\BSP\dma.h
 .\objects\command_process.o: ..\BSP\spi.h
 .\objects\command_process.o: ..\BSP\dac.h
@@ -71,7 +73,6 @@
 .\objects\command_process.o: ..\UCOSIII\uCOS_BSP\bsp.h
 .\objects\command_process.o: ..\UCOSIII\uCOS_CONFIG\os_cfg_app.h
 .\objects\command_process.o: ..\DEVICE\system.h
-.\objects\command_process.o: ..\BSP\gouble.h
 .\objects\command_process.o: ..\DEVICE\tmp468.h
 .\objects\command_process.o: ..\DEVICE\adt7302.h
 .\objects\command_process.o: ..\DEVICE\emc2305.h
@@ -100,3 +101,5 @@
 .\objects\command_process.o: ..\APP\app_timer.h
 .\objects\command_process.o: ..\APP\app_adjvol.h
 .\objects\command_process.o: ..\APP\app_sysonoff.h
+.\objects\command_process.o: ..\APP\app_temperature.h
+.\objects\command_process.o: ..\APP\app_adc.h

@@ -6,7 +6,4 @@
 void App_Fan_Task(void);
 void App_Fan_TaskCreate(void);
 
-
-
-
 #endif

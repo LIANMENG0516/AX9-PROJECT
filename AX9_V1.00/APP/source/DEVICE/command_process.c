@@ -14,8 +14,6 @@ CmdFrameStr RcvFrameCmd = {0x68, 0x04, 0x00, 0x00, (uint8_t *)RcvDataCmd, 0x00, 
 uint8_t	SenDataCmd[100];
 CmdFrameStr SenFrameCmd = {0x68, 0x04, 0x00, 0x00, (uint8_t *)SenDataCmd, 0x00, 0x16};
 
-
-
 uint8_t Ec_Info[] = {
                         0x90,                                                               //BoardVersion_H
                         0x00,                                                               //BoardVersion_L
@@ -36,55 +34,32 @@ uint8_t Ec_Info[] = {
                         0x00,                                                               //Fan5Speed_L
                         0xFF,                                                               //VolChk_H
                         0xFF,                                                               //VolChk_L
-                        0x04,                                                               //AP12V
-                        0xB0,
-                        0x04,                                                               //AN12V
-                        0xB0,
-                        0x02,                                                               //AP5V5_1
-                        0x26,
-                        0x02,                                                               //AP5V5_2
-                        0x26,
-                        0x02,                                                               //AN5V5
-                        0x26,
-                        0x01,                                                               //A3V75
-                        0x77,
-                        0x00,                                                               //A2v25
-                        0xE1,
-                        0x01,                                                               //D5V
-                        0xF4,
-                        0x00,                                                               //D1V45
-                        0x91,
-                        0x00,                                                               //D0V95
-                        0x5F,
+                        0x04,                                                               //AP12V_H
+                        0xB0,                                                               //AP12V_L    
+                        0x04,                                                               //AN12V_H
+                        0xB0,                                                               //AN12V_L
+                        0x02,                                                               //AP5V5_1_H
+                        0x26,                                                               //AP5V5_1_L
+                        0x02,                                                               //AP5V5_2_H
+                        0x26,                                                               //AP5V5_2_L    
+                        0x02,                                                               //AN5V5_H
+                        0x26,                                                               //AN5V5_L    
+                        0x01,                                                               //A3V75_H
+                        0x77,                                                               //A3V75_L
+                        0x00,                                                               //A2v25_H
+                        0xE1,                                                               //A2v25_L
+                        0x01,                                                               //D5V_H
+                        0xF4,                                                               //D5V_L
+                        0x00,                                                               //D1V45_H
+                        0x91,                                                               //D1V45_L    
+                        0x00,                                                               //D0V95_H
+                        0x5F,                                                               //D0V95_L    
                     };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 void Get_EC_Info()
 {
     SysMsg.Cmd.EcInfo_Send = TRUE;
 }
-
-
-
-
-
-
 
 void Get_FireWare_Version()
 {
@@ -155,17 +130,6 @@ void Get_Voltage_Msg()
     SysMsg.Cmd.Voltage_Send = TRUE;
 }
 
-
-
-
-
-
-
-
-
-
-
-
 void InValid_CidData()
 {
 	SenFrameCmd.Len = 1;
@@ -178,7 +142,7 @@ void FrameCmdPackage(uint8_t *pBuf)	//数据打包
 
 	SenFrameCmd.Chk = SenFrameCmd.Id + SenFrameCmd.Cid + SenFrameCmd.Len;
 	
-	for(i=0; i<SenFrameCmd.Len-1; i++)
+	for(i=0; i<SenFrameCmd.Len; i++)
 	{
 		SenFrameCmd.Chk += SenFrameCmd.Data[i];
 	}
@@ -187,13 +151,13 @@ void FrameCmdPackage(uint8_t *pBuf)	//数据打包
 	pBuf[1] = SenFrameCmd.Id;
 	pBuf[2] = SenFrameCmd.Cid;
 	pBuf[3] = SenFrameCmd.Len;
-    for(int i=0; i<SenFrameCmd.Len-1; i++)
+    for(int i=0; i<SenFrameCmd.Len; i++)
 	{
 		pBuf[4 + i] = SenFrameCmd.Data[i];
 	}
     
-	pBuf[SenFrameCmd.Len - 1 + 6 - 2] = SenFrameCmd.Chk;
-	pBuf[SenFrameCmd.Len - 1 + 6 - 1] = SenFrameCmd.Tail;
+	pBuf[SenFrameCmd.Len + 6 - 2] = SenFrameCmd.Chk;
+	pBuf[SenFrameCmd.Len + 6 - 1] = SenFrameCmd.Tail;
 }
 
 void Send_CmdPackage(DMA_Stream_TypeDef* DMAy_Streamx)	//发送已经打包好的命令
@@ -222,7 +186,7 @@ ErrorStatus ReceiveFrameAnalysis(uint8_t *pData, uint8_t DataLen)
     CmdCrc += RcvFrameCmd.Cid;
     CmdCrc += RcvFrameCmd.Len;
     
-    for(int i=0; i<RcvFrameCmd.Len-1; i++)
+    for(int i=0; i<RcvFrameCmd.Len; i++)
     {
         CmdCrc += RcvFrameCmd.Data[i];
     }
@@ -242,7 +206,6 @@ void Cmd_Process()
         case    CMD_EC_COMMUNICATE:
                 Get_EC_Info();
                 break;
-        
         
         case    CMD_FW_VERSION:
                 Get_FireWare_Version();
@@ -329,98 +292,3 @@ uint8_t Deal_Compare(char *pData, uint8_t DataLen)
     
     return i;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

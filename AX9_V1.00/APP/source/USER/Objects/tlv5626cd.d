@@ -44,6 +44,8 @@
 .\objects\tlv5626cd.o: ..\BSP\nvic.h
 .\objects\tlv5626cd.o: ..\BSP\systick.h
 .\objects\tlv5626cd.o: ..\BSP\usart.h
+.\objects\tlv5626cd.o: ..\BSP\timer.h
+.\objects\tlv5626cd.o: ..\BSP\gouble.h
 .\objects\tlv5626cd.o: ..\BSP\dma.h
 .\objects\tlv5626cd.o: ..\BSP\spi.h
 .\objects\tlv5626cd.o: ..\BSP\dac.h
@@ -71,7 +73,6 @@
 .\objects\tlv5626cd.o: ..\UCOSIII\uCOS_BSP\bsp.h
 .\objects\tlv5626cd.o: ..\UCOSIII\uCOS_CONFIG\os_cfg_app.h
 .\objects\tlv5626cd.o: ..\DEVICE\system.h
-.\objects\tlv5626cd.o: ..\BSP\gouble.h
 .\objects\tlv5626cd.o: ..\DEVICE\tmp468.h
 .\objects\tlv5626cd.o: ..\DEVICE\adt7302.h
 .\objects\tlv5626cd.o: ..\DEVICE\emc2305.h
@@ -99,3 +100,5 @@
 .\objects\tlv5626cd.o: ..\APP\app_timer.h
 .\objects\tlv5626cd.o: ..\APP\app_adjvol.h
 .\objects\tlv5626cd.o: ..\APP\app_sysonoff.h
+.\objects\tlv5626cd.o: ..\APP\app_temperature.h
+.\objects\tlv5626cd.o: ..\APP\app_adc.h

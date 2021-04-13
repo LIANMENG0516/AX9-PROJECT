@@ -44,6 +44,8 @@
 .\objects\system.o: ..\BSP\nvic.h
 .\objects\system.o: ..\BSP\systick.h
 .\objects\system.o: ..\BSP\usart.h
+.\objects\system.o: ..\BSP\timer.h
+.\objects\system.o: ..\BSP\gouble.h
 .\objects\system.o: ..\BSP\dma.h
 .\objects\system.o: ..\BSP\spi.h
 .\objects\system.o: ..\BSP\dac.h
@@ -77,7 +79,6 @@
 .\objects\system.o: ..\DEVICE\tlv5626cd.h
 .\objects\system.o: ..\DEVICE\adjustvoltage.h
 .\objects\system.o: ..\DEVICE\command_process.h
-.\objects\system.o: ..\BSP\gouble.h
 .\objects\system.o: ..\USB\STM32_USB_Device_Library\Core\inc\usbd_usr.h
 .\objects\system.o: ..\USB\STM32_USB_Device_Library\Core\inc\usbd_ioreq.h
 .\objects\system.o: ..\USB\STM32_USB_Device_Library\Core\inc\usbd_def.h
@@ -100,3 +101,5 @@
 .\objects\system.o: ..\APP\app_timer.h
 .\objects\system.o: ..\APP\app_adjvol.h
 .\objects\system.o: ..\APP\app_sysonoff.h
+.\objects\system.o: ..\APP\app_temperature.h
+.\objects\system.o: ..\APP\app_adc.h

@@ -30,6 +30,10 @@
 #define BAT2_SMBUS_C_PORT         GPIOA
 #define BAT2_SMBUS_C_PIN          GPIO_Pin_8
 
+//USB_CTRL
+#define USB_CTRL_PORT             GPIOA
+#define USB_CTRL_PIN              GPIO_Pin_10
+
 //SPI3_CS3   
 #define SPI3_CS3_PORT             GPIOB
 #define SPI3_CS3_PIN              GPIO_Pin_0

@@ -44,6 +44,8 @@
 .\objects\app_led.o: ..\BSP\nvic.h
 .\objects\app_led.o: ..\BSP\systick.h
 .\objects\app_led.o: ..\BSP\usart.h
+.\objects\app_led.o: ..\BSP\timer.h
+.\objects\app_led.o: ..\BSP\gouble.h
 .\objects\app_led.o: ..\BSP\dma.h
 .\objects\app_led.o: ..\BSP\spi.h
 .\objects\app_led.o: ..\BSP\dac.h
@@ -71,7 +73,6 @@
 .\objects\app_led.o: ..\UCOSIII\uCOS_BSP\bsp.h
 .\objects\app_led.o: ..\UCOSIII\uCOS_CONFIG\os_cfg_app.h
 .\objects\app_led.o: ..\DEVICE\system.h
-.\objects\app_led.o: ..\BSP\gouble.h
 .\objects\app_led.o: ..\DEVICE\tmp468.h
 .\objects\app_led.o: ..\DEVICE\adt7302.h
 .\objects\app_led.o: ..\DEVICE\emc2305.h
@@ -100,3 +101,5 @@
 .\objects\app_led.o: ..\APP\app_timer.h
 .\objects\app_led.o: ..\APP\app_adjvol.h
 .\objects\app_led.o: ..\APP\app_sysonoff.h
+.\objects\app_led.o: ..\APP\app_temperature.h
+.\objects\app_led.o: ..\APP\app_adc.h

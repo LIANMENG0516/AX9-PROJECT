@@ -228,6 +228,20 @@ void DMA1_Stream6_IRQHandler(void)
 	OSIntExit();
 }
 
+/**
+  * @brief  This function handles TIM2 Handler.
+  * @param  None
+  * @retval None
+  */
+void TIM2_IRQHandler(void)
+{
+	OSIntEnter();
+    
+    TIM2_IRQHandler_CallBack();
+	
+	OSIntExit();
+}
+
 /******************************************************************************/
 /*                 STM32F4xx Peripherals Interrupt Handlers                   */
 /*  Add here the Interrupt Handler for the used peripheral(s) (PPP), for the  */

@@ -44,6 +44,8 @@
 .\objects\stm32f4xx_it.o: ..\BSP\nvic.h
 .\objects\stm32f4xx_it.o: ..\BSP\systick.h
 .\objects\stm32f4xx_it.o: ..\BSP\usart.h
+.\objects\stm32f4xx_it.o: ..\BSP\timer.h
+.\objects\stm32f4xx_it.o: ..\BSP\gouble.h
 .\objects\stm32f4xx_it.o: ..\BSP\dma.h
 .\objects\stm32f4xx_it.o: ..\BSP\spi.h
 .\objects\stm32f4xx_it.o: ..\BSP\dac.h
@@ -71,7 +73,6 @@
 .\objects\stm32f4xx_it.o: ..\UCOSIII\uCOS_BSP\bsp.h
 .\objects\stm32f4xx_it.o: ..\UCOSIII\uCOS_CONFIG\os_cfg_app.h
 .\objects\stm32f4xx_it.o: ..\DEVICE\system.h
-.\objects\stm32f4xx_it.o: ..\BSP\gouble.h
 .\objects\stm32f4xx_it.o: ..\DEVICE\tmp468.h
 .\objects\stm32f4xx_it.o: ..\DEVICE\adt7302.h
 .\objects\stm32f4xx_it.o: ..\DEVICE\emc2305.h
@@ -100,3 +101,5 @@
 .\objects\stm32f4xx_it.o: ..\APP\app_timer.h
 .\objects\stm32f4xx_it.o: ..\APP\app_adjvol.h
 .\objects\stm32f4xx_it.o: ..\APP\app_sysonoff.h
+.\objects\stm32f4xx_it.o: ..\APP\app_temperature.h
+.\objects\stm32f4xx_it.o: ..\APP\app_adc.h

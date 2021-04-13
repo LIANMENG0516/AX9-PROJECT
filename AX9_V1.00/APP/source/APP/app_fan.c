@@ -12,8 +12,8 @@ void App_Fan_Task()
 
 	while(1)
 	{		
-        //Fan_Emc2305_Control();
-		OSTimeDlyHMSM(0, 0, 0, 50, OS_OPT_TIME_PERIODIC, &err);
+        Fan_Emc2305_Control();
+		OSTimeDlyHMSM(0, 0, 2, 0, OS_OPT_TIME_PERIODIC, &err);
 	}
 }
 

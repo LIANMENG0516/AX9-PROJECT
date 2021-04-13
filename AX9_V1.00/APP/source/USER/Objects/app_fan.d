@@ -44,6 +44,8 @@
 .\objects\app_fan.o: ..\BSP\nvic.h
 .\objects\app_fan.o: ..\BSP\systick.h
 .\objects\app_fan.o: ..\BSP\usart.h
+.\objects\app_fan.o: ..\BSP\timer.h
+.\objects\app_fan.o: ..\BSP\gouble.h
 .\objects\app_fan.o: ..\BSP\dma.h
 .\objects\app_fan.o: ..\BSP\spi.h
 .\objects\app_fan.o: ..\BSP\dac.h
@@ -71,7 +73,6 @@
 .\objects\app_fan.o: ..\UCOSIII\uCOS_BSP\bsp.h
 .\objects\app_fan.o: ..\UCOSIII\uCOS_CONFIG\os_cfg_app.h
 .\objects\app_fan.o: ..\DEVICE\system.h
-.\objects\app_fan.o: ..\BSP\gouble.h
 .\objects\app_fan.o: ..\DEVICE\tmp468.h
 .\objects\app_fan.o: ..\DEVICE\adt7302.h
 .\objects\app_fan.o: ..\DEVICE\emc2305.h
@@ -100,3 +101,5 @@
 .\objects\app_fan.o: ..\APP\app_timer.h
 .\objects\app_fan.o: ..\APP\app_adjvol.h
 .\objects\app_fan.o: ..\APP\app_sysonoff.h
+.\objects\app_fan.o: ..\APP\app_temperature.h
+.\objects\app_fan.o: ..\APP\app_adc.h

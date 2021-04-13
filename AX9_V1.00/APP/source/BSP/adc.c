@@ -68,13 +68,16 @@ uint16_t Adc3_ReadConvertValue(uint8_t sample_sequence)
 	return sum;
 }
 
-void Adc3_V_GetVoltage()
+void Adc3_GetAdjVoltage()
 {      
 	SysMsg.AdjVol.R_VPP1 = (uint32_t)(((Adc3_ReadConvertValue(SAMPLE_VPP1_SEQUENCE) * 3.3 / 4095) / 4.22 * (100 + 4.22)) * 100);
 	SysMsg.AdjVol.R_VNN1 = (uint32_t)(((((3.3 - (Adc3_ReadConvertValue(SAMPLE_VNN1_SEQUENCE) * 3.3 / 4095)) / 2.67) * (2.67 + 100)) - 3.3) * 100);
 	SysMsg.AdjVol.R_VPP2 = (uint32_t)(((Adc3_ReadConvertValue(SAMPLE_VPP2_SEQUENCE) * 3.3 / 4095) / 4.22 * (100 + 4.22)) * 100);
 	SysMsg.AdjVol.R_VNN2 = (uint32_t)(((((3.3 - (Adc3_ReadConvertValue(SAMPLE_VNN2_SEQUENCE) * 3.3 / 4095)) / 2.67) * (2.67 + 100)) - 3.3) * 100);
-	
+}
+
+void Adc3_GetFixVoltage()
+{      
     SysMsg.AdjVol.R_A3V75 = (uint32_t)(((Adc3_ReadConvertValue(SAMPLE_A3V75_SEQUENCE) * 3.3 / 4095) / 15 * (15 + 24.9)) * 100);
     SysMsg.AdjVol.R_A2V25 = (uint32_t)(((Adc3_ReadConvertValue(SAMPLE_A2V25_SEQUENCE) * 3.3 / 4095) / 15 * (15 + 24.9)) * 100);   
     SysMsg.AdjVol.R_AP12V = (uint32_t)(((Adc3_ReadConvertValue(SAMPLE_AP12V_SEQUENCE) * 3.3 / 4095) / 4.99 * (4.99 + 24.9)) * 100);   
@@ -122,13 +125,13 @@ uint16_t Adc1_ReadConvertValue(uint8_t sample_sequence)
 	return sum;
 }
 
-void Adc1_T_GetVoltage()
+void Adc1_GetMcuInternalTemperature()
 {
     SysMsg.Temperature.USPB = (uint8_t)(((Adc1_ReadConvertValue(SAMPLE_TEMP_SEQUENCE) * 3.3 / 4095) - 0.76) / 0.0025 + 25);
 }
 
 
-void Adc1_V_GetVoltage()
+void Adc1_GetOverCurrentVoltage()
 {
     SysMsg.AdjVol.R_IADP = (uint16_t)((Adc1_ReadConvertValue(SAMPLE_IADP_SEQUENCE) * 3.3 / 4095) * 100 + 0.5);
 }

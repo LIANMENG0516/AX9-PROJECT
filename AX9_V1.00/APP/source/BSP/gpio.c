@@ -41,6 +41,10 @@ void Gpio_Config()
 
     //BAT2_SMBUS_C
     Gpio_Init(BAT2_SMBUS_C_PORT, BAT2_SMBUS_C_PIN, GPIO_Mode_OUT, GPIO_OType_PP, GPIO_PuPd_NOPULL);
+    
+    //USB_CTRL
+    Gpio_Init(USB_CTRL_PORT, USB_CTRL_PIN, GPIO_Mode_OUT, GPIO_OType_PP, GPIO_PuPd_NOPULL);
+    GPIO_ResetBits(USB_CTRL_PORT, USB_CTRL_PIN);
 
     //SPI3_CS3  
     Gpio_Init(SPI3_CS3_PORT, SPI3_CS3_PIN, GPIO_Mode_OUT, GPIO_OType_PP, GPIO_PuPd_UP);    

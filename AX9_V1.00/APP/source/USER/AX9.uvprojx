@@ -437,6 +437,11 @@
               <FileType>1</FileType>
               <FilePath>..\APP\app_sysonoff.c</FilePath>
             </File>
+            <File>
+              <FileName>app_temperature.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\APP\app_temperature.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -551,6 +556,11 @@
               <FileName>iic.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\BSP\iic.c</FilePath>
+            </File>
+            <File>
+              <FileName>timer.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\BSP\timer.c</FilePath>
             </File>
           </Files>
         </Group>
