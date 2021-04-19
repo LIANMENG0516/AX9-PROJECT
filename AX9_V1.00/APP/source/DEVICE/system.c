@@ -44,7 +44,6 @@ void SystemStateInit()
     SysMsg.S3Minitor                  = FALSE;
 }
 
-
 void Delay_Nop(uint16_t count)
 {
     while(--count);

@@ -81,9 +81,16 @@ void App_Com_Task()
                 SenFrameCmd.Data[5] = SysMsg.AdjVol.R_VPP2;
                 SenFrameCmd.Data[6] = SysMsg.AdjVol.R_VNN2 >> 8;
                 SenFrameCmd.Data[7] = SysMsg.AdjVol.R_VNN2;
+                SenFrameCmd.Data[6] = SysMsg.AdjVol.R_VNN2 >> 8;
+                SenFrameCmd.Data[7] = SysMsg.AdjVol.R_VNN2;
+                SenFrameCmd.Data[8] = SysMsg.AdjVol.Time >> 8;
+                SenFrameCmd.Data[9] = SysMsg.AdjVol.Time;
                 
                 FrameCmdPackage(DebugComTX.Data);
                 Send_CmdPackage(DEBUG_COM_DMAY_STREAMX_TX); 
+                
+                SysMsg.AdjVol.TimeFlag = FALSE;
+                SysMsg.AdjVol.Time = 0;
 
                 #endif
                 
@@ -107,9 +114,14 @@ void App_Com_Task()
                 SenFrameCmd.Data[5] = SysMsg.AdjVol.R_VPP2;
                 SenFrameCmd.Data[6] = SysMsg.AdjVol.R_VNN2 >> 8;
                 SenFrameCmd.Data[7] = SysMsg.AdjVol.R_VNN2;
+                SenFrameCmd.Data[8] = SysMsg.AdjVol.Time >> 8;
+                SenFrameCmd.Data[9] = SysMsg.AdjVol.Time;
                 
                 FrameCmdPackage(DebugComTX.Data);
                 Send_CmdPackage(DEBUG_COM_DMAY_STREAMX_TX);
+                
+                SysMsg.AdjVol.TimeFlag = FALSE;
+                SysMsg.AdjVol.Time = 0;
                 
                 #endif
                 
@@ -134,9 +146,14 @@ void App_Com_Task()
                 SenFrameCmd.Data[5] = SysMsg.AdjVol.R_VPP2;
                 SenFrameCmd.Data[6] = SysMsg.AdjVol.R_VNN2 >> 8;
                 SenFrameCmd.Data[7] = SysMsg.AdjVol.R_VNN2;
+                SenFrameCmd.Data[8] = SysMsg.AdjVol.Time >> 8;
+                SenFrameCmd.Data[9] = SysMsg.AdjVol.Time;
                 
                 FrameCmdPackage(DebugComTX.Data);
                 Send_CmdPackage(DEBUG_COM_DMAY_STREAMX_TX);
+                
+                SysMsg.AdjVol.TimeFlag = FALSE;
+                SysMsg.AdjVol.Time = 0;
                 
                 #endif
 

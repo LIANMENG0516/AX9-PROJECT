@@ -12,8 +12,8 @@ void SMDAT_2305_OUT()
     GPIO_InitStruct.GPIO_Pin = GPIO_Pin_7;
 	GPIO_InitStruct.GPIO_Mode = GPIO_Mode_OUT;				
 	GPIO_InitStruct.GPIO_Speed = GPIO_High_Speed;		
-	GPIO_InitStruct.GPIO_OType = GPIO_OType_PP;				
-	GPIO_InitStruct.GPIO_PuPd = GPIO_PuPd_UP;			
+	GPIO_InitStruct.GPIO_OType = GPIO_OType_OD;				
+	GPIO_InitStruct.GPIO_PuPd = GPIO_PuPd_NOPULL;			
 	GPIO_Init(GPIOB, &GPIO_InitStruct);	
 }
 
@@ -27,7 +27,7 @@ void SMDAT_2305_IN()
 	GPIO_InitStruct.GPIO_Mode = GPIO_Mode_IN;				
 	GPIO_InitStruct.GPIO_Speed = GPIO_High_Speed;		
 	GPIO_InitStruct.GPIO_OType = GPIO_OType_PP;				
-	GPIO_InitStruct.GPIO_PuPd = GPIO_PuPd_UP;			
+	GPIO_InitStruct.GPIO_PuPd = GPIO_PuPd_NOPULL;			
 	GPIO_Init(GPIOB, &GPIO_InitStruct);	
 }
 
@@ -35,12 +35,13 @@ void I2c_Emc_Start()
 {
 	SMDAT_2305_OUT();
 	SMCLK_2305_1();
+    Delay_Nop(10);
 	SMDAT_2305_1();
-	Delay_Nop(200);
+	Delay_Nop(10);
 	SMDAT_2305_0();
-	Delay_Nop(200);
+	Delay_Nop(10);
 	SMCLK_2305_0();
-	Delay_Nop(200);
+	Delay_Nop(10);
 }
 
 void I2c_Emc_Stop()
@@ -48,18 +49,17 @@ void I2c_Emc_Stop()
 	SMDAT_2305_OUT();
 	SMCLK_2305_0();
 	SMDAT_2305_0();
-	Delay_Nop(200);
+	Delay_Nop(10);
 	SMCLK_2305_1();
-	Delay_Nop(200);
+	Delay_Nop(10);
 	SMDAT_2305_1();
-	Delay_Nop(200);
+	Delay_Nop(10);
 }
 
 void I2c_Emc_SendByte(unsigned char data)
 {	
 	SMDAT_2305_OUT();
 
-	Delay_Nop(200);
 	for(uint8_t mask=0x80; mask!=0; mask>>=1)
 	{
 		if((mask&data) == 0)
@@ -70,11 +70,11 @@ void I2c_Emc_SendByte(unsigned char data)
 		{
 			SMDAT_2305_1();
 		}
-		Delay_Nop(200);
+		Delay_Nop(10);
 		SMCLK_2305_1();
-		Delay_Nop(200);
+		Delay_Nop(10);
 		SMCLK_2305_0();
-		Delay_Nop(200);
+        Delay_Nop(10);
 	}
 }
 
@@ -95,20 +95,22 @@ uint8_t I2c_Emc_ReadByte()
 		{
 			data |= mask;
 		}
-		Delay_Nop(200);
+		Delay_Nop(10);
 		SMCLK_2305_1();
-		Delay_Nop(200);
+		Delay_Nop(10);
 		SMCLK_2305_0();
-		Delay_Nop(200);
+		Delay_Nop(10);
 	}
 	return data;
 }
 
 uint8_t I2c_Emc_WaitAck()
 {
-	uint16_t startCnt = 5000;
-	
+	uint16_t startCnt = 2000;
+
 	SMDAT_2305_IN();
+    
+    Delay_Nop(5);
 	
 	while(SMDAT_2305_READ())
 	{
@@ -119,9 +121,9 @@ uint8_t I2c_Emc_WaitAck()
 	}
 	
 	SMCLK_2305_1();
-	Delay_Nop(200);    
+	Delay_Nop(10);    
 	SMCLK_2305_0();
-	Delay_Nop(200);
+	Delay_Nop(10);
 	return 0;
 }
 
@@ -130,31 +132,31 @@ void I2c_Emc_SendAck()
 	SMDAT_2305_OUT();
     
 	SMCLK_2305_0();
-	Delay_Nop(200);
+	Delay_Nop(10);
 	SMDAT_2305_0();
-	Delay_Nop(200);
+	Delay_Nop(10);
 	SMCLK_2305_1();
-	Delay_Nop(200);
+	Delay_Nop(10);
 	SMCLK_2305_0();
-	Delay_Nop(200);
+	Delay_Nop(10);
 }
 
 void I2c_Emc_SendNack()
 {
 	SMDAT_2305_OUT();
 	SMCLK_2305_0();
-	Delay_Nop(200);
+	Delay_Nop(10);
 	SMDAT_2305_1();
-	Delay_Nop(200);
+	Delay_Nop(10);
 	SMCLK_2305_1();
-	Delay_Nop(200);
+	Delay_Nop(10);
 	SMCLK_2305_0();
-	Delay_Nop(200);
+	Delay_Nop(10);
 }
 
 void Emc2305_WriteByte(uint8_t id, uint8_t addr, uint8_t val)
-{
-    I2c_Emc_Start();
+{    
+    I2c_Emc_Start();    
     I2c_Emc_SendByte((id << 1) & 0xFE);     //发送器件地址, 写地址
     if(I2c_Emc_WaitAck())
     {
@@ -210,6 +212,7 @@ void Emc2305_ReadByte(uint8_t id, uint8_t addr, uint8_t *buffer)
     {
         DEBUG_PRINTF(DEBUG_STRING, "IIC ERROR \r\n");
     }
+    I2c_Emc_Start();
     I2c_Emc_SendByte((id << 1) | 0x01);     //发送器件地址, 读地址
     if(I2c_Emc_WaitAck())
     {
@@ -235,6 +238,7 @@ void Emc2305_ReadData(uint8_t id, uint8_t addr, uint8_t *buffer, uint8_t len)
     {
         DEBUG_PRINTF(DEBUG_STRING, "IIC ERROR \r\n");
     }
+    I2c_Emc_Start();
     I2c_Emc_SendByte((id << 1) | 0x01);     //发送器件地址, 读地址
     if(I2c_Emc_WaitAck())
     {
@@ -242,7 +246,7 @@ void Emc2305_ReadData(uint8_t id, uint8_t addr, uint8_t *buffer, uint8_t len)
     }
     do
     {
-        Delay_Nop(200);
+        Delay_Nop(10);
         *buffer++ = I2c_Emc_ReadByte();
         if(++i==len)
         {

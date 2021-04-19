@@ -17,16 +17,19 @@ typedef enum {FALSE = 0, TRUE = !FALSE} bool;
 
 typedef struct
 {    
-    bool     Adj_HV;
-    bool     Adj_CW;
+    bool        TimeFlag;
+    uint16_t    Time;
     
-    bool     HV_Minitor;
-    bool     CW_Minitor;
+    bool        Adj_HV;
+    bool        Adj_CW;
     
-    uint16_t T_VPP1;
-    uint16_t T_VNN1;
-    uint16_t T_VPP2;
-    uint16_t T_VNN2;
+    bool        HV_Minitor;
+    bool        CW_Minitor;
+    
+    uint16_t    T_VPP1;
+    uint16_t    T_VNN1;
+    uint16_t    T_VPP2;
+    uint16_t    T_VNN2;
 
     uint16_t MAX_VPP1;
     uint16_t MIN_VPP1;
@@ -56,8 +59,6 @@ typedef struct
     uint16_t R_D1V45;   
     
     uint16_t R_IADP;
-    
-    uint16_t Time;
 }Ad_VolStruct;
 
 typedef struct

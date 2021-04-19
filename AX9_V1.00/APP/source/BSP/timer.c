@@ -32,7 +32,10 @@ void TimerConfig()
 
 void  TIM2_IRQHandler_CallBack()
 {
-    SysMsg.AdjVol.Time++;
+    if(SysMsg.AdjVol.TimeFlag == TRUE)
+    {
+        SysMsg.AdjVol.Time++;
+    }
 }
 
 

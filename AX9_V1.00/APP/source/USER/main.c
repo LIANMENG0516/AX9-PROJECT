@@ -10,12 +10,12 @@
 int main()
 {
 	OS_ERR err;
-	CPU_SR_ALLOC();
-	
-	Board_Bsp_Init();
     
+	CPU_SR_ALLOC();
+    
+    Board_Bsp_Init();
     SystemStateInit();
-	
+
 	OSInit(&err);
 	OS_CRITICAL_ENTER();
 	

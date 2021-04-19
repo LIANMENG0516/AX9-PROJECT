@@ -7,8 +7,8 @@ static void Gpio_Init(GPIO_TypeDef* GPIOx, uint16_t Gpio_Pin, GPIOMode_TypeDef G
     GPIO_InitStruct.GPIO_Pin = Gpio_Pin;
 	GPIO_InitStruct.GPIO_Mode = GPIO_Mode;				
 	GPIO_InitStruct.GPIO_Speed = GPIO_High_Speed;		
-	GPIO_InitStruct.GPIO_OType = GPIO_OType_PP;				
-	GPIO_InitStruct.GPIO_PuPd = GPIO_PuPd_UP;			
+	GPIO_InitStruct.GPIO_OType = GPIO_OType;				
+	GPIO_InitStruct.GPIO_PuPd = GPIO_PuPd;			
 	GPIO_Init(GPIOx, &GPIO_InitStruct);	
 }
 
@@ -50,10 +50,10 @@ void Gpio_Config()
     Gpio_Init(SPI3_CS3_PORT, SPI3_CS3_PIN, GPIO_Mode_OUT, GPIO_OType_PP, GPIO_PuPd_UP);    
     
     //SMCLK_2305
-    Gpio_Init(SMCLK_2305_PORT, SMCLK_2305_PIN, GPIO_Mode_OUT, GPIO_OType_PP, GPIO_PuPd_UP);
-
+    Gpio_Init(SMCLK_2305_PORT, SMCLK_2305_PIN, GPIO_Mode_OUT, GPIO_OType_OD, GPIO_PuPd_NOPULL);
+    
     //SMDAT_2305
-    Gpio_Init(SMDAT_2305_PORT, SMDAT_2305_PIN, GPIO_Mode_OUT, GPIO_OType_OD, GPIO_PuPd_UP);
+    Gpio_Init(SMDAT_2305_PORT, SMDAT_2305_PIN, GPIO_Mode_OUT, GPIO_OType_OD, GPIO_PuPd_NOPULL);
     
     //IIC1_SCK
     Gpio_Init(IIC1_SCK_PORT, IIC1_SCK_PIN, GPIO_Mode_OUT, GPIO_OType_PP, GPIO_PuPd_UP);
