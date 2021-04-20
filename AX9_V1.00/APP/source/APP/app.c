@@ -27,7 +27,7 @@ void App_Start_Task()
 		OSSchedRoundRobinCfg(DEF_ENABLED, 1, &err); 								//使能时间片轮转调度功能,时间片长度为1个系统时钟节拍，既1*5=5ms 
 	#endif	
 	
-	OS_CRITICAL_ENTER();															//进入临界区
+	OS_CRITICAL_ENTER();															//进入临界区  
     
 	App_Led_TaskCreate();
 	App_Usb_TaskCreate();

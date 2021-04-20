@@ -10,18 +10,17 @@
 int main()
 {
 	OS_ERR err;
-    
 	CPU_SR_ALLOC();
     
     Board_Bsp_Init();
     SystemStateInit();
 
 	OSInit(&err);
-	OS_CRITICAL_ENTER();
-	
+    OS_CRITICAL_ENTER();
+    
 	App_Start_Task_Create();
-	
-	OS_CRITICAL_EXIT();
+    
+    OS_CRITICAL_EXIT();	
 	OSStart(&err);
 }
 
