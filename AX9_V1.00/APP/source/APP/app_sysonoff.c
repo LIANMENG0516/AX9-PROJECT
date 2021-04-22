@@ -63,6 +63,8 @@ void System_PowerOn(OS_ERR err)
         
         powerOnStep = 0;
         
+        Adjust_Cw_Reset();
+        
         SysMsg.SystemState = SYSTEM_ON;
     }
 }

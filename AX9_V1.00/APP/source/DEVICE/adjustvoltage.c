@@ -84,9 +84,16 @@ void Adjust_Voltage_Pcw_Ncw(uint16_t Pcw, uint16_t Ncw)
 
 void Adjust_Hv_Reset()
 {
-    Adjust_Voltage_Vpp1(VPP1_DAC_CLOSE);
-    Adjust_Voltage_Vpp2(VPP2_DAC_CLOSE);
+    DAC_SetChannel1Data(DAC_Align_12b_R, VPP1_DAC_CLOSE);                   //调节VPP1至目标值
+    DAC_SoftwareTriggerCmd(DAC_Channel_1, ENABLE);                          //软件触发DAC转换
+    
+    DAC_SetChannel2Data(DAC_Align_12b_R, VPP2_DAC_CLOSE);                   //调节VPP2至目标值
+    DAC_SoftwareTriggerCmd(DAC_Channel_2, ENABLE);                          //软件触发DAC转换
+    
     Adjust_Voltage_Vnn1_Vnn2(VNN1_DAC_CLOSE, VNN2_DAC_CLOSE); 
+    
+    CTL_VPP1_VNN1_EN(0);                                                    //关闭高压输出
+    CTL_VPP2_VNN2_EN(0);
 }
 
 void Adjust_Hv1_Reset()
@@ -103,7 +110,7 @@ void Adjust_Hv2_Reset()
 
 void Adjust_Cw_Reset()
 {
-    Adjust_Voltage_Pcw_Ncw(PCW_DAC_CLOSE, NCW_DAC_CLOSE);
+     Adjust_Voltage_Pcw_Ncw(PCW_DAC_CLOSE, PCW_DAC_CLOSE);
 }
 
 void Adjust_Voltage_HV()    //高压调压处理流程

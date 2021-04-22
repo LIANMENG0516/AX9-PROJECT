@@ -10,8 +10,8 @@
 #define HIGHSET_CW  500
 #define LOOWSET_CW  250
 
-#define PCW_DAC_CLOSE  0xFF
-#define NCW_DAC_CLOSE  0xFF
+#define PCW_DAC_CLOSE  0xFA
+#define NCW_DAC_CLOSE  0xFA
 #define VPP1_DAC_CLOSE 0xFFF
 #define VNN1_DAC_CLOSE 0xFF
 #define VPP2_DAC_CLOSE 0xFFF

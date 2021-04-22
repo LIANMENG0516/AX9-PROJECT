@@ -26,7 +26,7 @@ void App_Com_Task()
         if(ReceiveFrameAnalysis(&CommuComRX.Data[0], CommuComRX.Len) == SUCCESS)   //格式化并解析串口数据
         {
             SysMsg.Cmd.Channel = ECCOM_CHANNEL;
-            memset(CommuComTX.Data, 0, CommuComTX.Len);
+            memset(CommuComRX.Data, 0, CommuComRX.Len);
             Cmd_Process();                                                          //命令处理                                    
         }
 
@@ -189,7 +189,7 @@ void App_Com_Task()
         
         #endif
 
-		OSTimeDlyHMSM(0, 0, 0, 10, OS_OPT_TIME_PERIODIC, &err);
+		OSTimeDlyHMSM(0, 0, 0, 50, OS_OPT_TIME_PERIODIC, &err);
 	}
 }
 

@@ -27,7 +27,7 @@ typedef struct
 #define COMMU_COM_DMA_CHANNEL_RX        DMA_Channel_4
 #define COMMU_COM_DMA_CHANNEL_TX        DMA_Channel_4
 #define COMMU_COM_DMA_FLAG_TC_RX        DMA_FLAG_TCIF4
-#define COMMU_COM_DMA_IT_TC_TX          DMA_IT_TCIF4
+#define COMMU_COM_DMA_IT_TC_TX          DMA_IT_TCIF6
 
 void Usart_Init(USART_TypeDef* USARTx, uint32_t Baud_Rate);
 void Usart_Transmit_Char(USART_TypeDef* USARTx, uint8_t Data);

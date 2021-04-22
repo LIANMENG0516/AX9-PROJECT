@@ -47,8 +47,8 @@ void Commu_Com_Config()
 	USART_DMACmd(COMMU_COM, USART_DMAReq_Rx, ENABLE);								//开启USART_DMA接收通道
 	USART_DMACmd(COMMU_COM, USART_DMAReq_Tx, ENABLE);								//开启USART_DMA发送通道
     
-    Dma_Config(COMMU_COM_DMAY_STREAMX_RX, COMMU_COM_DMA_CHANNEL_RX, (uint32_t)&COMMU_COM->DR, (uint32_t)CommuComRX.Data, DMA_DIR_PeripheralToMemory, sizeof(CommuComRX.Data), DMA_PeripheralDataSize_Byte, DMA_MemoryDataSize_Byte, DMA_Mode_Circular, DMA_Priority_VeryHigh);      //配置DEBUG_COM_RX_DMA通道                                                                     
-    Dma_Config(COMMU_COM_DMAY_STREAMX_TX, COMMU_COM_DMA_CHANNEL_TX, (uint32_t)&COMMU_COM->DR, (uint32_t)CommuComTX.Data, DMA_DIR_MemoryToPeripheral, sizeof(CommuComTX.Data), DMA_PeripheralDataSize_Byte, DMA_MemoryDataSize_Byte, DMA_Mode_Circular, DMA_Priority_VeryHigh);      //配置DEBUG_COM_TX_DMA通道  
+    Dma_Config(COMMU_COM_DMAY_STREAMX_RX, COMMU_COM_DMA_CHANNEL_RX, (uint32_t)&COMMU_COM->DR, (uint32_t)&CommuComRX.Data[0], DMA_DIR_PeripheralToMemory, sizeof(RcvData), DMA_PeripheralDataSize_Byte, DMA_MemoryDataSize_Byte, DMA_Mode_Circular, DMA_Priority_VeryHigh);      //配置DEBUG_COM_RX_DMA通道                                                                     
+    Dma_Config(COMMU_COM_DMAY_STREAMX_TX, COMMU_COM_DMA_CHANNEL_TX, (uint32_t)&COMMU_COM->DR, (uint32_t)&CommuComTX.Data[0], DMA_DIR_MemoryToPeripheral, sizeof(SenData), DMA_PeripheralDataSize_Byte, DMA_MemoryDataSize_Byte, DMA_Mode_Circular, DMA_Priority_VeryHigh);      //配置DEBUG_COM_TX_DMA通道  
     
     DMA_Cmd(COMMU_COM_DMAY_STREAMX_RX, ENABLE);                                      //使能DMA接收
 	DMA_Cmd(COMMU_COM_DMAY_STREAMX_TX, DISABLE);                                     //关闭DMA发送
@@ -129,7 +129,7 @@ void Board_Bsp_Init()
 	SysTick_Iint();
     
     Commu_Com_Config();                     //通讯串口初始化--与EC通讯
-    Debug_Com_Config();                     //调试串口初始化
+    //Debug_Com_Config();                     //调试串口初始化
     
     Spi_Dac_Config();
     Adjust_Hv_Reset();

@@ -124,7 +124,7 @@ void Get_AdjCw_Msg()
     SysMsg.AdjVol.Adj_CW = TRUE;
     Calc_TarVol_AlowRange(); 
     Adjust_Voltage_CW();                            //执行低压调压处理
-    SysMsg.AdjVol.CW_Minitor= TRUE;                 //处理完成打开低压监控
+    SysMsg.AdjVol.CW_Minitor = TRUE;                 //处理完成打开低压监控
 }
 
 void Get_Voltage_Msg()
