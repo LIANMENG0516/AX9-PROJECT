@@ -38,14 +38,13 @@ void App_Com_Task()
             
                 SenFrameCmd.Cid = CMD_EC_COMMUNICATE;
                 
-                SenFrameCmd.Len = 31;
+                SenFrameCmd.Len = 49;
                 SenFrameCmd.Data = Ec_Info;
                 
                 FrameCmdPackage(CommuComTX.Data);
                 Send_CmdPackage(COMMU_COM_DMAY_STREAMX_TX);
             }
         }
-        
         
         #if USE_DEBUG
         
