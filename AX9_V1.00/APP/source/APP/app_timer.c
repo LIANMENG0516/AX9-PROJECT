@@ -6,7 +6,7 @@ void cb_Sys_StateChk_Tmr(void *p_tmr, void *p_arg)
 {
     static uint8_t startCnt = 0;
     
-    System_PwrKey_Minitor();
+    //System_PwrKey_Minitor();
 
 
     Adc3_GetAdjVoltage();

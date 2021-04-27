@@ -52,37 +52,41 @@ void Delay_Nop(uint16_t count)
 
 bool System_PwrKey_Minitor()	
 {	
-	bool stateFlag = FALSE;
+	bool stateChange = FALSE;
 	static uint16_t startCnt = 0;
-	static bool stateNow = FALSE;
+	static bool stateNow = FALSE, stateOld = FALSE;
 		
 	stateNow = PWR_KEY_CHK() ? TRUE : FALSE;
-
-	if(stateNow == TRUE  && ++startCnt)						
-	{	
-		if((SysMsg.SystemState == SYSTEM_OFF) && startCnt >= 60)   //在关机状态下按下按键执行开机	
+    
+    if(stateOld != stateNow && ++startCnt>=60)
+    {
+        startCnt = 0;
+        SysMsg.KeyState = stateOld = stateNow;
+        
+        if(SysMsg.SystemState == SYSTEM_OFF)   //在关机状态下按下按键执行开机	
 		{
-            startCnt = 60;
             SysMsg.PowerOnReq = TRUE;
-			stateFlag = TRUE;
-
 		}
-		if((SysMsg.SystemState == SYSTEM_ON) && startCnt >= 400)                     //在开机状态下按下按键发送关机请求, 使屏幕弹出关机对话框							
+        if(SysMsg.SystemState == SYSTEM_ON)    //在开机状态下按下按键发送关机请求, 使屏幕弹出关机对话框							
 		{
-			startCnt = 400;
             SysMsg.ShutDownReq = TRUE;
-			stateFlag = TRUE;
 		}
-	}
-	if(stateNow == FALSE)				//按键松开
-	{
-		startCnt = 0;
-	}
+        
+        stateChange = TRUE;
+    }
+    if(stateNow == FALSE)
+    {
+        startCnt = 0;
+        SysMsg.PowerOnReq = FALSE;
+        SysMsg.ShutDownReq = FALSE;
+        SysMsg.KeyState = FALSE;
+        stateNow = stateOld = FALSE;
+    }
 
-	return stateFlag;
+	return stateChange;
 }
 
-void System_S3_State_Minitor()
+bool System_S3_State_Minitor()
 {  
     OS_ERR err;
     
@@ -97,7 +101,7 @@ void System_S3_State_Minitor()
     if((stateNow != stateOld) && (++startCnt >= 1)) 
     {
         startCnt = 0;
-        stateOld = stateNow;
+        SysMsg.S3_State = stateOld = stateNow;
         s3StateChanged = TRUE;
         SysMsg.System_S3_Change = TRUE;
     }
@@ -105,75 +109,8 @@ void System_S3_State_Minitor()
     {
         startCnt = 0;
     }
-    
-    if(s3StateChanged == TRUE)
-    {
-        if(stateNow == TRUE)
-        {
-            OSTimeDly(2, OS_OPT_TIME_DLY, &err);
-            CTL_P12V_EN(1);
-            OSTimeDly(20, OS_OPT_TIME_DLY, &err);
-            CTL_N12V_5V5_EN(1);
-            OSTimeDly(20, OS_OPT_TIME_DLY, &err);
-            CTL_P5V5_1_EN(1);
-            OSTimeDly(20, OS_OPT_TIME_DLY, &err);
-            CTL_P5V5_2_EN(1);
-            OSTimeDly(20, OS_OPT_TIME_DLY, &err);
-            CTL_P3V75_EN(1);
-            CTL_P2V25_EN(1);
-            OSTimeDly(20, OS_OPT_TIME_DLY, &err);
-            CTL_D0V95_EN(1);
-            OSTimeDly(15, OS_OPT_TIME_DLY, &err);
-            CTL_VDD_P5V_EN(1);
-            CTL_D1V45_EN(1);
-            EN_FRONT(1);
-            EN_FPGA_01(1); 
-            AFE_EN1(1);
-            OSTimeDly(15, OS_OPT_TIME_DLY, &err);
-            EN_FPGA_02(1);
-            AFE_EN2(1);
-        }
-        else
-        {
-            OSTimeDly(2, OS_OPT_TIME_DLY, &err);
-            CTL_P12V_EN(1);
-            OSTimeDly(20, OS_OPT_TIME_DLY, &err);
-            CTL_N12V_5V5_EN(1);
-            OSTimeDly(20, OS_OPT_TIME_DLY, &err);
-            CTL_P5V5_1_EN(1);
-            OSTimeDly(20, OS_OPT_TIME_DLY, &err);
-            CTL_P5V5_2_EN(1);
-            OSTimeDly(20, OS_OPT_TIME_DLY, &err);
-            CTL_P3V75_EN(1);
-            CTL_P2V25_EN(1);
-            OSTimeDly(20, OS_OPT_TIME_DLY, &err);
-            CTL_D0V95_EN(1);
-            OSTimeDly(15, OS_OPT_TIME_DLY, &err);
-            CTL_VDD_P5V_EN(1);
-            CTL_D1V45_EN(1);
-            EN_FRONT(1);
-            EN_FPGA_01(1); 
-            AFE_EN1(1);
-            OSTimeDly(15, OS_OPT_TIME_DLY, &err);
-            EN_FPGA_02(1);
-            AFE_EN2(1);
-        }
-    }
+    return s3StateChanged;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 bool System_S4_State_Minitor()
 {  

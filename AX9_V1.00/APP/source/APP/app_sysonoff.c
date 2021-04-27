@@ -126,45 +126,119 @@ void System_ShutDown(OS_ERR err)
 
 
 
+void PowerOn_Sequence()
+{
+    OS_ERR err;
+    PWR_CTL(1);
+    PBUS_ON(1);
+    OSTimeDly(2, OS_OPT_TIME_DLY, &err);
+    CTL_P12V_EN(1);
+    OSTimeDly(20, OS_OPT_TIME_DLY, &err);
+    CTL_N12V_5V5_EN(1);
+    OSTimeDly(20, OS_OPT_TIME_DLY, &err);
+    CTL_P5V5_1_EN(1);
+    OSTimeDly(20, OS_OPT_TIME_DLY, &err);
+    CTL_P5V5_2_EN(1);
+    OSTimeDly(20, OS_OPT_TIME_DLY, &err);
+    CTL_P3V75_EN(1);
+    CTL_P2V25_EN(1);
+    OSTimeDly(20, OS_OPT_TIME_DLY, &err);
+    CTL_D0V95_EN(1);
+    OSTimeDly(15, OS_OPT_TIME_DLY, &err);
+    CTL_VDD_P5V_EN(1);
+    CTL_D1V45_EN(1);
+    OSTimeDly(15, OS_OPT_TIME_DLY, &err);
+    EN_FRONT(1);
+    EN_FPGA_01(1); 
+    AFE_EN1(1);
+    OSTimeDly(15, OS_OPT_TIME_DLY, &err);
+    EN_FPGA_02(1);
+    AFE_EN2(1);
+}
 
-
-
-
+void PowerDown_Sequence()
+{
+    OS_ERR err;
+    
+    TX7516_EN(0);
+    PWR_OK_COM(0);
+    OSTimeDly(200, OS_OPT_TIME_DLY, &err);
+    AFE_EN2(0);
+    EN_FPGA_02(0);
+    AFE_EN1(0);
+    EN_FPGA_01(0);
+    EN_FRONT(0);
+    CTL_D1V45_EN(0);
+    CTL_VDD_P5V_EN(0);
+    CTL_D0V95_EN(0);
+    CTL_P2V25_EN(0);
+    CTL_P3V75_EN(0);
+    CTL_P5V5_2_EN(0);
+    CTL_P5V5_1_EN(0);
+    CTL_N12V_5V5_EN(0);
+    CTL_P12V_EN(0);
+}
 
 void System_OnOffCtrl()
 {
     OS_ERR err;
 
-    if(SysMsg.SystemState == SYSTEM_OFF)
+    bool Pwr_OnSequence = FALSE;                                                    //上电时序完成标志
+
+    if(System_PwrKey_Minitor() == TRUE && SysMsg.KeyState == TRUE)                 //按键按下
     {
-        PWR_CTL(1);
-        PBUS_ON(1);
-        PWR_BTN_COM(0);
-        OSTimeDly(100, OS_OPT_TIME_DLY, &err);
+        if(SysMsg.PowerOnReq == TRUE)                                               //开机请求
+        {
+            SysMsg.PowerOnReq = FALSE;
+            PWR_BTN_COM(0);
+            OSTimeDly(100, OS_OPT_TIME_DLY, &err);
+        }
+        
+        if(SysMsg.ShutDownReq == TRUE && SysMsg.KeyState == TRUE)                  //关机请求
+        {
+            SysMsg.ShutDownReq = FALSE;
+            PWR_BTN_COM(0);
+            OSTimeDly(100, OS_OPT_TIME_DLY, &err);
+        }
+    }
+    
+    if(SysMsg.KeyState == FALSE)
+    {
         PWR_BTN_COM(1);
-        SysMsg.S3Minitor = TRUE;  
     }
     else
     {
         PWR_BTN_COM(0);
-        OSTimeDly(100, OS_OPT_TIME_DLY, &err);
-        PWR_BTN_COM(1);
     }
-    if(SysMsg.S3Minitor == TRUE)
+
+    System_S3_State_Minitor();
+    if(SysMsg.System_S3_Change == TRUE)
     {
-        System_S3_State_Minitor();
+        if(SysMsg.S3_State == TRUE)
+        {
+            
+            PowerOn_Sequence();
+            Pwr_OnSequence = TRUE;
+        }
+        else
+        {
+            PowerDown_Sequence();
+        }
     }
-    if(SysMsg.SystemState == SYSTEM_OFF)
+    
+    if(Pwr_OnSequence == TRUE)
     {
+        Pwr_OnSequence = FALSE;
         if(!FPGA_CFG_DOWN_CHK())
         {
             OSTimeDly(3000, OS_OPT_TIME_DLY, &err);
         }
         PWR_OK_COM(1);
+        TX7516_EN(1);
 
         SysMsg.SystemState = SYSTEM_ON;
     }
-
+    
     if(SysMsg.SystemState == SYSTEM_ON)
     {
         if(FPGA_CFG_DOWN_CHK() == FALSE)
@@ -176,17 +250,101 @@ void System_OnOffCtrl()
     }
 }
 
+void System_OnCtrl()
+{
+    OS_ERR err;
+    
+    bool Pwr_OnSequence = FALSE; 
+    
+    if(SysMsg.SystemState == SYSTEM_OFF)
+    {
+        if(System_PwrKey_Minitor() == TRUE && SysMsg.KeyState == TRUE)                 //按键按下
+        {
+            if(SysMsg.PowerOnReq == TRUE)                                              //开机请求
+            {
+                SysMsg.PowerOnReq = FALSE;
+                PWR_BTN_COM(0);
+                OSTimeDly(150, OS_OPT_TIME_DLY, &err);
+                PWR_BTN_COM(1);
+            }
+        }
+        
+        if(System_S3_State_Minitor() == TRUE)
+        {
+            if(SysMsg.S3_State == TRUE)
+            {
+                PowerOn_Sequence();
+                Pwr_OnSequence = TRUE;
+            }
+            else
+            {
+                PowerDown_Sequence();
+            }
+        }
+        
+        if(Pwr_OnSequence == TRUE)
+        {
+            Pwr_OnSequence = FALSE;
+            if(!FPGA_CFG_DOWN_CHK())
+            {
+                OSTimeDly(3000, OS_OPT_TIME_DLY, &err);
+            }
+            PWR_OK_COM(1);
+            TX7516_EN(1);
+
+            SysMsg.SystemState = SYSTEM_ON;
+        }
+    }
+}
+
+void System_OffCtrl()
+{
+    OS_ERR err;
+    
+    if(SysMsg.SystemState == SYSTEM_ON)
+    {
+        if(System_PwrKey_Minitor() == TRUE && SysMsg.KeyState == TRUE)                  //按键按下
+        {
+            if(SysMsg.ShutDownReq == TRUE)                                              //关机请求
+            {
+                SysMsg.ShutDownReq = FALSE;
+                PWR_BTN_COM(0);
+            }
+        }
+        
+        if(SysMsg.KeyState == FALSE)
+        {
+            PWR_BTN_COM(1);
+        }
+        else
+        {
+            PWR_BTN_COM(0);
+        }
+            
+        if(System_S3_State_Minitor() == TRUE)
+        {
+            if(SysMsg.S3_State == TRUE)
+            {
+                PowerOn_Sequence();
+            }
+            else
+            {
+                PowerDown_Sequence();
+                SysMsg.SystemState = SYSTEM_OFF;
+            }
+        } 
+    }
+}
+
 void App_SysOnOff_Task()
 {
 	OS_ERR err;
 
 	while(1)
-	{		
-        //System_OnOffCtrl();
-        
-        
-        System_PowerOn(err);
-        System_ShutDown(err);
+	{      
+        System_OnCtrl();
+        System_OffCtrl();
+
         OSTimeDlyHMSM(0, 0, 0, 10, OS_OPT_TIME_PERIODIC, &err);
 	}
 }

@@ -363,6 +363,11 @@
 #define SLEEP_LED_C_PIN           GPIO_Pin_4
 #define SLEEP_LED_EN(x)           x ? GPIO_SetBits(SLEEP_LED_C_PORT, SLEEP_LED_C_PIN) : GPIO_ResetBits(SLEEP_LED_C_PORT, SLEEP_LED_C_PIN)
 
+//TX7516
+#define TX7516_PORT               GPIOG
+#define TX7516_PIN                GPIO_Pin_7
+#define TX7516_EN(x)              x ? GPIO_SetBits(TX7516_PORT, TX7516_PIN) : GPIO_ResetBits(TX7516_PORT, TX7516_PIN)
+
 //C_VNN2_VPP2
 #define C_VPP2_VNN2_PORT          GPIOG
 #define C_VPP2_VNN2_PIN           GPIO_Pin_14

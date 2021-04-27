@@ -97,10 +97,13 @@ typedef struct
     FanStrc         Fan;
     Command_Deal    Cmd;
     uint8_t		    SystemState;
+    bool            KeyState;
     bool            PowerOnReq;
     bool            ShutDownReq;
     bool            System_S3_Change;
     bool            System_S4_Change;
+    bool            S3_State;
+    bool            S4_State;
     bool            S3Minitor;
 }System_MsgStruct;
 
@@ -108,7 +111,7 @@ void Delay_Nop(uint16_t count);
 
 bool System_PwrKey_Minitor(void);
 
-void System_S3_State_Minitor(void);
+bool System_S3_State_Minitor(void);
 
 void SystemStateInit(void);
 
