@@ -185,7 +185,7 @@ void Gpio_Config()
     Gpio_Init(AC_OK_PORT, AC_OK_PIN, GPIO_Mode_IN, GPIO_OType_PP, GPIO_PuPd_NOPULL);
 
     //PWR_BTN_COM
-    Gpio_Init(PWR_BTN_COM_PORT, PWR_BTN_COM_PIN, GPIO_Mode_OUT, GPIO_OType_PP, GPIO_PuPd_NOPULL);
+    Gpio_Init(PWR_BTN_COM_PORT, PWR_BTN_COM_PIN, GPIO_Mode_OUT, GPIO_OType_OD, GPIO_PuPd_NOPULL);
     PWR_BTN_COM(1);
 
     //US_PWR_ID

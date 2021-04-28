@@ -86,26 +86,22 @@ void System_ShutDown(OS_ERR err)
     
     if(shutDownStep == 1)
     {
-//        if(!SUS_S3_CHK())
-//        {
-            //下电时序
-            AFE_EN2(0);
-            EN_FPGA_02(0);
-            AFE_EN1(0);
-            EN_FPGA_01(0);
-            EN_FRONT(0);
-            CTL_D1V45_EN(0);
-            CTL_VDD_P5V_EN(0);
-            CTL_D0V95_EN(0);
-            CTL_P2V25_EN(0);
-            CTL_P3V75_EN(0);
-            CTL_P5V5_2_EN(0);
-            CTL_P5V5_1_EN(0);
-            CTL_N12V_5V5_EN(0);
-            CTL_P12V_EN(0);
-            
-            shutDownStep = 2;
-//        }
+        AFE_EN2(0);
+        EN_FPGA_02(0);
+        AFE_EN1(0);
+        EN_FPGA_01(0);
+        EN_FRONT(0);
+        CTL_D1V45_EN(0);
+        CTL_VDD_P5V_EN(0);
+        CTL_D0V95_EN(0);
+        CTL_P2V25_EN(0);
+        CTL_P3V75_EN(0);
+        CTL_P5V5_2_EN(0);
+        CTL_P5V5_1_EN(0);
+        CTL_N12V_5V5_EN(0);
+        CTL_P12V_EN(0);
+        
+        shutDownStep = 2;
     }
     
     if(shutDownStep == 2)
@@ -122,9 +118,6 @@ void System_ShutDown(OS_ERR err)
         }
     }
 }
-
-
-
 
 void PowerOn_Sequence()
 {
@@ -298,9 +291,7 @@ void System_OnCtrl()
 }
 
 void System_OffCtrl()
-{
-    OS_ERR err;
-    
+{  
     if(SysMsg.SystemState == SYSTEM_ON)
     {
         if(System_PwrKey_Minitor() == TRUE && SysMsg.KeyState == TRUE)                  //按键按下

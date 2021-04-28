@@ -87,9 +87,7 @@ bool System_PwrKey_Minitor()
 }
 
 bool System_S3_State_Minitor()
-{  
-    OS_ERR err;
-    
+{    
     bool s3StateChanged = FALSE;
     
     static uint8_t startCnt = 0;

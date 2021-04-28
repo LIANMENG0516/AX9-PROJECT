@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\Objects\AX9.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Objects\AX9.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Tue Apr 27 16:33:53 2021
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Wed Apr 28 08:40:34 2021
 <BR><P>
 <H3>Maximum Stack Usage =        228 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -1732,7 +1732,7 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[e4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Cmd_Process
 </UL>
 
-<P><STRONG><a name="[103]"></a>Gpio_Config</STRONG> (Thumb, 1498 bytes, Stack size 8 bytes, gpio.o(i.Gpio_Config))
+<P><STRONG><a name="[103]"></a>Gpio_Config</STRONG> (Thumb, 1522 bytes, Stack size 8 bytes, gpio.o(i.Gpio_Config))
 <BR><BR>[Stack]<UL><LI>Max Depth = 60<LI>Call Chain = Gpio_Config &rArr; Gpio_Init &rArr; GPIO_Init
 </UL>
 <BR>[Calls]<UL><LI><a href="#[d7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_SetBits
@@ -2246,7 +2246,6 @@ Global Symbols
 <LI><a href="#[1ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OS_TickListInsertDly
 </UL>
 <BR>[Called By]<UL><LI><a href="#[fb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;System_OnCtrl
-<LI><a href="#[fc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;System_OffCtrl
 <LI><a href="#[1d1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PowerOn_Sequence
 <LI><a href="#[1d0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PowerDown_Sequence
 <LI><a href="#[f0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OSStatTaskCPUUsageInit
@@ -2936,7 +2935,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[cf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Adjust_Voltage_Pcw_Ncw
 </UL>
 
-<P><STRONG><a name="[1d0]"></a>PowerDown_Sequence</STRONG> (Thumb, 154 bytes, Stack size 8 bytes, app_sysonoff.o(i.PowerDown_Sequence))
+<P><STRONG><a name="[1d0]"></a>PowerDown_Sequence</STRONG> (Thumb, 162 bytes, Stack size 8 bytes, app_sysonoff.o(i.PowerDown_Sequence))
 <BR><BR>[Stack]<UL><LI>Max Depth = 72 + Unknown Stack Size
 <LI>Call Chain = PowerDown_Sequence &rArr; OSTimeDly &rArr; OS_TickListInsertDly &rArr; OS_TickListInsert
 </UL>
@@ -2948,7 +2947,7 @@ Global Symbols
 <LI><a href="#[fc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;System_OffCtrl
 </UL>
 
-<P><STRONG><a name="[1d1]"></a>PowerOn_Sequence</STRONG> (Thumb, 234 bytes, Stack size 8 bytes, app_sysonoff.o(i.PowerOn_Sequence))
+<P><STRONG><a name="[1d1]"></a>PowerOn_Sequence</STRONG> (Thumb, 244 bytes, Stack size 8 bytes, app_sysonoff.o(i.PowerOn_Sequence))
 <BR><BR>[Stack]<UL><LI>Max Depth = 72 + Unknown Stack Size
 <LI>Call Chain = PowerOn_Sequence &rArr; OSTimeDly &rArr; OS_TickListInsertDly &rArr; OS_TickListInsert
 </UL>
@@ -3119,13 +3118,12 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[fc]"></a>System_OffCtrl</STRONG> (Thumb, 118 bytes, Stack size 8 bytes, app_sysonoff.o(i.System_OffCtrl))
+<P><STRONG><a name="[fc]"></a>System_OffCtrl</STRONG> (Thumb, 126 bytes, Stack size 8 bytes, app_sysonoff.o(i.System_OffCtrl))
 <BR><BR>[Stack]<UL><LI>Max Depth = 80 + Unknown Stack Size
 <LI>Call Chain = System_OffCtrl &rArr; PowerOn_Sequence &rArr; OSTimeDly &rArr; OS_TickListInsertDly &rArr; OS_TickListInsert
 </UL>
 <BR>[Calls]<UL><LI><a href="#[1db]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;System_S3_State_Minitor
 <LI><a href="#[1da]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;System_PwrKey_Minitor
-<LI><a href="#[19c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OSTimeDly
 <LI><a href="#[d7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_SetBits
 <LI><a href="#[d9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_ResetBits
 <LI><a href="#[1d1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PowerOn_Sequence
@@ -3134,7 +3132,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;App_SysOnOff_Task
 </UL>
 
-<P><STRONG><a name="[fb]"></a>System_OnCtrl</STRONG> (Thumb, 156 bytes, Stack size 16 bytes, app_sysonoff.o(i.System_OnCtrl))
+<P><STRONG><a name="[fb]"></a>System_OnCtrl</STRONG> (Thumb, 164 bytes, Stack size 16 bytes, app_sysonoff.o(i.System_OnCtrl))
 <BR><BR>[Stack]<UL><LI>Max Depth = 88 + Unknown Stack Size
 <LI>Call Chain = System_OnCtrl &rArr; PowerOn_Sequence &rArr; OSTimeDly &rArr; OS_TickListInsertDly &rArr; OS_TickListInsert
 </UL>
