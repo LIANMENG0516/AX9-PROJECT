@@ -90,12 +90,29 @@ typedef struct
     uint8_t         Channel;                //命令通道, 是指程序接收到的命令从USB、ECCOM、DEBUGCOM哪个通道进入
 }Command_Deal;
 
+
+
+typedef struct
+{    
+    bool            Ac_Insert;
+    bool            Ac_Vol;
+    bool            Bat1_Insert;
+    uint8_t         Bat1_Power;             //电池电量
+    bool            Bat1_NeedCgarge;
+    bool            Bat1_Err;               //电池故障标志
+    bool            Bat2_Insert;
+    uint8_t         Bat2_Power;             //电池电量
+    bool            Bat2_NeedCgarge;
+    bool            Bat2_Err;               //电池故障标志
+}PwrInfoStruct;
+
 typedef struct
 {
     Ad_VolStruct    AdjVol;
     SysTemper       Temperature;
     FanStrc         Fan;
     Command_Deal    Cmd;
+    PwrInfoStruct   PwrInfo;
     uint8_t		    SystemState;
     bool            KeyState;
     bool            PowerOnReq;

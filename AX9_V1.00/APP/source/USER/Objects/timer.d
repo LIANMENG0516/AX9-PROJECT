@@ -49,6 +49,9 @@
 .\objects\timer.o: ..\BSP\spi.h
 .\objects\timer.o: ..\BSP\dac.h
 .\objects\timer.o: ..\BSP\adc.h
+.\objects\timer.o: ..\DEVICE\bat.h
+.\objects\timer.o: ..\BSP\gouble.h
+.\objects\timer.o: ..\DEVICE\power.h
 .\objects\timer.o: ..\BSP\board.h
 .\objects\timer.o: ..\UCOSIII\uCOS_CONFIG\includes.h
 .\objects\timer.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\ctype.h
@@ -72,7 +75,6 @@
 .\objects\timer.o: ..\UCOSIII\uCOS_BSP\bsp.h
 .\objects\timer.o: ..\UCOSIII\uCOS_CONFIG\os_cfg_app.h
 .\objects\timer.o: ..\DEVICE\system.h
-.\objects\timer.o: ..\BSP\gouble.h
 .\objects\timer.o: ..\DEVICE\tmp468.h
 .\objects\timer.o: ..\DEVICE\adt7302.h
 .\objects\timer.o: ..\DEVICE\emc2305.h
@@ -95,11 +97,12 @@
 .\objects\timer.o: ..\USB\STM32_USB_Device_Library\Class\cdc\inc\usbd_cdc_core.h
 .\objects\timer.o: ..\APP\app.h
 .\objects\timer.o: ..\APP\app_led.h
+.\objects\timer.o: ..\APP\app_adc.h
 .\objects\timer.o: ..\APP\app_fan.h
 .\objects\timer.o: ..\APP\app_usb.h
 .\objects\timer.o: ..\APP\app_com.h
 .\objects\timer.o: ..\APP\app_timer.h
 .\objects\timer.o: ..\APP\app_adjvol.h
 .\objects\timer.o: ..\APP\app_sysonoff.h
+.\objects\timer.o: ..\APP\app_pwrmanager.h
 .\objects\timer.o: ..\APP\app_temperature.h
-.\objects\timer.o: ..\APP\app_adc.h

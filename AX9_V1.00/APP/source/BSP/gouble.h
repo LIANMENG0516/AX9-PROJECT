@@ -17,6 +17,8 @@
 #include "dac.h"
 #include "adc.h"
 
+#include "bat.h"
+#include "power.h"
 #include "board.h"
 #include "system.h"
 #include "tmp468.h"
@@ -36,14 +38,16 @@
 
 #include "app.h"
 #include "app_led.h"
+#include "app_adc.h"
 #include "app_fan.h"
 #include "app_usb.h"
 #include "app_com.h"
 #include "app_timer.h"
 #include "app_adjvol.h"
 #include "app_sysonoff.h"
+#include "app_pwrmanager.h"
 #include "app_temperature.h"
-#include "app_adc.h"
+
 
 #define USE_UCOSIII
 
@@ -76,6 +80,9 @@
 
 #define APP_ADC_TASK_PRIO                   10
 #define APP_ADC_STK_SIZE                    256
+
+#define APP_PWRMANAGER_TASK_PRIO            11
+#define APP_PWRMANAGER_STK_SIZE             256
 
 #define APP_START_TASK_PRIO 				30		//优先级
 #define APP_START_STK_SIZE 					256		//堆栈大小

@@ -442,6 +442,11 @@
               <FileType>1</FileType>
               <FilePath>..\APP\app_temperature.c</FilePath>
             </File>
+            <File>
+              <FileName>app_pwrmanager.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\APP\app_pwrmanager.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -496,6 +501,21 @@
               <FileName>tmp468.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\DEVICE\tmp468.c</FilePath>
+            </File>
+            <File>
+              <FileName>bat1.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\DEVICE\bat1.c</FilePath>
+            </File>
+            <File>
+              <FileName>bat2.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\DEVICE\bat2.c</FilePath>
+            </File>
+            <File>
+              <FileName>power.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\DEVICE\power.c</FilePath>
             </File>
           </Files>
         </Group>

@@ -50,6 +50,8 @@
 .\objects\emc2305.o: ..\BSP\spi.h
 .\objects\emc2305.o: ..\BSP\dac.h
 .\objects\emc2305.o: ..\BSP\adc.h
+.\objects\emc2305.o: ..\DEVICE\bat.h
+.\objects\emc2305.o: ..\DEVICE\power.h
 .\objects\emc2305.o: ..\BSP\board.h
 .\objects\emc2305.o: ..\UCOSIII\uCOS_CONFIG\includes.h
 .\objects\emc2305.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\ctype.h
@@ -94,11 +96,12 @@
 .\objects\emc2305.o: ..\USB\STM32_USB_Device_Library\Class\cdc\inc\usbd_cdc_core.h
 .\objects\emc2305.o: ..\APP\app.h
 .\objects\emc2305.o: ..\APP\app_led.h
+.\objects\emc2305.o: ..\APP\app_adc.h
 .\objects\emc2305.o: ..\APP\app_fan.h
 .\objects\emc2305.o: ..\APP\app_usb.h
 .\objects\emc2305.o: ..\APP\app_com.h
 .\objects\emc2305.o: ..\APP\app_timer.h
 .\objects\emc2305.o: ..\APP\app_adjvol.h
 .\objects\emc2305.o: ..\APP\app_sysonoff.h
+.\objects\emc2305.o: ..\APP\app_pwrmanager.h
 .\objects\emc2305.o: ..\APP\app_temperature.h
-.\objects\emc2305.o: ..\APP\app_adc.h

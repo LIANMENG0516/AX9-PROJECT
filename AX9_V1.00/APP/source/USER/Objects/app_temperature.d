@@ -50,6 +50,8 @@
 .\objects\app_temperature.o: ..\BSP\spi.h
 .\objects\app_temperature.o: ..\BSP\dac.h
 .\objects\app_temperature.o: ..\BSP\adc.h
+.\objects\app_temperature.o: ..\DEVICE\bat.h
+.\objects\app_temperature.o: ..\DEVICE\power.h
 .\objects\app_temperature.o: ..\BSP\board.h
 .\objects\app_temperature.o: ..\UCOSIII\uCOS_CONFIG\includes.h
 .\objects\app_temperature.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\ctype.h
@@ -95,11 +97,12 @@
 .\objects\app_temperature.o: ..\USB\STM32_USB_Device_Library\Class\cdc\inc\usbd_cdc_core.h
 .\objects\app_temperature.o: ..\APP\app.h
 .\objects\app_temperature.o: ..\APP\app_led.h
+.\objects\app_temperature.o: ..\APP\app_adc.h
 .\objects\app_temperature.o: ..\APP\app_fan.h
 .\objects\app_temperature.o: ..\APP\app_usb.h
 .\objects\app_temperature.o: ..\APP\app_com.h
 .\objects\app_temperature.o: ..\APP\app_timer.h
 .\objects\app_temperature.o: ..\APP\app_adjvol.h
 .\objects\app_temperature.o: ..\APP\app_sysonoff.h
+.\objects\app_temperature.o: ..\APP\app_pwrmanager.h
 .\objects\app_temperature.o: ..\APP\app_temperature.h
-.\objects\app_temperature.o: ..\APP\app_adc.h

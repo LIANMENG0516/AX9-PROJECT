@@ -50,6 +50,8 @@
 .\objects\adjustvoltage.o: ..\BSP\spi.h
 .\objects\adjustvoltage.o: ..\BSP\dac.h
 .\objects\adjustvoltage.o: ..\BSP\adc.h
+.\objects\adjustvoltage.o: ..\DEVICE\bat.h
+.\objects\adjustvoltage.o: ..\DEVICE\power.h
 .\objects\adjustvoltage.o: ..\BSP\board.h
 .\objects\adjustvoltage.o: ..\UCOSIII\uCOS_CONFIG\includes.h
 .\objects\adjustvoltage.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\ctype.h
@@ -94,11 +96,12 @@
 .\objects\adjustvoltage.o: ..\USB\STM32_USB_Device_Library\Class\cdc\inc\usbd_cdc_core.h
 .\objects\adjustvoltage.o: ..\APP\app.h
 .\objects\adjustvoltage.o: ..\APP\app_led.h
+.\objects\adjustvoltage.o: ..\APP\app_adc.h
 .\objects\adjustvoltage.o: ..\APP\app_fan.h
 .\objects\adjustvoltage.o: ..\APP\app_usb.h
 .\objects\adjustvoltage.o: ..\APP\app_com.h
 .\objects\adjustvoltage.o: ..\APP\app_timer.h
 .\objects\adjustvoltage.o: ..\APP\app_adjvol.h
 .\objects\adjustvoltage.o: ..\APP\app_sysonoff.h
+.\objects\adjustvoltage.o: ..\APP\app_pwrmanager.h
 .\objects\adjustvoltage.o: ..\APP\app_temperature.h
-.\objects\adjustvoltage.o: ..\APP\app_adc.h

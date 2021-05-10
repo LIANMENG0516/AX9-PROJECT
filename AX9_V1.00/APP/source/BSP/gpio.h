@@ -29,10 +29,13 @@
 //BAT2_SMBUS_C
 #define BAT2_SMBUS_C_PORT         GPIOA
 #define BAT2_SMBUS_C_PIN          GPIO_Pin_8
+#define BAT2_SMBUS_C_1()          GPIO_SetBits(BAT2_SMBUS_C_PORT, BAT2_SMBUS_C_PIN)
+#define BAT2_SMBUS_C_0()          GPIO_ResetBits(BAT2_SMBUS_C_PORT, BAT2_SMBUS_C_PIN)
 
 //USB_CTRL
 #define USB_CTRL_PORT             GPIOA
 #define USB_CTRL_PIN              GPIO_Pin_10
+#define USB_CTRL_EN(x)            x ? GPIO_ResetBits(USB_CTRL_PORT, USB_CTRL_PIN) : GPIO_SetBits(USB_CTRL_PORT, USB_CTRL_PIN)
 
 //SPI3_CS3   
 #define SPI3_CS3_PORT             GPIOB
@@ -69,6 +72,21 @@
 //#define IIC1_SDA_OUT()            {GPIOB->MODER = GPIOB->MODER & 0xFFF7FFFF; GPIOB->MODER = GPIOB->MODER | 0x00040000;}
 #define IIC1_SDA_READ()           GPIO_ReadInputDataBit(IIC1_SDA_PORT, IIC1_SDA_PIN)
 
+//COME_IICCLK
+#define COME_IICCLK_PORT          GPIOB      
+#define COME_IICCLK_PIN           GPIO_Pin_10    
+#define COME_IICCLK_1()           GPIO_SetBits(IIC1_SCK_PORT, IIC1_SCK_PIN)
+#define COME_IICCLK_0()           GPIO_ResetBits(IIC1_SCK_PORT, IIC1_SCK_PIN)
+
+//COME_IICDAT
+#define COME_IICDAT_PORT          GPIOB
+#define COME_IICDAT_PIN           GPIO_Pin_11 
+#define COME_IICDAT_1()           GPIO_SetBits(COME_IICDAT_PORT, COME_IICDAT_PIN)
+#define COME_IICDAT_0()           GPIO_ResetBits(COME_IICDAT_PORT, COME_IICDAT_PIN)
+//#define COME_IICDAT_IN()             {GPIOB->MODER = GPIOB->MODER & 0xFF3FFFFF;}
+//#define COME_IICDAT_OUT()            {GPIOB->MODER = GPIOB->MODER & 0xFF7FFFFF; GPIOB->MODER = GPIOB->MODER | 0x00400000;}
+#define COME_IICDAT_READ()           GPIO_ReadInputDataBit(COME_IICDAT_PORT, COME_IICDAT_PIN)
+
 //SPI3_CS2   
 #define SPI3_CS2_PORT             GPIOB
 #define SPI3_CS2_PIN              GPIO_Pin_13
@@ -102,6 +120,9 @@
 //BAT2_SMBUS_D   
 #define BAT2_SMBUS_D_PORT         GPIOC
 #define BAT2_SMBUS_D_PIN          GPIO_Pin_9
+#define BAT2_SMBUS_D_1()          GPIO_SetBits(BAT2_SMBUS_D_PORT, BAT2_SMBUS_D_PIN)
+#define BAT2_SMBUS_D_0()          GPIO_ResetBits(BAT2_SMBUS_D_PORT, BAT2_SMBUS_D_PIN)
+#define BAT2_SMBUS_D_READ()       GPIO_ReadInputDataBit(BAT2_SMBUS_D_PORT, BAT2_SMBUS_D_PIN)
 
 //SPI3_SCK
 #define SPI3_PORT_SCK             GPIOC
@@ -136,6 +157,7 @@
 //CHARGE_EN
 #define CHARGE_EN_PORT            GPIOD
 #define CHARGE_EN_PIN             GPIO_Pin_1
+#define CHARGE_EN(x)              x ? GPIO_ResetBits(CHARGE_EN_PORT, CHARGE_EN_PIN) : GPIO_SetBits(CHARGE_EN_PORT, CHARGE_EN_PIN)
 
 //C_P2V25
 #define C_P2V25_PORT              GPIOD
@@ -235,10 +257,6 @@
 #define FPGA_CFG_DOWN_PIN         GPIO_Pin_5
 #define FPGA_CFG_DOWN_CHK()       GPIO_ReadInputDataBit(FPGA_CFG_DOWN_PORT, FPGA_CFG_DOWN_PIN)
 
-
-
-
-
 //系统指示灯
 #define SYS_LED_PORT              GPIOE
 #define SYS_LED_PIN               GPIO_Pin_8
@@ -271,10 +289,15 @@
 //BAT1_SMBUS_C 
 #define BAT1_SMBUS_C_PORT         GPIOF
 #define BAT1_SMBUS_C_PIN          GPIO_Pin_1
+#define BAT1_SMBUS_C_1()          GPIO_SetBits(BAT1_SMBUS_C_PORT, BAT1_SMBUS_C_PIN)
+#define BAT1_SMBUS_C_0()          GPIO_ResetBits(BAT1_SMBUS_C_PORT, BAT1_SMBUS_C_PIN)
 
 //BAT1_SMBUS_D
 #define BAT1_SMBUS_D_PORT         GPIOF
 #define BAT1_SMBUS_D_PIN          GPIO_Pin_0
+#define BAT1_SMBUS_D_1()          GPIO_SetBits(BAT1_SMBUS_D_PORT, BAT1_SMBUS_D_PIN)
+#define BAT1_SMBUS_D_0()          GPIO_ResetBits(BAT1_SMBUS_D_PORT, BAT1_SMBUS_D_PIN)
+#define BAT1_SMBUS_D_READ()       GPIO_ReadInputDataBit(COME_IICDAT_PORT, COME_IICDAT_PIN)
 
 //PWR_OK_COM
 #define PWR_OK_COM_PORT           GPIOF

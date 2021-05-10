@@ -50,6 +50,8 @@
 .\objects\stm32f4xx_it.o: ..\BSP\spi.h
 .\objects\stm32f4xx_it.o: ..\BSP\dac.h
 .\objects\stm32f4xx_it.o: ..\BSP\adc.h
+.\objects\stm32f4xx_it.o: ..\DEVICE\bat.h
+.\objects\stm32f4xx_it.o: ..\DEVICE\power.h
 .\objects\stm32f4xx_it.o: ..\BSP\board.h
 .\objects\stm32f4xx_it.o: ..\UCOSIII\uCOS_CONFIG\includes.h
 .\objects\stm32f4xx_it.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\ctype.h
@@ -95,11 +97,12 @@
 .\objects\stm32f4xx_it.o: ..\USB\STM32_USB_Device_Library\Class\cdc\inc\usbd_cdc_core.h
 .\objects\stm32f4xx_it.o: ..\APP\app.h
 .\objects\stm32f4xx_it.o: ..\APP\app_led.h
+.\objects\stm32f4xx_it.o: ..\APP\app_adc.h
 .\objects\stm32f4xx_it.o: ..\APP\app_fan.h
 .\objects\stm32f4xx_it.o: ..\APP\app_usb.h
 .\objects\stm32f4xx_it.o: ..\APP\app_com.h
 .\objects\stm32f4xx_it.o: ..\APP\app_timer.h
 .\objects\stm32f4xx_it.o: ..\APP\app_adjvol.h
 .\objects\stm32f4xx_it.o: ..\APP\app_sysonoff.h
+.\objects\stm32f4xx_it.o: ..\APP\app_pwrmanager.h
 .\objects\stm32f4xx_it.o: ..\APP\app_temperature.h
-.\objects\stm32f4xx_it.o: ..\APP\app_adc.h

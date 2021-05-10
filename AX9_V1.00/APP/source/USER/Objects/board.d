@@ -71,6 +71,8 @@
 .\objects\board.o: ..\BSP\spi.h
 .\objects\board.o: ..\BSP\dac.h
 .\objects\board.o: ..\BSP\adc.h
+.\objects\board.o: ..\DEVICE\bat.h
+.\objects\board.o: ..\DEVICE\power.h
 .\objects\board.o: ..\DEVICE\system.h
 .\objects\board.o: ..\DEVICE\tmp468.h
 .\objects\board.o: ..\DEVICE\adt7302.h
@@ -94,11 +96,12 @@
 .\objects\board.o: ..\USB\STM32_USB_Device_Library\Class\cdc\inc\usbd_cdc_core.h
 .\objects\board.o: ..\APP\app.h
 .\objects\board.o: ..\APP\app_led.h
+.\objects\board.o: ..\APP\app_adc.h
 .\objects\board.o: ..\APP\app_fan.h
 .\objects\board.o: ..\APP\app_usb.h
 .\objects\board.o: ..\APP\app_com.h
 .\objects\board.o: ..\APP\app_timer.h
 .\objects\board.o: ..\APP\app_adjvol.h
 .\objects\board.o: ..\APP\app_sysonoff.h
+.\objects\board.o: ..\APP\app_pwrmanager.h
 .\objects\board.o: ..\APP\app_temperature.h
-.\objects\board.o: ..\APP\app_adc.h

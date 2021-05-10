@@ -49,6 +49,8 @@
 .\objects\systick.o: ..\BSP\spi.h
 .\objects\systick.o: ..\BSP\dac.h
 .\objects\systick.o: ..\BSP\adc.h
+.\objects\systick.o: ..\DEVICE\bat.h
+.\objects\systick.o: ..\DEVICE\power.h
 .\objects\systick.o: ..\BSP\board.h
 .\objects\systick.o: ..\UCOSIII\uCOS_CONFIG\includes.h
 .\objects\systick.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\ctype.h
@@ -94,11 +96,12 @@
 .\objects\systick.o: ..\USB\STM32_USB_Device_Library\Class\cdc\inc\usbd_cdc_core.h
 .\objects\systick.o: ..\APP\app.h
 .\objects\systick.o: ..\APP\app_led.h
+.\objects\systick.o: ..\APP\app_adc.h
 .\objects\systick.o: ..\APP\app_fan.h
 .\objects\systick.o: ..\APP\app_usb.h
 .\objects\systick.o: ..\APP\app_com.h
 .\objects\systick.o: ..\APP\app_timer.h
 .\objects\systick.o: ..\APP\app_adjvol.h
 .\objects\systick.o: ..\APP\app_sysonoff.h
+.\objects\systick.o: ..\APP\app_pwrmanager.h
 .\objects\systick.o: ..\APP\app_temperature.h
-.\objects\systick.o: ..\APP\app_adc.h

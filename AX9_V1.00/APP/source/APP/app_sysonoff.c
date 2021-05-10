@@ -257,9 +257,16 @@ void System_OnCtrl()
             {
                 SysMsg.PowerOnReq = FALSE;
                 PWR_BTN_COM(0);
-                OSTimeDly(150, OS_OPT_TIME_DLY, &err);
-                PWR_BTN_COM(1);
             }
+        }
+        
+        if(SysMsg.KeyState == FALSE)
+        {
+            PWR_BTN_COM(1);
+        }
+        else
+        {
+            PWR_BTN_COM(0);
         }
         
         if(System_S3_State_Minitor() == TRUE)
@@ -286,6 +293,8 @@ void System_OnCtrl()
             TX7516_EN(1);
 
             SysMsg.SystemState = SYSTEM_ON;
+            
+            USB_CTRL_EN(1);                                                             // πƒ‹USB≤Â»Î
         }
     }
 }
@@ -320,7 +329,8 @@ void System_OffCtrl()
             }
             else
             {
-                PowerDown_Sequence();
+                PowerDown_Sequence();                                                   
+                USB_CTRL_EN(0);                                                         //–∂‘ÿUSB, ∑¿÷πµππ‡                                                                           //
                 SysMsg.SystemState = SYSTEM_OFF;
             }
         } 

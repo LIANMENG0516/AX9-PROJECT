@@ -50,6 +50,8 @@
 .\objects\tlv5626cd.o: ..\BSP\spi.h
 .\objects\tlv5626cd.o: ..\BSP\dac.h
 .\objects\tlv5626cd.o: ..\BSP\adc.h
+.\objects\tlv5626cd.o: ..\DEVICE\bat.h
+.\objects\tlv5626cd.o: ..\DEVICE\power.h
 .\objects\tlv5626cd.o: ..\BSP\board.h
 .\objects\tlv5626cd.o: ..\UCOSIII\uCOS_CONFIG\includes.h
 .\objects\tlv5626cd.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\ctype.h
@@ -94,11 +96,12 @@
 .\objects\tlv5626cd.o: ..\USB\STM32_USB_Device_Library\Class\cdc\inc\usbd_cdc_core.h
 .\objects\tlv5626cd.o: ..\APP\app.h
 .\objects\tlv5626cd.o: ..\APP\app_led.h
+.\objects\tlv5626cd.o: ..\APP\app_adc.h
 .\objects\tlv5626cd.o: ..\APP\app_fan.h
 .\objects\tlv5626cd.o: ..\APP\app_usb.h
 .\objects\tlv5626cd.o: ..\APP\app_com.h
 .\objects\tlv5626cd.o: ..\APP\app_timer.h
 .\objects\tlv5626cd.o: ..\APP\app_adjvol.h
 .\objects\tlv5626cd.o: ..\APP\app_sysonoff.h
+.\objects\tlv5626cd.o: ..\APP\app_pwrmanager.h
 .\objects\tlv5626cd.o: ..\APP\app_temperature.h
-.\objects\tlv5626cd.o: ..\APP\app_adc.h

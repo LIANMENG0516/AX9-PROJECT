@@ -44,7 +44,7 @@ void Gpio_Config()
     
     //USB_CTRL
     Gpio_Init(USB_CTRL_PORT, USB_CTRL_PIN, GPIO_Mode_OUT, GPIO_OType_PP, GPIO_PuPd_NOPULL);
-    GPIO_ResetBits(USB_CTRL_PORT, USB_CTRL_PIN);
+    USB_CTRL_EN(0);                 //初始化禁止USB插入, 防止电流导管
 
     //SPI3_CS3  
     Gpio_Init(SPI3_CS3_PORT, SPI3_CS3_PIN, GPIO_Mode_OUT, GPIO_OType_PP, GPIO_PuPd_UP);    
@@ -60,6 +60,12 @@ void Gpio_Config()
 
     //IIC1_SDA
     Gpio_Init(IIC1_SDA_PORT, IIC1_SDA_PIN, GPIO_Mode_OUT, GPIO_OType_PP, GPIO_PuPd_UP);
+    
+    //COME_IICCLK
+    Gpio_Init(COME_IICCLK_PORT, COME_IICCLK_PIN, GPIO_Mode_OUT, GPIO_OType_OD, GPIO_PuPd_UP);
+
+    //COME_IICDAT
+    Gpio_Init(COME_IICDAT_PORT, COME_IICDAT_PIN, GPIO_Mode_OUT, GPIO_OType_OD, GPIO_PuPd_UP);
 
     //SPI3_CS2   
     Gpio_Init(SPI3_CS2_PORT, SPI3_CS2_PIN, GPIO_Mode_OUT, GPIO_OType_PP, GPIO_PuPd_UP);
@@ -158,10 +164,10 @@ void Gpio_Config()
     Gpio_Init(SV_CTL_IN_PORT, SV_CTL_IN_PIN, GPIO_Mode_OUT, GPIO_OType_PP, GPIO_PuPd_NOPULL);
 
     //V_PROE1
-    Gpio_Init(V_PROE1_PORT, V_PROE1_PIN, GPIO_Mode_IN, GPIO_OType_PP, GPIO_PuPd_NOPULL);
+    Gpio_Init(V_PROE1_PORT, V_PROE1_PIN, GPIO_Mode_IN, GPIO_OType_PP, GPIO_PuPd_UP);
 
     //V_PROE2
-    Gpio_Init(V_PROE2_PORT, V_PROE2_PIN, GPIO_Mode_IN, GPIO_OType_PP, GPIO_PuPd_NOPULL);
+    Gpio_Init(V_PROE2_PORT, V_PROE2_PIN, GPIO_Mode_IN, GPIO_OType_PP, GPIO_PuPd_UP);
 
     //PWR_KEY
     Gpio_Init(PWR_KEY_PORT, PWR_KEY_PIN, GPIO_Mode_IN, GPIO_OType_PP, GPIO_PuPd_DOWN);

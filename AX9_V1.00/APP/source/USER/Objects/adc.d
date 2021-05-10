@@ -49,6 +49,8 @@
 .\objects\adc.o: ..\BSP\dma.h
 .\objects\adc.o: ..\BSP\spi.h
 .\objects\adc.o: ..\BSP\dac.h
+.\objects\adc.o: ..\DEVICE\bat.h
+.\objects\adc.o: ..\DEVICE\power.h
 .\objects\adc.o: ..\BSP\board.h
 .\objects\adc.o: ..\UCOSIII\uCOS_CONFIG\includes.h
 .\objects\adc.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\ctype.h
@@ -94,11 +96,12 @@
 .\objects\adc.o: ..\USB\STM32_USB_Device_Library\Class\cdc\inc\usbd_cdc_core.h
 .\objects\adc.o: ..\APP\app.h
 .\objects\adc.o: ..\APP\app_led.h
+.\objects\adc.o: ..\APP\app_adc.h
 .\objects\adc.o: ..\APP\app_fan.h
 .\objects\adc.o: ..\APP\app_usb.h
 .\objects\adc.o: ..\APP\app_com.h
 .\objects\adc.o: ..\APP\app_timer.h
 .\objects\adc.o: ..\APP\app_adjvol.h
 .\objects\adc.o: ..\APP\app_sysonoff.h
+.\objects\adc.o: ..\APP\app_pwrmanager.h
 .\objects\adc.o: ..\APP\app_temperature.h
-.\objects\adc.o: ..\APP\app_adc.h
