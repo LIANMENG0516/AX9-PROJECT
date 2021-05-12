@@ -320,29 +320,41 @@ void Fan_Emc2305_Control()
 
 void Fan_Speed_Read()
 {
-    uint8_t Tach1_Count[2], Tach2_Count[2], Tach3_Count[2], Tach4_Count[2], Tach5_Count[2];
+    uint16_t Rpm1, Rpm2, Rpm3, Rpm4, Rpm5;
+    uint8_t Tach1[2], Tach2[2], Tach3[2], Tach4[2], Tach5[2];
     
-    Emc2305_ReadData(EMC2305_10K_ADDR, FAN1_TACHREAD_HIGH, Tach1_Count, 2);
-    Emc2305_ReadData(EMC2305_10K_ADDR, FAN2_TACHREAD_HIGH, Tach2_Count, 2);
-    Emc2305_ReadData(EMC2305_10K_ADDR, FAN3_TACHREAD_HIGH, Tach3_Count, 2);
-    Emc2305_ReadData(EMC2305_10K_ADDR, FAN4_TACHREAD_HIGH, Tach4_Count, 2);
-    Emc2305_ReadData(EMC2305_10K_ADDR, FAN5_TACHREAD_HIGH, Tach5_Count, 2);
-                                                          
-    SysMsg.Fan.Rpm1 = 3932160 * 2 / ((Tach1_Count[0] << 8) + (Tach1_Count[1] >> 3));
-    SysMsg.Fan.Rpm2 = 3932160 * 2 / ((Tach2_Count[0] << 8) + (Tach2_Count[1] >> 3));
-    SysMsg.Fan.Rpm3 = 3932160 * 2 / ((Tach3_Count[0] << 8) + (Tach3_Count[1] >> 3));
-    SysMsg.Fan.Rpm4 = 3932160 * 2 / ((Tach4_Count[0] << 8) + (Tach4_Count[1] >> 3));
-    SysMsg.Fan.Rpm5 = 3932160 * 2 / ((Tach5_Count[0] << 8) + (Tach5_Count[1] >> 3));
+    Emc2305_ReadData(EMC2305_10K_ADDR, FAN1_TACHREAD_HIGH, Tach1, 2);
+    Emc2305_ReadData(EMC2305_10K_ADDR, FAN2_TACHREAD_HIGH, Tach2, 2);
+    Emc2305_ReadData(EMC2305_10K_ADDR, FAN3_TACHREAD_HIGH, Tach3, 2);
+    Emc2305_ReadData(EMC2305_10K_ADDR, FAN4_TACHREAD_HIGH, Tach4, 2);
+    Emc2305_ReadData(EMC2305_10K_ADDR, FAN5_TACHREAD_HIGH, Tach5, 2);
+    
+    Rpm1 = 3932160 * 2 / (((Tach1[0] << 8) + Tach1[1]) >> 3);
+    Rpm2 = 3932160 * 2 / (((Tach2[0] << 8) + Tach2[1]) >> 3);
+    Rpm3 = 3932160 * 2 / (((Tach3[0] << 8) + Tach3[1]) >> 3);
+    Rpm4 = 3932160 * 2 / (((Tach4[0] << 8) + Tach4[1]) >> 3);
+    Rpm5 = 3932160 * 2 / (((Tach5[0] << 8) + Tach5[1]) >> 3);
+    
+    SysMsg.Fan.Rpm1 = (Rpm1 > SPEED_ERROR) ? Rpm1 : 0;
+    SysMsg.Fan.Rpm2 = (Rpm2 > SPEED_ERROR) ? Rpm2 : 0;
+    SysMsg.Fan.Rpm3 = (Rpm3 > SPEED_ERROR) ? Rpm3 : 0;
+    SysMsg.Fan.Rpm4 = (Rpm4 > SPEED_ERROR) ? Rpm4 : 0;
+    SysMsg.Fan.Rpm5 = (Rpm5 > SPEED_ERROR) ? Rpm5 : 0;
+    
+    SysMsg.Fan.Fan1State = (Rpm1 > SPEED_ERROR) ? (bool)FAN_OK : (bool)FAN_ERR;
+    SysMsg.Fan.Fan2State = (Rpm2 > SPEED_ERROR) ? (bool)FAN_OK : (bool)FAN_ERR;
+    SysMsg.Fan.Fan3State = (Rpm3 > SPEED_ERROR) ? (bool)FAN_OK : (bool)FAN_ERR;
+    SysMsg.Fan.Fan4State = (Rpm4 > SPEED_ERROR) ? (bool)FAN_OK : (bool)FAN_ERR;
+    SysMsg.Fan.Fan5State = (Rpm5 > SPEED_ERROR) ? (bool)FAN_OK : (bool)FAN_ERR;
 }
 
 void Fan_Emc2305_Init()
 {
     uint8_t temp;
     
-    Emc2305_WriteByte(EMC2305_10K_ADDR, BASIC_CTL, 0x80);               //屏蔽中断
-    
+    Emc2305_WriteByte(EMC2305_10K_ADDR, BASIC_CTL, 0x80);               //屏蔽中断  
     Emc2305_ReadByte(EMC2305_10K_ADDR, BASIC_CTL, &temp); 
-    
+
     Emc2305_WriteByte(EMC2305_10K_ADDR, PWM_POLARITY, 0x00);            //设置PWM极性
     Emc2305_WriteByte(EMC2305_10K_ADDR, PWM_OUTPUT,   0x1F);            //设置PWM为推挽输出
     Emc2305_WriteByte(EMC2305_10K_ADDR, PWM45_BASE,   0x00);            //设置PWM4、PWM5基础频率为26KHz

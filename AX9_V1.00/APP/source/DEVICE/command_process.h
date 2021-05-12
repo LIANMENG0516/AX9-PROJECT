@@ -17,16 +17,13 @@ typedef struct
 
 #define FW_VERSION  0x00
 
-
-
-
 #define CMD_FW_VERSION      0x00
 #define CHK_COMPILE_INFO    0x01
-
 #define CMD_ADJUST_HV       0x02
 #define CMD_ADJUST_CW       0x03
-
 #define CMD_READ_VOLTAGE    0x04
+#define CMD_FAN_INFO        0x05
+#define CMD_PWR_INFO        0x06
 
 #define CMD_EC_COMMUNICATE  0xA0
 

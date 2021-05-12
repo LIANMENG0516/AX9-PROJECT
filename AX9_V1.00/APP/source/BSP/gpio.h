@@ -286,18 +286,18 @@
 #define SUS_S3_PIN                GPIO_Pin_13
 #define SUS_S3_CHK()              GPIO_ReadInputDataBit(SUS_S3_PORT, SUS_S3_PIN)
 
-//BAT1_SMBUS_C 
-#define BAT1_SMBUS_C_PORT         GPIOF
-#define BAT1_SMBUS_C_PIN          GPIO_Pin_1
-#define BAT1_SMBUS_C_1()          GPIO_SetBits(BAT1_SMBUS_C_PORT, BAT1_SMBUS_C_PIN)
-#define BAT1_SMBUS_C_0()          GPIO_ResetBits(BAT1_SMBUS_C_PORT, BAT1_SMBUS_C_PIN)
-
 //BAT1_SMBUS_D
 #define BAT1_SMBUS_D_PORT         GPIOF
 #define BAT1_SMBUS_D_PIN          GPIO_Pin_0
 #define BAT1_SMBUS_D_1()          GPIO_SetBits(BAT1_SMBUS_D_PORT, BAT1_SMBUS_D_PIN)
 #define BAT1_SMBUS_D_0()          GPIO_ResetBits(BAT1_SMBUS_D_PORT, BAT1_SMBUS_D_PIN)
-#define BAT1_SMBUS_D_READ()       GPIO_ReadInputDataBit(COME_IICDAT_PORT, COME_IICDAT_PIN)
+#define BAT1_SMBUS_D_READ()       GPIO_ReadInputDataBit(BAT1_SMBUS_D_PORT, BAT1_SMBUS_D_PIN)
+
+//BAT1_SMBUS_C 
+#define BAT1_SMBUS_C_PORT         GPIOF
+#define BAT1_SMBUS_C_PIN          GPIO_Pin_1
+#define BAT1_SMBUS_C_1()          GPIO_SetBits(BAT1_SMBUS_C_PORT, BAT1_SMBUS_C_PIN)
+#define BAT1_SMBUS_C_0()          GPIO_ResetBits(BAT1_SMBUS_C_PORT, BAT1_SMBUS_C_PIN)
 
 //PWR_OK_COM
 #define PWR_OK_COM_PORT           GPIOF

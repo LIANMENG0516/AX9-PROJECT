@@ -22,6 +22,7 @@ void Battery_Power_Read()
 {
     uint8_t batState;
     
+    static bool bat1_NeedCharge = TRUE, bat2_NeedCharge = TRUE;
     static uint16_t bat1ChargeRecoverCnt = 0, bat2ChargeRecoverCnt = 0;
     
     Power_Insert();
@@ -31,7 +32,7 @@ void Battery_Power_Read()
     
     if(SysMsg.PwrInfo.Ac_Insert == TRUE)
     {
-        if(SysMsg.PwrInfo.Bat1_Insert == TRUE && SysMsg.PwrInfo.Bat1_NeedCgarge)
+        if(SysMsg.PwrInfo.Bat1_Insert == TRUE && bat1_NeedCharge == TRUE)
         {
             if(SysMsg.PwrInfo.Bat1_Power == 100)
             {
@@ -40,8 +41,8 @@ void Battery_Power_Read()
                     CHARGE_CTL(0);
                     CHARGE_EN(0);
                     BAT1_C_SHIFT_EN(0);
+                    bat1_NeedCharge = FALSE;
                     SysMsg.PwrInfo.Bat1_Err = FALSE;
-                    SysMsg.PwrInfo.Bat1_NeedCgarge = FALSE;
                 }
             }
             else if(SysMsg.PwrInfo.Bat1_Power != 100 && batState == BAT_STATE_ERROR)
@@ -51,8 +52,8 @@ void Battery_Power_Read()
                     CHARGE_CTL(0);
                     CHARGE_EN(0);
                     BAT1_C_SHIFT_EN(0);
+                    bat1_NeedCharge = FALSE;
                     SysMsg.PwrInfo.Bat1_Err = TRUE;
-                    SysMsg.PwrInfo.Bat1_NeedCgarge = FALSE;
                 }
                 else
                 {
@@ -66,8 +67,8 @@ void Battery_Power_Read()
                     }
                     CHARGE_EN(1);
                     BAT1_C_SHIFT_EN(1);
+                    bat1_NeedCharge = TRUE;
                     SysMsg.PwrInfo.Bat1_Err = FALSE;
-                    SysMsg.PwrInfo.Bat1_NeedCgarge = TRUE;
                 }
             }
             else if(SysMsg.PwrInfo.Bat1_Power != 100 && batState == BAT_STATE_CHARGE)
@@ -82,19 +83,19 @@ void Battery_Power_Read()
                 }
                 CHARGE_EN(1);
                 BAT1_C_SHIFT_EN(1);
+                bat1_NeedCharge = TRUE;
                 SysMsg.PwrInfo.Bat1_Err = FALSE;
-                SysMsg.PwrInfo.Bat1_NeedCgarge = TRUE;
             }
             else
             {
                 CHARGE_CTL(0);
                 CHARGE_EN(0);
                 BAT1_C_SHIFT_EN(0);
+                bat1_NeedCharge = FALSE;
                 SysMsg.PwrInfo.Bat1_Err = FALSE;
-                SysMsg.PwrInfo.Bat1_NeedCgarge = FALSE;
             }
         }
-        else if(SysMsg.PwrInfo.Bat2_Insert == TRUE && SysMsg.PwrInfo.Bat2_NeedCgarge)
+        else if(SysMsg.PwrInfo.Bat2_Insert == TRUE && bat2_NeedCharge == TRUE)
         {
             if(SysMsg.PwrInfo.Bat2_Power == 100)
             {
@@ -104,7 +105,7 @@ void Battery_Power_Read()
                     CHARGE_EN(0);
                     BAT2_C_SHIFT_EN(0);
                     SysMsg.PwrInfo.Bat2_Err = FALSE;
-                    SysMsg.PwrInfo.Bat2_NeedCgarge = FALSE;
+                    bat2_NeedCharge = FALSE;
                 }
             }
             else if(SysMsg.PwrInfo.Bat1_Power != 100 && batState == BAT_STATE_ERROR)
@@ -115,7 +116,7 @@ void Battery_Power_Read()
                     CHARGE_EN(0);
                     BAT2_C_SHIFT_EN(0);
                     SysMsg.PwrInfo.Bat2_Err = TRUE;
-                    SysMsg.PwrInfo.Bat2_NeedCgarge = FALSE;
+                    bat2_NeedCharge = FALSE;
                 }
                 else
                 {
@@ -130,7 +131,7 @@ void Battery_Power_Read()
                     CHARGE_EN(1);
                     BAT2_C_SHIFT_EN(1);
                     SysMsg.PwrInfo.Bat2_Err = FALSE;
-                    SysMsg.PwrInfo.Bat2_NeedCgarge = TRUE;
+                    bat2_NeedCharge = TRUE;
                 }
             }
             else if(SysMsg.PwrInfo.Bat2_Power != 100 && batState == BAT_STATE_CHARGE)
@@ -146,7 +147,7 @@ void Battery_Power_Read()
                 CHARGE_EN(1);
                 BAT2_C_SHIFT_EN(1);
                 SysMsg.PwrInfo.Bat2_Err = FALSE;
-                SysMsg.PwrInfo.Bat2_NeedCgarge = TRUE;
+                bat2_NeedCharge = TRUE;
             }
             else
             {
@@ -154,7 +155,7 @@ void Battery_Power_Read()
                 CHARGE_EN(0);
                 BAT2_C_SHIFT_EN(0);
                 SysMsg.PwrInfo.Bat2_Err = FALSE;
-                SysMsg.PwrInfo.Bat2_NeedCgarge = FALSE;
+                bat2_NeedCharge = FALSE;
             }
         }
         else
@@ -163,10 +164,11 @@ void Battery_Power_Read()
             CHARGE_EN(0);
             BAT1_C_SHIFT_EN(0);
             BAT2_C_SHIFT_EN(0);
+            bat1_NeedCharge = FALSE;
+            bat2_NeedCharge = FALSE;
             SysMsg.PwrInfo.Bat1_Err = FALSE;
-            SysMsg.PwrInfo.Bat1_NeedCgarge = FALSE;
             SysMsg.PwrInfo.Bat2_Err = FALSE;
-            SysMsg.PwrInfo.Bat2_NeedCgarge = FALSE;
+            
         }
     }
 }

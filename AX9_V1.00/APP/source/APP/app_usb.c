@@ -22,7 +22,7 @@ void App_Usb_Task()
     OS_ERR err;
     
 	while(1)
-	{					
+	{		
 		if(VCP_CheckDataReceived() != 0)
 		{
             if(ReceiveFrameAnalysis(USB_Rx_Buffer, receive_count) == SUCCESS)
@@ -40,7 +40,7 @@ void App_Usb_Task()
                 SysMsg.Cmd.HV_Send = FALSE;
                 
                 SenFrameCmd.Cid = CMD_ADJUST_HV;
-                SenFrameCmd.Len = 8;
+                SenFrameCmd.Len = 10;
                 
                 SenFrameCmd.Data[0] = SysMsg.AdjVol.R_VPP1 >> 8;
                 SenFrameCmd.Data[1] = SysMsg.AdjVol.R_VPP1;
@@ -65,7 +65,7 @@ void App_Usb_Task()
                 SysMsg.Cmd.CW_Send = FALSE;
                 
                 SenFrameCmd.Cid = CMD_ADJUST_CW;
-                SenFrameCmd.Len = 8;
+                SenFrameCmd.Len = 10;
                 
                 SenFrameCmd.Data[0] = SysMsg.AdjVol.R_VPP1 >> 8;
                 SenFrameCmd.Data[1] = SysMsg.AdjVol.R_VPP1;
@@ -87,7 +87,7 @@ void App_Usb_Task()
             
             if(SysMsg.Cmd.Firmware_Send)
             {
-                SysMsg.Cmd.Firmware_Send = TRUE;
+                SysMsg.Cmd.Firmware_Send = FALSE;
                 
                 SenFrameCmd.Cid = CMD_FW_VERSION;
                 SenFrameCmd.Len = 1;
@@ -99,7 +99,7 @@ void App_Usb_Task()
             
             if(SysMsg.Cmd.CompileInfo_Send)
             {
-                SysMsg.Cmd.CompileInfo_Send = TRUE;
+                SysMsg.Cmd.CompileInfo_Send = FALSE;
                 
                 SenFrameCmd.Len = sizeof(DateStr) + sizeof(TimeStr);
         
@@ -109,6 +109,51 @@ void App_Usb_Task()
                 FrameCmdPackage(USB_Tx_Buffer);
                 VCP_fops.pIf_DataTx(USB_Tx_Buffer, (USB_Tx_Buffer[3] + 6));
             }
+            
+            if(SysMsg.Cmd.FanInfo_Send)
+            {
+                SysMsg.Cmd.FanInfo_Send = FALSE;
+                SenFrameCmd.Cid = CMD_FAN_INFO;
+                
+                SenFrameCmd.Len = 15;
+                SenFrameCmd.Data[0] = SysMsg.Fan.Rpm1 >> 8;
+                SenFrameCmd.Data[1] = SysMsg.Fan.Rpm1;
+                SenFrameCmd.Data[2] = SysMsg.Fan.Rpm2 >> 8;
+                SenFrameCmd.Data[3] = SysMsg.Fan.Rpm2;
+                SenFrameCmd.Data[4] = SysMsg.Fan.Rpm3 >> 8;
+                SenFrameCmd.Data[5] = SysMsg.Fan.Rpm3;
+                SenFrameCmd.Data[6] = SysMsg.Fan.Rpm4 >> 8;
+                SenFrameCmd.Data[7] = SysMsg.Fan.Rpm4;
+                SenFrameCmd.Data[8] = SysMsg.Fan.Rpm5 >> 8;
+                SenFrameCmd.Data[9] = SysMsg.Fan.Rpm5;
+                SenFrameCmd.Data[10] = SysMsg.Fan.Fan1State;
+                SenFrameCmd.Data[11] = SysMsg.Fan.Fan2State;
+                SenFrameCmd.Data[12] = SysMsg.Fan.Fan3State;
+                SenFrameCmd.Data[13] = SysMsg.Fan.Fan4State;
+                SenFrameCmd.Data[14] = SysMsg.Fan.Fan5State;
+                
+                FrameCmdPackage(USB_Tx_Buffer);
+                VCP_fops.pIf_DataTx(USB_Tx_Buffer, (USB_Tx_Buffer[3] + 6));
+            }
+            
+            if(SysMsg.Cmd.PwrInfo_Send)
+            {
+                SysMsg.Cmd.PwrInfo_Send = FALSE;
+                SenFrameCmd.Cid = CMD_PWR_INFO;
+                
+                SenFrameCmd.Len = 7;
+                SenFrameCmd.Data[0] = SysMsg.PwrInfo.Ac_Insert;
+                SenFrameCmd.Data[1] = SysMsg.PwrInfo.Bat1_Insert;
+                SenFrameCmd.Data[2] = SysMsg.PwrInfo.Bat1_Power;
+                SenFrameCmd.Data[3] = SysMsg.PwrInfo.Bat1_Err;
+                SenFrameCmd.Data[4] = SysMsg.PwrInfo.Bat2_Insert;
+                SenFrameCmd.Data[5] = SysMsg.PwrInfo.Bat2_Power;
+                SenFrameCmd.Data[6] = SysMsg.PwrInfo.Bat2_Err;
+                
+                FrameCmdPackage(USB_Tx_Buffer);
+                VCP_fops.pIf_DataTx(USB_Tx_Buffer, (USB_Tx_Buffer[3] + 6));
+            }
+            SysMsg.Cmd.PwrInfo_Send = TRUE;
 
             if(SysMsg.Cmd.EcInfo_Send == TRUE)
             {
@@ -151,7 +196,6 @@ void App_Usb_Task()
         }
 
         OSTimeDlyHMSM(0, 0, 0, 10, OS_OPT_TIME_PERIODIC, &err);
-
 	}
 }
 

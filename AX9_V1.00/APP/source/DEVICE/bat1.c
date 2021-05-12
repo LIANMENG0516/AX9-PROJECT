@@ -32,13 +32,15 @@ void SMDAT_BAT1_IN()
 
 void I2c_Bat1_Start()
 {
+    SMDAT_BAT1_OUT();
+    
     BAT1_SMBUS_C_1();
     BAT1_SMBUS_D_1();
-    Delay_Nop(5);
+    Delay_Nop(1800);
     BAT1_SMBUS_D_0();
-    Delay_Nop(5);
+    Delay_Nop(1800);
     BAT1_SMBUS_C_0();
-    Delay_Nop(5);
+    Delay_Nop(1800);
 }
 
 void I2c_Bat1_Stop()
@@ -47,11 +49,11 @@ void I2c_Bat1_Stop()
     
     BAT1_SMBUS_C_0();
     BAT1_SMBUS_D_0();
-    Delay_Nop(5);
+    Delay_Nop(1800);
     BAT1_SMBUS_C_1();
-    Delay_Nop(5);
+    Delay_Nop(1800);
     BAT1_SMBUS_D_1();
-    Delay_Nop(5);
+    Delay_Nop(1800);
 }
 
 void I2c_Bat1_SendByte(unsigned char data)
@@ -68,11 +70,11 @@ void I2c_Bat1_SendByte(unsigned char data)
 		{
 			BAT1_SMBUS_D_1();
 		}
-		Delay_Nop(5);
+		Delay_Nop(1800);
 		BAT1_SMBUS_C_1();
-		Delay_Nop(5);
+		Delay_Nop(1800);
 		BAT1_SMBUS_C_0();
-        Delay_Nop(5);
+        Delay_Nop(1800);
 	}
 }
 
@@ -82,7 +84,7 @@ uint8_t I2c_Bat1_WaitAck()
 
 	SMDAT_BAT1_IN();
     
-    Delay_Nop(5);
+    Delay_Nop(1800);
 	
 	while(BAT1_SMBUS_D_READ())
 	{
@@ -93,9 +95,9 @@ uint8_t I2c_Bat1_WaitAck()
 	}
 	
 	BAT1_SMBUS_C_1();
-    Delay_Nop(5);
+    Delay_Nop(1800);
     BAT1_SMBUS_C_0();
-    Delay_Nop(5);
+    Delay_Nop(1800);
 	return 0;
 }
 
@@ -104,26 +106,26 @@ void I2c_Bat1_SendAck()
 	SMDAT_BAT1_OUT();
     
 	BAT1_SMBUS_C_0();
-	Delay_Nop(10);
+	Delay_Nop(1800);
 	BAT1_SMBUS_D_0();
-	Delay_Nop(10);
+	Delay_Nop(1800);
 	BAT1_SMBUS_C_1();
-	Delay_Nop(10);
+	Delay_Nop(1800);
 	BAT1_SMBUS_C_0();
-	Delay_Nop(10);
+	Delay_Nop(1800);
 }
 
 void I2c_Bat1_SendNack()
 {
 	SMDAT_BAT1_OUT();
 	BAT1_SMBUS_C_0();
-	Delay_Nop(10);
+	Delay_Nop(1800);
 	BAT1_SMBUS_D_1();
-	Delay_Nop(10);
+	Delay_Nop(1800);
 	BAT1_SMBUS_C_1();
-	Delay_Nop(10);
+	Delay_Nop(1800);
 	BAT1_SMBUS_C_0();
-	Delay_Nop(10);
+	Delay_Nop(1800);
 }
 
 uint8_t I2c_Bat1_ReadByte()
@@ -143,11 +145,11 @@ uint8_t I2c_Bat1_ReadByte()
         {
             data |= mask;
         }
-        Delay_Nop(15);
+        Delay_Nop(1800);
         BAT1_SMBUS_C_1();
-        Delay_Nop(15);
+        Delay_Nop(1800);
         BAT1_SMBUS_C_0();
-        Delay_Nop(15);
+        Delay_Nop(1800);
     }
     return data;
 }
@@ -175,7 +177,7 @@ bool I2c_Bat1_ReadData(uint8_t id, uint8_t regaddr, uint8_t *buffer, uint8_t len
     }
     do
     {
-        Delay_Nop(50);
+        Delay_Nop(1800);
         *buffer++ = I2c_Bat1_ReadByte();
         if(++i == len)
         {
@@ -186,7 +188,7 @@ bool I2c_Bat1_ReadData(uint8_t id, uint8_t regaddr, uint8_t *buffer, uint8_t len
             I2c_Bat1_SendAck();
         }
     }while(i!=len);
-    Delay_Nop(60);
+    Delay_Nop(1800);
     I2c_Bat1_Stop();
     
     return TRUE;

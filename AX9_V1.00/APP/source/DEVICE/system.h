@@ -76,6 +76,12 @@ typedef struct
     uint16_t Rpm3;
     uint16_t Rpm4;
     uint16_t Rpm5;
+    
+    bool     Fan1State;
+    bool     Fan2State;
+    bool     Fan3State;
+    bool     Fan4State;
+    bool     Fan5State;
 }FanStrc;
 
 typedef struct
@@ -86,6 +92,8 @@ typedef struct
     bool            Firmware_Send;
     bool            CompileInfo_Send;
     bool            Voltage_Send;
+    bool            FanInfo_Send;
+    bool            PwrInfo_Send;
     bool            EcInfo_Send;
     uint8_t         Channel;                //命令通道, 是指程序接收到的命令从USB、ECCOM、DEBUGCOM哪个通道进入
 }Command_Deal;

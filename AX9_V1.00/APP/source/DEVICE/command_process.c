@@ -132,6 +132,16 @@ void Get_Voltage_Msg()
     SysMsg.Cmd.Voltage_Send = TRUE;
 }
 
+void Get_Fan_Info()
+{
+    SysMsg.Cmd.FanInfo_Send = TRUE;
+}
+
+void Get_Pwr_Info()
+{
+    SysMsg.Cmd.PwrInfo_Send = TRUE;
+}
+
 void InValid_CidData()
 {
 	SenFrameCmd.Len = 1;
@@ -228,6 +238,15 @@ void Cmd_Process()
         case    CMD_READ_VOLTAGE:
                 Get_Voltage_Msg();
                 break;
+        
+        case    CMD_FAN_INFO:
+                Get_Fan_Info();
+                break;
+        
+        case    CMD_PWR_INFO:
+                Get_Pwr_Info();
+                break;
+            
 
         default:
                 InValid_CidData();
