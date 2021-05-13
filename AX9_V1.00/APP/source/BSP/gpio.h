@@ -157,7 +157,7 @@
 //CHARGE_EN
 #define CHARGE_EN_PORT            GPIOD
 #define CHARGE_EN_PIN             GPIO_Pin_1
-#define CHARGE_EN(x)              x ? GPIO_ResetBits(CHARGE_EN_PORT, CHARGE_EN_PIN) : GPIO_SetBits(CHARGE_EN_PORT, CHARGE_EN_PIN)
+#define CHARGE_EN(x)              x ? GPIO_SetBits(CHARGE_EN_PORT, CHARGE_EN_PIN) : GPIO_ResetBits(CHARGE_EN_PORT, CHARGE_EN_PIN)
 
 //C_P2V25
 #define C_P2V25_PORT              GPIOD

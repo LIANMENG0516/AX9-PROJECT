@@ -116,6 +116,8 @@ void Get_AdjHv_Msg()
 
 void Get_AdjCw_Msg()
 {
+    SysMsg.AdjVol.TimeFlag = TRUE;
+
     SysMsg.AdjVol.T_VPP1 = (RcvFrameCmd.Data[0] << 8) | RcvFrameCmd.Data[1];
     SysMsg.AdjVol.T_VNN1 = (RcvFrameCmd.Data[2] << 8) | RcvFrameCmd.Data[3];
     SysMsg.AdjVol.T_VPP2 = (RcvFrameCmd.Data[4] << 8) | RcvFrameCmd.Data[5];

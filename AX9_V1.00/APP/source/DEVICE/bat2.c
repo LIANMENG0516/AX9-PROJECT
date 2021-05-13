@@ -25,20 +25,22 @@ void SMDAT_BAT2_IN()
     GPIO_InitStruct.GPIO_Pin = GPIO_Pin_9;
 	GPIO_InitStruct.GPIO_Mode = GPIO_Mode_IN;				
 	GPIO_InitStruct.GPIO_Speed = GPIO_High_Speed;		
-	GPIO_InitStruct.GPIO_OType = GPIO_OType_PP;				
+	GPIO_InitStruct.GPIO_OType = GPIO_OType_OD;				
 	GPIO_InitStruct.GPIO_PuPd = GPIO_PuPd_NOPULL;			
 	GPIO_Init(GPIOC, &GPIO_InitStruct);	
 }
 
 void I2c_Bat2_Start()
 {
+    SMDAT_BAT2_OUT();
+    
     BAT2_SMBUS_C_1();
     BAT2_SMBUS_D_1();
-    Delay_Nop(5);
+    delay_us_os(5);
     BAT2_SMBUS_D_0();
-    Delay_Nop(5);
+    delay_us_os(5);
     BAT2_SMBUS_C_0();
-    Delay_Nop(5);
+    delay_us_os(5);
 }
 
 void I2c_Bat2_Stop()
@@ -47,11 +49,11 @@ void I2c_Bat2_Stop()
     
     BAT2_SMBUS_C_0();
     BAT2_SMBUS_D_0();
-    Delay_Nop(5);
+    delay_us_os(5);
     BAT2_SMBUS_C_1();
-    Delay_Nop(5);
+    delay_us_os(5);
     BAT2_SMBUS_D_1();
-    Delay_Nop(5);
+    delay_us_os(5);
 }
 
 void I2c_Bat2_SendByte(unsigned char data)
@@ -68,11 +70,11 @@ void I2c_Bat2_SendByte(unsigned char data)
 		{
 			BAT2_SMBUS_D_1();
 		}
-		Delay_Nop(5);
+		delay_us_os(5);
 		BAT2_SMBUS_C_1();
-		Delay_Nop(5);
+		delay_us_os(5);
 		BAT2_SMBUS_C_0();
-        Delay_Nop(5);
+        delay_us_os(5);
 	}
 }
 
@@ -82,7 +84,7 @@ uint8_t I2c_Bat2_WaitAck()
 
 	SMDAT_BAT2_IN();
     
-    Delay_Nop(5);
+    delay_us_os(5);
 	
 	while(BAT2_SMBUS_D_READ())
 	{
@@ -93,9 +95,9 @@ uint8_t I2c_Bat2_WaitAck()
 	}
 	
 	BAT2_SMBUS_C_1();
-    Delay_Nop(5);
+    delay_us_os(5);
     BAT2_SMBUS_C_0();
-    Delay_Nop(5);
+    delay_us_os(5);
 	return 0;
 }
 
@@ -104,26 +106,26 @@ void I2c_Bat2_SendAck()
 	SMDAT_BAT2_OUT();
     
 	BAT2_SMBUS_C_0();
-	Delay_Nop(10);
+	delay_us_os(5);
 	BAT2_SMBUS_D_0();
-	Delay_Nop(10);
+	delay_us_os(5);
 	BAT2_SMBUS_C_1();
-	Delay_Nop(10);
+	delay_us_os(5);
 	BAT2_SMBUS_C_0();
-	Delay_Nop(10);
+	delay_us_os(5);
 }
 
 void I2c_Bat2_SendNack()
 {
 	SMDAT_BAT2_OUT();
 	BAT2_SMBUS_C_0();
-	Delay_Nop(10);
+	delay_us_os(5);
 	BAT2_SMBUS_D_1();
-	Delay_Nop(10);
+	delay_us_os(5);
 	BAT2_SMBUS_C_1();
-	Delay_Nop(10);
+	delay_us_os(5);
 	BAT2_SMBUS_C_0();
-	Delay_Nop(10);
+	delay_us_os(5);
 }
 
 uint8_t I2c_Bat2_ReadByte()
@@ -143,11 +145,11 @@ uint8_t I2c_Bat2_ReadByte()
         {
             data |= mask;
         }
-        Delay_Nop(15);
+        delay_us_os(5);
         BAT2_SMBUS_C_1();
-        Delay_Nop(15);
+        delay_us_os(5);
         BAT2_SMBUS_C_0();
-        Delay_Nop(15);
+        delay_us_os(5);
     }
     return data;
 }
@@ -175,7 +177,7 @@ bool I2c_Bat2_ReadData(uint8_t id, uint8_t regaddr, uint8_t *buffer, uint8_t len
     }
     do
     {
-        Delay_Nop(50);
+        delay_us_os(80);
         *buffer++ = I2c_Bat2_ReadByte();
         if(++i == len)
         {
@@ -186,7 +188,7 @@ bool I2c_Bat2_ReadData(uint8_t id, uint8_t regaddr, uint8_t *buffer, uint8_t len
             I2c_Bat2_SendAck();
         }
     }while(i!=len);
-    Delay_Nop(60);
+    delay_us_os(5);
     I2c_Bat2_Stop();
     
     return TRUE;
@@ -196,11 +198,18 @@ void Bat2_PowerRead()
 {
     uint8_t buffer[3] = {0, 0 , 0};
     
-    if(I2c_Bat2_ReadData(BAT_ADDR, BAT_PWR_CMD, buffer, 3) == TRUE)
+    if(SysMsg.PwrInfo.Bat2_Insert == TRUE)
     {
-        if(buffer[0] <= 100)
+        if(I2c_Bat2_ReadData(BAT_ADDR, BAT_PWR_CMD, buffer, 3) == TRUE)
         {
-            SysMsg.PwrInfo.Bat2_Power = buffer[0];
+            if(buffer[0] <= 100)
+            {
+                SysMsg.PwrInfo.Bat2_Power = buffer[0];
+            }
         }
+    }
+    else
+    {
+        SysMsg.PwrInfo.Bat2_Power = 0;
     }
 }

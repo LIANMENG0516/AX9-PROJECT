@@ -26,12 +26,13 @@ void TimerBase2_5_Config(TIM_TypeDef* TIMx, uint16_t period, uint16_t prescaler)
 void TimerConfig()
 {
     TimerBase2_5_Config(TIM2, 1000-1, 84-1);                                //1Ms
-    TIM_ITConfig(TIM2, TIM_IT_Update,ENABLE);                               //允许定时器更新中断
     TIM_Cmd(TIM2, ENABLE);                                                  //使能定时器
+    TIM_ITConfig(TIM2, TIM_IT_Update, ENABLE);                               //允许定时器更新中断
 }
 
-void  TIM2_IRQHandler_CallBack()
+void TIM2_IRQHandler_CallBack()
 {
+    TIM_ClearITPendingBit(TIM2, TIM_IT_Update);
     if(SysMsg.AdjVol.TimeFlag == TRUE)
     {
         SysMsg.AdjVol.Time++;

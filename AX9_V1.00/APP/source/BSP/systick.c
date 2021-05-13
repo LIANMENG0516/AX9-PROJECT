@@ -68,13 +68,41 @@ void delay_ms(uint16_t time)
 	SysTick->VAL = 0;
 }
 
-
-
-
-
-
-
-
+void delay_us_os(uint16_t time)
+{
+    uint32_t ticks, reload;
+    uint16_t oldValue, nowValue, difVal;;
+    
+    ticks = time * 21;
+    reload = SysTick->LOAD;
+    oldValue = SysTick->VAL;
+    
+    while(1)
+    {
+        nowValue = SysTick->VAL;
+        
+        if(nowValue != oldValue)
+        {
+            if(nowValue < oldValue)
+            {
+                difVal = oldValue - nowValue;
+                if(difVal >= ticks)
+                {
+                    break;
+                }
+            }
+            else
+            {
+                difVal = reload - nowValue + oldValue;
+                if(difVal >= ticks)
+                {
+                    break;
+                }
+            }
+        
+        }
+    } 
+}
 
 
 

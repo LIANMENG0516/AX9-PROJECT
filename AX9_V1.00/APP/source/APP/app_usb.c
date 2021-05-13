@@ -145,10 +145,10 @@ void App_Usb_Task()
                 SenFrameCmd.Data[0] = SysMsg.PwrInfo.Ac_Insert;
                 SenFrameCmd.Data[1] = SysMsg.PwrInfo.Bat1_Insert;
                 SenFrameCmd.Data[2] = SysMsg.PwrInfo.Bat1_Power;
-                SenFrameCmd.Data[3] = SysMsg.PwrInfo.Bat1_Err;
+                SenFrameCmd.Data[3] = SysMsg.PwrInfo.Bat1_State;
                 SenFrameCmd.Data[4] = SysMsg.PwrInfo.Bat2_Insert;
                 SenFrameCmd.Data[5] = SysMsg.PwrInfo.Bat2_Power;
-                SenFrameCmd.Data[6] = SysMsg.PwrInfo.Bat2_Err;
+                SenFrameCmd.Data[6] = SysMsg.PwrInfo.Bat2_State;
                 
                 FrameCmdPackage(USB_Tx_Buffer);
                 VCP_fops.pIf_DataTx(USB_Tx_Buffer, (USB_Tx_Buffer[3] + 6));
@@ -173,7 +173,7 @@ void App_Usb_Task()
                 SysMsg.Cmd.Timeout = FALSE;
 
                 SenFrameCmd.Cid = TIMEOUT;
-                SenFrameCmd.Len = 8;
+                SenFrameCmd.Len = 10;
                 
                 SenFrameCmd.Data[0] = SysMsg.AdjVol.R_VPP1 >> 8;
                 SenFrameCmd.Data[1] = SysMsg.AdjVol.R_VPP1;

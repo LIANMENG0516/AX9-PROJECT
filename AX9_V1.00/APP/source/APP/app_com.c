@@ -70,7 +70,7 @@ void App_Com_Task()
                 #if DEBUG_COMMAND
                 
                 SenFrameCmd.Cid = CMD_ADJUST_HV;
-                SenFrameCmd.Len = 8;
+                SenFrameCmd.Len = 10;
                 
                 SenFrameCmd.Data[0] = SysMsg.AdjVol.R_VPP1 >> 8;
                 SenFrameCmd.Data[1] = SysMsg.AdjVol.R_VPP1;
@@ -78,8 +78,6 @@ void App_Com_Task()
                 SenFrameCmd.Data[3] = SysMsg.AdjVol.R_VNN1;
                 SenFrameCmd.Data[4] = SysMsg.AdjVol.R_VPP2 >> 8;
                 SenFrameCmd.Data[5] = SysMsg.AdjVol.R_VPP2;
-                SenFrameCmd.Data[6] = SysMsg.AdjVol.R_VNN2 >> 8;
-                SenFrameCmd.Data[7] = SysMsg.AdjVol.R_VNN2;
                 SenFrameCmd.Data[6] = SysMsg.AdjVol.R_VNN2 >> 8;
                 SenFrameCmd.Data[7] = SysMsg.AdjVol.R_VNN2;
                 SenFrameCmd.Data[8] = SysMsg.AdjVol.Time >> 8;
@@ -103,7 +101,7 @@ void App_Com_Task()
                 #if DEBUG_COMMAND
                 
                 SenFrameCmd.Cid = CMD_ADJUST_CW;
-                SenFrameCmd.Len = 8;
+                SenFrameCmd.Len = 10;
                 
                 SenFrameCmd.Data[0] = SysMsg.AdjVol.R_VPP1 >> 8;
                 SenFrameCmd.Data[1] = SysMsg.AdjVol.R_VPP1;
@@ -135,7 +133,7 @@ void App_Com_Task()
                 #if DEBUG_COMMAND
 
                 SenFrameCmd.Cid = TIMEOUT;
-                SenFrameCmd.Len = 8;
+                SenFrameCmd.Len = 10;
                 
                 SenFrameCmd.Data[0] = SysMsg.AdjVol.R_VPP1 >> 8;
                 SenFrameCmd.Data[1] = SysMsg.AdjVol.R_VPP1;

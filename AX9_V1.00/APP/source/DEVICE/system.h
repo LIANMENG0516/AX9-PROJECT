@@ -106,12 +106,10 @@ typedef struct
     bool            Ac_Vol;
     bool            Bat1_Insert;
     uint8_t         Bat1_Power;             //电池电量
-    bool            Bat1_NeedCgarge;
-    bool            Bat1_Err;               //电池故障标志
+    uint8_t         Bat1_State;             //电池故障标志
     bool            Bat2_Insert;
     uint8_t         Bat2_Power;             //电池电量
-    bool            Bat2_NeedCgarge;
-    bool            Bat2_Err;               //电池故障标志
+    uint8_t         Bat2_State;             //电池故障标志
 }PwrInfoStruct;
 
 typedef struct

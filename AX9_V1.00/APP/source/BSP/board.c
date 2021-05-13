@@ -128,9 +128,11 @@ void Board_Bsp_Init()
 	
 	SysTick_Iint();
     
+    #if USE_DEBUG
+    Debug_Com_Config();                     //调试串口初始化
+    #else
     Commu_Com_Config();                     //通讯串口初始化--与EC通讯
-    //Debug_Com_Config();                     //调试串口初始化
-    
+    #endif
     Spi_Dac_Config();
     Adjust_Hv_Reset();
     Adjust_Cw_Reset();
@@ -142,6 +144,8 @@ void Board_Bsp_Init()
     Dac_config(DAC_Channel_2);
     
     Fan_Config();
+    
+    TimerConfig();
 }
 
 

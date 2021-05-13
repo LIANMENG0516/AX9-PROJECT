@@ -40,19 +40,21 @@ extern uint8_t	SenData[100];
 
 void Dmay_Streamx_IRQHandler_CallBack()
 {
-//    if(DMA_GetITStatus(DEBUG_COM_DMAY_STREAMX_TX, DEBUG_COM_DMA_IT_TC_TX) != RESET)
-//	{
-//		DMA_Cmd(DEBUG_COM_DMAY_STREAMX_TX, DISABLE); 
-//		DMA_SetCurrDataCounter(DEBUG_COM_DMAY_STREAMX_TX, sizeof(SenData));
-//		DMA_ClearITPendingBit(DEBUG_COM_DMAY_STREAMX_TX, DEBUG_COM_DMA_IT_TC_TX);					//清除DMA发送完成中断标志位
-//	}
-    
+    #if USE_DEBUG
+    if(DMA_GetITStatus(DEBUG_COM_DMAY_STREAMX_TX, DEBUG_COM_DMA_IT_TC_TX) != RESET)
+	{
+		DMA_Cmd(DEBUG_COM_DMAY_STREAMX_TX, DISABLE); 
+		DMA_SetCurrDataCounter(DEBUG_COM_DMAY_STREAMX_TX, sizeof(SenData));
+		DMA_ClearITPendingBit(DEBUG_COM_DMAY_STREAMX_TX, DEBUG_COM_DMA_IT_TC_TX);					//清除DMA发送完成中断标志位
+	}
+    #else
     if(DMA_GetITStatus(COMMU_COM_DMAY_STREAMX_TX, COMMU_COM_DMA_IT_TC_TX) != RESET)
 	{
 		DMA_Cmd(COMMU_COM_DMAY_STREAMX_TX, DISABLE); 
 		DMA_SetCurrDataCounter(COMMU_COM_DMAY_STREAMX_TX, sizeof(SenData));
 		DMA_ClearITPendingBit(COMMU_COM_DMAY_STREAMX_TX, COMMU_COM_DMA_IT_TC_TX);					//清除DMA发送完成中断标志位
 	}
+    #endif
 }
 
 

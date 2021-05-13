@@ -4,7 +4,7 @@ extern System_MsgStruct SysMsg;
 
 void cb_Sys_StateChk_Tmr(void *p_tmr, void *p_arg)
 {
-    static uint8_t startCnt = 0;
+    static uint16_t startCnt = 0;
 
     Adc3_GetAdjVoltage();
     
@@ -21,7 +21,7 @@ void cb_Sys_StateChk_Tmr(void *p_tmr, void *p_arg)
         }
         else
         {
-            if(++startCnt >= 30)
+            if(++startCnt >= ADJTIMEOUT/10)
             {
                 SysMsg.AdjVol.HV_Minitor = FALSE;
                 SysMsg.Cmd.Timeout = TRUE;
@@ -42,7 +42,7 @@ void cb_Sys_StateChk_Tmr(void *p_tmr, void *p_arg)
         }
         else
         {
-            if(++startCnt >= 30)
+            if(++startCnt >= ADJTIMEOUT/10)
             {
                 SysMsg.AdjVol.CW_Minitor = FALSE;
                 SysMsg.Cmd.Timeout = TRUE;

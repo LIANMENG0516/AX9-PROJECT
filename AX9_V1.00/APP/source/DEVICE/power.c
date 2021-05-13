@@ -21,8 +21,7 @@ uint8_t CheckBatteryState()
 void Battery_Power_Read()
 {
     uint8_t batState;
-    
-    static bool bat1_NeedCharge = TRUE, bat2_NeedCharge = TRUE;
+    static bool bat1_Charging = FALSE, bat2_Charging = FALSE;
     static uint16_t bat1ChargeRecoverCnt = 0, bat2ChargeRecoverCnt = 0;
     
     Power_Insert();
@@ -30,147 +29,147 @@ void Battery_Power_Read()
     Bat2_PowerRead();
     batState = CheckBatteryState();
     
-    if(SysMsg.PwrInfo.Ac_Insert == TRUE)
+    if(SysMsg.PwrInfo.Ac_Insert == TRUE)                                                    //AC在位
     {
-        if(SysMsg.PwrInfo.Bat1_Insert == TRUE && bat1_NeedCharge == TRUE)
+        if(SysMsg.PwrInfo.Bat1_Insert == TRUE || SysMsg.PwrInfo.Bat2_Insert == TRUE)
         {
-            if(SysMsg.PwrInfo.Bat1_Power == 100)
+            if(SysMsg.PwrInfo.Bat1_Insert == TRUE)
             {
-                if(batState == BAT_STATE_FULL || batState == BAT_STATE_ERROR)
+                if(SysMsg.PwrInfo.Bat1_Power == 100)
                 {
-                    CHARGE_CTL(0);
-                    CHARGE_EN(0);
-                    BAT1_C_SHIFT_EN(0);
-                    bat1_NeedCharge = FALSE;
-                    SysMsg.PwrInfo.Bat1_Err = FALSE;
-                }
-            }
-            else if(SysMsg.PwrInfo.Bat1_Power != 100 && batState == BAT_STATE_ERROR)
-            {
-                if(++bat1ChargeRecoverCnt >= 100)
-                {
-                    CHARGE_CTL(0);
-                    CHARGE_EN(0);
-                    BAT1_C_SHIFT_EN(0);
-                    bat1_NeedCharge = FALSE;
-                    SysMsg.PwrInfo.Bat1_Err = TRUE;
-                }
-                else
-                {
-                    if(SysMsg.SystemState == SYSTEM_ON)
+                    if(batState == BAT_STATE_FULL || batState == BAT_STATE_ERROR)
                     {
-                        CHARGE_CTL(0);
+                        BAT1_C_SHIFT_EN(0);
+                        bat1_Charging = FALSE;
+                        SysMsg.PwrInfo.Bat1_State = BAT_STATE_FULL;
+                    }
+                }
+                else if(SysMsg.PwrInfo.Bat1_Power != 100 && batState == BAT_STATE_ERROR)
+                {
+                    if(++bat1ChargeRecoverCnt >= 100)
+                    {
+                        BAT1_C_SHIFT_EN(0);
+                        bat1_Charging = FALSE;
+                        SysMsg.PwrInfo.Bat1_State = BAT_STATE_ERROR;
                     }
                     else
                     {
-                        CHARGE_CTL(1);
+                        BAT1_C_SHIFT_EN(1);
+                        bat1_Charging = TRUE;
+                        SysMsg.PwrInfo.Bat1_State = BAT_STATE_CHARGE;
                     }
-                    CHARGE_EN(1);
+                }
+                else if(SysMsg.PwrInfo.Bat1_Power != 100 && batState == BAT_STATE_CHARGE)
+                {
                     BAT1_C_SHIFT_EN(1);
-                    bat1_NeedCharge = TRUE;
-                    SysMsg.PwrInfo.Bat1_Err = FALSE;
-                }
-            }
-            else if(SysMsg.PwrInfo.Bat1_Power != 100 && batState == BAT_STATE_CHARGE)
-            {
-                if(SysMsg.SystemState == SYSTEM_ON)
-                {
-                    CHARGE_CTL(0);
+                    bat1_Charging = TRUE;
+                    SysMsg.PwrInfo.Bat1_State = BAT_STATE_CHARGE;
                 }
                 else
                 {
-                    CHARGE_CTL(1);
+                    BAT1_C_SHIFT_EN(0);
+                    bat1_Charging = FALSE;
+                    SysMsg.PwrInfo.Bat1_State = BAT_STATE_ERROR;
                 }
-                CHARGE_EN(1);
-                BAT1_C_SHIFT_EN(1);
-                bat1_NeedCharge = TRUE;
-                SysMsg.PwrInfo.Bat1_Err = FALSE;
             }
             else
             {
-                CHARGE_CTL(0);
-                CHARGE_EN(0);
-                BAT1_C_SHIFT_EN(0);
-                bat1_NeedCharge = FALSE;
-                SysMsg.PwrInfo.Bat1_Err = FALSE;
-            }
-        }
-        else if(SysMsg.PwrInfo.Bat2_Insert == TRUE && bat2_NeedCharge == TRUE)
-        {
-            if(SysMsg.PwrInfo.Bat2_Power == 100)
-            {
-                if(batState == BAT_STATE_FULL || batState == BAT_STATE_ERROR)
+                if(SysMsg.PwrInfo.Bat2_Power == 100)
                 {
-                    CHARGE_CTL(0);
-                    CHARGE_EN(0);
-                    BAT2_C_SHIFT_EN(0);
-                    SysMsg.PwrInfo.Bat2_Err = FALSE;
-                    bat2_NeedCharge = FALSE;
-                }
-            }
-            else if(SysMsg.PwrInfo.Bat1_Power != 100 && batState == BAT_STATE_ERROR)
-            {
-                if(++bat2ChargeRecoverCnt >= 100)
-                {
-                    CHARGE_CTL(0);
-                    CHARGE_EN(0);
-                    BAT2_C_SHIFT_EN(0);
-                    SysMsg.PwrInfo.Bat2_Err = TRUE;
-                    bat2_NeedCharge = FALSE;
-                }
-                else
-                {
-                    if(SysMsg.SystemState == SYSTEM_ON)
+                    if(batState == BAT_STATE_FULL || batState == BAT_STATE_ERROR)
                     {
-                        CHARGE_CTL(0);
+                        BAT2_C_SHIFT_EN(0);
+                        bat2_Charging = FALSE;
+                        SysMsg.PwrInfo.Bat2_State = BAT_STATE_FULL;
+                        bat2ChargeRecoverCnt = 0;
+                    }
+                }
+                else if(SysMsg.PwrInfo.Bat2_Power != 100 && batState == BAT_STATE_ERROR)
+                {
+                    if(++bat2ChargeRecoverCnt >= 100)
+                    {
+                        BAT2_C_SHIFT_EN(0);
+                        bat2_Charging = FALSE;
+                        SysMsg.PwrInfo.Bat2_State = BAT_STATE_ERROR;
                     }
                     else
                     {
-                        CHARGE_CTL(1);
+                        BAT2_C_SHIFT_EN(1);
+                        bat2_Charging = TRUE;
+                        SysMsg.PwrInfo.Bat2_State = BAT_STATE_CHARGE;
                     }
-                    CHARGE_EN(1);
-                    BAT2_C_SHIFT_EN(1);
-                    SysMsg.PwrInfo.Bat2_Err = FALSE;
-                    bat2_NeedCharge = TRUE;
                 }
-            }
-            else if(SysMsg.PwrInfo.Bat2_Power != 100 && batState == BAT_STATE_CHARGE)
-            {
-                if(SysMsg.SystemState == SYSTEM_ON)
+                else if(SysMsg.PwrInfo.Bat2_Power != 100 && batState == BAT_STATE_CHARGE)
                 {
-                    CHARGE_CTL(0);
+                    BAT2_C_SHIFT_EN(1);
+                    bat2_Charging = TRUE;
+                    SysMsg.PwrInfo.Bat2_State = BAT_STATE_CHARGE;
+                    bat2ChargeRecoverCnt = 0;
                 }
                 else
                 {
-                    CHARGE_CTL(1);
+                    BAT2_C_SHIFT_EN(0);
+                    bat2_Charging = FALSE;
+                    SysMsg.PwrInfo.Bat2_State = BAT_STATE_ERROR;
+                    bat2ChargeRecoverCnt = 0;
                 }
-                CHARGE_EN(1);
-                BAT2_C_SHIFT_EN(1);
-                SysMsg.PwrInfo.Bat2_Err = FALSE;
-                bat2_NeedCharge = TRUE;
-            }
-            else
-            {
-                CHARGE_CTL(0);
-                CHARGE_EN(0);
-                BAT2_C_SHIFT_EN(0);
-                SysMsg.PwrInfo.Bat2_Err = FALSE;
-                bat2_NeedCharge = FALSE;
             }
         }
         else
         {
-            CHARGE_CTL(0);
-            CHARGE_EN(0);
+            bat1_Charging = FALSE;
+            bat2_Charging = FALSE;
+            SysMsg.PwrInfo.Bat1_State = BAT_STATE_ERROR;
+            SysMsg.PwrInfo.Bat2_State = BAT_STATE_ERROR;
+            bat1ChargeRecoverCnt = 0;
+            bat2ChargeRecoverCnt = 0;
+        }
+        
+        if(bat1_Charging == TRUE || bat2_Charging == TRUE)
+        {
+            if(bat1_Charging == TRUE && bat2_Charging == FALSE)
+            {
+                BAT1_C_SHIFT_EN(1);
+                BAT2_C_SHIFT_EN(0);
+            }
+            if(bat1_Charging == FALSE && bat2_Charging == TRUE)
+            {
+                BAT1_C_SHIFT_EN(0);
+                BAT2_C_SHIFT_EN(1);
+            }
+            
+            if(SysMsg.SystemState == SYSTEM_ON)
+            {
+                CHARGE_CTL(0);                      //关闭快充
+            }
+            else
+            {
+                CHARGE_CTL(1);                      //打开快充
+            }
+            
+            CHARGE_EN(1);                           //使能充电
+        }
+        else
+        {
             BAT1_C_SHIFT_EN(0);
             BAT2_C_SHIFT_EN(0);
-            bat1_NeedCharge = FALSE;
-            bat2_NeedCharge = FALSE;
-            SysMsg.PwrInfo.Bat1_Err = FALSE;
-            SysMsg.PwrInfo.Bat2_Err = FALSE;
-            
-        }
+            CHARGE_CTL(0);
+            CHARGE_EN(0);
+        }  
     }
+    else
+    {
+        SysMsg.PwrInfo.Bat1_State = BAT_STATE_ERROR;
+        SysMsg.PwrInfo.Bat2_State = BAT_STATE_ERROR;
+        bat1ChargeRecoverCnt = 0;
+        bat2ChargeRecoverCnt = 0;
+        bat1_Charging = FALSE;
+        bat2_Charging = FALSE;
+        BAT1_C_SHIFT_EN(0);
+        BAT2_C_SHIFT_EN(0);
+        CHARGE_CTL(0);
+        CHARGE_EN(0);
+    }  
 }
 
 
