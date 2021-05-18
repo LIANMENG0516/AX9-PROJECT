@@ -19,5 +19,9 @@ void delay_ms(uint16_t time);
 
 void delay_us_os(uint16_t time);
 
+void delay_os_lock(void);
+
+void delay_os_unlock(void);
+
 #endif
 

@@ -73,6 +73,7 @@
 .\objects\usart.o: ..\UCOSIII\uCOS_CONFIG\app_cfg.h
 .\objects\usart.o: ..\UCOSIII\uCOS_BSP\bsp.h
 .\objects\usart.o: ..\UCOSIII\uCOS_CONFIG\os_cfg_app.h
+.\objects\usart.o: ..\DEVICE\ds2431.h
 .\objects\usart.o: ..\DEVICE\system.h
 .\objects\usart.o: ..\DEVICE\tmp468.h
 .\objects\usart.o: ..\DEVICE\adt7302.h

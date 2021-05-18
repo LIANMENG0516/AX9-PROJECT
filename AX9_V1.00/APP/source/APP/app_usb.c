@@ -126,11 +126,6 @@ void App_Usb_Task()
                 SenFrameCmd.Data[7] = SysMsg.Fan.Rpm4;
                 SenFrameCmd.Data[8] = SysMsg.Fan.Rpm5 >> 8;
                 SenFrameCmd.Data[9] = SysMsg.Fan.Rpm5;
-                SenFrameCmd.Data[10] = SysMsg.Fan.Fan1State;
-                SenFrameCmd.Data[11] = SysMsg.Fan.Fan2State;
-                SenFrameCmd.Data[12] = SysMsg.Fan.Fan3State;
-                SenFrameCmd.Data[13] = SysMsg.Fan.Fan4State;
-                SenFrameCmd.Data[14] = SysMsg.Fan.Fan5State;
                 
                 FrameCmdPackage(USB_Tx_Buffer);
                 VCP_fops.pIf_DataTx(USB_Tx_Buffer, (USB_Tx_Buffer[3] + 6));
@@ -153,21 +148,82 @@ void App_Usb_Task()
                 FrameCmdPackage(USB_Tx_Buffer);
                 VCP_fops.pIf_DataTx(USB_Tx_Buffer, (USB_Tx_Buffer[3] + 6));
             }
-            SysMsg.Cmd.PwrInfo_Send = TRUE;
-
-            if(SysMsg.Cmd.EcInfo_Send == TRUE)
-            {
-                SysMsg.Cmd.EcInfo_Send = FALSE;
             
-                SenFrameCmd.Cid = CMD_EC_COMMUNICATE;
+            if(SysMsg.Cmd.Vpp1Vnn1En_Send)
+            {
+                SysMsg.Cmd.Vpp1Vnn1En_Send = FALSE;
+                SenFrameCmd.Cid = CMD_VPP1VNN1_EN;
                 
-                SenFrameCmd.Len = 31;
-                SenFrameCmd.Data = Ec_Info;
-                
+                SenFrameCmd.Len = 1;
+                SenFrameCmd.Data[0] = RESPONSE_OK;
+            
                 FrameCmdPackage(USB_Tx_Buffer);
                 VCP_fops.pIf_DataTx(USB_Tx_Buffer, (USB_Tx_Buffer[3] + 6));
             }
             
+            if(SysMsg.Cmd.Vpp1Vnn1Dis_Send)
+            {
+                SysMsg.Cmd.Vpp1Vnn1Dis_Send = FALSE;
+                SenFrameCmd.Cid = CMD_VPP1VNN1_DIS;
+                
+                SenFrameCmd.Len = 1;
+                SenFrameCmd.Data[0] = RESPONSE_OK;
+            
+                FrameCmdPackage(USB_Tx_Buffer);
+                VCP_fops.pIf_DataTx(USB_Tx_Buffer, (USB_Tx_Buffer[3] + 6));
+            }
+            
+            if(SysMsg.Cmd.Vpp2Vnn2En_Send)
+            {
+                SysMsg.Cmd.Vpp2Vnn2En_Send = FALSE;
+                SenFrameCmd.Cid = CMD_VPP2VNN2_EN;
+                
+                SenFrameCmd.Len = 1;
+                SenFrameCmd.Data[0] = RESPONSE_OK;
+            
+                FrameCmdPackage(USB_Tx_Buffer);
+                VCP_fops.pIf_DataTx(USB_Tx_Buffer, (USB_Tx_Buffer[3] + 6));
+            }
+            
+            if(SysMsg.Cmd.Vpp2Vnn2Dis_Send)
+            {
+                SysMsg.Cmd.Vpp2Vnn2Dis_Send = FALSE;
+                SenFrameCmd.Cid = CMD_VPP2VNN2_DIS;
+                
+                SenFrameCmd.Len = 1;
+                SenFrameCmd.Data[0] = RESPONSE_OK;
+            
+                FrameCmdPackage(USB_Tx_Buffer);
+                VCP_fops.pIf_DataTx(USB_Tx_Buffer, (USB_Tx_Buffer[3] + 6));
+            }
+
+            if(SysMsg.Cmd.WriteBoardOk_Send)
+            {
+                SysMsg.Cmd.WriteBoardOk_Send = FALSE;
+                SenFrameCmd.Cid = CMD_WRITE_BOARDINFO;
+                
+                SenFrameCmd.Len = 1;
+                SenFrameCmd.Data[0] = RESPONSE_OK;
+            
+                FrameCmdPackage(USB_Tx_Buffer);
+                VCP_fops.pIf_DataTx(USB_Tx_Buffer, (USB_Tx_Buffer[3] + 6));
+            }
+            
+            if(SysMsg.Cmd.BoardInfo_Send)
+            {
+                SysMsg.Cmd.BoardInfo_Send = FALSE;
+                SenFrameCmd.Cid = CMD_READ_BOARDINFO;
+                
+                SenFrameCmd.Len = 13;
+                for(uint8_t i=0; i<13; i++)
+                {
+                    SenFrameCmd.Data[i] = Ec_Info[i];
+                }
+            
+                FrameCmdPackage(USB_Tx_Buffer);
+                VCP_fops.pIf_DataTx(USB_Tx_Buffer, (USB_Tx_Buffer[3] + 6));
+            }
+
             if(SysMsg.Cmd.Timeout == TRUE)
             {
                 SysMsg.Cmd.Timeout = FALSE;

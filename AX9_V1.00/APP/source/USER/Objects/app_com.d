@@ -74,6 +74,7 @@
 .\objects\app_com.o: ..\UCOSIII\uCOS_CONFIG\app_cfg.h
 .\objects\app_com.o: ..\UCOSIII\uCOS_BSP\bsp.h
 .\objects\app_com.o: ..\UCOSIII\uCOS_CONFIG\os_cfg_app.h
+.\objects\app_com.o: ..\DEVICE\ds2431.h
 .\objects\app_com.o: ..\DEVICE\system.h
 .\objects\app_com.o: ..\DEVICE\tmp468.h
 .\objects\app_com.o: ..\DEVICE\adt7302.h

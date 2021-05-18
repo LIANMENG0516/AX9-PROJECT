@@ -74,6 +74,7 @@
 .\objects\bat2.o: ..\UCOSIII\uCOS_CONFIG\app_cfg.h
 .\objects\bat2.o: ..\UCOSIII\uCOS_BSP\bsp.h
 .\objects\bat2.o: ..\UCOSIII\uCOS_CONFIG\os_cfg_app.h
+.\objects\bat2.o: ..\DEVICE\ds2431.h
 .\objects\bat2.o: ..\DEVICE\system.h
 .\objects\bat2.o: ..\DEVICE\tmp468.h
 .\objects\bat2.o: ..\DEVICE\adt7302.h

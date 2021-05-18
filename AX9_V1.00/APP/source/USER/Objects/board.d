@@ -73,6 +73,7 @@
 .\objects\board.o: ..\BSP\adc.h
 .\objects\board.o: ..\DEVICE\bat.h
 .\objects\board.o: ..\DEVICE\power.h
+.\objects\board.o: ..\DEVICE\ds2431.h
 .\objects\board.o: ..\DEVICE\system.h
 .\objects\board.o: ..\DEVICE\tmp468.h
 .\objects\board.o: ..\DEVICE\adt7302.h

@@ -22,6 +22,7 @@
 ".\objects\bat1.o"
 ".\objects\bat2.o"
 ".\objects\power.o"
+".\objects\ds2431.o"
 ".\objects\board.o"
 ".\objects\gpio.o"
 ".\objects\nvic.o"
@@ -116,7 +117,7 @@
 ".\objects\os_cpu_a.o"
 ".\objects\os_cpu_c.o"
 ".\objects\os_app_hooks.o"
---strict --scatter ".\Objects\AX9.sct"
+--library_type=microlib --strict --scatter ".\Objects\AX9.sct"
 --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers
 --list ".\Listings\AX9.map" -o .\Objects\AX9.axf

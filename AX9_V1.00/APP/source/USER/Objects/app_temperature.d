@@ -74,6 +74,7 @@
 .\objects\app_temperature.o: ..\UCOSIII\uCOS_CONFIG\app_cfg.h
 .\objects\app_temperature.o: ..\UCOSIII\uCOS_BSP\bsp.h
 .\objects\app_temperature.o: ..\UCOSIII\uCOS_CONFIG\os_cfg_app.h
+.\objects\app_temperature.o: ..\DEVICE\ds2431.h
 .\objects\app_temperature.o: ..\DEVICE\system.h
 .\objects\app_temperature.o: ..\DEVICE\tmp468.h
 .\objects\app_temperature.o: ..\DEVICE\adt7302.h

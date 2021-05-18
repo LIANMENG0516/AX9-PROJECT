@@ -30,9 +30,6 @@ void IIC1_SDA_IN()
 	GPIO_Init(GPIOB, &GPIO_InitStruct);
 }
 
-
-
-
 void I2c_Tmp_Start()
 {
 	IIC1_SDA_OUT();
@@ -155,51 +152,53 @@ uint8_t I2c_Tmp_ReadByte()
 	return data;
 }
 
-void Tmp468_WriteByte(uint8_t id, uint16_t addr, uint16_t val)
+uint8_t Tmp468_WriteByte(uint8_t id, uint16_t addr, uint16_t val)
 {
     I2c_Tmp_Start();
     I2c_Tmp_SendByte((id << 1) & 0xFE);           //发送器件地址, 写地址
     if(I2c_Tmp_WaitAck())
     {
-        DEBUG_PRINTF(DEBUG_STRING, "TMP468 IIC ERROR \r\n");
+        return 1;
     }
     I2c_Tmp_SendByte(addr);
     if(I2c_Tmp_WaitAck())
     {
-        DEBUG_PRINTF(DEBUG_STRING, "TMP468 IIC ERROR \r\n");
+        return 1;
     }
     I2c_Tmp_SendByte(val);
     if(I2c_Tmp_WaitAck())
     {
-        DEBUG_PRINTF(DEBUG_STRING, "TMP468 IIC ERROR \r\n");
+        return 1;
     }
     I2c_Tmp_Stop();
+    return 0;
 }
 
-void Tmp468_ReadByte(uint8_t id, uint8_t addr, uint8_t *buffer)
+uint8_t Tmp468_ReadByte(uint8_t id, uint8_t addr, uint8_t *buffer)
 {
     I2c_Tmp_Start();
     I2c_Tmp_SendByte((id << 1) & 0xFE);     //发送器件地址, 写地址
     if(I2c_Tmp_WaitAck())
     {
-        DEBUG_PRINTF(DEBUG_STRING, "TMP468 IIC ERROR \r\n");
+        return 1;
     }
     I2c_Tmp_SendByte(addr);
     if(I2c_Tmp_WaitAck())
     {
-        DEBUG_PRINTF(DEBUG_STRING, "TMP468 IIC ERROR \r\n");
+        return 1;
     }
     I2c_Tmp_SendByte((id << 1) | 0x01);     //发送器件地址, 读地址
     if(I2c_Tmp_WaitAck())
     {
-        DEBUG_PRINTF(DEBUG_STRING, "TMP468 IIC ERROR \r\n");
+        return 1;
     }
     *buffer = I2c_Tmp_ReadByte();
     I2c_Tmp_SendNack();
     I2c_Tmp_Stop();
+    return 0;
 }
 
-void Tmp468_ReadData(uint8_t id, uint8_t addr, uint8_t *buffer, uint8_t len)
+uint8_t Tmp468_ReadData(uint8_t id, uint8_t addr, uint8_t *buffer, uint8_t len)
 {
     uint8_t i = 0;
     
@@ -207,18 +206,18 @@ void Tmp468_ReadData(uint8_t id, uint8_t addr, uint8_t *buffer, uint8_t len)
     I2c_Tmp_SendByte((id << 1) & 0xFE); 
     if(I2c_Tmp_WaitAck())
     {
-        DEBUG_PRINTF(DEBUG_STRING, "TMP468 IIC ERROR \r\n");
+        return 1;
     }
     I2c_Tmp_SendByte(addr);
     if(I2c_Tmp_WaitAck())
     {
-        DEBUG_PRINTF(DEBUG_STRING, "TMP468 IIC ERROR \r\n");
+        return 1;
     }
     I2c_Tmp_Start();
     I2c_Tmp_SendByte((id << 1) | 0x01);
 	if(I2c_Tmp_WaitAck())
     {
-        DEBUG_PRINTF(DEBUG_STRING, "TMP468 IIC ERROR \r\n");
+        return 1;
     }
     do
     {
@@ -234,9 +233,8 @@ void Tmp468_ReadData(uint8_t id, uint8_t addr, uint8_t *buffer, uint8_t len)
         }
     }while(i!=len);
     I2c_Tmp_Stop();
+    return 0;
 }
-
-
 
 extern System_MsgStruct SysMsg;
 
@@ -246,7 +244,7 @@ void Obtain_TemperatureFPGA()
 
     Tmp468_ReadData(TMP468_ADDR, RT1_ADDR, Temp, 2);
     
-    SysMsg.Temperature.FPGA1 = (int)(((((Temp[0] << 8) + Temp[1]) >> 3) * 0.0625) + 0.5);    //四舍五入取整数
+    SysMsg.Temperature.FPGA = (int)(((((Temp[0] << 8) + Temp[1]) >> 3) * 0.0625) + 0.5);    //四舍五入取整数
 }
 
 

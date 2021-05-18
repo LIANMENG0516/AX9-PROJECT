@@ -74,6 +74,7 @@
 .\objects\power.o: ..\UCOSIII\uCOS_CONFIG\app_cfg.h
 .\objects\power.o: ..\UCOSIII\uCOS_BSP\bsp.h
 .\objects\power.o: ..\UCOSIII\uCOS_CONFIG\os_cfg_app.h
+.\objects\power.o: ..\DEVICE\ds2431.h
 .\objects\power.o: ..\DEVICE\system.h
 .\objects\power.o: ..\DEVICE\tmp468.h
 .\objects\power.o: ..\DEVICE\adt7302.h

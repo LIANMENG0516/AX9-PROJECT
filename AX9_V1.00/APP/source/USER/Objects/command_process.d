@@ -74,6 +74,7 @@
 .\objects\command_process.o: ..\UCOSIII\uCOS_CONFIG\app_cfg.h
 .\objects\command_process.o: ..\UCOSIII\uCOS_BSP\bsp.h
 .\objects\command_process.o: ..\UCOSIII\uCOS_CONFIG\os_cfg_app.h
+.\objects\command_process.o: ..\DEVICE\ds2431.h
 .\objects\command_process.o: ..\DEVICE\system.h
 .\objects\command_process.o: ..\DEVICE\tmp468.h
 .\objects\command_process.o: ..\DEVICE\adt7302.h

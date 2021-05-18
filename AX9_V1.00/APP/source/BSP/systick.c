@@ -68,18 +68,35 @@ void delay_ms(uint16_t time)
 	SysTick->VAL = 0;
 }
 
+void delay_os_lock()
+{
+    OS_ERR err;
+    OSSchedLock(&err);
+}
+
+void delay_os_unlock()
+{
+    OS_ERR err;
+    OSSchedUnlock(&err);
+}
+
 void delay_us_os(uint16_t time)
 {
     uint32_t ticks, reload;
-    uint16_t oldValue, nowValue, difVal;;
+    uint32_t oldValue, nowValue, difVal;
     
     ticks = time * 21;
     reload = SysTick->LOAD;
     oldValue = SysTick->VAL;
-    
+    delay_os_lock();
     while(1)
     {
         nowValue = SysTick->VAL;
+        
+        if(nowValue == 0)
+        {
+            nowValue = SysTick->VAL;
+        }
         
         if(nowValue != oldValue)
         {
@@ -99,9 +116,9 @@ void delay_us_os(uint16_t time)
                     break;
                 }
             }
-        
         }
-    } 
+    }
+    delay_os_unlock();    
 }
 
 

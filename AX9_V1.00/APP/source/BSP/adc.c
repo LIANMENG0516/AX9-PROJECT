@@ -127,7 +127,7 @@ uint16_t Adc1_ReadConvertValue(uint8_t sample_sequence)
 
 void Adc1_GetMcuInternalTemperature()
 {
-    SysMsg.Temperature.USPB = (uint8_t)(((Adc1_ReadConvertValue(SAMPLE_TEMP_SEQUENCE) * 3.3 / 4095) - 0.76) / 0.0025 + 25);
+    SysMsg.Temperature.MCU = (uint8_t)(((Adc1_ReadConvertValue(SAMPLE_TEMP_SEQUENCE) * 3.3 / 4095) - 0.76) / 0.0025 + 25);
 }
 
 

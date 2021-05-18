@@ -74,6 +74,7 @@
 .\objects\timer.o: ..\UCOSIII\uCOS_CONFIG\app_cfg.h
 .\objects\timer.o: ..\UCOSIII\uCOS_BSP\bsp.h
 .\objects\timer.o: ..\UCOSIII\uCOS_CONFIG\os_cfg_app.h
+.\objects\timer.o: ..\DEVICE\ds2431.h
 .\objects\timer.o: ..\DEVICE\system.h
 .\objects\timer.o: ..\DEVICE\tmp468.h
 .\objects\timer.o: ..\DEVICE\adt7302.h

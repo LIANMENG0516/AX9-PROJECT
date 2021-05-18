@@ -275,6 +275,11 @@
 //US_PWR_ID
 #define US_PWR_ID_PORT            GPIOE
 #define US_PWR_ID_PIN             GPIO_Pin_11
+#define US_PWR_ID_1()             GPIO_SetBits(US_PWR_ID_PORT, US_PWR_ID_PIN)
+#define US_PWR_ID_0()             GPIO_ResetBits(US_PWR_ID_PORT, US_PWR_ID_PIN)
+//#define US_PWR_ID_IN()           {GPIOE->MODER = GPIOE->MODER & 0xFF3FFFFF;}
+//#define US_PWR_ID_OUT()          {GPIOE->MODER = GPIOE->MODER & 0xFF7FFFFF; GPIOE->MODER = GPIOE->MODER | 0x00400000;}
+#define US_PWR_ID_READ()          GPIO_ReadInputDataBit(US_PWR_ID_PORT, US_PWR_ID_PIN)
 
 //SUS_S4
 #define SUS_S4_PORT               GPIOE

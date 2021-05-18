@@ -74,6 +74,7 @@
 .\objects\app_sysonoff.o: ..\UCOSIII\uCOS_CONFIG\app_cfg.h
 .\objects\app_sysonoff.o: ..\UCOSIII\uCOS_BSP\bsp.h
 .\objects\app_sysonoff.o: ..\UCOSIII\uCOS_CONFIG\os_cfg_app.h
+.\objects\app_sysonoff.o: ..\DEVICE\ds2431.h
 .\objects\app_sysonoff.o: ..\DEVICE\system.h
 .\objects\app_sysonoff.o: ..\DEVICE\tmp468.h
 .\objects\app_sysonoff.o: ..\DEVICE\adt7302.h

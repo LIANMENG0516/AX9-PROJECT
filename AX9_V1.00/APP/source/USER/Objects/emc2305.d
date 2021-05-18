@@ -74,6 +74,7 @@
 .\objects\emc2305.o: ..\UCOSIII\uCOS_CONFIG\app_cfg.h
 .\objects\emc2305.o: ..\UCOSIII\uCOS_BSP\bsp.h
 .\objects\emc2305.o: ..\UCOSIII\uCOS_CONFIG\os_cfg_app.h
+.\objects\emc2305.o: ..\DEVICE\ds2431.h
 .\objects\emc2305.o: ..\DEVICE\system.h
 .\objects\emc2305.o: ..\DEVICE\tmp468.h
 .\objects\emc2305.o: ..\DEVICE\adt7302.h

@@ -74,6 +74,7 @@
 .\objects\adjustvoltage.o: ..\UCOSIII\uCOS_CONFIG\app_cfg.h
 .\objects\adjustvoltage.o: ..\UCOSIII\uCOS_BSP\bsp.h
 .\objects\adjustvoltage.o: ..\UCOSIII\uCOS_CONFIG\os_cfg_app.h
+.\objects\adjustvoltage.o: ..\DEVICE\ds2431.h
 .\objects\adjustvoltage.o: ..\DEVICE\system.h
 .\objects\adjustvoltage.o: ..\DEVICE\tmp468.h
 .\objects\adjustvoltage.o: ..\DEVICE\adt7302.h

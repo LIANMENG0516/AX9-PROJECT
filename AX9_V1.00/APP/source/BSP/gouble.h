@@ -20,6 +20,7 @@
 #include "bat.h"
 #include "power.h"
 #include "board.h"
+#include "ds2431.h"
 #include "system.h"
 #include "tmp468.h"
 #include "adt7302.h"
@@ -54,8 +55,6 @@
 #define USE_DEBUG                           0       //调试总开关
 #define DEBUG_COMMAND                       1       //命令调试开关
 #define DEBUG_STRING                        0       //字符串调试开关
-
-#define DEBUG_PRINTF(x, ...)                if(x) {printf(__VA_ARGS__);}
 
 #define APP_LED_TASK_PRIO 					3
 #define APP_LED_STK_SIZE 					256

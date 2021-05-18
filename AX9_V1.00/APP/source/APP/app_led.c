@@ -6,6 +6,11 @@ OS_TCB LedTaskTcb;
 
 CPU_STK App_Led_Task_Stk[APP_LED_STK_SIZE];
 
+
+uint8_t wData[16] = {1,2,3,4,5,5,5,3,3,3,5,6,8,2,3,9};
+uint8_t rData[16] = {0};
+
+
 void App_Led_Task()
 {
 	OS_ERR err;
@@ -14,21 +19,19 @@ void App_Led_Task()
 	{			
         MCU_LED_BLINK();
         
-//        if(SysMsg.SystemState == SYSTEM_ON)
-//        {
-//            MCU_LED_BLINK();
-//        }
-//        if(SysMsg.SystemState == SYSTEM_OFF)
-//        {
-//            CTL_MCU_LED(0);
-//        }
-//        if(SysMsg.SystemState == SYSTEM_SLEEP)
-//        {
-//            CTL_MCU_LED(1);
-//        }
-        
-
 		OSTimeDlyHMSM(0, 0, 0, 500, OS_OPT_TIME_PERIODIC, &err);
+        
+        
+        
+        DS2431_WriteData(0x00, wData);
+        OSTimeDlyHMSM(0, 0, 0, 50, OS_OPT_TIME_PERIODIC, &err);
+        DS2431_WriteData(0x08, wData+8);
+        
+        OSTimeDlyHMSM(0, 0, 0, 500, OS_OPT_TIME_PERIODIC, &err);
+        
+        DS2431_ReadData(0x00, rData);
+        
+        OSTimeDlyHMSM(0, 0, 0, 500, OS_OPT_TIME_PERIODIC, &err);        
 	}
 }
 

@@ -28,7 +28,7 @@
 #define FAN5_TACHREAD_HIGH  0x7e 
 #define FAN5_TACHREAD_LOW   0x7f 
 
-#define SPEED_NoMin         0x0c    
+#define SPEED_NoMin         0x1c    
 #define SPEED_NoMax         0xff    
 #define SPEED_ERROR         960     //风扇转速低于960识别为硬件故障即无风扇或风扇损坏
 

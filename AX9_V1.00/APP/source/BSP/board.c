@@ -115,7 +115,9 @@ void I_AdcDma_Config()
 
 void Fan_Config()
 {
+    delay_os_lock();
     Fan_Emc2305_Init();
+    delay_os_unlock();
 }
 
 void Board_Bsp_Init()
@@ -133,6 +135,7 @@ void Board_Bsp_Init()
     #else
     Commu_Com_Config();                     //通讯串口初始化--与EC通讯
     #endif
+    
     Spi_Dac_Config();
     Adjust_Hv_Reset();
     Adjust_Cw_Reset();
