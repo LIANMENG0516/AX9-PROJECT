@@ -36,7 +36,7 @@ uint8_t DS2431_Reset()
     uint8_t result;
 
     US_PWR_ID_OUT(); US_PWR_ID_1(); delay_us_os(200);
-    US_PWR_ID_0();                                      //拉低总线500us产生复位脉冲
+    US_PWR_ID_0();                                      //拉低总线600us产生复位脉冲
     delay_us_os(600);
     US_PWR_ID_IN();                                     //释放总线
     delay_us_os(60);

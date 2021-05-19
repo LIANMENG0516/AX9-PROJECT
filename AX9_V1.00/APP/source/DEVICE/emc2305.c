@@ -358,7 +358,6 @@ void Fan_Emc2305_Init()
 
     Emc2305_WriteByte(EMC2305_10K_ADDR, PWM_POLARITY, 0x00);            //设置PWM极性
     Emc2305_WriteByte(EMC2305_10K_ADDR, PWM_OUTPUT,   0x1F);            //设置PWM为推挽输出
-    Emc2305_WriteByte(EMC2305_10K_ADDR, PWM_OUTPUT,   0x1F); 
     Emc2305_WriteByte(EMC2305_10K_ADDR, PWM45_BASE,   0x00);            //设置PWM4、PWM5基础频率为26KHz
     Emc2305_WriteByte(EMC2305_10K_ADDR, PWM123_BASE,  0x00);            //设置PWM1、PWM2、PWM3基础频率为26KHz
     Emc2305_WriteByte(EMC2305_10K_ADDR, FAN1_SETTING, SPEED_NoMin);     //设置占空比

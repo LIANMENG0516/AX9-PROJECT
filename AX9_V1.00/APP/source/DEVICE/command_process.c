@@ -85,8 +85,6 @@ union VolCheck
     uint16_t volChk;
 };
 
-
-
 void Update_EcInfo()
 {
     union VolCheck VolChk;
